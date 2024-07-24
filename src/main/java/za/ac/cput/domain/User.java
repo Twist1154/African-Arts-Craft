@@ -31,14 +31,14 @@ public class User {
     }
 
     public User(Builder builder) {
-        this.user_id = user_id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.user_id = builder.user_id;
+        this.username = builder.username;
+        this.password = builder.password;
+        this.email = builder.email;
+        this.first_name = builder.first_name;
+        this.last_name = builder.last_name;
+        this.created_at = builder.created_at;
+        this.updated_at = builder.updated_at;
     }
 
     public long getUser_id() {
@@ -138,14 +138,14 @@ public class User {
         }
 
         public Builder copy(User user) {
-            this.user_id = user_id;
-            this.username = username;
-            this.password = password;
-            this.email = email;
-            this.first_name = first_name;
-            this.last_name = last_name;
-            this.created_at = created_at;
-            this.updated_at = updated_at;
+            this.user_id = user.getUser_id();
+            this.username = user.getUsername();
+            this.password = user.getPassword();
+            this.email = user.getEmail();
+            this.first_name = user.getFirst_name();
+            this.last_name = user.getLast_name();
+            this.created_at = user.getCreated_at();
+            this.updated_at = user.getUpdated_at();
             return this;
         }
 
