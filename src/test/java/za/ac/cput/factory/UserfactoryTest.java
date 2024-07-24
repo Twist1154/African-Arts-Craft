@@ -16,7 +16,7 @@ class UserfactoryTest {
         String password = "password";
         String email = "rethabile@gmail.com";
         String first_name = "Rethabile";
-        String last_name = "Twist";
+        String last_name = "Ntsekhe";
         LocalDate created_at = LocalDate.of(2023, 7, 24);
         LocalDate updated_at = LocalDate.of(2023, 8, 24);
 
