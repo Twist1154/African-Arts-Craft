@@ -8,14 +8,14 @@ import jakarta.persistence.Id;
 import java.time.LocalDate;
 
 /**
- * User.java
+ * Users.java
  *
  * @author Rethabile Ntsekhe
  * Student Num: 220455430
  * @date 23-Jul-24
  */
 @Entity
-public class User {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long user_id;
@@ -27,10 +27,10 @@ public class User {
     private LocalDate created_at;
     private LocalDate updated_at;
 
-    public User() {
+    public Users() {
     }
 
-    public User(Builder builder) {
+    public Users(Builder builder) {
         this.user_id = builder.user_id;
         this.username = builder.username;
         this.password = builder.password;
@@ -75,8 +75,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "User ID: " + user_id +
+        return "Users{" +
+                "Users ID: " + user_id +
                 ", USERNAME: '" + username + '\'' +
                 ", PASSWORD: '" + password + '\'' +
                 ", EMAIL: '" + email + '\'' +
@@ -137,20 +137,20 @@ public class User {
             return this;
         }
 
-        public Builder copy(User user) {
-            this.user_id = user.getUser_id();
-            this.username = user.getUsername();
-            this.password = user.getPassword();
-            this.email = user.getEmail();
-            this.first_name = user.getFirst_name();
-            this.last_name = user.getLast_name();
-            this.created_at = user.getCreated_at();
-            this.updated_at = user.getUpdated_at();
+        public Builder copy(Users users) {
+            this.user_id = users.getUser_id();
+            this.username = users.getUsername();
+            this.password = users.getPassword();
+            this.email = users.getEmail();
+            this.first_name = users.getFirst_name();
+            this.last_name = users.getLast_name();
+            this.created_at = users.getCreated_at();
+            this.updated_at = users.getUpdated_at();
             return this;
         }
 
-        public User build() {
-            return new User(this);
+        public Users build() {
+            return new Users(this);
         }
     }
 }
