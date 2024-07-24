@@ -1,5 +1,7 @@
 package za.ac.cput.domain;
 
+import java.io.Serializable;
+
 /**
  * Cart_Items.java
  *
@@ -8,5 +10,5 @@ package za.ac.cput.domain;
  * @date 23-Jul-24
  */
 
-public class Cart_Items {
+public class Cart_Items implements Serializable {
 }

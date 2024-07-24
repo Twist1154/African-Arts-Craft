@@ -1,5 +1,7 @@
 package za.ac.cput.domain;
 
+import java.io.Serializable;
+
 /**
  * Reviews.java
  *
@@ -8,5 +10,5 @@ package za.ac.cput.domain;
  * @date 23-Jul-24
  */
 
-public class Reviews {
+public class Reviews implements Serializable {
 }

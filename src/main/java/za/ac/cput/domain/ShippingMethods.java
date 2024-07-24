@@ -1,5 +1,7 @@
 package za.ac.cput.domain;
 
+import java.io.Serializable;
+
 /**
  * ShippingMethods.java
  *
@@ -8,5 +10,5 @@ package za.ac.cput.domain;
  * @date 23-Jul-24
  */
 
-public class ShippingMethods {
+public class ShippingMethods implements Serializable {
 }

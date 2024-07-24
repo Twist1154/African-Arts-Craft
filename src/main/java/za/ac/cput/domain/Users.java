@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -15,7 +16,7 @@ import java.time.LocalDate;
  * @date 23-Jul-24
  */
 @Entity
-public class Users {
+public class Users implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long user_id;
