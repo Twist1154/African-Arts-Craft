@@ -75,6 +75,39 @@ public class Users implements Serializable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Users users)) return false;
+
+        if (getUser_id() != users.getUser_id()) return false;
+        if (getUsername() != null ? !getUsername().equals(users.getUsername()) : users.getUsername() != null)
+            return false;
+        if (getPassword() != null ? !getPassword().equals(users.getPassword()) : users.getPassword() != null)
+            return false;
+        if (getEmail() != null ? !getEmail().equals(users.getEmail()) : users.getEmail() != null) return false;
+        if (getFirst_name() != null ? !getFirst_name().equals(users.getFirst_name()) : users.getFirst_name() != null)
+            return false;
+        if (getLast_name() != null ? !getLast_name().equals(users.getLast_name()) : users.getLast_name() != null)
+            return false;
+        if (getCreated_at() != null ? !getCreated_at().equals(users.getCreated_at()) : users.getCreated_at() != null)
+            return false;
+        return getUpdated_at() != null ? getUpdated_at().equals(users.getUpdated_at()) : users.getUpdated_at() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (getUser_id() ^ (getUser_id() >>> 32));
+        result = 31 * result + (getUsername() != null ? getUsername().hashCode() : 0);
+        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
+        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
+        result = 31 * result + (getFirst_name() != null ? getFirst_name().hashCode() : 0);
+        result = 31 * result + (getLast_name() != null ? getLast_name().hashCode() : 0);
+        result = 31 * result + (getCreated_at() != null ? getCreated_at().hashCode() : 0);
+        result = 31 * result + (getUpdated_at() != null ? getUpdated_at().hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Users{" +
                 "Users ID: " + user_id +

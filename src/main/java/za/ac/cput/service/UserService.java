@@ -62,7 +62,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public List<Users> findUsersByLastName(String lastName) {
+    public List<Users> findByLastName(String lastName) {
         return userRepository.findByLastName(lastName);
     }
 

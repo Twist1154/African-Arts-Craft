@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Information</title>
+</head>
+<body>
+<h1>User Information</h1>
+<div>
+    <button onclick="fetchUsers()">Fetch Users</button>
+</div>
+<div id="user-list"></div>
+
+<script>
+    async function fetchUsers() {
+        try {
+            const response = await fetch('/store/api/users');
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            const users = await response.json();
+            displayUsers(users);
+        } catch (error) {
+            console.error('There has been a problem with your fetch operation:', error);
+        }
+    }
+
+    function displayUsers(users) {
+        const userList = document.getElementById('user-list');
+        userList.innerHTML = ''; // Clear existing content
+
+        users.forEach(user => {
+            const userDiv = document.createElement('div');
+            userDiv.innerHTML = `
+                    <p><strong>ID:</strong> ${user.user_id}</p>
+                    <p><strong>Username:</strong> ${user.username}</p>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>First Name:</strong> ${user.first_name}</p>
+                    <p><strong>Last Name:</strong> ${user.last_name}</p>
+                    <p><strong>Created At:</strong> ${user.created_at}</p>
+                    <p><strong>Updated At:</strong> ${user.updated_at}</p>
+                    <hr>
+                `;
+            userList.appendChild(userDiv);
+        });
+    }
+</script>
+</body>
+</html>
