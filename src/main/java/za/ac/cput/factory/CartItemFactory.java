@@ -17,7 +17,6 @@ public class CartItemFactory {
         if (Helper.isNullOrEmpty(quantity)
         ) return null;
 
-        // Build and return the Cart_Items object
         return new Cart_Items.Builder()
                 .setCart_item_id(cart_item_id)
                 .setCart_id(cart_id)
