@@ -1,6 +1,5 @@
 package za.ac.cput.service;
 
-import za.ac.cput.domain.Order;
 import za.ac.cput.domain.Users;
 
 import java.util.List;
@@ -19,7 +18,7 @@ public interface IUserService extends IService<Users, String> {
 
     List<Users> findByUsername(String username);
 
-    List<Users> findUsersByLastName(String last_name);
+    List<Users> findByLastName(String last_name);
 
     List<Users> findByEmail(String email);
 }

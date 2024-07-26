@@ -100,7 +100,7 @@ public class UserServiceTest {
     @Test
     void testFindUsersByLastName() {
         userService.create(user);
-        List<Users> users = userService.findUsersByLastName("Ntsekhe");
+        List<Users> users = userService.findByLastName("Ntsekhe");
         assertFalse(users.isEmpty());
     }
 

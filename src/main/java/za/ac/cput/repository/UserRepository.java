@@ -26,7 +26,6 @@ public interface UserRepository extends JpaRepository<Users, String> {
     // in the service level
 //---------------------------------------------------------------------------------------------------------
 
-    // Query derived from method name
     @Query("SELECT u FROM Users u WHERE u.username = :username")
     List<Users> findByUsername(String username);
 
