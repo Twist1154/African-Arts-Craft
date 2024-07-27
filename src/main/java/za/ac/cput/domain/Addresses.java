@@ -22,7 +22,7 @@ public class Addresses implements Serializable {
     private String address_line1;
     private String address_line2;
     private String city;
-    private String state;
+    private String province;
     private String postal_code;
     private String country;
     private LocalDate created_at;
@@ -37,7 +37,7 @@ public class Addresses implements Serializable {
         this.address_line1 = builder.address_line1;
         this.address_line2 = builder.address_line2;
         this.city = builder.city;
-        this.state = builder.state;
+        this.province = builder.province;
         this.postal_code = builder.postal_code;
         this.country = builder.country;
         this.created_at = builder.created_at;
@@ -64,8 +64,8 @@ public class Addresses implements Serializable {
         return city;
     }
 
-    public String getState() {
-        return state;
+    public String getProvince() {
+        return province;
     }
 
     public String getPostal_code() {
@@ -96,7 +96,8 @@ public class Addresses implements Serializable {
         if (getAddress_line2() != null ? !getAddress_line2().equals(addresses.getAddress_line2()) : addresses.getAddress_line2() != null)
             return false;
         if (getCity() != null ? !getCity().equals(addresses.getCity()) : addresses.getCity() != null) return false;
-        if (getState() != null ? !getState().equals(addresses.getState()) : addresses.getState() != null) return false;
+        if (getProvince() != null ? !getProvince().equals(addresses.getProvince()) : addresses.getProvince() != null)
+            return false;
         if (getPostal_code() != null ? !getPostal_code().equals(addresses.getPostal_code()) : addresses.getPostal_code() != null)
             return false;
         if (getCountry() != null ? !getCountry().equals(addresses.getCountry()) : addresses.getCountry() != null)
@@ -113,7 +114,7 @@ public class Addresses implements Serializable {
         result = 31 * result + (getAddress_line1() != null ? getAddress_line1().hashCode() : 0);
         result = 31 * result + (getAddress_line2() != null ? getAddress_line2().hashCode() : 0);
         result = 31 * result + (getCity() != null ? getCity().hashCode() : 0);
-        result = 31 * result + (getState() != null ? getState().hashCode() : 0);
+        result = 31 * result + (getProvince() != null ? getProvince().hashCode() : 0);
         result = 31 * result + (getPostal_code() != null ? getPostal_code().hashCode() : 0);
         result = 31 * result + (getCountry() != null ? getCountry().hashCode() : 0);
         result = 31 * result + (getCreated_at() != null ? getCreated_at().hashCode() : 0);
@@ -129,7 +130,7 @@ public class Addresses implements Serializable {
                 ", ADDRESS LINE1: '" + address_line1 + '\'' +
                 ", ADDRESS LINE2: '" + address_line2 + '\'' +
                 ", CITY: '" + city + '\'' +
-                ", STATE: '" + state + '\'' +
+                ", PROVINCE: '" + province + '\'' +
                 ", POSTAL CODE: '" + postal_code + '\'' +
                 ", COUNTRY: '" + country + '\'' +
                 ", CREATED AT: " + created_at +
@@ -143,7 +144,7 @@ public class Addresses implements Serializable {
         private String address_line1;
         private String address_line2;
         private String city;
-        private String state;
+        private String province;
         private String postal_code;
         private String country;
         private LocalDate created_at;
@@ -174,8 +175,8 @@ public class Addresses implements Serializable {
             return this;
         }
 
-        public Builder setState(String state) {
-            this.state = state;
+        public Builder setProvince(String province) {
+            this.province = province;
             return this;
         }
 
@@ -205,7 +206,7 @@ public class Addresses implements Serializable {
             this.address_line1 = addresses.getAddress_line1();
             this.address_line2 = addresses.getAddress_line2();
             this.city = addresses.getCity();
-            this.state = addresses.getState();
+            this.province = addresses.getProvince();
             this.postal_code = addresses.getPostal_code();
             this.country = addresses.getCountry();
             this.created_at = addresses.getCreated_at();

@@ -23,6 +23,7 @@ public class Shipping_Methods implements Serializable {
     private String description;
     private double cost;
     private String delivery_time;
+    private Addresses address_id;
 
     public Shipping_Methods() {
     }
