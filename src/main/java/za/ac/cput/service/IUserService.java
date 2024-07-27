@@ -1,5 +1,6 @@
 package za.ac.cput.service;
 
+import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Users;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
  * @date 24-Jul-24
  */
 
+@Service
 public interface IUserService extends IService<Users, String> {
 
     void delete(String id);

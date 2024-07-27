@@ -1,6 +1,6 @@
 package za.ac.cput.util;
 
-import za.ac.cput.domain.Order;
+import za.ac.cput.domain.Orders;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -18,11 +18,15 @@ public class Helper {
         return s == null || s.isEmpty();
     }
 
-    public static boolean isDoubleNullorEmpty(Double s) {
-        return s == null || Double.isNaN(s);
+    public static boolean isDoubleNullOrEmpty(Double s) {
+        return s == null || s.isNaN();
     }
 
-    public static boolean isNullOrEmpty(List<Order> s) {
+    public static boolean isNullOrEmpty(Integer i) {
+        return i == null;
+    }
+
+    public static boolean isNullOrEmpty(List<Orders> s) {
         return s == null || s.isEmpty();
     }
 

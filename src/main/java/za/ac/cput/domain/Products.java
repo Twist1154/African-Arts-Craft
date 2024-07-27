@@ -17,33 +17,33 @@ import java.time.LocalDate;
 public class Products implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long product_id;
+    private long productId;
     private String name;
     private String description;
     private double price;
-    private int stock_quantity;
-    private long category_id;
-    private LocalDate created_at;
-    private LocalDate updated_at;
+    private int stockQuantity;
+    private long categoryId;
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
     private String imagePath;
 
     public Products() {
     }
 
     public Products(Builder builder) {
-        this.product_id = builder.product_id;
+        this.productId = builder.productId;
         this.name = builder.name;
         this.description = builder.description;
         this.price = builder.price;
-        this.stock_quantity = builder.stock_quantity;
-        this.category_id = builder.category_id;
-        this.created_at = builder.created_at;
-        this.updated_at = builder.updated_at;
+        this.stockQuantity = builder.stockQuantity;
+        this.categoryId = builder.categoryId;
+        this.createdAt = builder.createdAt;
+        this.updatedAt = builder.updatedAt;
         this.imagePath = builder.imagePath;
     }
 
-    public long getProduct_id() {
-        return product_id;
+    public long getProductId() {
+        return productId;
     }
 
     public String getName() {
@@ -58,20 +58,20 @@ public class Products implements Serializable {
         return price;
     }
 
-    public int getStock_quantity() {
-        return stock_quantity;
+    public int getStockQuantity() {
+        return stockQuantity;
     }
 
-    public long getCategory_id() {
-        return category_id;
+    public long getCategoryId() {
+        return categoryId;
     }
 
-    public LocalDate getCreated_at() {
-        return created_at;
+    public LocalDate getCreatedAt() {
+        return createdAt;
     }
 
-    public LocalDate getUpdated_at() {
-        return updated_at;
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
     }
 
     public String getImagePath() {
@@ -83,16 +83,16 @@ public class Products implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Products products)) return false;
 
-        if (getProduct_id() != products.getProduct_id()) return false;
+        if (getProductId() != products.getProductId()) return false;
         if (Double.compare(getPrice(), products.getPrice()) != 0) return false;
-        if (getStock_quantity() != products.getStock_quantity()) return false;
-        if (getCategory_id() != products.getCategory_id()) return false;
+        if (getStockQuantity() != products.getStockQuantity()) return false;
+        if (getCategoryId() != products.getCategoryId()) return false;
         if (getName() != null ? !getName().equals(products.getName()) : products.getName() != null) return false;
         if (getDescription() != null ? !getDescription().equals(products.getDescription()) : products.getDescription() != null)
             return false;
-        if (getCreated_at() != null ? !getCreated_at().equals(products.getCreated_at()) : products.getCreated_at() != null)
+        if (getCreatedAt() != null ? !getCreatedAt().equals(products.getCreatedAt()) : products.getCreatedAt() != null)
             return false;
-        if (getUpdated_at() != null ? !getUpdated_at().equals(products.getUpdated_at()) : products.getUpdated_at() != null)
+        if (getUpdatedAt() != null ? !getUpdatedAt().equals(products.getUpdatedAt()) : products.getUpdatedAt() != null)
             return false;
         return getImagePath() != null ? getImagePath().equals(products.getImagePath()) : products.getImagePath() == null;
     }
@@ -101,15 +101,15 @@ public class Products implements Serializable {
     public int hashCode() {
         int result;
         long temp;
-        result = (int) (getProduct_id() ^ (getProduct_id() >>> 32));
+        result = (int) (getProductId() ^ (getProductId() >>> 32));
         result = 31 * result + (getName() != null ? getName().hashCode() : 0);
         result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
         temp = Double.doubleToLongBits(getPrice());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + getStock_quantity();
-        result = 31 * result + (int) (getCategory_id() ^ (getCategory_id() >>> 32));
-        result = 31 * result + (getCreated_at() != null ? getCreated_at().hashCode() : 0);
-        result = 31 * result + (getUpdated_at() != null ? getUpdated_at().hashCode() : 0);
+        result = 31 * result + getStockQuantity();
+        result = 31 * result + (int) (getCategoryId() ^ (getCategoryId() >>> 32));
+        result = 31 * result + (getCreatedAt() != null ? getCreatedAt().hashCode() : 0);
+        result = 31 * result + (getUpdatedAt() != null ? getUpdatedAt().hashCode() : 0);
         result = 31 * result + (getImagePath() != null ? getImagePath().hashCode() : 0);
         return result;
     }
@@ -117,31 +117,31 @@ public class Products implements Serializable {
     @Override
     public String toString() {
         return "Products{" +
-                "Product ID: " + product_id +
+                "Product ID: " + productId +
                 ", NAME: '" + name + '\'' +
                 ", DESCRIPTION: '" + description + '\'' +
                 ", PRICE: " + price +
-                ", STOCK QUANTITY: " + stock_quantity +
-                ", CATEGORY ID: " + category_id +
-                ", CREATED AT: " + created_at +
-                ", UPDATED AT: " + updated_at +
+                ", STOCK QUANTITY: " + stockQuantity +
+                ", CATEGORY ID: " + categoryId +
+                ", CREATED AT: " + createdAt +
+                ", UPDATED AT: " + updatedAt +
                 ", IMAGE PATH: '" + imagePath + '\'' +
                 '}';
     }
 
     public static class Builder {
-        private long product_id;
+        private long productId;
         private String name;
         private String description;
         private double price;
-        private int stock_quantity;
-        private long category_id;
-        private LocalDate created_at;
-        private LocalDate updated_at;
+        private int stockQuantity;
+        private long categoryId;
+        private LocalDate createdAt;
+        private LocalDate updatedAt;
         private String imagePath;
 
-        public Builder setProduct_id(long product_id) {
-            this.product_id = product_id;
+        public Builder setProductId(long productId) {
+            this.productId = productId;
             return this;
         }
 
@@ -160,23 +160,23 @@ public class Products implements Serializable {
             return this;
         }
 
-        public Builder setStock_quantity(int stock_quantity) {
-            this.stock_quantity = stock_quantity;
+        public Builder setStockQuantity(int stockQuantity) {
+            this.stockQuantity = stockQuantity;
             return this;
         }
 
-        public Builder setCategory_id(long category_id) {
-            this.category_id = category_id;
+        public Builder setCategoryId(long categoryId) {
+            this.categoryId = categoryId;
             return this;
         }
 
-        public Builder setCreated_at(LocalDate created_at) {
-            this.created_at = created_at;
+        public Builder setCreatedAt(LocalDate createdAt) {
+            this.createdAt = createdAt;
             return this;
         }
 
-        public Builder setUpdated_at(LocalDate updated_at) {
-            this.updated_at = updated_at;
+        public Builder setUpdatedAt(LocalDate updatedAt) {
+            this.updatedAt = updatedAt;
             return this;
         }
 
@@ -186,14 +186,14 @@ public class Products implements Serializable {
         }
 
         public Builder copy(Products products) {
-            this.product_id = products.getProduct_id();
+            this.productId = products.getProductId();
             this.name = products.getName();
             this.description = products.getDescription();
             this.price = products.getPrice();
-            this.stock_quantity = products.getStock_quantity();
-            this.category_id = products.getCategory_id();
-            this.created_at = products.getCreated_at();
-            this.updated_at = products.getUpdated_at();
+            this.stockQuantity = products.getStockQuantity();
+            this.categoryId = products.getCategoryId();
+            this.createdAt = products.getCreatedAt();
+            this.updatedAt = products.getUpdatedAt();
             this.imagePath = products.getImagePath();
             return this;
         }
