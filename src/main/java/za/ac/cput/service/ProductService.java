@@ -1,17 +1,13 @@
 package za.ac.cput.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.jpa.domain.JpaSort;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Products;
 import za.ac.cput.repository.ProductRepository;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.UUID;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * ProductService.java
@@ -22,84 +18,68 @@ import java.util.UUID;
  */
 
 @Service
-public class ProductService {
-    private final JpaSort.Path rootLocation;
+public class ProductService implements IProductService {
+    private final ProductRepository productRepository;
 
     @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
-    public ProductService(@Value("${file.upload-dir}") String uploadDir) {
-        this.rootLocation = Paths.get(uploadDir);
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
-    public Products saveProduct(String name, String description, double price, int stockQuantity, long categoryId, MultipartFile file) throws IOException {
-        String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
-        Files.copy(file.getInputStream(), this.rootLocation.resolve(filename));
-
-        Products product = new Products.Builder()
-                .setName(name)
-                .setDescription(description)
-                .setPrice(price)
-                .setStock_quantity(stockQuantity)
-                .setCategory_id(categoryId)
-                .setCreated_at(LocalDate.now())
-                .setUpdated_at(LocalDate.now())
-                .setImagePath(filename)
-                .build();
-
-        return productRepository.save(product);
+    @Override
+    public Products create(Products products) {
+        return productRepository.save(products);
     }
 
-    public Products updateProduct(long id, String name, String description, double price, int stockQuantity, long categoryId, MultipartFile file) throws IOException {
-        Optional<Products> existingProductOpt = productRepository.findById(id);
-        if (existingProductOpt.isEmpty()) {
-            throw new IllegalArgumentException("Product not found");
-        }
-
-        Products existingProduct = existingProductOpt.get();
-
-        // Delete the old image file if a new image is uploaded
-        if (file != null && !file.isEmpty()) {
-            String oldFilename = existingProduct.getImagePath();
-            Files.deleteIfExists(this.rootLocation.resolve(oldFilename));
-
-            String newFilename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
-            Files.copy(file.getInputStream(), this.rootLocation.resolve(newFilename));
-            existingProduct = new Products.Builder()
-                    .setImagePath(newFilename)
-                    .copy(existingProduct)
-                    .build();
-        }
-
-        existingProduct = new Products.Builder()
-                .setProduct_id(existingProduct.getProduct_id())
-                .setName(name)
-                .setDescription(description)
-                .setPrice(price)
-                .setStock_quantity(stockQuantity)
-                .setCategory_id(categoryId)
-                .setCreated_at(existingProduct.getCreated_at())
-                .setUpdated_at(LocalDate.now())
-                .setImagePath(existingProduct.getImagePath())
-                .build();
-
-        return productRepository.save(existingProduct);
+    @Override
+    public Products read(Long id) {
+        Optional<Products> product = productRepository.findById(id);
+        return product.orElse(null);
     }
 
-    public void deleteProduct(long id) throws IOException {
-        Optional<Products> existingProductOpt = productRepository.findById(id);
-        if (existingProductOpt.isEmpty()) {
-            throw new IllegalArgumentException("Product not found");
-        }
+    @Override
+    public Products update(Products products) {
+        return productRepository.save(products);
+    }
 
-        Products existingProduct = existingProductOpt.get();
+    @Override
+    public List<Products> findAll() {
+        return productRepository.findAll();
+    }
 
-        // Delete the image file
-        String filename = existingProduct.getImagePath();
-        Files.deleteIfExists(this.rootLocation.resolve(filename));
 
-        // Delete the product from the database
+    @Override
+    public void delete(long id) {
         productRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Products> findByName(String name) {
+        return productRepository.findByName(name);
+    }
+
+    @Override
+    public List<Products> findByCategoryId(long categoryId) {
+        return productRepository.findByCategoryId(categoryId);
+    }
+
+    @Override
+    public List<Products> findByPriceBetween(double minPrice, double maxPrice) {
+        return productRepository.findByPriceBetween(minPrice, maxPrice);
+    }
+
+    @Override
+    public List<Products> findByStockQuantityGreaterThan(int stockQuantity) {
+        return productRepository.findByStockQuantityGreaterThan(stockQuantity);
+    }
+
+    @Override
+    public List<Products> findByCreatedAtAfter(LocalDate createdAt) {
+        return productRepository.findByCreatedAtAfter(createdAt);
+    }
+
+    @Override
+    public List<Products> findByUpdatedAtBefore(LocalDate updatedAt) {
+        return productRepository.findByUpdatedAtBefore(updatedAt);
     }
 }

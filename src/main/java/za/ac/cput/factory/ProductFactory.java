@@ -15,24 +15,24 @@ import java.time.LocalDate;
 
 public class ProductFactory {
 
-    public static Products buildProduct(long product_id, String name, String description,
-                                        double price, int stock_quantity, long category_id,
-                                        LocalDate created_at, LocalDate updated_at, String imagePath) {
+    public static Products buildProduct(long productId, String name, String description,
+                                        double price, int stockQuantity, long categoryId,
+                                        LocalDate createdAt, LocalDate updatedAt, String imagePath) {
         if (Helper.isNullOrEmpty(name) ||
                 Helper.isNullOrEmpty(description) ||
                 Helper.isDoubleNullOrEmpty(price) ||
-                Helper.isNullOrEmpty(stock_quantity)
+                Helper.isNullOrEmpty(stockQuantity)
         ) return null;
 
         return new Products.Builder()
-                .setProduct_id(product_id)
+                .setProductId(productId)
                 .setName(name)
                 .setDescription(description)
                 .setPrice(price)
-                .setStock_quantity(stock_quantity)
-                .setCategory_id(category_id)
-                .setCreated_at(created_at)
-                .setUpdated_at(updated_at)
+                .setStockQuantity(stockQuantity)
+                .setCategoryId(categoryId)
+                .setCreatedAt(createdAt)
+                .setUpdatedAt(updatedAt)
                 .setImagePath(imagePath)
                 .build();
     }

@@ -6,9 +6,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import za.ac.cput.domain.Products;
+import za.ac.cput.service.IProductService;
 import za.ac.cput.service.ProductService;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  * ProductController.java
@@ -22,51 +25,115 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/store/products")
 public class ProductController {
+
+    private final IProductService productService;
+
     @Autowired
-    private ProductService productService;
-
-    @PostMapping("/add")
-    public ResponseEntity<Products> addProduct(@RequestParam String name,
-                                               @RequestParam String description,
-                                               @RequestParam double price,
-                                               @RequestParam int stockQuantity,
-                                               @RequestParam long categoryId,
-                                               @RequestParam MultipartFile image) {
-        try {
-            Products product = productService.saveProduct(name, description, price, stockQuantity, categoryId, image);
-            return new ResponseEntity<>(product, HttpStatus.CREATED);
-        } catch (IOException e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ProductController(IProductService productService) {
+        this.productService = productService;
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Products> updateProduct(@PathVariable long id,
-                                                  @RequestParam String name,
-                                                  @RequestParam String description,
-                                                  @RequestParam double price,
-                                                  @RequestParam int stockQuantity,
-                                                  @RequestParam long categoryId,
-                                                  @RequestParam(required = false) MultipartFile image) {
-        try {
-            Products product = productService.updateProduct(id, name, description, price, stockQuantity, categoryId, image);
+    // Create a new product
+    @PostMapping
+    public ResponseEntity<Products> createProduct(@RequestBody Products product) {
+        Products createdProduct = productService.create(product);
+        return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
+    }
+
+    // Read a product by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Products> getProductById(@PathVariable Long id) {
+        Products product = productService.read(id);
+        if (product != null) {
             return new ResponseEntity<>(product, HttpStatus.OK);
-        } catch (IOException e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (IllegalArgumentException e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable long id) {
-        try {
-            productService.deleteProduct(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (IOException e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (IllegalArgumentException e) {
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    // Update an existing product
+    @PutMapping("/{id}")
+    public ResponseEntity<Products> updateProduct(@PathVariable Long id, @RequestBody Products product) {
+        Products existingProduct = productService.read(id);
+        if (existingProduct != null) {
+            //update the fields that can be changed
+            Products updatedProduct = new Products.Builder()
+                    .copy(existingProduct)
+                    .setName(product.getName()) //update fields
+                    .setDescription(product.getDescription())
+                    .setPrice(product.getPrice())
+                    .setStockQuantity(product.getStockQuantity())
+                    .setCategoryId(product.getCategoryId())
+                    .setCreatedAt(product.getCreatedAt())
+                    .setUpdatedAt(product.getUpdatedAt())
+                    .setImagePath(product.getImagePath())
+                    .build();
+            //product.setProductId(id); // Ensure we are updating the correct product
+            Products updatedProductResponse = productService.update(updatedProduct);
+            return new ResponseEntity<>(updatedProductResponse, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // Delete a product by ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+        Products existingProduct = productService.read(id);
+        if (existingProduct != null) {
+            productService.delete(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // Get all products
+    @GetMapping
+    public ResponseEntity<List<Products>> getAllProducts() {
+        List<Products> products = productService.findAll();
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    // Find products by name
+    @GetMapping("/name/{name}")
+    public ResponseEntity<List<Products>> getProductsByName(@PathVariable String name) {
+        List<Products> products = productService.findByName(name);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    // Find products by category ID
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<Products>> getProductsByCategoryId(@PathVariable long categoryId) {
+        List<Products> products = productService.findByCategoryId(categoryId);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    // Find products by price range
+    @GetMapping("/price")
+    public ResponseEntity<List<Products>> getProductsByPriceRange(@RequestParam double minPrice, @RequestParam double maxPrice) {
+        List<Products> products = productService.findByPriceBetween(minPrice, maxPrice);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    // Find products by stock quantity greater than
+    @GetMapping("/stock")
+    public ResponseEntity<List<Products>> getProductsByStockQuantityGreaterThan(@RequestParam int stockQuantity) {
+        List<Products> products = productService.findByStockQuantityGreaterThan(stockQuantity);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    // Find products created after a certain date
+    @GetMapping("/created-after")
+    public ResponseEntity<List<Products>> getProductsCreatedAfter(@RequestParam LocalDate createdAt) {
+        List<Products> products = productService.findByCreatedAtAfter(createdAt);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
+
+    // Find products updated before a certain date
+    @GetMapping("/updated-before")
+    public ResponseEntity<List<Products>> getProductsUpdatedBefore(@RequestParam LocalDate updatedAt) {
+        List<Products> products = productService.findByUpdatedAtBefore(updatedAt);
+        return new ResponseEntity<>(products, HttpStatus.OK);
     }
 }
