@@ -23,7 +23,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/store/products")
+@RequestMapping("/api/products")
 public class ProductController {
 
     private final IProductService productService;
@@ -110,6 +110,7 @@ public class ProductController {
     }
 
     // Find products by price range
+    //works but it's a bit tricky make sure to create two input when developing front end
     @GetMapping("/price")
     public ResponseEntity<List<Products>> getProductsByPriceRange(@RequestParam double minPrice, @RequestParam double maxPrice) {
         List<Products> products = productService.findByPriceBetween(minPrice, maxPrice);
