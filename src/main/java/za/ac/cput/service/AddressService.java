@@ -53,34 +53,4 @@ public class AddressService implements IAddressService {
     }
 
 
-    public List<Addresses> findByCity(String city) {
-        return addressRepository.findByCity(city);
-    }
-
-
-    @Override
-    public List<Addresses> findByPostal_code(String postalCode) {
-        return addressRepository.findByPostal_code(postalCode);
-    }
-
-    @Override
-    public List<Addresses> findByCreated_atAfter(LocalDate date) {
-        return addressRepository.findByCreated_atAfter(date);
-    }
-
-    public List<Addresses> findByPostalCode(String postalCode) {
-        return addressRepository.findByPostal_code(postalCode);
-    }
-
-    public List<Addresses> findByCreatedAtAfter(LocalDate date) {
-        return addressRepository.findByCreated_atAfter(date);
-    }
-
-    public List<Addresses> findAddressesByProvince(String province) {
-        return addressRepository.findAddressesByProvince(province);
-    }
-
-    public Optional<Addresses> findByUser(Addresses user_id) {
-        return null;
-    }
 }

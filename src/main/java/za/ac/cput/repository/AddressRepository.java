@@ -22,19 +22,4 @@ import java.util.Optional;
 @Repository
 public interface AddressRepository extends JpaRepository<Addresses, Long> {
 
-    // Find an address by user
-    Optional<Addresses> findByUser(Addresses user);
-
-    // Find addresses by city
-    List<Addresses> findByCity(String city);
-
-    // Find addresses by postal code
-    List<Addresses> findByPostal_code(String postalCode);
-
-    // Find addresses created after a specific date
-    List<Addresses> findByCreated_atAfter(LocalDate date);
-
-    // Custom query example: Find addresses by province
-    @Query("SELECT a FROM Addresses a WHERE a.province = :province")
-    List<Addresses> findAddressesByProvince(@Param("province") String province);
 }
