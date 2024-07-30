@@ -1,6 +1,7 @@
 package za.ac.cput.factory;
 
 import za.ac.cput.domain.Addresses;
+import za.ac.cput.domain.Users;
 import za.ac.cput.util.Helper;
 
 import java.time.LocalDate;
