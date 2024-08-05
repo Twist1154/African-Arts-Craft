@@ -16,7 +16,10 @@ import java.time.LocalDate;
 public class CartFactory {
     public static Cart buildCart(long cart_id, long user_id, LocalDate created_at, LocalDate updated_at) {
 
-        if (Helper.isNullOrEmpty(String.valueOf(created_at))
+        if (Helper.isNullOrEmpty(cart_id) ||
+                Helper.isNullOrEmpty(user_id) ||
+                Helper.isNullOrEmpty(String.valueOf(created_at)) ||
+                Helper.isNullOrEmpty(String.valueOf(updated_at))
         ) return null;
 
         return new Cart.Builder()

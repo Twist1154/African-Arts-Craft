@@ -48,6 +48,7 @@ public class Cart implements Serializable {
         return updated_at;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

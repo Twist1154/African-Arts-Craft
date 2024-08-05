@@ -3,6 +3,7 @@ package za.ac.cput.domain;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Cart_Items.java
@@ -37,15 +38,31 @@ public class Cart_Items implements Serializable {
     }
 
     public long getCart_id() {
+
         return cart_id;
     }
 
     public long getProduct_id() {
+
         return product_id;
     }
 
     public int getQuantity() {
+
         return quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cart_Items cartItems = (Cart_Items) o;
+        return cart_item_id == cartItems.cart_item_id && cart_id == cartItems.cart_id && product_id == cartItems.product_id && quantity == cartItems.quantity;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cart_item_id, cart_id, product_id, quantity);
     }
 
     @Override

@@ -14,7 +14,10 @@ import za.ac.cput.util.Helper;
 public class CartItemFactory {
     public static Cart_Items buildCartItem(long cart_item_id, long cart_id, long product_id,
                                            int quantity) {
-        if (Helper.isNullOrEmpty(quantity)
+        if (Helper.isNullOrEmpty(cart_item_id) ||
+                Helper.isNullOrEmpty(cart_id) ||
+                Helper.isNullOrEmpty(product_id) ||
+                Helper.isNullOrEmpty(quantity)
         ) return null;
 
         return new Cart_Items.Builder()
