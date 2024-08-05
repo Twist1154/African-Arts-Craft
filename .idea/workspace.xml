@@ -4,41 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2dfc9b97-bcf6-48f1-9f27-38897c268d23" name="Changes" comment="needs to be fixed">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/swagger-settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/config/WebConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/CategoriesController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/CategoriesRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/CategoriesService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/ICategoriesService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/factory/CategoryFactoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/service/CategoriesServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/front-end/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/front-end/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/front-end/babel.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/front-end/jsconfig.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/front-end/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/front-end/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/front-end/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/front-end/public/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/front-end/src/App.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/front-end/src/assets/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/front-end/src/components/FetchUsers.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/front-end/src/components/HelloWorld.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/front-end/src/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/front-end/vue.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Categories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Categories.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Products.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Products.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/CategoryFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/CategoryFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/IRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/IRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/controller/ProductControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/controller/ProductControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/service/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/service/ProductServiceTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="2dfc9b97-bcf6-48f1-9f27-38897c268d23" name="Changes" comment="needs to be fixed" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -191,10 +157,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProductControllerTest.getProductsUpdatedBefore">
-    <configuration name="generated-requests | #18" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="18" requestIdentifier="#18" runType="Run single request">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Spring Boot.Application">
     <configuration name="generated-requests | #19" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="19" requestIdentifier="#19" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -258,13 +221,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="African-Arts-Craft" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="za.ac.cput.Application" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="za.ac.cput.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.Application" />
         <item itemvalue="JUnit.ProductControllerTest.getProductsUpdatedBefore" />
         <item itemvalue="JUnit.ProductControllerTest" />
         <item itemvalue="HTTP Request.generated-requests | #19" />
         <item itemvalue="JUnit.ProductServiceTest.create" />
-        <item itemvalue="HTTP Request.generated-requests | #18" />
       </list>
     </recent_temporary>
   </component>
@@ -298,7 +274,7 @@
       <workItem from="1722358566435" duration="8264000" />
       <workItem from="1722415182759" duration="1859000" />
       <workItem from="1722431833505" duration="13118000" />
-      <workItem from="1722851475000" duration="2600000" />
+      <workItem from="1722851475000" duration="2918000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <option name="closed" value="true" />
@@ -556,7 +532,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722341218094</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="needs to be fixed">
+      <option name="closed" value="true" />
+      <created>1722857765779</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1722857765779</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
