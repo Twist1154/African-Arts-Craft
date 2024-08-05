@@ -13,8 +13,7 @@ import za.ac.cput.util.Helper;
 
 public class CategoryFactory {
 
-    public static Categories buildCategory(long category_id, String name, String description,
-                                           Long parent_id) {
+    public static Categories buildCategory(long category_id, String name, String description) {
         if (Helper.isNullOrEmpty(name) ||
                 Helper.isNullOrEmpty(description)
         ) return null;
@@ -23,7 +22,6 @@ public class CategoryFactory {
                 .setCategory_id(category_id)
                 .setName(name)
                 .setDescription(description)
-                .setParent_id(parent_id)
                 .build();
     }
 }
