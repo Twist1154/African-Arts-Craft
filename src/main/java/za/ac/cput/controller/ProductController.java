@@ -23,7 +23,8 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/product")
+@CrossOrigin(origins = "*")
 public class ProductController {
 
     private final IProductService productService;
@@ -34,14 +35,16 @@ public class ProductController {
     }
 
     // Create a new product
-    @PostMapping
+    //add proper name conventions for all methods
+    @PostMapping("/create")
     public ResponseEntity<Products> createProduct(@RequestBody Products product) {
+        System.out.println("This is line 40: " + product);
         Products createdProduct = productService.create(product);
         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
     }
 
     // Read a product by ID
-    @GetMapping("/{id}")
+    @GetMapping("/getbyid/{id}")
     public ResponseEntity<Products> getProductById(@PathVariable Long id) {
         Products product = productService.read(id);
         if (product != null) {

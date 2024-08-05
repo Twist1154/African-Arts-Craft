@@ -18,8 +18,8 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/api/categories")
-@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/categories")
+@CrossOrigin(origins = "*")
 // Allow CORS for this controller this is optional allows requests from port 3000
 public class CategoriesController {
     private final CategoriesService categoriesService;
@@ -45,7 +45,7 @@ public class CategoriesController {
         }
     }
 
-    @PutMapping
+    @PutMapping("/update")
     public ResponseEntity<Categories> updateCategory(@RequestBody Categories category) {
         Categories updatedCategory = categoriesService.update(category);
         if (updatedCategory != null) {
@@ -55,7 +55,7 @@ public class CategoriesController {
         }
     }
 
-    @GetMapping
+    @GetMapping("/getAll")
     public ResponseEntity<List<Categories>> getAllCategories() {
         List<Categories> categoriesList = categoriesService.findAll();
         return new ResponseEntity<>(categoriesList, HttpStatus.OK);
