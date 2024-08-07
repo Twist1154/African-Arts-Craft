@@ -1,0 +1,1222 @@
+Index: src/main/java/za/ac/cput/domain/Users.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package za.ac.cput.domain;\r\n\r\nimport jakarta.persistence.Entity;\r\nimport jakarta.persistence.GeneratedValue;\r\nimport jakarta.persistence.GenerationType;\r\nimport jakarta.persistence.Id;\r\n\r\nimport java.io.Serializable;\r\nimport java.time.LocalDate;\r\n\r\n/**\r\n * Users.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 23-Jul-24\r\n */\r\n@Entity\r\npublic class Users implements Serializable {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long user_id;\r\n    private String username;\r\n    private String password;\r\n    private String email;\r\n    private String first_name;\r\n    private String last_name;\r\n    private LocalDate created_at;\r\n    private LocalDate updated_at;\r\n\r\n    public Users() {\r\n    }\r\n\r\n    public Users(Builder builder) {\r\n        this.user_id = builder.user_id;\r\n        this.username = builder.username;\r\n        this.password = builder.password;\r\n        this.email = builder.email;\r\n        this.first_name = builder.first_name;\r\n        this.last_name = builder.last_name;\r\n        this.created_at = builder.created_at;\r\n        this.updated_at = builder.updated_at;\r\n    }\r\n\r\n    public long getUser_id() {\r\n        return user_id;\r\n    }\r\n\r\n    public String getUsername() {\r\n        return username;\r\n    }\r\n\r\n    public String getPassword() {\r\n        return password;\r\n    }\r\n\r\n    public String getEmail() {\r\n        return email;\r\n    }\r\n\r\n    public String getFirst_name() {\r\n        return first_name;\r\n    }\r\n\r\n    public String getLast_name() {\r\n        return last_name;\r\n    }\r\n\r\n    public LocalDate getCreated_at() {\r\n        return created_at;\r\n    }\r\n\r\n    public LocalDate getUpdated_at() {\r\n        return updated_at;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (!(o instanceof Users users)) return false;\r\n\r\n        if (getUser_id() != users.getUser_id()) return false;\r\n        if (getUsername() != null ? !getUsername().equals(users.getUsername()) : users.getUsername() != null)\r\n            return false;\r\n        if (getPassword() != null ? !getPassword().equals(users.getPassword()) : users.getPassword() != null)\r\n            return false;\r\n        if (getEmail() != null ? !getEmail().equals(users.getEmail()) : users.getEmail() != null) return false;\r\n        if (getFirst_name() != null ? !getFirst_name().equals(users.getFirst_name()) : users.getFirst_name() != null)\r\n            return false;\r\n        if (getLast_name() != null ? !getLast_name().equals(users.getLast_name()) : users.getLast_name() != null)\r\n            return false;\r\n        if (getCreated_at() != null ? !getCreated_at().equals(users.getCreated_at()) : users.getCreated_at() != null)\r\n            return false;\r\n        return getUpdated_at() != null ? getUpdated_at().equals(users.getUpdated_at()) : users.getUpdated_at() == null;\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        int result = (int) (getUser_id() ^ (getUser_id() >>> 32));\r\n        result = 31 * result + (getUsername() != null ? getUsername().hashCode() : 0);\r\n        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);\r\n        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);\r\n        result = 31 * result + (getFirst_name() != null ? getFirst_name().hashCode() : 0);\r\n        result = 31 * result + (getLast_name() != null ? getLast_name().hashCode() : 0);\r\n        result = 31 * result + (getCreated_at() != null ? getCreated_at().hashCode() : 0);\r\n        result = 31 * result + (getUpdated_at() != null ? getUpdated_at().hashCode() : 0);\r\n        return result;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Users{\" +\r\n                \"Users ID: \" + user_id +\r\n                \", USERNAME: '\" + username + '\\'' +\r\n                \", PASSWORD: '\" + password + '\\'' +\r\n                \", EMAIL: '\" + email + '\\'' +\r\n                \", FIRST NAME: '\" + first_name + '\\'' +\r\n                \", LAST NAME: '\" + last_name + '\\'' +\r\n                \", CREATED AT: \" + created_at +\r\n                \", UPDATED AT: \" + updated_at +\r\n                '}';\r\n    }\r\n\r\n    public static class Builder {\r\n        private long user_id;\r\n        private String username;\r\n        private String password;\r\n        private String email;\r\n        private String first_name;\r\n        private String last_name;\r\n        private LocalDate created_at;\r\n        private LocalDate updated_at;\r\n\r\n        public Builder setUser_id(long user_id) {\r\n            this.user_id = user_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setUsername(String username) {\r\n            this.username = username;\r\n            return this;\r\n        }\r\n\r\n        public Builder setPassword(String password) {\r\n            this.password = password;\r\n            return this;\r\n        }\r\n\r\n        public Builder setEmail(String email) {\r\n            this.email = email;\r\n            return this;\r\n        }\r\n\r\n        public Builder setFirst_name(String first_name) {\r\n            this.first_name = first_name;\r\n            return this;\r\n        }\r\n\r\n        public Builder setLast_name(String last_name) {\r\n            this.last_name = last_name;\r\n            return this;\r\n        }\r\n\r\n        public Builder setCreated_at(LocalDate created_at) {\r\n            this.created_at = created_at;\r\n            return this;\r\n        }\r\n\r\n        public Builder setUpdated_at(LocalDate updated_at) {\r\n            this.updated_at = updated_at;\r\n            return this;\r\n        }\r\n\r\n        public Builder copy(Users users) {\r\n            this.user_id = users.getUser_id();\r\n            this.username = users.getUsername();\r\n            this.password = users.getPassword();\r\n            this.email = users.getEmail();\r\n            this.first_name = users.getFirst_name();\r\n            this.last_name = users.getLast_name();\r\n            this.created_at = users.getCreated_at();\r\n            this.updated_at = users.getUpdated_at();\r\n            return this;\r\n        }\r\n\r\n        public Users build() {\r\n            return new Users(this);\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/za/ac/cput/domain/Users.java b/src/main/java/za/ac/cput/domain/Users.java
+--- a/src/main/java/za/ac/cput/domain/Users.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
++++ b/src/main/java/za/ac/cput/domain/Users.java	(date 1722792624845)
+@@ -1,12 +1,11 @@
+ package za.ac.cput.domain;
+ 
+-import jakarta.persistence.Entity;
+-import jakarta.persistence.GeneratedValue;
+-import jakarta.persistence.GenerationType;
+-import jakarta.persistence.Id;
++import jakarta.persistence.*;
++import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
+ 
+ import java.io.Serializable;
+ import java.time.LocalDate;
++import java.util.Objects;
+ 
+ /**
+  * Users.java
+@@ -28,6 +27,10 @@
+     private LocalDate created_at;
+     private LocalDate updated_at;
+ 
++    // Adding relationship
++    @Embedded
++    private Addresses addresses;
++
+     public Users() {
+     }
+ 
+@@ -40,6 +43,7 @@
+         this.last_name = builder.last_name;
+         this.created_at = builder.created_at;
+         this.updated_at = builder.updated_at;
++        this.addresses = builder.addresses;
+     }
+ 
+     public long getUser_id() {
+@@ -53,7 +57,6 @@
+     public String getPassword() {
+         return password;
+     }
+-
+     public String getEmail() {
+         return email;
+     }
+@@ -73,51 +76,34 @@
+     public LocalDate getUpdated_at() {
+         return updated_at;
+     }
++    public Addresses getAddresses() {
++        return addresses;
++    }
+ 
+     @Override
+     public boolean equals(Object o) {
+         if (this == o) return true;
+         if (!(o instanceof Users users)) return false;
+-
+-        if (getUser_id() != users.getUser_id()) return false;
+-        if (getUsername() != null ? !getUsername().equals(users.getUsername()) : users.getUsername() != null)
+-            return false;
+-        if (getPassword() != null ? !getPassword().equals(users.getPassword()) : users.getPassword() != null)
+-            return false;
+-        if (getEmail() != null ? !getEmail().equals(users.getEmail()) : users.getEmail() != null) return false;
+-        if (getFirst_name() != null ? !getFirst_name().equals(users.getFirst_name()) : users.getFirst_name() != null)
+-            return false;
+-        if (getLast_name() != null ? !getLast_name().equals(users.getLast_name()) : users.getLast_name() != null)
+-            return false;
+-        if (getCreated_at() != null ? !getCreated_at().equals(users.getCreated_at()) : users.getCreated_at() != null)
+-            return false;
+-        return getUpdated_at() != null ? getUpdated_at().equals(users.getUpdated_at()) : users.getUpdated_at() == null;
++        return getUser_id() == users.getUser_id() && Objects.equals(getUsername(), users.getUsername()) && Objects.equals(getPassword(), users.getPassword()) && Objects.equals(getEmail(), users.getEmail()) && Objects.equals(getFirst_name(), users.getFirst_name()) && Objects.equals(getLast_name(), users.getLast_name()) && Objects.equals(getCreated_at(), users.getCreated_at()) && Objects.equals(getUpdated_at(), users.getUpdated_at()) && Objects.equals(getAddresses(), users.getAddresses());
+     }
+ 
+     @Override
+     public int hashCode() {
+-        int result = (int) (getUser_id() ^ (getUser_id() >>> 32));
+-        result = 31 * result + (getUsername() != null ? getUsername().hashCode() : 0);
+-        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
+-        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
+-        result = 31 * result + (getFirst_name() != null ? getFirst_name().hashCode() : 0);
+-        result = 31 * result + (getLast_name() != null ? getLast_name().hashCode() : 0);
+-        result = 31 * result + (getCreated_at() != null ? getCreated_at().hashCode() : 0);
+-        result = 31 * result + (getUpdated_at() != null ? getUpdated_at().hashCode() : 0);
+-        return result;
++        return Objects.hash(getUser_id(), getUsername(), getPassword(), getEmail(), getFirst_name(), getLast_name(), getCreated_at(), getUpdated_at(), getAddresses());
+     }
+ 
+     @Override
+     public String toString() {
+         return "Users{" +
+-                "Users ID: " + user_id +
+-                ", USERNAME: '" + username + '\'' +
+-                ", PASSWORD: '" + password + '\'' +
+-                ", EMAIL: '" + email + '\'' +
+-                ", FIRST NAME: '" + first_name + '\'' +
+-                ", LAST NAME: '" + last_name + '\'' +
+-                ", CREATED AT: " + created_at +
+-                ", UPDATED AT: " + updated_at +
++                "user_id=" + user_id +
++                ", username='" + username + '\'' +
++                ", password='" + password + '\'' +
++                ", email='" + email + '\'' +
++                ", first_name='" + first_name + '\'' +
++                ", last_name='" + last_name + '\'' +
++                ", created_at=" + created_at +
++                ", updated_at=" + updated_at +
++                ", addresses=" + addresses +
+                 '}';
+     }
+ 
+@@ -130,6 +116,7 @@
+         private String last_name;
+         private LocalDate created_at;
+         private LocalDate updated_at;
++        private Addresses addresses;
+ 
+         public Builder setUser_id(long user_id) {
+             this.user_id = user_id;
+@@ -171,6 +158,11 @@
+             return this;
+         }
+ 
++        public Builder setAddresses(Addresses addresses) {
++            this.addresses = addresses;
++            return this;
++        }
++
+         public Builder copy(Users users) {
+             this.user_id = users.getUser_id();
+             this.username = users.getUsername();
+@@ -180,6 +172,7 @@
+             this.last_name = users.getLast_name();
+             this.created_at = users.getCreated_at();
+             this.updated_at = users.getUpdated_at();
++            this.addresses = users.getAddresses();
+             return this;
+         }
+ 
+Index: src/main/java/za/ac/cput/controller/ProductController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package za.ac.cput.controller;\r\n\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.http.HttpStatus;\r\nimport org.springframework.http.ResponseEntity;\r\nimport org.springframework.web.bind.annotation.*;\r\nimport org.springframework.web.multipart.MultipartFile;\r\nimport za.ac.cput.domain.Products;\r\nimport za.ac.cput.service.IProductService;\r\nimport za.ac.cput.service.ProductService;\r\n\r\nimport java.io.IOException;\r\nimport java.time.LocalDate;\r\nimport java.util.List;\r\n\r\n/**\r\n * ProductController.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 26-Jul-24\r\n */\r\n\r\n\r\n@RestController\r\n@RequestMapping(\"/api/products\")\r\npublic class ProductController {\r\n\r\n    private final IProductService productService;\r\n\r\n    @Autowired\r\n    public ProductController(IProductService productService) {\r\n        this.productService = productService;\r\n    }\r\n\r\n    // Create a new product\r\n    @PostMapping\r\n    public ResponseEntity<Products> createProduct(@RequestBody Products product) {\r\n        Products createdProduct = productService.create(product);\r\n        return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);\r\n    }\r\n\r\n    // Read a product by ID\r\n    @GetMapping(\"/{id}\")\r\n    public ResponseEntity<Products> getProductById(@PathVariable Long id) {\r\n        Products product = productService.read(id);\r\n        if (product != null) {\r\n            return new ResponseEntity<>(product, HttpStatus.OK);\r\n        } else {\r\n            return new ResponseEntity<>(HttpStatus.NOT_FOUND);\r\n        }\r\n    }\r\n\r\n    // Update an existing product\r\n    @PutMapping(\"/{id}\")\r\n    public ResponseEntity<Products> updateProduct(@PathVariable Long id, @RequestBody Products product) {\r\n        Products existingProduct = productService.read(id);\r\n        if (existingProduct != null) {\r\n            //update the fields that can be changed\r\n            Products updatedProduct = new Products.Builder()\r\n                    .copy(existingProduct)\r\n                    .setName(product.getName()) //update fields\r\n                    .setDescription(product.getDescription())\r\n                    .setPrice(product.getPrice())\r\n                    .setStockQuantity(product.getStockQuantity())\r\n                    .setCategoryId(product.getCategoryId())\r\n                    .setCreatedAt(product.getCreatedAt())\r\n                    .setUpdatedAt(product.getUpdatedAt())\r\n                    .setImagePath(product.getImagePath())\r\n                    .build();\r\n            //product.setProductId(id); // Ensure we are updating the correct product\r\n            Products updatedProductResponse = productService.update(updatedProduct);\r\n            return new ResponseEntity<>(updatedProductResponse, HttpStatus.OK);\r\n        } else {\r\n            return new ResponseEntity<>(HttpStatus.NOT_FOUND);\r\n        }\r\n    }\r\n\r\n    // Delete a product by ID\r\n    @DeleteMapping(\"/{id}\")\r\n    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {\r\n        Products existingProduct = productService.read(id);\r\n        if (existingProduct != null) {\r\n            productService.delete(id);\r\n            return new ResponseEntity<>(HttpStatus.NO_CONTENT);\r\n        } else {\r\n            return new ResponseEntity<>(HttpStatus.NOT_FOUND);\r\n        }\r\n    }\r\n\r\n    // Get all products\r\n    @GetMapping\r\n    public ResponseEntity<List<Products>> getAllProducts() {\r\n        List<Products> products = productService.findAll();\r\n        return new ResponseEntity<>(products, HttpStatus.OK);\r\n    }\r\n\r\n    // Find products by name\r\n    @GetMapping(\"/name/{name}\")\r\n    public ResponseEntity<List<Products>> getProductsByName(@PathVariable String name) {\r\n        List<Products> products = productService.findByName(name);\r\n        return new ResponseEntity<>(products, HttpStatus.OK);\r\n    }\r\n\r\n    // Find products by category ID\r\n    @GetMapping(\"/category/{categoryId}\")\r\n    public ResponseEntity<List<Products>> getProductsByCategoryId(@PathVariable long categoryId) {\r\n        List<Products> products = productService.findByCategoryId(categoryId);\r\n        return new ResponseEntity<>(products, HttpStatus.OK);\r\n    }\r\n\r\n    // Find products by price range\r\n    //works but it's a bit tricky make sure to create two input when developing front end\r\n    @GetMapping(\"/price\")\r\n    public ResponseEntity<List<Products>> getProductsByPriceRange(@RequestParam double minPrice, @RequestParam double maxPrice) {\r\n        List<Products> products = productService.findByPriceBetween(minPrice, maxPrice);\r\n        return new ResponseEntity<>(products, HttpStatus.OK);\r\n    }\r\n\r\n    // Find products by stock quantity greater than\r\n    @GetMapping(\"/stock\")\r\n    public ResponseEntity<List<Products>> getProductsByStockQuantityGreaterThan(@RequestParam int stockQuantity) {\r\n        List<Products> products = productService.findByStockQuantityGreaterThan(stockQuantity);\r\n        return new ResponseEntity<>(products, HttpStatus.OK);\r\n    }\r\n\r\n    // Find products created after a certain date\r\n    @GetMapping(\"/created-after\")\r\n    public ResponseEntity<List<Products>> getProductsCreatedAfter(@RequestParam LocalDate createdAt) {\r\n        List<Products> products = productService.findByCreatedAtAfter(createdAt);\r\n        return new ResponseEntity<>(products, HttpStatus.OK);\r\n    }\r\n\r\n    // Find products updated before a certain date\r\n    @GetMapping(\"/updated-before\")\r\n    public ResponseEntity<List<Products>> getProductsUpdatedBefore(@RequestParam LocalDate updatedAt) {\r\n        List<Products> products = productService.findByUpdatedAtBefore(updatedAt);\r\n        return new ResponseEntity<>(products, HttpStatus.OK);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/za/ac/cput/controller/ProductController.java b/src/main/java/za/ac/cput/controller/ProductController.java
+--- a/src/main/java/za/ac/cput/controller/ProductController.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
++++ b/src/main/java/za/ac/cput/controller/ProductController.java	(date 1722860577210)
+@@ -13,14 +13,6 @@
+ import java.time.LocalDate;
+ import java.util.List;
+ 
+-/**
+- * ProductController.java
+- *
+- * @author Rethabile Ntsekhe
+- * Student Num: 220455430
+- * @date 26-Jul-24
+- */
+-
+ 
+ @RestController
+ @RequestMapping("/api/products")
+@@ -33,14 +25,12 @@
+         this.productService = productService;
+     }
+ 
+-    // Create a new product
+     @PostMapping
+     public ResponseEntity<Products> createProduct(@RequestBody Products product) {
+         Products createdProduct = productService.create(product);
+         return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
+     }
+ 
+-    // Read a product by ID
+     @GetMapping("/{id}")
+     public ResponseEntity<Products> getProductById(@PathVariable Long id) {
+         Products product = productService.read(id);
+@@ -56,7 +46,6 @@
+     public ResponseEntity<Products> updateProduct(@PathVariable Long id, @RequestBody Products product) {
+         Products existingProduct = productService.read(id);
+         if (existingProduct != null) {
+-            //update the fields that can be changed
+             Products updatedProduct = new Products.Builder()
+                     .copy(existingProduct)
+                     .setName(product.getName()) //update fields
+@@ -68,7 +57,7 @@
+                     .setUpdatedAt(product.getUpdatedAt())
+                     .setImagePath(product.getImagePath())
+                     .build();
+-            //product.setProductId(id); // Ensure we are updating the correct product
++
+             Products updatedProductResponse = productService.update(updatedProduct);
+             return new ResponseEntity<>(updatedProductResponse, HttpStatus.OK);
+         } else {
+@@ -76,7 +65,6 @@
+         }
+     }
+ 
+-    // Delete a product by ID
+     @DeleteMapping("/{id}")
+     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+         Products existingProduct = productService.read(id);
+@@ -88,50 +76,43 @@
+         }
+     }
+ 
+-    // Get all products
+     @GetMapping
+     public ResponseEntity<List<Products>> getAllProducts() {
+         List<Products> products = productService.findAll();
+         return new ResponseEntity<>(products, HttpStatus.OK);
+     }
+ 
+-    // Find products by name
+     @GetMapping("/name/{name}")
+     public ResponseEntity<List<Products>> getProductsByName(@PathVariable String name) {
+         List<Products> products = productService.findByName(name);
+         return new ResponseEntity<>(products, HttpStatus.OK);
+     }
+ 
+-    // Find products by category ID
+     @GetMapping("/category/{categoryId}")
+     public ResponseEntity<List<Products>> getProductsByCategoryId(@PathVariable long categoryId) {
+         List<Products> products = productService.findByCategoryId(categoryId);
+         return new ResponseEntity<>(products, HttpStatus.OK);
+     }
+ 
+-    // Find products by price range
+-    //works but it's a bit tricky make sure to create two input when developing front end
++
+     @GetMapping("/price")
+     public ResponseEntity<List<Products>> getProductsByPriceRange(@RequestParam double minPrice, @RequestParam double maxPrice) {
+         List<Products> products = productService.findByPriceBetween(minPrice, maxPrice);
+         return new ResponseEntity<>(products, HttpStatus.OK);
+     }
+ 
+-    // Find products by stock quantity greater than
+     @GetMapping("/stock")
+     public ResponseEntity<List<Products>> getProductsByStockQuantityGreaterThan(@RequestParam int stockQuantity) {
+         List<Products> products = productService.findByStockQuantityGreaterThan(stockQuantity);
+         return new ResponseEntity<>(products, HttpStatus.OK);
+     }
+ 
+-    // Find products created after a certain date
+     @GetMapping("/created-after")
+     public ResponseEntity<List<Products>> getProductsCreatedAfter(@RequestParam LocalDate createdAt) {
+         List<Products> products = productService.findByCreatedAtAfter(createdAt);
+         return new ResponseEntity<>(products, HttpStatus.OK);
+     }
+-
+-    // Find products updated before a certain date
++    
+     @GetMapping("/updated-before")
+     public ResponseEntity<List<Products>> getProductsUpdatedBefore(@RequestParam LocalDate updatedAt) {
+         List<Products> products = productService.findByUpdatedAtBefore(updatedAt);
+Index: src/main/java/za/ac/cput/domain/Shipping_Methods.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package za.ac.cput.domain;\r\n\r\nimport jakarta.persistence.*;\r\n\r\nimport java.io.Serializable;\r\nimport java.time.LocalDate;\r\n\r\n/**\r\n * ShippingMethods.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 23-Jul-24\r\n */\r\n\r\n\r\n@Entity\r\npublic class Shipping_Methods implements Serializable {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long shipping_method_id;\r\n    private String name;\r\n    private String description;\r\n    private double cost;\r\n    private String delivery_time;\r\n    private Addresses address_id;\r\n\r\n    public Shipping_Methods() {\r\n    }\r\n\r\n    public Shipping_Methods(Builder builder) {\r\n        this.shipping_method_id = builder.shipping_method_id;\r\n        this.name = builder.name;\r\n        this.description = builder.description;\r\n        this.cost = builder.cost;\r\n        this.delivery_time = builder.delivery_time;\r\n    }\r\n\r\n    public long getShipping_method_id() {\r\n        return shipping_method_id;\r\n    }\r\n\r\n    public String getName() {\r\n        return name;\r\n    }\r\n\r\n    public String getDescription() {\r\n        return description;\r\n    }\r\n\r\n    public double getCost() {\r\n        return cost;\r\n    }\r\n\r\n    public String getDelivery_time() {\r\n        return delivery_time;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Shipping_Methods{\" +\r\n                \"Shipping Method ID: \" + shipping_method_id +\r\n                \", NAME: '\" + name + '\\'' +\r\n                \", DESCRIPTION: '\" + description + '\\'' +\r\n                \", COST: \" + cost +\r\n                \", DELIVERY TIME: '\" + delivery_time + '\\'' +\r\n                '}';\r\n    }\r\n\r\n    public static class Builder {\r\n        private long shipping_method_id;\r\n        private String name;\r\n        private String description;\r\n        private double cost;\r\n        private String delivery_time;\r\n\r\n        public Builder setShipping_method_id(long shipping_method_id) {\r\n            this.shipping_method_id = shipping_method_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setName(String name) {\r\n            this.name = name;\r\n            return this;\r\n        }\r\n\r\n        public Builder setDescription(String description) {\r\n            this.description = description;\r\n            return this;\r\n        }\r\n\r\n        public Builder setCost(double cost) {\r\n            this.cost = cost;\r\n            return this;\r\n        }\r\n\r\n        public Builder setDelivery_time(String delivery_time) {\r\n            this.delivery_time = delivery_time;\r\n            return this;\r\n        }\r\n\r\n        public Builder copy(Shipping_Methods shipping_methods) {\r\n            this.shipping_method_id = shipping_methods.getShipping_method_id();\r\n            this.name = shipping_methods.getName();\r\n            this.description = shipping_methods.getDescription();\r\n            this.cost = shipping_methods.getCost();\r\n            this.delivery_time = shipping_methods.getDelivery_time();\r\n            return this;\r\n        }\r\n\r\n        public Shipping_Methods build() {\r\n            return new Shipping_Methods(this);\r\n        }\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/za/ac/cput/domain/Shipping_Methods.java b/src/main/java/za/ac/cput/domain/Shipping_Methods.java
+--- a/src/main/java/za/ac/cput/domain/Shipping_Methods.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
++++ b/src/main/java/za/ac/cput/domain/Shipping_Methods.java	(date 1722808254099)
+@@ -25,8 +25,13 @@
+     private String delivery_time;
+     private Addresses address_id;
+ 
++    @ManyToOne
++    @JoinColumn(name = "address_id")
++    private Addresses addresses;
+     public Shipping_Methods() {
+     }
++    // Added relationships
++
+ 
+     public Shipping_Methods(Builder builder) {
+         this.shipping_method_id = builder.shipping_method_id;
+Index: src/main/java/za/ac/cput/domain/Addresses.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package za.ac.cput.domain;\r\n\r\nimport jakarta.persistence.*;\r\nimport java.io.Serializable;\r\nimport java.time.LocalDate;\r\n\r\n/**\r\n * Addresses.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 23-Jul-24\r\n */\r\n\r\n\r\n@Entity\r\npublic class Addresses implements Serializable {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long address_id;\r\n    private long user_id;\r\n    private String address_line1;\r\n    private String address_line2;\r\n    private String city;\r\n    private String province;\r\n    private String postal_code;\r\n    private String country;\r\n    private LocalDate created_at;\r\n    private LocalDate updated_at;\r\n\r\n    public Addresses() {\r\n    }\r\n\r\n    public Addresses(Builder builder) {\r\n        this.address_id = builder.address_id;\r\n        this.user_id = builder.user_id;\r\n        this.address_line1 = builder.address_line1;\r\n        this.address_line2 = builder.address_line2;\r\n        this.city = builder.city;\r\n        this.province = builder.province;\r\n        this.postal_code = builder.postal_code;\r\n        this.country = builder.country;\r\n        this.created_at = builder.created_at;\r\n        this.updated_at = builder.updated_at;\r\n    }\r\n\r\n    public long getAddress_id() {\r\n        return address_id;\r\n    }\r\n\r\n    public long getUser_id() {\r\n        return user_id;\r\n    }\r\n\r\n    public String getAddress_line1() {\r\n        return address_line1;\r\n    }\r\n\r\n    public String getAddress_line2() {\r\n        return address_line2;\r\n    }\r\n\r\n    public String getCity() {\r\n        return city;\r\n    }\r\n\r\n    public String getProvince() {\r\n        return province;\r\n    }\r\n\r\n    public String getPostal_code() {\r\n        return postal_code;\r\n    }\r\n\r\n    public String getCountry() {\r\n        return country;\r\n    }\r\n\r\n    public LocalDate getCreated_at() {\r\n        return created_at;\r\n    }\r\n\r\n    public LocalDate getUpdated_at() {\r\n        return updated_at;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (!(o instanceof Addresses addresses)) return false;\r\n\r\n        if (getAddress_id() != addresses.getAddress_id()) return false;\r\n        if (getUser_id() != addresses.getUser_id()) return false;\r\n        if (getAddress_line1() != null ? !getAddress_line1().equals(addresses.getAddress_line1()) : addresses.getAddress_line1() != null)\r\n            return false;\r\n        if (getAddress_line2() != null ? !getAddress_line2().equals(addresses.getAddress_line2()) : addresses.getAddress_line2() != null)\r\n            return false;\r\n        if (getCity() != null ? !getCity().equals(addresses.getCity()) : addresses.getCity() != null) return false;\r\n        if (getProvince() != null ? !getProvince().equals(addresses.getProvince()) : addresses.getProvince() != null)\r\n            return false;\r\n        if (getPostal_code() != null ? !getPostal_code().equals(addresses.getPostal_code()) : addresses.getPostal_code() != null)\r\n            return false;\r\n        if (getCountry() != null ? !getCountry().equals(addresses.getCountry()) : addresses.getCountry() != null)\r\n            return false;\r\n        if (getCreated_at() != null ? !getCreated_at().equals(addresses.getCreated_at()) : addresses.getCreated_at() != null)\r\n            return false;\r\n        return getUpdated_at() != null ? getUpdated_at().equals(addresses.getUpdated_at()) : addresses.getUpdated_at() == null;\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        int result = (int) (getAddress_id() ^ (getAddress_id() >>> 32));\r\n        result = 31 * result + (int) (getUser_id() ^ (getUser_id() >>> 32));\r\n        result = 31 * result + (getAddress_line1() != null ? getAddress_line1().hashCode() : 0);\r\n        result = 31 * result + (getAddress_line2() != null ? getAddress_line2().hashCode() : 0);\r\n        result = 31 * result + (getCity() != null ? getCity().hashCode() : 0);\r\n        result = 31 * result + (getProvince() != null ? getProvince().hashCode() : 0);\r\n        result = 31 * result + (getPostal_code() != null ? getPostal_code().hashCode() : 0);\r\n        result = 31 * result + (getCountry() != null ? getCountry().hashCode() : 0);\r\n        result = 31 * result + (getCreated_at() != null ? getCreated_at().hashCode() : 0);\r\n        result = 31 * result + (getUpdated_at() != null ? getUpdated_at().hashCode() : 0);\r\n        return result;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Addresses{\" +\r\n                \"Address ID: \" + address_id +\r\n                \", USER ID: \" + user_id +\r\n                \", ADDRESS LINE1: '\" + address_line1 + '\\'' +\r\n                \", ADDRESS LINE2: '\" + address_line2 + '\\'' +\r\n                \", CITY: '\" + city + '\\'' +\r\n                \", PROVINCE: '\" + province + '\\'' +\r\n                \", POSTAL CODE: '\" + postal_code + '\\'' +\r\n                \", COUNTRY: '\" + country + '\\'' +\r\n                \", CREATED AT: \" + created_at +\r\n                \", UPDATED AT: \" + updated_at +\r\n                '}';\r\n    }\r\n\r\n    public static class Builder {\r\n        private long address_id;\r\n        private long user_id;\r\n        private String address_line1;\r\n        private String address_line2;\r\n        private String city;\r\n        private String province;\r\n        private String postal_code;\r\n        private String country;\r\n        private LocalDate created_at;\r\n        private LocalDate updated_at;\r\n\r\n        public Builder setAddress_id(long address_id) {\r\n            this.address_id = address_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setUser_id(long user_id) {\r\n            this.user_id = user_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setAddress_line1(String address_line1) {\r\n            this.address_line1 = address_line1;\r\n            return this;\r\n        }\r\n\r\n        public Builder setAddress_line2(String address_line2) {\r\n            this.address_line2 = address_line2;\r\n            return this;\r\n        }\r\n\r\n        public Builder setCity(String city) {\r\n            this.city = city;\r\n            return this;\r\n        }\r\n\r\n        public Builder setProvince(String province) {\r\n            this.province = province;\r\n            return this;\r\n        }\r\n\r\n        public Builder setPostal_code(String postal_code) {\r\n            this.postal_code = postal_code;\r\n            return this;\r\n        }\r\n\r\n        public Builder setCountry(String country) {\r\n            this.country = country;\r\n            return this;\r\n        }\r\n\r\n        public Builder setCreated_at(LocalDate created_at) {\r\n            this.created_at = created_at;\r\n            return this;\r\n        }\r\n\r\n        public Builder setUpdated_at(LocalDate updated_at) {\r\n            this.updated_at = updated_at;\r\n            return this;\r\n        }\r\n\r\n        public Builder copy(Addresses addresses) {\r\n            this.address_id = addresses.getAddress_id();\r\n            this.user_id = addresses.getUser_id();\r\n            this.address_line1 = addresses.getAddress_line1();\r\n            this.address_line2 = addresses.getAddress_line2();\r\n            this.city = addresses.getCity();\r\n            this.province = addresses.getProvince();\r\n            this.postal_code = addresses.getPostal_code();\r\n            this.country = addresses.getCountry();\r\n            this.created_at = addresses.getCreated_at();\r\n            this.updated_at = addresses.getUpdated_at();\r\n            return this;\r\n        }\r\n\r\n        public Addresses build() {\r\n            return new Addresses(this);\r\n        }\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/za/ac/cput/domain/Addresses.java b/src/main/java/za/ac/cput/domain/Addresses.java
+--- a/src/main/java/za/ac/cput/domain/Addresses.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
++++ b/src/main/java/za/ac/cput/domain/Addresses.java	(date 1722791831377)
+@@ -11,9 +11,9 @@
+  * Student Num: 220455430
+  * @date 23-Jul-24
+  */
++// remust be ebedded to user because it not an entity but it falls under a user
+ 
+-
+-@Entity
++@Embeddable
+ public class Addresses implements Serializable {
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+Index: src/main/java/za/ac/cput/factory/Userfactory.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package za.ac.cput.factory;\r\n\r\nimport za.ac.cput.domain.Users;\r\nimport za.ac.cput.util.Helper;\r\n\r\nimport java.time.LocalDate;\r\n\r\n/**\r\n * Userfactory.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 24-Jul-24\r\n */\r\n\r\npublic class Userfactory {\r\n\r\n    public static Users buildUser(long user_id, String username, String password,\r\n                                  String email, String first_name, String last_name,\r\n                                  LocalDate created_at, LocalDate updated_at) {\r\n\r\n        if (Helper.isNullOrEmpty(username) ||\r\n                Helper.isNullOrEmpty(password) ||\r\n                Helper.isNullOrEmpty(first_name) ||\r\n                Helper.isNullOrEmpty(last_name)\r\n        ) return null;\r\n\r\n        String regex = \"^(.+)@(\\\\S+)$\";\r\n        if (!Helper.isEmailValid(email, regex) ||\r\n                Helper.isNullOrEmpty(email)\r\n        ) return null;\r\n\r\n        return new Users.Builder()\r\n                .setUser_id(user_id)\r\n                .setUsername(username)\r\n                .setPassword(password)\r\n                .setEmail(email)\r\n                .setFirst_name(first_name)\r\n                .setLast_name(last_name)\r\n                .setCreated_at(created_at)\r\n                .setUpdated_at(updated_at)\r\n                .build();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/za/ac/cput/factory/Userfactory.java b/src/main/java/za/ac/cput/factory/Userfactory.java
+--- a/src/main/java/za/ac/cput/factory/Userfactory.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
++++ b/src/main/java/za/ac/cput/factory/Userfactory.java	(date 1722801214330)
+@@ -1,5 +1,6 @@
+ package za.ac.cput.factory;
+ 
++import za.ac.cput.domain.Addresses;
+ import za.ac.cput.domain.Users;
+ import za.ac.cput.util.Helper;
+ 
+@@ -17,7 +18,7 @@
+ 
+     public static Users buildUser(long user_id, String username, String password,
+                                   String email, String first_name, String last_name,
+-                                  LocalDate created_at, LocalDate updated_at) {
++                                  LocalDate created_at, LocalDate updated_at, Addresses addresses) {
+ 
+         if (Helper.isNullOrEmpty(username) ||
+                 Helper.isNullOrEmpty(password) ||
+@@ -39,6 +40,7 @@
+                 .setLast_name(last_name)
+                 .setCreated_at(created_at)
+                 .setUpdated_at(updated_at)
++                .setAddresses(addresses)
+                 .build();
+     }
+ }
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\r\n      </list>\r\n    </option>\r\n    <option name=\"workspaceImportForciblyTurnedOn\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PWA\">\r\n    <option name=\"enabled\" value=\"true\" />\r\n    <option name=\"wasEnabledAtLeastOnce\" value=\"true\" />\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17\" default=\"true\" project-jdk-name=\"jbr-17\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
++++ b/.idea/misc.xml	(date 1722106704288)
+@@ -13,7 +13,7 @@
+     <option name="enabled" value="true" />
+     <option name="wasEnabledAtLeastOnce" value="true" />
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="openjdk-21" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/main/java/za/ac/cput/domain/Reviews.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package za.ac.cput.domain;\r\n\r\nimport jakarta.persistence.*;\r\n\r\nimport java.io.Serializable;\r\nimport java.time.LocalDate;\r\n\r\n/**\r\n * Reviews.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 23-Jul-24\r\n */\r\n\r\n\r\n@Entity\r\npublic class Reviews implements Serializable {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long review_id;\r\n    private long product_id;\r\n    private long user_id;\r\n    private int rating;\r\n    private String comment;\r\n    private LocalDate created_at;\r\n\r\n    public Reviews() {\r\n    }\r\n\r\n    public Reviews(Builder builder) {\r\n        this.review_id = builder.review_id;\r\n        this.product_id = builder.product_id;\r\n        this.user_id = builder.user_id;\r\n        this.rating = builder.rating;\r\n        this.comment = builder.comment;\r\n        this.created_at = builder.created_at;\r\n    }\r\n\r\n    public long getReview_id() {\r\n        return review_id;\r\n    }\r\n\r\n    public long getProduct_id() {\r\n        return product_id;\r\n    }\r\n\r\n    public long getUser_id() {\r\n        return user_id;\r\n    }\r\n\r\n    public int getRating() {\r\n        return rating;\r\n    }\r\n\r\n    public String getComment() {\r\n        return comment;\r\n    }\r\n\r\n    public LocalDate getCreated_at() {\r\n        return created_at;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (!(o instanceof Reviews reviews)) return false;\r\n\r\n        if (getReview_id() != reviews.getReview_id()) return false;\r\n        if (getProduct_id() != reviews.getProduct_id()) return false;\r\n        if (getUser_id() != reviews.getUser_id()) return false;\r\n        if (getRating() != reviews.getRating()) return false;\r\n        if (getComment() != null ? !getComment().equals(reviews.getComment()) : reviews.getComment() != null)\r\n            return false;\r\n        return getCreated_at() != null ? getCreated_at().equals(reviews.getCreated_at()) : reviews.getCreated_at() == null;\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        int result = (int) (getReview_id() ^ (getReview_id() >>> 32));\r\n        result = 31 * result + (int) (getProduct_id() ^ (getProduct_id() >>> 32));\r\n        result = 31 * result + (int) (getUser_id() ^ (getUser_id() >>> 32));\r\n        result = 31 * result + getRating();\r\n        result = 31 * result + (getComment() != null ? getComment().hashCode() : 0);\r\n        result = 31 * result + (getCreated_at() != null ? getCreated_at().hashCode() : 0);\r\n        return result;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Reviews{\" +\r\n                \"Review ID: \" + review_id +\r\n                \", PRODUCT ID: \" + product_id +\r\n                \", USER ID: \" + user_id +\r\n                \", RATING: \" + rating +\r\n                \", COMMENT: '\" + comment + '\\'' +\r\n                \", CREATED AT: \" + created_at +\r\n                '}';\r\n    }\r\n\r\n    public static class Builder {\r\n        private long review_id;\r\n        private long product_id;\r\n        private long user_id;\r\n        private int rating;\r\n        private String comment;\r\n        private LocalDate created_at;\r\n\r\n        public Builder setReview_id(long review_id) {\r\n            this.review_id = review_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setProduct_id(long product_id) {\r\n            this.product_id = product_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setUser_id(long user_id) {\r\n            this.user_id = user_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setRating(int rating) {\r\n            this.rating = rating;\r\n            return this;\r\n        }\r\n\r\n        public Builder setComment(String comment) {\r\n            this.comment = comment;\r\n            return this;\r\n        }\r\n\r\n        public Builder setCreated_at(LocalDate created_at) {\r\n            this.created_at = created_at;\r\n            return this;\r\n        }\r\n\r\n        public Builder copy(Reviews reviews) {\r\n            this.review_id = reviews.getReview_id();\r\n            this.product_id = reviews.getProduct_id();\r\n            this.user_id = reviews.getUser_id();\r\n            this.rating = reviews.getRating();\r\n            this.comment = reviews.getComment();\r\n            this.created_at = reviews.getCreated_at();\r\n            return this;\r\n        }\r\n\r\n        public Reviews build() {\r\n            return new Reviews(this);\r\n        }\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/za/ac/cput/domain/Reviews.java b/src/main/java/za/ac/cput/domain/Reviews.java
+--- a/src/main/java/za/ac/cput/domain/Reviews.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
++++ b/src/main/java/za/ac/cput/domain/Reviews.java	(date 1722365743454)
+@@ -13,6 +13,7 @@
+  * @date 23-Jul-24
+  */
+ 
++// reviews are under products
+ 
+ @Entity
+ public class Reviews implements Serializable {
+Index: src/main/java/za/ac/cput/domain/Discounts.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package za.ac.cput.domain;\r\n\r\nimport jakarta.persistence.*;\r\n\r\nimport java.io.Serializable;\r\nimport java.time.LocalDate;\r\n\r\n/**\r\n * Discounts.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 23-Jul-24\r\n */\r\n\r\n@Entity\r\npublic class Discounts implements Serializable {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long discount_id;\r\n    private String code;\r\n    private String description;\r\n    private double discount_percent;\r\n    private LocalDate start_date;\r\n    private LocalDate end_date;\r\n    private int max_uses;\r\n\r\n    public Discounts() {\r\n    }\r\n\r\n    public Discounts(Builder builder) {\r\n        this.discount_id = builder.discount_id;\r\n        this.code = builder.code;\r\n        this.description = builder.description;\r\n        this.discount_percent = builder.discount_percent;\r\n        this.start_date = builder.start_date;\r\n        this.end_date = builder.end_date;\r\n        this.max_uses = builder.max_uses;\r\n    }\r\n\r\n    public long getDiscount_id() {\r\n        return discount_id;\r\n    }\r\n\r\n    public String getCode() {\r\n        return code;\r\n    }\r\n\r\n    public String getDescription() {\r\n        return description;\r\n    }\r\n\r\n    public double getDiscount_percent() {\r\n        return discount_percent;\r\n    }\r\n\r\n    public LocalDate getStart_date() {\r\n        return start_date;\r\n    }\r\n\r\n    public LocalDate getEnd_date() {\r\n        return end_date;\r\n    }\r\n\r\n    public int getMax_uses() {\r\n        return max_uses;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (!(o instanceof Discounts discounts)) return false;\r\n\r\n        if (getDiscount_id() != discounts.getDiscount_id()) return false;\r\n        if (Double.compare(getDiscount_percent(), discounts.getDiscount_percent()) != 0) return false;\r\n        if (getMax_uses() != discounts.getMax_uses()) return false;\r\n        if (getCode() != null ? !getCode().equals(discounts.getCode()) : discounts.getCode() != null) return false;\r\n        if (getDescription() != null ? !getDescription().equals(discounts.getDescription()) : discounts.getDescription() != null)\r\n            return false;\r\n        if (getStart_date() != null ? !getStart_date().equals(discounts.getStart_date()) : discounts.getStart_date() != null)\r\n            return false;\r\n        return getEnd_date() != null ? getEnd_date().equals(discounts.getEnd_date()) : discounts.getEnd_date() == null;\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        int result;\r\n        long temp;\r\n        result = (int) (getDiscount_id() ^ (getDiscount_id() >>> 32));\r\n        result = 31 * result + (getCode() != null ? getCode().hashCode() : 0);\r\n        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);\r\n        temp = Double.doubleToLongBits(getDiscount_percent());\r\n        result = 31 * result + (int) (temp ^ (temp >>> 32));\r\n        result = 31 * result + (getStart_date() != null ? getStart_date().hashCode() : 0);\r\n        result = 31 * result + (getEnd_date() != null ? getEnd_date().hashCode() : 0);\r\n        result = 31 * result + getMax_uses();\r\n        return result;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Discounts{\" +\r\n                \"Discount ID: \" + discount_id +\r\n                \", CODE: '\" + code + '\\'' +\r\n                \", DESCRIPTION: '\" + description + '\\'' +\r\n                \", DISCOUNT PERCENT: \" + discount_percent +\r\n                \", START DATE: \" + start_date +\r\n                \", END DATE: \" + end_date +\r\n                \", MAX USES: \" + max_uses +\r\n                '}';\r\n    }\r\n\r\n    public static class Builder {\r\n        private long discount_id;\r\n        private String code;\r\n        private String description;\r\n        private double discount_percent;\r\n        private LocalDate start_date;\r\n        private LocalDate end_date;\r\n        private int max_uses;\r\n\r\n        public Builder setDiscount_id(long discount_id) {\r\n            this.discount_id = discount_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setCode(String code) {\r\n            this.code = code;\r\n            return this;\r\n        }\r\n\r\n        public Builder setDescription(String description) {\r\n            this.description = description;\r\n            return this;\r\n        }\r\n\r\n        public Builder setDiscount_percent(double discount_percent) {\r\n            this.discount_percent = discount_percent;\r\n            return this;\r\n        }\r\n\r\n        public Builder setStart_date(LocalDate start_date) {\r\n            this.start_date = start_date;\r\n            return this;\r\n        }\r\n\r\n        public Builder setEnd_date(LocalDate end_date) {\r\n            this.end_date = end_date;\r\n            return this;\r\n        }\r\n\r\n        public Builder setMax_uses(int max_uses) {\r\n            this.max_uses = max_uses;\r\n            return this;\r\n        }\r\n\r\n        public Builder copy(Discounts discounts) {\r\n            this.discount_id = discounts.getDiscount_id();\r\n            this.code = discounts.getCode();\r\n            this.description = discounts.getDescription();\r\n            this.discount_percent = discounts.getDiscount_percent();\r\n            this.start_date = discounts.getStart_date();\r\n            this.end_date = discounts.getEnd_date();\r\n            this.max_uses = discounts.getMax_uses();\r\n            return this;\r\n        }\r\n\r\n        public Discounts build() {\r\n            return new Discounts(this);\r\n        }\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/za/ac/cput/domain/Discounts.java b/src/main/java/za/ac/cput/domain/Discounts.java
+--- a/src/main/java/za/ac/cput/domain/Discounts.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
++++ b/src/main/java/za/ac/cput/domain/Discounts.java	(date 1722365411517)
+@@ -13,6 +13,7 @@
+  * @date 23-Jul-24
+  */
+ 
++// this is also not an entity its part of a product
+ @Entity
+ public class Discounts implements Serializable {
+     @Id
+Index: src/main/java/za/ac/cput/domain/Order_Items.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package za.ac.cput.domain;\r\n\r\nimport jakarta.persistence.*;\r\nimport java.io.Serializable;\r\n\r\n/**\r\n * Order_Items.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 23-Jul-24\r\n */\r\n\r\n@Entity\r\npublic class Order_Items implements Serializable {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long order_item_id;\r\n    private long order_id;\r\n    private long product_id;\r\n    private int quantity;\r\n    private double price;\r\n\r\n    public Order_Items() {\r\n    }\r\n\r\n    public Order_Items(Builder builder) {\r\n        this.order_item_id = builder.order_item_id;\r\n        this.order_id = builder.order_id;\r\n        this.product_id = builder.product_id;\r\n        this.quantity = builder.quantity;\r\n        this.price = builder.price;\r\n    }\r\n\r\n    public long getOrder_item_id() {\r\n        return order_item_id;\r\n    }\r\n\r\n    public long getOrder_id() {\r\n        return order_id;\r\n    }\r\n\r\n    public long getProduct_id() {\r\n        return product_id;\r\n    }\r\n\r\n    public int getQuantity() {\r\n        return quantity;\r\n    }\r\n\r\n    public double getPrice() {\r\n        return price;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Order_Items{\" +\r\n                \"Order Item ID: \" + order_item_id +\r\n                \", ORDER ID: \" + order_id +\r\n                \", PRODUCT ID: \" + product_id +\r\n                \", QUANTITY: \" + quantity +\r\n                \", PRICE: \" + price +\r\n                '}';\r\n    }\r\n\r\n    public static class Builder {\r\n        private long order_item_id;\r\n        private long order_id;\r\n        private long product_id;\r\n        private int quantity;\r\n        private double price;\r\n\r\n        public Builder setOrder_item_id(long order_item_id) {\r\n            this.order_item_id = order_item_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setOrder_id(long order_id) {\r\n            this.order_id = order_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setProduct_id(long product_id) {\r\n            this.product_id = product_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setQuantity(int quantity) {\r\n            this.quantity = quantity;\r\n            return this;\r\n        }\r\n\r\n        public Builder setPrice(double price) {\r\n            this.price = price;\r\n            return this;\r\n        }\r\n\r\n        public Builder copy(Order_Items order_items) {\r\n            this.order_item_id = order_items.getOrder_item_id();\r\n            this.order_id = order_items.getOrder_id();\r\n            this.product_id = order_items.getProduct_id();\r\n            this.quantity = order_items.getQuantity();\r\n            this.price = order_items.getPrice();\r\n            return this;\r\n        }\r\n\r\n        public Order_Items build() {\r\n            return new Order_Items(this);\r\n        }\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/za/ac/cput/domain/Order_Items.java b/src/main/java/za/ac/cput/domain/Order_Items.java
+--- a/src/main/java/za/ac/cput/domain/Order_Items.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
++++ b/src/main/java/za/ac/cput/domain/Order_Items.java	(date 1722365411579)
+@@ -11,6 +11,8 @@
+  * @date 23-Jul-24
+  */
+ 
++// order items is under order
++
+ @Entity
+ public class Order_Items implements Serializable {
+     @Id
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"2dfc9b97-bcf6-48f1-9f27-38897c268d23\" name=\"Changes\" comment=\"Products.java&#10;ProductFactory&#10;ProductRepository&#10;ProductService&#10;ProductController&#10;Compeleted\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/front-end/.gitignore\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/front-end/README.md\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/front-end/babel.config.js\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/front-end/jsconfig.json\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/front-end/package-lock.json\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/front-end/package.json\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/front-end/public/favicon.ico\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/front-end/public/index.html\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/front-end/src/App.vue\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/front-end/src/assets/logo.png\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/front-end/src/components/FetchUsers.vue\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/front-end/src/components/HelloWorld.vue\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/front-end/src/main.js\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/front-end/vue.config.js\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/test/java/za/ac/cput/controller/ProductControllerTest.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/test/java/za/ac/cput/factory/ProductFactoryTest.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/pom.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Addresses.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Addresses.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Shipping_Methods.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Shipping_Methods.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/za/ac/cput/factory/AddressFactory.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/za/ac/cput/factory/AddressFactory.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/resources/application-test.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/resources/application-test.properties\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"HTML File\" />\r\n        <option value=\"Class\" />\r\n        <option value=\"Vue Composition API Component\" />\r\n        <option value=\"Interface\" />\r\n        <option value=\"JUnit5 Test Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <favorite-branches>\r\n      <branch-storage>\r\n        <map>\r\n          <entry type=\"REMOTE\">\r\n            <value>\r\n              <list>\r\n                <branch-info repo=\"$PROJECT_DIR$\" source=\"origin/Rethabile\" />\r\n              </list>\r\n            </value>\r\n          </entry>\r\n        </map>\r\n      </branch-storage>\r\n    </favorite-branches>\r\n    <option name=\"PREVIOUS_COMMIT_AUTHORS\">\r\n      <list>\r\n        <option value=\"Rethabile Ntsekhe\" />\r\n      </list>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"SIGN_OFF_COMMIT\" value=\"true\" />\r\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 0\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2jeLJQBTXCGUgEHQFHHpAJIqMs9\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"ASKED_ADD_EXTERNAL_FILES\": \"true\",\r\n    \"DefaultHtmlFileTemplate\": \"HTML File\",\r\n    \"HTTP Request.African_Art_Craft-endpoints | #1.executor\": \"Run\",\r\n    \"HTTP Request.African_Art_Craft-endpoints_1 | #1.executor\": \"Run\",\r\n    \"HTTP Request.generated-requests | #10.executor\": \"Run\",\r\n    \"HTTP Request.generated-requests | #3.executor\": \"Run\",\r\n    \"HTTP Request.generated-requests | #4.executor\": \"Run\",\r\n    \"HTTP Request.generated-requests | #5.executor\": \"Run\",\r\n    \"HTTP Request.generated-requests | #6.executor\": \"Run\",\r\n    \"HTTP Request.generated-requests | #7.executor\": \"Run\",\r\n    \"HTTP Request.generated-requests | #8.executor\": \"Run\",\r\n    \"JUnit.ProductServiceTest.create.executor\": \"Run\",\r\n    \"JUnit.ProductServiceTest.executor\": \"Run\",\r\n    \"JUnit.UserControllerTest.executor\": \"Run\",\r\n    \"JUnit.UserControllerTest.testCreateUser.executor\": \"Run\",\r\n    \"JUnit.UserServiceTest.executor\": \"Run\",\r\n    \"JUnit.UserServiceTest.testUpdate.executor\": \"Run\",\r\n    \"JUnit.UserfactoryTest.buildUser_Success.executor\": \"Run\",\r\n    \"JUnit.UserfactoryTest.executor\": \"Run\",\r\n    \"JUnit.UsersControllerTest.executor\": \"Run\",\r\n    \"JUnit.UsersControllerTest.testGetAllUsers.executor\": \"Debug\",\r\n    \"OverrideImplement.generate.javadoc\": \"true\",\r\n    \"RequestMappingsPanelOrder0\": \"0\",\r\n    \"RequestMappingsPanelOrder1\": \"1\",\r\n    \"RequestMappingsPanelWidth0\": \"75\",\r\n    \"RequestMappingsPanelWidth1\": \"75\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"Spring Boot.Application.executor\": \"Run\",\r\n    \"com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary\": \"JUnit5\",\r\n    \"com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5\": \"\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Project\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"settings.editor.selected.configurable\": \"terminal\",\r\n    \"ts.external.directory.path\": \"C:\\\\Program Files\\\\JetBrains\\\\IntelliJ IDEA 2023.3.3\\\\plugins\\\\javascript-impl\\\\jsLanguageServicesImpl\\\\external\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  },\r\n  \"keyToStringList\": {\r\n    \"vue.recent.templates\": [\r\n      \"Vue Composition API Component\"\r\n    ]\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateTestDialog.Recents.Supers\">\r\n      <recent name=\"\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\retha\\Documents\\JetBrains Academy\\African Art Craft\\src\\test\\resources\" />\r\n      <recent name=\"C:\\Users\\retha\\Documents\\JetBrains Academy\\African Art Craft\\src\\main\\resources\\static\" />\r\n    </key>\r\n    <key name=\"CreateTestDialog.RecentsKey\">\r\n      <recent name=\"za.ac.cput.controller\" />\r\n      <recent name=\"za.ac.cput.factory\" />\r\n      <recent name=\"za.ac.cput.service\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"HTTP Request.generated-requests | #10\">\r\n    <configuration name=\"generated-requests | #10\" type=\"HttpClient.HttpRequestRunConfigurationType\" factoryName=\"HTTP Request\" temporary=\"true\" nameIsGenerated=\"true\" path=\"$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http\" index=\"10\" requestIdentifier=\"#10\" runType=\"Run single request\">\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"generated-requests | #5\" type=\"HttpClient.HttpRequestRunConfigurationType\" factoryName=\"HTTP Request\" temporary=\"true\" nameIsGenerated=\"true\" path=\"$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http\" index=\"5\" requestIdentifier=\"#5\" runType=\"Run single request\">\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"generated-requests | #6\" type=\"HttpClient.HttpRequestRunConfigurationType\" factoryName=\"HTTP Request\" temporary=\"true\" nameIsGenerated=\"true\" path=\"$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http\" index=\"6\" requestIdentifier=\"#6\" runType=\"Run single request\">\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"generated-requests | #7\" type=\"HttpClient.HttpRequestRunConfigurationType\" factoryName=\"HTTP Request\" temporary=\"true\" nameIsGenerated=\"true\" path=\"$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http\" index=\"7\" requestIdentifier=\"#7\" runType=\"Run single request\">\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"generated-requests | #8\" type=\"HttpClient.HttpRequestRunConfigurationType\" factoryName=\"HTTP Request\" temporary=\"true\" nameIsGenerated=\"true\" path=\"$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http\" index=\"8\" requestIdentifier=\"#8\" runType=\"Run single request\">\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"African Art Craft\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"African Art Craft\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"HTTP Request.generated-requests | #10\" />\r\n        <item itemvalue=\"HTTP Request.generated-requests | #8\" />\r\n        <item itemvalue=\"HTTP Request.generated-requests | #7\" />\r\n        <item itemvalue=\"HTTP Request.generated-requests | #6\" />\r\n        <item itemvalue=\"HTTP Request.generated-requests | #5\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4\" />\r\n        <option value=\"jdk-17.0.9-jbr-17.0.9-4caba194b151-51f1b679\" />\r\n        <option value=\"jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"2dfc9b97-bcf6-48f1-9f27-38897c268d23\" name=\"Changes\" comment=\"\" />\r\n      <created>1721742614727</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1721742614727</updated>\r\n      <workItem from=\"1721742618882\" duration=\"8515000\" />\r\n      <workItem from=\"1721757997688\" duration=\"473000\" />\r\n      <workItem from=\"1721832616636\" duration=\"20368000\" />\r\n      <workItem from=\"1721908721609\" duration=\"17338000\" />\r\n      <workItem from=\"1721991810690\" duration=\"19120000\" />\r\n      <workItem from=\"1722021501334\" duration=\"4527000\" />\r\n      <workItem from=\"1722084459134\" duration=\"19540000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"first\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721743074602</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721743074602</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"first\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721743292282</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721743292282</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"first&#10;&#10;Signed-off-by: Twist1154n &lt;rethabile1154n@gmail.com&gt;\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721743330532</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721743330532</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Structure\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721743415875</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721743415875</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Structure\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721747467372</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721747467372</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Structure\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721748795933</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721748795933</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Structure\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721750247447</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721750247447</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Structure\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721750329670</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721750329670</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Structure\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721758324490</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721758324490</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Structure\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721758406516</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721758406516</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Domain classes Complete\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721836909486</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721836909486</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Domain classes Complete\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721837131327</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721837131327</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"application.properties and main App completed\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721837794505</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721837794505</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"helper and factory complete\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721838164356</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721838164356</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"helper and factory complete\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721838252274</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721838252274</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"test\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721840774329</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721840774329</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"IRepository and IService Completed &#10;to be used for local testing\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721841548258</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721841548258</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"User Repo done\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721841854858</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721841854858</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"implements Serializable\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721844098981</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721844098981</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"everthing works upto service layer\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721849703719</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721849703719</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"All Domains completed\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721996895103</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721996895103</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"All Domains completed\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1721997212091</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1721997212091</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"All Factories classes completed\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1722002315226</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1722002315226</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"All Factories classes completed\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1722014454716</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1722014454747</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00025\" summary=\"Products.java&#10;ProductFactory&#10;ProductRepository&#10;ProductService&#10;ProductController&#10;Compeleted\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1722093816110</created>\r\n      <option name=\"number\" value=\"00025\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1722093816110</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00026\" summary=\"Products.java&#10;ProductFactory&#10;ProductRepository&#10;ProductService&#10;ProductController&#10;Compeleted\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1722101877430</created>\r\n      <option name=\"number\" value=\"00026\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1722101877430</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"27\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"first\" />\r\n    <MESSAGE value=\"first&#10;&#10;Signed-off-by: Twist1154n &lt;rethabile1154n@gmail.com&gt;\" />\r\n    <MESSAGE value=\"Merge remote-tracking branch 'origin/master'\" />\r\n    <MESSAGE value=\"Structure&#10;&#10;Signed-off-by: Twist1154n &lt;rethabile1154n@gmail.com&gt;\" />\r\n    <MESSAGE value=\"Structure\" />\r\n    <MESSAGE value=\"Domain classes Complete\" />\r\n    <MESSAGE value=\"application.properties and main App completed\" />\r\n    <MESSAGE value=\"helper and factory complete\" />\r\n    <MESSAGE value=\"test\" />\r\n    <MESSAGE value=\"IRepository and IService Completed &#10;to be used for local testing\" />\r\n    <MESSAGE value=\"User Repo done\" />\r\n    <MESSAGE value=\"implements Serializable\" />\r\n    <MESSAGE value=\"everthing works upto service layer\" />\r\n    <MESSAGE value=\"All Domains completed\" />\r\n    <MESSAGE value=\"All Factories classes completed\" />\r\n    <MESSAGE value=\"Products.java&#10;ProductFactory&#10;ProductRepository&#10;ProductService&#10;ProductController&#10;Compeleted\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Products.java&#10;ProductFactory&#10;ProductRepository&#10;ProductService&#10;ProductController&#10;Compeleted\" />\r\n    <option name=\"REFORMAT_BEFORE_PROJECT_COMMIT\" value=\"true\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" log-stack=\"true\" type=\"java-exception\">\r\n          <properties class=\"org.springframework.beans.factory.BeanCreationException\" package=\"org.springframework.beans.factory\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n      <default-breakpoints>\r\n        <breakpoint log-message=\"true\" log-stack=\"true\" type=\"java-exception\" />\r\n      </default-breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
++++ b/.idea/workspace.xml	(date 1723059575917)
+@@ -5,29 +5,22 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="2dfc9b97-bcf6-48f1-9f27-38897c268d23" name="Changes" comment="Products.java&#10;ProductFactory&#10;ProductRepository&#10;ProductService&#10;ProductController&#10;Compeleted">
+-      <change afterPath="$PROJECT_DIR$/src/front-end/.gitignore" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/front-end/README.md" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/front-end/babel.config.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/front-end/jsconfig.json" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/front-end/package-lock.json" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/front-end/package.json" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/front-end/public/favicon.ico" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/front-end/public/index.html" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/front-end/src/App.vue" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/front-end/src/assets/logo.png" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/front-end/src/components/FetchUsers.vue" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/front-end/src/components/HelloWorld.vue" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/front-end/src/main.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/front-end/vue.config.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/controller/ProductControllerTest.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/factory/ProductFactoryTest.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/ProductController.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Addresses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Addresses.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Cart_Items.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Cart_Items.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Discounts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Discounts.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Order_Items.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Order_Items.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Reviews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Reviews.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Shipping_Methods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Shipping_Methods.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/AddressFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/AddressFactory.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/resources/application-test.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/application-test.properties" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Users.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Wishlist_Items.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Wishlist_Items.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/Userfactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/Userfactory.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/controller/ProductControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/controller/ProductControllerTest.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/factory/ProductFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/factory/ProductFactoryTest.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/factory/UserfactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/factory/UserfactoryTest.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/service/UserServiceTest.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -82,61 +75,63 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "ASKED_ADD_EXTERNAL_FILES": "true",
+-    "DefaultHtmlFileTemplate": "HTML File",
+-    "HTTP Request.African_Art_Craft-endpoints | #1.executor": "Run",
+-    "HTTP Request.African_Art_Craft-endpoints_1 | #1.executor": "Run",
+-    "HTTP Request.generated-requests | #10.executor": "Run",
+-    "HTTP Request.generated-requests | #3.executor": "Run",
+-    "HTTP Request.generated-requests | #4.executor": "Run",
+-    "HTTP Request.generated-requests | #5.executor": "Run",
+-    "HTTP Request.generated-requests | #6.executor": "Run",
+-    "HTTP Request.generated-requests | #7.executor": "Run",
+-    "HTTP Request.generated-requests | #8.executor": "Run",
+-    "JUnit.ProductServiceTest.create.executor": "Run",
+-    "JUnit.ProductServiceTest.executor": "Run",
+-    "JUnit.UserControllerTest.executor": "Run",
+-    "JUnit.UserControllerTest.testCreateUser.executor": "Run",
+-    "JUnit.UserServiceTest.executor": "Run",
+-    "JUnit.UserServiceTest.testUpdate.executor": "Run",
+-    "JUnit.UserfactoryTest.buildUser_Success.executor": "Run",
+-    "JUnit.UserfactoryTest.executor": "Run",
+-    "JUnit.UsersControllerTest.executor": "Run",
+-    "JUnit.UsersControllerTest.testGetAllUsers.executor": "Debug",
+-    "OverrideImplement.generate.javadoc": "true",
+-    "RequestMappingsPanelOrder0": "0",
+-    "RequestMappingsPanelOrder1": "1",
+-    "RequestMappingsPanelWidth0": "75",
+-    "RequestMappingsPanelWidth1": "75",
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "Spring Boot.Application.executor": "Run",
+-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+-    "git-widget-placeholder": "master",
+-    "ignore.virus.scanning.warn.message": "true",
+-    "kotlin-language-version-configured": "true",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "project.structure.last.edited": "Project",
+-    "project.structure.proportion": "0.0",
+-    "project.structure.side.proportion": "0.0",
+-    "settings.editor.selected.configurable": "terminal",
+-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
++    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
++    &quot;HTTP Request.African_Art_Craft-endpoints | #1.executor&quot;: &quot;Run&quot;,
++    &quot;HTTP Request.African_Art_Craft-endpoints_1 | #1.executor&quot;: &quot;Run&quot;,
++    &quot;HTTP Request.generated-requests | #10.executor&quot;: &quot;Run&quot;,
++    &quot;HTTP Request.generated-requests | #3.executor&quot;: &quot;Run&quot;,
++    &quot;HTTP Request.generated-requests | #4.executor&quot;: &quot;Run&quot;,
++    &quot;HTTP Request.generated-requests | #5.executor&quot;: &quot;Run&quot;,
++    &quot;HTTP Request.generated-requests | #6.executor&quot;: &quot;Run&quot;,
++    &quot;HTTP Request.generated-requests | #7.executor&quot;: &quot;Run&quot;,
++    &quot;HTTP Request.generated-requests | #8.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.ProductControllerTest.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.ProductFactoryTest.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.ProductServiceTest.create.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.ProductServiceTest.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserControllerTest.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserControllerTest.testCreateUser.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserServiceTest.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserServiceTest.testUpdate.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserfactoryTest.buildUser_Success.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserfactoryTest.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UsersControllerTest.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UsersControllerTest.testGetAllUsers.executor&quot;: &quot;Debug&quot;,
++    &quot;OverrideImplement.generate.javadoc&quot;: &quot;true&quot;,
++    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
++    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
++    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
++    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;Spring Boot.Application.executor&quot;: &quot;Run&quot;,
++    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
++    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
++    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
++    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   },
+-  "keyToStringList": {
+-    "vue.recent.templates": [
+-      "Vue Composition API Component"
++  &quot;keyToStringList&quot;: {
++    &quot;vue.recent.templates&quot;: [
++      &quot;Vue Composition API Component&quot;
+     ]
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CreateTestDialog.Recents.Supers">
+       <recent name="" />
+@@ -151,21 +146,66 @@
+       <recent name="za.ac.cput.service" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="HTTP Request.generated-requests | #10">
+-    <configuration name="generated-requests | #10" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="10" requestIdentifier="#10" runType="Run single request">
+-      <method v="2" />
++  <component name="RunManager" selected="JUnit.UserServiceTest">
++    <configuration name="ProductControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="African-Arts-Craft" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="za.ac.cput.controller.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="za.ac.cput.controller" />
++      <option name="MAIN_CLASS_NAME" value="za.ac.cput.controller.ProductControllerTest" />
++      <option name="TEST_OBJECT" value="class" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
+     </configuration>
+-    <configuration name="generated-requests | #5" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="5" requestIdentifier="#5" runType="Run single request">
+-      <method v="2" />
+-    </configuration>
+-    <configuration name="generated-requests | #6" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="6" requestIdentifier="#6" runType="Run single request">
+-      <method v="2" />
++    <configuration name="ProductServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="African-Arts-Craft" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="za.ac.cput.service.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="za.ac.cput.service" />
++      <option name="MAIN_CLASS_NAME" value="za.ac.cput.service.ProductServiceTest" />
++      <option name="TEST_OBJECT" value="class" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
+     </configuration>
+-    <configuration name="generated-requests | #7" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="7" requestIdentifier="#7" runType="Run single request">
+-      <method v="2" />
++    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="African-Arts-Craft" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="za.ac.cput.service.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="za.ac.cput.service" />
++      <option name="MAIN_CLASS_NAME" value="za.ac.cput.service.UserServiceTest" />
++      <option name="TEST_OBJECT" value="class" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
+     </configuration>
+-    <configuration name="generated-requests | #8" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="8" requestIdentifier="#8" runType="Run single request">
+-      <method v="2" />
++    <configuration name="UserfactoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="African-Arts-Craft" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="za.ac.cput.factory.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="za.ac.cput.factory" />
++      <option name="MAIN_CLASS_NAME" value="za.ac.cput.factory.UserfactoryTest" />
++      <option name="TEST_OBJECT" value="class" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
+     </configuration>
+     <configuration default="true" type="JetRunConfigurationType">
+       <module name="African Art Craft" />
+@@ -180,13 +220,26 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
++    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
++      <module name="African-Arts-Craft" />
++      <option name="SPRING_BOOT_MAIN_CLASS" value="za.ac.cput.Application" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="za.ac.cput.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="HTTP Request.generated-requests | #10" />
+-        <item itemvalue="HTTP Request.generated-requests | #8" />
+-        <item itemvalue="HTTP Request.generated-requests | #7" />
+-        <item itemvalue="HTTP Request.generated-requests | #6" />
+-        <item itemvalue="HTTP Request.generated-requests | #5" />
++        <item itemvalue="JUnit.UserServiceTest" />
++        <item itemvalue="JUnit.UserfactoryTest" />
++        <item itemvalue="JUnit.ProductServiceTest" />
++        <item itemvalue="JUnit.ProductControllerTest" />
++        <item itemvalue="Spring Boot.Application" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -194,7 +247,6 @@
+     <attachedChunks>
+       <set>
+         <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
+-        <option value="jdk-17.0.9-jbr-17.0.9-4caba194b151-51f1b679" />
+         <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+       </set>
+     </attachedChunks>
+@@ -214,6 +266,19 @@
+       <workItem from="1721991810690" duration="19120000" />
+       <workItem from="1722021501334" duration="4527000" />
+       <workItem from="1722084459134" duration="19540000" />
++      <workItem from="1722107518414" duration="191000" />
++      <workItem from="1722178896465" duration="23000" />
++      <workItem from="1722181104514" duration="1762000" />
++      <workItem from="1722362962624" duration="51000" />
++      <workItem from="1722363839777" duration="3415000" />
++      <workItem from="1722449176708" duration="305000" />
++      <workItem from="1722611132627" duration="604000" />
++      <workItem from="1722702000052" duration="1494000" />
++      <workItem from="1722784764863" duration="11704000" />
++      <workItem from="1722841493579" duration="2216000" />
++      <workItem from="1722963063773" duration="1382000" />
++      <workItem from="1723057420051" duration="1968000" />
++      <workItem from="1723059557630" duration="19000" />
+     </task>
+     <task id="LOCAL-00001" summary="first">
+       <option name="closed" value="true" />
+Index: src/main/java/za/ac/cput/domain/Cart_Items.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package za.ac.cput.domain;\r\n\r\nimport jakarta.persistence.*;\r\n\r\nimport java.io.Serializable;\r\n\r\n/**\r\n * Cart_Items.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 23-Jul-24\r\n */\r\n\r\n\r\n@Entity\r\npublic class Cart_Items implements Serializable {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long cart_item_id;\r\n    private long cart_id;\r\n    private long product_id;\r\n    private int quantity;\r\n\r\n    public Cart_Items() {\r\n    }\r\n\r\n    public Cart_Items(Builder builder) {\r\n        this.cart_item_id = builder.cart_item_id;\r\n        this.cart_id = builder.cart_id;\r\n        this.product_id = builder.product_id;\r\n        this.quantity = builder.quantity;\r\n    }\r\n\r\n    public long getCart_item_id() {\r\n        return cart_item_id;\r\n    }\r\n\r\n    public long getCart_id() {\r\n        return cart_id;\r\n    }\r\n\r\n    public long getProduct_id() {\r\n        return product_id;\r\n    }\r\n\r\n    public int getQuantity() {\r\n        return quantity;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Cart_Items{\" +\r\n                \"Cart Item ID: \" + cart_item_id +\r\n                \", CART ID: \" + cart_id +\r\n                \", PRODUCT ID: \" + product_id +\r\n                \", QUANTITY: \" + quantity +\r\n                '}';\r\n    }\r\n\r\n    public static class Builder {\r\n        private long cart_item_id;\r\n        private long cart_id;\r\n        private long product_id;\r\n        private int quantity;\r\n\r\n        public Builder setCart_item_id(long cart_item_id) {\r\n            this.cart_item_id = cart_item_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setCart_id(long cart_id) {\r\n            this.cart_id = cart_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setProduct_id(long product_id) {\r\n            this.product_id = product_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setQuantity(int quantity) {\r\n            this.quantity = quantity;\r\n            return this;\r\n        }\r\n\r\n        public Builder copy(Cart_Items cart_items) {\r\n            this.cart_item_id = cart_items.getCart_item_id();\r\n            this.cart_id = cart_items.getCart_id();\r\n            this.product_id = cart_items.getProduct_id();\r\n            this.quantity = cart_items.getQuantity();\r\n            return this;\r\n        }\r\n\r\n        public Cart_Items build() {\r\n            return new Cart_Items(this);\r\n        }\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/za/ac/cput/domain/Cart_Items.java b/src/main/java/za/ac/cput/domain/Cart_Items.java
+--- a/src/main/java/za/ac/cput/domain/Cart_Items.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
++++ b/src/main/java/za/ac/cput/domain/Cart_Items.java	(date 1722365411610)
+@@ -12,7 +12,7 @@
+  * @date 23-Jul-24
+  */
+ 
+-
++// cart items should be in cart
+ @Entity
+ public class Cart_Items implements Serializable {
+     @Id
+Index: src/main/java/za/ac/cput/domain/Wishlist_Items.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package za.ac.cput.domain;\r\n\r\nimport jakarta.persistence.*;\r\n\r\nimport java.io.Serializable;\r\nimport java.time.LocalDate;\r\n\r\n/**\r\n * Wishlist_Items.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 23-Jul-24\r\n */\r\n\r\n\r\n@Entity\r\npublic class Wishlist_Items implements Serializable {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long wishlist_item_id;\r\n    private long wishlist_id;\r\n    private long product_id;\r\n    private LocalDate added_at;\r\n\r\n    public Wishlist_Items() {\r\n    }\r\n\r\n    public Wishlist_Items(Builder builder) {\r\n        this.wishlist_item_id = builder.wishlist_item_id;\r\n        this.wishlist_id = builder.wishlist_id;\r\n        this.product_id = builder.product_id;\r\n        this.added_at = builder.added_at;\r\n    }\r\n\r\n    public long getWishlist_item_id() {\r\n        return wishlist_item_id;\r\n    }\r\n\r\n    public long getWishlist_id() {\r\n        return wishlist_id;\r\n    }\r\n\r\n    public long getProduct_id() {\r\n        return product_id;\r\n    }\r\n\r\n    public LocalDate getAdded_at() {\r\n        return added_at;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (!(o instanceof Wishlist_Items that)) return false;\r\n\r\n        if (getWishlist_item_id() != that.getWishlist_item_id()) return false;\r\n        if (getWishlist_id() != that.getWishlist_id()) return false;\r\n        if (getProduct_id() != that.getProduct_id()) return false;\r\n        return getAdded_at() != null ? getAdded_at().equals(that.getAdded_at()) : that.getAdded_at() == null;\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        int result = (int) (getWishlist_item_id() ^ (getWishlist_item_id() >>> 32));\r\n        result = 31 * result + (int) (getWishlist_id() ^ (getWishlist_id() >>> 32));\r\n        result = 31 * result + (int) (getProduct_id() ^ (getProduct_id() >>> 32));\r\n        result = 31 * result + (getAdded_at() != null ? getAdded_at().hashCode() : 0);\r\n        return result;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Wishlist_Items{\" +\r\n                \"Wishlist Item ID: \" + wishlist_item_id +\r\n                \", WISHLIST ID: \" + wishlist_id +\r\n                \", PRODUCT ID: \" + product_id +\r\n                \", ADDED AT: \" + added_at +\r\n                '}';\r\n    }\r\n\r\n    public static class Builder {\r\n        private long wishlist_item_id;\r\n        private long wishlist_id;\r\n        private long product_id;\r\n        private LocalDate added_at;\r\n\r\n        public Builder setWishlist_item_id(long wishlist_item_id) {\r\n            this.wishlist_item_id = wishlist_item_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setWishlist_id(long wishlist_id) {\r\n            this.wishlist_id = wishlist_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setProduct_id(long product_id) {\r\n            this.product_id = product_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setAdded_at(LocalDate added_at) {\r\n            this.added_at = added_at;\r\n            return this;\r\n        }\r\n\r\n        public Builder copy(Wishlist_Items wishlist_items) {\r\n            this.wishlist_item_id = wishlist_items.getWishlist_item_id();\r\n            this.wishlist_id = wishlist_items.getWishlist_id();\r\n            this.product_id = wishlist_items.getProduct_id();\r\n            this.added_at = wishlist_items.getAdded_at();\r\n            return this;\r\n        }\r\n\r\n        public Wishlist_Items build() {\r\n            return new Wishlist_Items(this);\r\n        }\r\n    }\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/za/ac/cput/domain/Wishlist_Items.java b/src/main/java/za/ac/cput/domain/Wishlist_Items.java
+--- a/src/main/java/za/ac/cput/domain/Wishlist_Items.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
++++ b/src/main/java/za/ac/cput/domain/Wishlist_Items.java	(date 1722365411541)
+@@ -13,7 +13,7 @@
+  * @date 23-Jul-24
+  */
+ 
+-
++// wishlist_items should fall under wishlist
+ @Entity
+ public class Wishlist_Items implements Serializable {
+     @Id
+Index: src/test/java/za/ac/cput/service/UserServiceTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package za.ac.cput.service;\r\n\r\nimport org.junit.jupiter.api.BeforeEach;\r\nimport org.junit.jupiter.api.Test;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.boot.test.context.SpringBootTest;\r\nimport org.springframework.test.annotation.DirtiesContext;\r\nimport za.ac.cput.domain.Users;\r\nimport za.ac.cput.repository.UserRepository;\r\n\r\nimport java.time.LocalDate;\r\nimport java.util.List;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\n@SpringBootTest\r\n@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)\r\npublic class UserServiceTest {\r\n\r\n    @Autowired\r\n    private UserService userService;\r\n\r\n    @Autowired\r\n    private UserRepository userRepository;\r\n\r\n    private Users user;\r\n\r\n    @BeforeEach\r\n    void setUp() {\r\n        userRepository.deleteAll();\r\n\r\n        user = new Users.Builder()\r\n                .setUser_id(1L)\r\n                .setUsername(\"Twist11577\")\r\n                .setPassword(\"password\")\r\n                .setEmail(\"rethabile@gmail.com\")\r\n                .setFirst_name(\"Rethabile\")\r\n                .setLast_name(\"Ntsekhe\")\r\n                .setCreated_at(LocalDate.of(2024, 7, 24))\r\n                .setUpdated_at(LocalDate.of(2024, 8, 24))\r\n                .build();\r\n    }\r\n\r\n    @Test\r\n    void testCreate() {\r\n        Users createdUser = userService.create(user);\r\n        assertNotNull(createdUser);\r\n        assertEquals(user.getUsername(), createdUser.getUsername());\r\n    }\r\n\r\n    @Test\r\n    void testRead() {\r\n        Users createdUser = userService.create(user);\r\n        Users foundUser = userService.read(String.valueOf(createdUser.getUser_id()));\r\n        assertNotNull(foundUser);\r\n        assertEquals(user.getUsername(), foundUser.getUsername());\r\n    }\r\n\r\n    @Test\r\n    void testUpdate() {\r\n        Users createdUser = userService.create(user);\r\n        Users updatedUser = new Users.Builder()\r\n                .copy(createdUser)\r\n                .setUsername(\"Ntsekhe_1154\")\r\n                .build();\r\n        Users result = userService.update(updatedUser);\r\n        assertNotNull(result);\r\n        assertEquals(\"Ntsekhe_1154\", result.getUsername());\r\n    }\r\n\r\n    @Test\r\n    void testDelete() {\r\n        Users createdUser = userService.create(user);\r\n        userService.delete(String.valueOf(createdUser.getUser_id()));\r\n        Users foundUser = userService.read(String.valueOf(createdUser.getUser_id()));\r\n        assertNull(foundUser);\r\n    }\r\n\r\n    @Test\r\n    void testFindAll() {\r\n        userService.create(user);\r\n        List<Users> users = userService.findAll();\r\n        assertFalse(users.isEmpty());\r\n    }\r\n\r\n    @Test\r\n    void testFindByUsername() {\r\n        userService.create(user);\r\n        List<Users> users = userService.findByUsername(\"Twist11577\");\r\n        assertFalse(users.isEmpty());\r\n    }\r\n\r\n    @Test\r\n    void testFindByEmail() {\r\n        userService.create(user);\r\n        List<Users> users = userService.findByEmail(\"rethabile@gmail.com\");\r\n        assertFalse(users.isEmpty());\r\n    }\r\n\r\n    @Test\r\n    void testFindUsersByLastName() {\r\n        userService.create(user);\r\n        List<Users> users = userService.findByLastName(\"Ntsekhe\");\r\n        assertFalse(users.isEmpty());\r\n    }\r\n\r\n    @Test\r\n    void testFindUsersCreatedAfter() {\r\n        userService.create(user);\r\n        List<Users> users = userService.findUsersCreatedAfter(LocalDate.of(2024, 7, 1));\r\n        assertFalse(users.isEmpty());\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/za/ac/cput/service/UserServiceTest.java b/src/test/java/za/ac/cput/service/UserServiceTest.java
+--- a/src/test/java/za/ac/cput/service/UserServiceTest.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
++++ b/src/test/java/za/ac/cput/service/UserServiceTest.java	(date 1722807789582)
+@@ -5,6 +5,7 @@
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.boot.test.context.SpringBootTest;
+ import org.springframework.test.annotation.DirtiesContext;
++import za.ac.cput.domain.Addresses;
+ import za.ac.cput.domain.Users;
+ import za.ac.cput.repository.UserRepository;
+ 
+@@ -29,6 +30,18 @@
+     void setUp() {
+         userRepository.deleteAll();
+ 
++        Addresses addresses = new Addresses.Builder()
++                .setAddress_line1("123 Main St")
++                .setAddress_line2("Suite 1")
++                .setCity("Cape Town")
++                .setProvince("Western Cape")
++                .setPostal_code("8001")
++                .setCountry("South Africa")
++                .setCreated_at(LocalDate.of(2023, 7, 24))
++                .setUpdated_at(LocalDate.of(2023, 8, 24))
++                .build();
++
++
+         user = new Users.Builder()
+                 .setUser_id(1L)
+                 .setUsername("Twist11577")
+@@ -38,6 +51,7 @@
+                 .setLast_name("Ntsekhe")
+                 .setCreated_at(LocalDate.of(2024, 7, 24))
+                 .setUpdated_at(LocalDate.of(2024, 8, 24))
++                .setAddresses(addresses)
+                 .build();
+     }
+ 
+Index: src/test/java/za/ac/cput/factory/ProductFactoryTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package za.ac.cput.factory;\r\n\r\nimport org.junit.jupiter.api.Test;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\nclass ProductFactoryTest {\r\n\r\n    @Test\r\n    void buildProduct() {\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/za/ac/cput/factory/ProductFactoryTest.java b/src/test/java/za/ac/cput/factory/ProductFactoryTest.java
+--- a/src/test/java/za/ac/cput/factory/ProductFactoryTest.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
++++ b/src/test/java/za/ac/cput/factory/ProductFactoryTest.java	(date 1722785030781)
+@@ -1,12 +1,70 @@
+ package za.ac.cput.factory;
+ 
+ import org.junit.jupiter.api.Test;
++import za.ac.cput.domain.Products;
++
++import java.time.LocalDate;
+ 
+ import static org.junit.jupiter.api.Assertions.*;
+ 
+ class ProductFactoryTest {
+ 
+     @Test
+-    void buildProduct() {
++    void buildProduct_Success() {
++        long productId = 1;
++        String name = "African Necklace";
++        String description = "Handmade African necklace";
++        double price = 250.00;
++        int stockQuantity = 20;
++        long categoryId = 1;
++        LocalDate createdAt = LocalDate.of(2024, 7, 24);
++        LocalDate updatedAt = LocalDate.of(2024, 8, 24);
++        String imagePath = "images/african_necklace.jpg";
++
++        Products product = ProductFactory.buildProduct(productId, name, description, price, stockQuantity, categoryId, createdAt, updatedAt, imagePath);
++
++        assertNotNull(product);
++        assertEquals(name, product.getName());
++        assertEquals(description, product.getDescription());
++        assertEquals(price, product.getPrice());
++        assertEquals(stockQuantity, product.getStockQuantity());
++        assertEquals(categoryId, product.getCategoryId());
++        assertEquals(createdAt, product.getCreatedAt());
++        assertEquals(updatedAt, product.getUpdatedAt());
++        assertEquals(imagePath, product.getImagePath());
+     }
+-}
+\ No newline at end of file
++
++    @Test
++    void buildProduct_Failure_NullFields() {
++        long productId = 1;
++        String name = null;
++        String description = "Handmade African necklace";
++        double price = 250.00;
++        int stockQuantity = 20;
++        long categoryId = 1;
++        LocalDate createdAt = LocalDate.of(2024, 7, 24);
++        LocalDate updatedAt = LocalDate.of(2024, 8, 24);
++        String imagePath = "images/african_necklace.jpg";
++
++        Products product = ProductFactory.buildProduct(productId, name, description, price, stockQuantity, categoryId, createdAt, updatedAt, imagePath);
++
++        assertNull(product);
++    }
++
++    @Test
++    void buildProduct_Failure_InvalidPrice() {
++        long productId = 1;
++        String name = "African Necklace";
++        String description = "Handmade African necklace";
++        double price = -250.00;
++        int stockQuantity = 20;
++        long categoryId = 1;
++        LocalDate createdAt = LocalDate.of(2024, 7, 24);
++        LocalDate updatedAt = LocalDate.of(2024, 8, 24);
++        String imagePath = "images/african_necklace.jpg";
++
++        Products product = ProductFactory.buildProduct(productId, name, description, price, stockQuantity, categoryId, createdAt, updatedAt, imagePath);
++
++        assertNull(product);
++    }
++}
+Index: src/test/java/za/ac/cput/factory/UserfactoryTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package za.ac.cput.factory;\r\n\r\nimport org.junit.jupiter.api.Test;\r\nimport za.ac.cput.domain.Users;\r\n\r\nimport java.time.LocalDate;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\nclass UserfactoryTest {\r\n\r\n    @Test\r\n    void buildUser_Success() {\r\n        long user_id = 1;\r\n        String username = \"Twist11577\";\r\n        String password = \"password\";\r\n        String email = \"rethabile@gmail.com\";\r\n        String first_name = \"Rethabile\";\r\n        String last_name = \"Ntsekhe\";\r\n        LocalDate created_at = LocalDate.of(2023, 7, 24);\r\n        LocalDate updated_at = LocalDate.of(2023, 8, 24);\r\n\r\n        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);\r\n\r\n        assertNotNull(user);\r\n        assertEquals(username, user.getUsername());\r\n        assertEquals(password, user.getPassword());\r\n        assertEquals(email, user.getEmail());\r\n        assertEquals(first_name, user.getFirst_name());\r\n        assertEquals(last_name, user.getLast_name());\r\n        assertEquals(created_at, user.getCreated_at());\r\n        assertEquals(updated_at, user.getUpdated_at());\r\n    }\r\n\r\n    @Test\r\n    void buildUser_Failure_NullFields() {\r\n        long user_id = 1;\r\n        String username = null;\r\n        String password = \"password\";\r\n        String email = \"rethabile@gmail.com\";\r\n        String first_name = \"Rethabile\";\r\n        String last_name = \"Twist\";\r\n        LocalDate created_at = LocalDate.of(2024, 7, 24);\r\n        LocalDate updated_at = LocalDate.of(2024, 8, 24);\r\n\r\n        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);\r\n\r\n        assertNull(user);\r\n    }\r\n\r\n    @Test\r\n    void buildUser_Failure_InvalidEmail() {\r\n        long user_id = 1;\r\n        String username = \"Twist11577\";\r\n        String password = \"password123\";\r\n        String email = \"rethabile.gmail.com\";\r\n        String first_name = \"Rethabile\";\r\n        String last_name = \"Twist\";\r\n        LocalDate created_at = LocalDate.of(2023, 7, 24);\r\n        LocalDate updated_at = LocalDate.of(2023, 8, 24);\r\n\r\n        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);\r\n\r\n        assertNull(user);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/za/ac/cput/factory/UserfactoryTest.java b/src/test/java/za/ac/cput/factory/UserfactoryTest.java
+--- a/src/test/java/za/ac/cput/factory/UserfactoryTest.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
++++ b/src/test/java/za/ac/cput/factory/UserfactoryTest.java	(date 1722807160192)
+@@ -1,6 +1,7 @@
+ package za.ac.cput.factory;
+ 
+ import org.junit.jupiter.api.Test;
++import za.ac.cput.domain.Addresses;
+ import za.ac.cput.domain.Users;
+ 
+ import java.time.LocalDate;
+@@ -19,8 +20,17 @@
+         String last_name = "Ntsekhe";
+         LocalDate created_at = LocalDate.of(2023, 7, 24);
+         LocalDate updated_at = LocalDate.of(2023, 8, 24);
+-
+-        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);
++        Addresses addresses = new Addresses.Builder()
++                .setAddress_line1("123 Main St")
++                .setAddress_line2("Suite 1")
++                .setCity("Cape Town")
++                .setProvince("Western Cape")
++                .setPostal_code("8001")
++                .setCountry("South Africa")
++                .setCreated_at(LocalDate.of(2023, 7, 24))
++                .setUpdated_at(LocalDate.of(2023, 8, 24))
++                .build();
++        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at, addresses);
+ 
+         assertNotNull(user);
+         assertEquals(username, user.getUsername());
+@@ -42,8 +52,17 @@
+         String last_name = "Twist";
+         LocalDate created_at = LocalDate.of(2024, 7, 24);
+         LocalDate updated_at = LocalDate.of(2024, 8, 24);
+-
+-        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);
++        Addresses addresses = new Addresses.Builder()
++                .setAddress_line1("123 Main St")
++                .setAddress_line2("Suite 1")
++                .setCity("Cape Town")
++                .setProvince("Western Cape")
++                .setPostal_code("8001")
++                .setCountry("South Africa")
++                .setCreated_at(LocalDate.of(2023, 7, 24))
++                .setUpdated_at(LocalDate.of(2023, 8, 24))
++                .build();
++        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at, addresses);
+ 
+         assertNull(user);
+     }
+@@ -58,8 +77,17 @@
+         String last_name = "Twist";
+         LocalDate created_at = LocalDate.of(2023, 7, 24);
+         LocalDate updated_at = LocalDate.of(2023, 8, 24);
+-
+-        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);
++        Addresses addresses = new Addresses.Builder()
++                .setAddress_line1("123 Main St")
++                .setAddress_line2("Suite 1")
++                .setCity("Cape Town")
++                .setProvince("Western Cape")
++                .setPostal_code("8001")
++                .setCountry("South Africa")
++                .setCreated_at(LocalDate.of(2023, 7, 24))
++                .setUpdated_at(LocalDate.of(2023, 8, 24))
++                .build();
++        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at, addresses);
+ 
+         assertNull(user);
+     }
+Index: src/test/java/za/ac/cput/controller/ProductControllerTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package za.ac.cput.controller;\r\n\r\nimport org.junit.jupiter.api.Test;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\nclass ProductControllerTest {\r\n\r\n    @Test\r\n    void createProduct() {\r\n    }\r\n\r\n    @Test\r\n    void getProductById() {\r\n    }\r\n\r\n    @Test\r\n    void updateProduct() {\r\n    }\r\n\r\n    @Test\r\n    void deleteProduct() {\r\n    }\r\n\r\n    @Test\r\n    void getAllProducts() {\r\n    }\r\n\r\n    @Test\r\n    void getProductsByName() {\r\n    }\r\n\r\n    @Test\r\n    void getProductsByCategoryId() {\r\n    }\r\n\r\n    @Test\r\n    void getProductsByPriceRange() {\r\n    }\r\n\r\n    @Test\r\n    void getProductsByStockQuantityGreaterThan() {\r\n    }\r\n\r\n    @Test\r\n    void getProductsCreatedAfter() {\r\n    }\r\n\r\n    @Test\r\n    void getProductsUpdatedBefore() {\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/za/ac/cput/controller/ProductControllerTest.java b/src/test/java/za/ac/cput/controller/ProductControllerTest.java
+--- a/src/test/java/za/ac/cput/controller/ProductControllerTest.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
++++ b/src/test/java/za/ac/cput/controller/ProductControllerTest.java	(date 1722785512448)
+@@ -1,52 +1,226 @@
+ package za.ac.cput.controller;
+ 
++import org.junit.jupiter.api.BeforeEach;
+ import org.junit.jupiter.api.Test;
++import org.mockito.InjectMocks;
++import org.mockito.Mock;
++import org.mockito.MockitoAnnotations;
++import org.springframework.http.HttpStatus;
++import org.springframework.http.ResponseEntity;
++import za.ac.cput.domain.Products;
++import za.ac.cput.service.ProductService;
++
++import java.time.LocalDate;
++import java.util.Arrays;
++import java.util.List;
+ 
+ import static org.junit.jupiter.api.Assertions.*;
++import static org.mockito.Mockito.*;
+ 
+ class ProductControllerTest {
+ 
++    @Mock
++    private ProductService productService;
++
++    @InjectMocks
++    private ProductController productController;
++
++    private Products product;
++
++    @BeforeEach
++    void setUp() {
++        MockitoAnnotations.openMocks(this);
++        product = new Products.Builder()
++                .setProductId(1L)
++                .setName("African Necklace")
++                .setDescription("Handmade African necklace")
++                .setPrice(250.00)
++                .setStockQuantity(20)
++                .setCategoryId(1L)
++                .setCreatedAt(LocalDate.of(2024, 7, 24))
++                .setUpdatedAt(LocalDate.of(2024, 8, 24))
++                .setImagePath("images/african_necklace.jpg")
++                .build();
++    }
++
++    @Test
++    void testCreateProduct() {
++        when(productService.create(any(Products.class))).thenReturn(product);
++
++        ResponseEntity<Products> response = productController.createProduct(product);
++
++        assertNotNull(response);
++        assertEquals(HttpStatus.CREATED, response.getStatusCode());
++        assertEquals(product, response.getBody());
++        verify(productService, times(1)).create(any(Products.class));
++    }
++
+     @Test
+-    void createProduct() {
++    void testGetProductById() {
++        when(productService.read(anyLong())).thenReturn(product);
++
++        ResponseEntity<Products> response = productController.getProductById(1L);
++
++        assertNotNull(response);
++        assertEquals(HttpStatus.OK, response.getStatusCode());
++        assertEquals(product, response.getBody());
++        verify(productService, times(1)).read(1L);
+     }
+ 
+     @Test
+-    void getProductById() {
++    void testGetProductById_NotFound() {
++        when(productService.read(anyLong())).thenReturn(null);
++
++        ResponseEntity<Products> response = productController.getProductById(1L);
++
++        assertNotNull(response);
++        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
++        verify(productService, times(1)).read(1L);
+     }
+ 
+     @Test
+-    void updateProduct() {
++    void testUpdateProduct() {
++        Products updatedProduct = new Products.Builder()
++                .copy(product)
++                .setName("Updated African Necklace")
++                .build();
++
++        when(productService.read(anyLong())).thenReturn(product);
++        when(productService.update(any(Products.class))).thenReturn(updatedProduct);
++
++        ResponseEntity<Products> response = productController.updateProduct(1L, updatedProduct);
++
++        assertNotNull(response);
++        assertEquals(HttpStatus.OK, response.getStatusCode());
++        assertEquals(updatedProduct, response.getBody());
++        verify(productService, times(1)).read(1L);
++        verify(productService, times(1)).update(any(Products.class));
+     }
+ 
+     @Test
+-    void deleteProduct() {
++    void testUpdateProduct_NotFound() {
++        when(productService.read(anyLong())).thenReturn(null);
++
++        ResponseEntity<Products> response = productController.updateProduct(1L, product);
++
++        assertNotNull(response);
++        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
++        verify(productService, times(1)).read(1L);
++        verify(productService, times(0)).update(any(Products.class));
+     }
+ 
+     @Test
+-    void getAllProducts() {
++    void testDeleteProduct() {
++        when(productService.read(anyLong())).thenReturn(product);
++
++        ResponseEntity<Void> response = productController.deleteProduct(1L);
++
++        assertNotNull(response);
++        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
++        verify(productService, times(1)).read(1L);
++        verify(productService, times(1)).delete(1L);
+     }
+ 
+     @Test
+-    void getProductsByName() {
++    void testDeleteProduct_NotFound() {
++        when(productService.read(anyLong())).thenReturn(null);
++
++        ResponseEntity<Void> response = productController.deleteProduct(1L);
++
++        assertNotNull(response);
++        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
++        verify(productService, times(1)).read(1L);
++        verify(productService, times(0)).delete(1L);
+     }
+ 
+     @Test
+-    void getProductsByCategoryId() {
++    void testGetAllProducts() {
++        List<Products> products = Arrays.asList(product);
++        when(productService.findAll()).thenReturn(products);
++
++        ResponseEntity<List<Products>> response = productController.getAllProducts();
++
++        assertNotNull(response);
++        assertEquals(HttpStatus.OK, response.getStatusCode());
++        assertEquals(products, response.getBody());
++        verify(productService, times(1)).findAll();
+     }
+ 
+     @Test
+-    void getProductsByPriceRange() {
++    void testGetProductsByName() {
++        List<Products> products = Arrays.asList(product);
++        when(productService.findByName(anyString())).thenReturn(products);
++
++        ResponseEntity<List<Products>> response = productController.getProductsByName("African Necklace");
++
++        assertNotNull(response);
++        assertEquals(HttpStatus.OK, response.getStatusCode());
++        assertEquals(products, response.getBody());
++        verify(productService, times(1)).findByName("African Necklace");
+     }
+ 
+     @Test
+-    void getProductsByStockQuantityGreaterThan() {
++    void testGetProductsByCategoryId() {
++        List<Products> products = Arrays.asList(product);
++        when(productService.findByCategoryId(anyLong())).thenReturn(products);
++
++        ResponseEntity<List<Products>> response = productController.getProductsByCategoryId(1L);
++
++        assertNotNull(response);
++        assertEquals(HttpStatus.OK, response.getStatusCode());
++        assertEquals(products, response.getBody());
++        verify(productService, times(1)).findByCategoryId(1L);
+     }
+ 
+     @Test
+-    void getProductsCreatedAfter() {
++    void testGetProductsByPriceRange() {
++        List<Products> products = Arrays.asList(product);
++        when(productService.findByPriceBetween(anyDouble(), anyDouble())).thenReturn(products);
++
++        ResponseEntity<List<Products>> response = productController.getProductsByPriceRange(200.00, 300.00);
++
++        assertNotNull(response);
++        assertEquals(HttpStatus.OK, response.getStatusCode());
++        assertEquals(products, response.getBody());
++        verify(productService, times(1)).findByPriceBetween(200.00, 300.00);
+     }
+ 
+     @Test
+-    void getProductsUpdatedBefore() {
++    void testGetProductsByStockQuantityGreaterThan() {
++        List<Products> products = Arrays.asList(product);
++        when(productService.findByStockQuantityGreaterThan(anyInt())).thenReturn(products);
++
++        ResponseEntity<List<Products>> response = productController.getProductsByStockQuantityGreaterThan(10);
++
++        assertNotNull(response);
++        assertEquals(HttpStatus.OK, response.getStatusCode());
++        assertEquals(products, response.getBody());
++        verify(productService, times(1)).findByStockQuantityGreaterThan(10);
+     }
+-}
+\ No newline at end of file
++
++    @Test
++    void testGetProductsCreatedAfter() {
++        List<Products> products = Arrays.asList(product);
++        when(productService.findByCreatedAtAfter(any(LocalDate.class))).thenReturn(products);
++
++        ResponseEntity<List<Products>> response = productController.getProductsCreatedAfter(LocalDate.of(2024, 7, 1));
++
++        assertNotNull(response);
++        assertEquals(HttpStatus.OK, response.getStatusCode());
++        assertEquals(products, response.getBody());
++        verify(productService, times(1)).findByCreatedAtAfter(LocalDate.of(2024, 7, 1));
++    }
++
++    @Test
++    void testGetProductsUpdatedBefore() {
++        List<Products> products = Arrays.asList(product);
++        when(productService.findByUpdatedAtBefore(any(LocalDate.class))).thenReturn(products);
++
++        ResponseEntity<List<Products>> response = productController.getProductsUpdatedBefore(LocalDate.of(2024, 8, 1));
++
++        assertNotNull(response);
++        assertEquals(HttpStatus.OK, response.getStatusCode());
++        assertEquals(products, response.getBody());
++        verify(productService, times(1)).findByUpdatedAtBefore(LocalDate.of(2024, 8, 1));
++    }
++}
