@@ -69,4 +69,9 @@ public class UserService implements IUserService {
     public List<Users> findUsersCreatedAfter(LocalDate createdAt) {
         return userRepository.findUsersCreatedAfter(createdAt);
     }
+
+    public boolean validateUser(String email, String password) {
+        Users user = userRepository.findByEmailAndPassword(email, password);
+        return user != null;
+    }
 }
