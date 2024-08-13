@@ -6,7 +6,7 @@ import za.ac.cput.domain.Users;
 
 import java.util.List;
 
-//Extendind the Jpa repository and applying the CRUD operation
+
 public interface CartRepository extends JpaRepository<Cart, Long> {
 
     List<Cart> findByUserId(Long userId);

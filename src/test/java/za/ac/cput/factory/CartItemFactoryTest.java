@@ -10,12 +10,12 @@ class CartItemFactoryTest {
     @Test
     void buildCartItem() {
 
-        Cart_Items cartItem = CartItemFactory.buildCartItem(1, 100, 200, 5);
+        Cart_Items cartItem = CartItemFactory.buildCartItem(012, 013, 014, 123);
 
         assertNotNull(cartItem);
-        assertEquals(1, cartItem.getCart_item_id());
-        assertEquals(100, cartItem.getCart_id());
-        assertEquals(200, cartItem.getProduct_id());
-        assertEquals(5, cartItem.getQuantity());
+        assertEquals(012, cartItem.getCart_item_id());
+        assertEquals(013, cartItem.getCart_id());
+        assertEquals(014, cartItem.getProduct_id());
+        assertEquals(123, cartItem.getQuantity());
     }
 }

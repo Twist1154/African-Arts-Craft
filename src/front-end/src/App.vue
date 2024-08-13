@@ -2,19 +2,30 @@
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
   <FetchUsers/>
+
+  <div id="app">
+    <Cart/>
+  </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import FetchUsers from './components/FetchUsers.vue';
+import Cart from "@/components/Cart.vue";
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    FetchUsers
+    FetchUsers,
+    Cart
+
+
   }
+
+
 }
+
 </script>
 
 <style>
