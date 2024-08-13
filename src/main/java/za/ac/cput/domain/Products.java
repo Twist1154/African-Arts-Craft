@@ -1,6 +1,8 @@
 package za.ac.cput.domain;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -23,7 +25,9 @@ public class Products implements Serializable {
     private double price;
     private int stockQuantity;
     private long categoryId;
+    @CreationTimestamp
     private LocalDate createdAt;
+    @UpdateTimestamp
     private LocalDate updatedAt;
     private String imagePath;
 

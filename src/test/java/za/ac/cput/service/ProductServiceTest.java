@@ -24,6 +24,7 @@ class ProductServiceTest {
     @BeforeEach
     void setUp() {
         product = new Products.Builder()
+                .setProductId(26)
                 .setName("African head ")
                 .setDescription("This is a test product")
                 .setPrice(10.99)
