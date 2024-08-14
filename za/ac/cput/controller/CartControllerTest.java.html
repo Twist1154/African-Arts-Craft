@@ -1,0 +1,683 @@
+<html>
+<head>
+    <title>CartControllerTest.java</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">
+        .s0 {
+            color: #cf8e6d;
+        }
+
+        .s1 {
+            color: #bcbec4;
+        }
+
+        .s2 {
+            color: #bcbec4;
+        }
+
+        .s3 {
+            color: #7a7e85;
+        }
+
+        .s4 {
+            color: #6aab73;
+        }
+
+        .s5 {
+            color: #2aacb8;
+        }
+    </style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060">
+    <tr>
+        <td>
+            <center>
+                <font face="Arial, Helvetica" color="#000000">
+                    CartControllerTest.java</font>
+            </center>
+        </td>
+    </tr>
+</table>
+<pre><span class="s0">package </span><span class="s1">za</span><span class="s2">.</span><span class="s1">ac</span><span
+        class="s2">.</span><span class="s1">cput</span><span class="s2">.</span><span class="s1">controller</span><span
+        class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span
+            class="s1">fasterxml</span><span class="s2">.</span><span class="s1">jackson</span><span class="s2">.</span><span
+            class="s1">databind</span><span class="s2">.</span><span class="s1">ObjectMapper</span><span
+            class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">junit</span><span
+            class="s2">.</span><span class="s1">jupiter</span><span class="s2">.</span><span class="s1">api</span><span
+            class="s2">.</span><span class="s1">BeforeEach</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">junit</span><span
+            class="s2">.</span><span class="s1">jupiter</span><span class="s2">.</span><span class="s1">api</span><span
+            class="s2">.</span><span class="s1">Test</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">mockito</span><span
+            class="s2">.</span><span class="s1">InjectMocks</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">mockito</span><span
+            class="s2">.</span><span class="s1">Mock</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">mockito</span><span
+            class="s2">.</span><span class="s1">MockitoAnnotations</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span
+            class="s1">springframework</span><span class="s2">.</span><span class="s1">beans</span><span
+            class="s2">.</span><span class="s1">factory</span><span class="s2">.</span><span
+            class="s1">annotation</span><span class="s2">.</span><span class="s1">Autowired</span><span
+            class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span
+            class="s1">springframework</span><span class="s2">.</span><span class="s1">boot</span><span
+            class="s2">.</span><span class="s1">test</span><span class="s2">.</span><span
+            class="s1">autoconfigure</span><span class="s2">.</span><span class="s1">web</span><span class="s2">.</span><span
+            class="s1">servlet</span><span class="s2">.</span><span class="s1">WebMvcTest</span><span
+            class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span
+            class="s1">springframework</span><span class="s2">.</span><span class="s1">http</span><span
+            class="s2">.</span><span class="s1">MediaType</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span
+            class="s1">springframework</span><span class="s2">.</span><span class="s1">test</span><span
+            class="s2">.</span><span class="s1">web</span><span class="s2">.</span><span class="s1">servlet</span><span
+            class="s2">.</span><span class="s1">MockMvc</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span
+            class="s1">springframework</span><span class="s2">.</span><span class="s1">test</span><span
+            class="s2">.</span><span class="s1">web</span><span class="s2">.</span><span class="s1">servlet</span><span
+            class="s2">.</span><span class="s1">request</span><span class="s2">.</span><span class="s1">MockMvcRequestBuilders</span><span
+            class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span
+            class="s1">springframework</span><span class="s2">.</span><span class="s1">test</span><span
+            class="s2">.</span><span class="s1">web</span><span class="s2">.</span><span class="s1">servlet</span><span
+            class="s2">.</span><span class="s1">result</span><span class="s2">.</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span
+            class="s1">springframework</span><span class="s2">.</span><span class="s1">test</span><span
+            class="s2">.</span><span class="s1">web</span><span class="s2">.</span><span class="s1">servlet</span><span
+            class="s2">.</span><span class="s1">setup</span><span class="s2">.</span><span
+            class="s1">MockMvcBuilders</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span
+            class="s1">springframework</span><span class="s2">.</span><span class="s1">web</span><span
+            class="s2">.</span><span class="s1">context</span><span class="s2">.</span><span class="s1">WebApplicationContext</span><span
+            class="s2">;</span>
+<span class="s0">import </span><span class="s1">za</span><span class="s2">.</span><span class="s1">ac</span><span
+            class="s2">.</span><span class="s1">cput</span><span class="s2">.</span><span class="s1">domain</span><span
+            class="s2">.</span><span class="s1">Cart</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">za</span><span class="s2">.</span><span class="s1">ac</span><span
+            class="s2">.</span><span class="s1">cput</span><span class="s2">.</span><span class="s1">domain</span><span
+            class="s2">.</span><span class="s1">Cart_Items</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">za</span><span class="s2">.</span><span class="s1">ac</span><span
+            class="s2">.</span><span class="s1">cput</span><span class="s2">.</span><span class="s1">service</span><span
+            class="s2">.</span><span class="s1">CartItemService</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">za</span><span class="s2">.</span><span class="s1">ac</span><span
+            class="s2">.</span><span class="s1">cput</span><span class="s2">.</span><span class="s1">service</span><span
+            class="s2">.</span><span class="s1">CartService</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">time</span><span
+            class="s2">.</span><span class="s1">LocalDate</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span
+            class="s2">.</span><span class="s1">Collections</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span
+            class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+
+<span class="s0">import static </span><span class="s1">org</span><span class="s2">.</span><span
+            class="s1">mockito</span><span class="s2">.</span><span class="s1">Mockito</span><span class="s2">.*;</span>
+<span class="s0">import static </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span
+            class="s2">.</span><span class="s1">test</span><span class="s2">.</span><span class="s1">web</span><span
+            class="s2">.</span><span class="s1">servlet</span><span class="s2">.</span><span
+            class="s1">result</span><span class="s2">.</span><span class="s1">MockMvcResultHandlers</span><span
+            class="s2">.</span><span class="s1">print</span><span class="s2">;</span>
+
+<span class="s1">@WebMvcTest</span><span class="s2">(</span><span class="s1">CartController</span><span
+            class="s2">.</span><span class="s0">class</span><span class="s2">)</span>
+<span class="s0">public class </span><span class="s1">CartControllerTest </span><span class="s2">{</span>
+
+    <span class="s1">@Autowired</span>
+    <span class="s0">private </span><span class="s1">MockMvc mockMvc</span><span class="s2">;</span>
+
+    <span class="s1">@Mock</span>
+    <span class="s0">private </span><span class="s1">CartService cartService</span><span class="s2">;</span>
+
+    <span class="s1">@Mock</span>
+    <span class="s0">private </span><span class="s1">CartItemService cartItemService</span><span class="s2">;</span>
+
+    <span class="s1">@InjectMocks</span>
+    <span class="s0">private </span><span class="s1">CartController cartController</span><span class="s2">;</span>
+
+    <span class="s1">@Autowired</span>
+    <span class="s0">private </span><span class="s1">ObjectMapper objectMapper</span><span class="s2">;</span>
+
+    <span class="s0">private </span><span class="s1">Cart cart</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">Cart_Items cartItem</span><span class="s2">;</span>
+
+    <span class="s1">@BeforeEach</span>
+    <span class="s0">void </span><span class="s1">setUp</span><span class="s2">() {</span>
+        <span class="s1">MockitoAnnotations</span><span class="s2">.</span><span class="s1">openMocks</span><span
+            class="s2">(</span><span class="s0">this</span><span class="s2">);</span>
+
+        <span class="s3">// Initialize test data</span>
+        <span class="s1">LocalDate startDate </span><span class="s2">= </span><span class="s1">LocalDate</span><span
+            class="s2">.</span><span class="s1">parse</span><span class="s2">(</span><span class="s4">&quot;2024-02-01&quot;</span><span
+            class="s2">);</span>
+        <span class="s1">LocalDate endDate </span><span class="s2">= </span><span class="s1">LocalDate</span><span
+            class="s2">.</span><span class="s1">parse</span><span class="s2">(</span><span class="s4">&quot;2024-02-05&quot;</span><span
+            class="s2">);</span>
+
+        <span class="s1">cart </span><span class="s2">= </span><span class="s0">new </span><span
+            class="s1">Cart</span><span class="s2">.</span><span class="s1">Builder</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">setCart_id</span><span class="s2">(</span><span
+            class="s5">1</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">setUser_id</span><span class="s2">(</span><span class="s5">1001</span><span
+            class="s2">)</span>
+                <span class="s2">.</span><span class="s1">setCreated_at</span><span class="s2">(</span><span class="s1">startDate</span><span
+            class="s2">)</span>
+                <span class="s2">.</span><span class="s1">setUpdated_at</span><span class="s2">(</span><span class="s1">endDate</span><span
+            class="s2">)</span>
+                <span class="s2">.</span><span class="s1">build</span><span class="s2">();</span>
+
+        <span class="s1">cartItem </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Cart_Items</span><span
+            class="s2">.</span><span class="s1">Builder</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">setCart_item_id</span><span class="s2">(</span><span
+            class="s5">1</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">setCart_id</span><span class="s2">(</span><span
+            class="s5">1</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">setProduct_id</span><span class="s2">(</span><span class="s5">200</span><span
+            class="s2">)</span>
+                <span class="s2">.</span><span class="s1">setQuantity</span><span class="s2">(</span><span
+            class="s5">5</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">build</span><span class="s2">();</span>
+
+        <span class="s1">mockMvc </span><span class="s2">= </span><span class="s1">MockMvcBuilders</span><span
+            class="s2">.</span><span class="s1">standaloneSetup</span><span class="s2">(</span><span class="s1">cartController</span><span
+            class="s2">).</span><span class="s1">build</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">void </span><span class="s1">testCreateCart</span><span class="s2">() </span><span class="s0">throws </span><span
+            class="s1">Exception </span><span class="s2">{</span>
+        <span class="s1">when</span><span class="s2">(</span><span class="s1">cartService</span><span
+            class="s2">.</span><span class="s1">create</span><span class="s2">(</span><span class="s1">any</span><span
+            class="s2">(</span><span class="s1">Cart</span><span class="s2">.</span><span class="s0">class</span><span
+            class="s2">))).</span><span class="s1">thenReturn</span><span class="s2">(</span><span
+            class="s1">cart</span><span class="s2">);</span>
+
+        <span class="s1">mockMvc</span><span class="s2">.</span><span class="s1">perform</span><span class="s2">(</span><span
+            class="s1">MockMvcRequestBuilders</span><span class="s2">.</span><span class="s1">post</span><span
+            class="s2">(</span><span class="s4">&quot;/api/carts&quot;</span><span class="s2">)</span>
+                        <span class="s2">.</span><span class="s1">contentType</span><span class="s2">(</span><span
+            class="s1">MediaType</span><span class="s2">.</span><span class="s1">APPLICATION_JSON</span><span
+            class="s2">)</span>
+                        <span class="s2">.</span><span class="s1">content</span><span class="s2">(</span><span
+            class="s1">objectMapper</span><span class="s2">.</span><span class="s1">writeValueAsString</span><span
+            class="s2">(</span><span class="s1">cart</span><span class="s2">)))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">status</span><span class="s2">().</span><span
+            class="s1">isCreated</span><span class="s2">())</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.cart_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.user_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1001</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.created_at&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s4">&quot;2024-02-01&quot;</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.updated_at&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s4">&quot;2024-02-05&quot;</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andDo</span><span class="s2">(</span><span
+            class="s1">print</span><span class="s2">());</span>
+
+        <span class="s1">verify</span><span class="s2">(</span><span class="s1">cartService</span><span
+            class="s2">, </span><span class="s1">times</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">)).</span><span class="s1">create</span><span class="s2">(</span><span class="s1">any</span><span
+            class="s2">(</span><span class="s1">Cart</span><span class="s2">.</span><span class="s0">class</span><span
+            class="s2">));</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">void </span><span class="s1">testGetCartsByUserId</span><span class="s2">() </span><span
+            class="s0">throws </span><span class="s1">Exception </span><span class="s2">{</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Cart</span><span
+            class="s2">&gt; </span><span class="s1">carts </span><span class="s2">= </span><span
+            class="s1">Collections</span><span class="s2">.</span><span class="s1">singletonList</span><span class="s2">(</span><span
+            class="s1">cart</span><span class="s2">);</span>
+        <span class="s1">when</span><span class="s2">(</span><span class="s1">cartService</span><span
+            class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">anyLong</span><span
+            class="s2">())).</span><span class="s1">thenReturn</span><span class="s2">(</span><span
+            class="s1">carts</span><span class="s2">);</span>
+
+        <span class="s1">mockMvc</span><span class="s2">.</span><span class="s1">perform</span><span class="s2">(</span><span
+            class="s1">MockMvcRequestBuilders</span><span class="s2">.</span><span class="s1">get</span><span
+            class="s2">(</span><span class="s4">&quot;/api/carts/{userId}&quot;</span><span class="s2">, </span><span
+            class="s5">1001</span><span class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">status</span><span class="s2">().</span><span
+            class="s1">isOk</span><span class="s2">())</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].cart_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].user_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1001</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].created_at&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s4">&quot;2024-02-01&quot;</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].updated_at&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s4">&quot;2024-02-05&quot;</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andDo</span><span class="s2">(</span><span
+            class="s1">print</span><span class="s2">());</span>
+
+        <span class="s1">verify</span><span class="s2">(</span><span class="s1">cartService</span><span
+            class="s2">, </span><span class="s1">times</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">)).</span><span class="s1">read</span><span class="s2">(</span><span
+            class="s1">anyLong</span><span class="s2">());</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">void </span><span class="s1">testUpdateCart</span><span class="s2">() </span><span class="s0">throws </span><span
+            class="s1">Exception </span><span class="s2">{</span>
+        <span class="s1">when</span><span class="s2">(</span><span class="s1">cartService</span><span
+            class="s2">.</span><span class="s1">update</span><span class="s2">(</span><span class="s1">any</span><span
+            class="s2">(</span><span class="s1">Cart</span><span class="s2">.</span><span class="s0">class</span><span
+            class="s2">))).</span><span class="s1">thenReturn</span><span class="s2">(</span><span
+            class="s1">cart</span><span class="s2">);</span>
+
+        <span class="s1">mockMvc</span><span class="s2">.</span><span class="s1">perform</span><span class="s2">(</span><span
+            class="s1">MockMvcRequestBuilders</span><span class="s2">.</span><span class="s1">put</span><span
+            class="s2">(</span><span class="s4">&quot;/api/carts&quot;</span><span class="s2">)</span>
+                        <span class="s2">.</span><span class="s1">contentType</span><span class="s2">(</span><span
+            class="s1">MediaType</span><span class="s2">.</span><span class="s1">APPLICATION_JSON</span><span
+            class="s2">)</span>
+                        <span class="s2">.</span><span class="s1">content</span><span class="s2">(</span><span
+            class="s1">objectMapper</span><span class="s2">.</span><span class="s1">writeValueAsString</span><span
+            class="s2">(</span><span class="s1">cart</span><span class="s2">)))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">status</span><span class="s2">().</span><span
+            class="s1">isOk</span><span class="s2">())</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.cart_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.user_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1001</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.created_at&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s4">&quot;2024-02-01&quot;</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.updated_at&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s4">&quot;2024-02-05&quot;</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andDo</span><span class="s2">(</span><span
+            class="s1">print</span><span class="s2">());</span>
+
+        <span class="s1">verify</span><span class="s2">(</span><span class="s1">cartService</span><span
+            class="s2">, </span><span class="s1">times</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">)).</span><span class="s1">update</span><span class="s2">(</span><span class="s1">any</span><span
+            class="s2">(</span><span class="s1">Cart</span><span class="s2">.</span><span class="s0">class</span><span
+            class="s2">));</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">void </span><span class="s1">testDeleteCart</span><span class="s2">() </span><span class="s0">throws </span><span
+            class="s1">Exception </span><span class="s2">{</span>
+        <span class="s1">doNothing</span><span class="s2">().</span><span class="s1">when</span><span
+            class="s2">(</span><span class="s1">cartService</span><span class="s2">).</span><span
+            class="s1">delete</span><span class="s2">(</span><span class="s1">anyLong</span><span class="s2">());</span>
+
+        <span class="s1">mockMvc</span><span class="s2">.</span><span class="s1">perform</span><span class="s2">(</span><span
+            class="s1">MockMvcRequestBuilders</span><span class="s2">.</span><span class="s1">delete</span><span
+            class="s2">(</span><span class="s4">&quot;/api/carts/{userId}&quot;</span><span class="s2">, </span><span
+            class="s5">1001</span><span class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">status</span><span class="s2">().</span><span
+            class="s1">isNoContent</span><span class="s2">())</span>
+                <span class="s2">.</span><span class="s1">andDo</span><span class="s2">(</span><span
+            class="s1">print</span><span class="s2">());</span>
+
+        <span class="s1">verify</span><span class="s2">(</span><span class="s1">cartService</span><span
+            class="s2">, </span><span class="s1">times</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">)).</span><span class="s1">delete</span><span class="s2">(</span><span
+            class="s1">anyLong</span><span class="s2">());</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">void </span><span class="s1">testGetAllCarts</span><span class="s2">() </span><span class="s0">throws </span><span
+            class="s1">Exception </span><span class="s2">{</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Cart</span><span
+            class="s2">&gt; </span><span class="s1">carts </span><span class="s2">= </span><span
+            class="s1">Collections</span><span class="s2">.</span><span class="s1">singletonList</span><span class="s2">(</span><span
+            class="s1">cart</span><span class="s2">);</span>
+        <span class="s1">when</span><span class="s2">(</span><span class="s1">cartService</span><span
+            class="s2">.</span><span class="s1">getall</span><span class="s2">()).</span><span
+            class="s1">thenReturn</span><span class="s2">(</span><span class="s1">Collections</span><span
+            class="s2">.</span><span class="s1">singleton</span><span class="s2">(</span><span
+            class="s1">cart</span><span class="s2">));</span>
+
+        <span class="s1">mockMvc</span><span class="s2">.</span><span class="s1">perform</span><span class="s2">(</span><span
+            class="s1">MockMvcRequestBuilders</span><span class="s2">.</span><span class="s1">get</span><span
+            class="s2">(</span><span class="s4">&quot;/api/carts&quot;</span><span class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">status</span><span class="s2">().</span><span
+            class="s1">isOk</span><span class="s2">())</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].cart_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].user_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1001</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].created_at&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s4">&quot;2024-02-01&quot;</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].updated_at&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s4">&quot;2024-02-05&quot;</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andDo</span><span class="s2">(</span><span
+            class="s1">print</span><span class="s2">());</span>
+
+        <span class="s1">verify</span><span class="s2">(</span><span class="s1">cartService</span><span
+            class="s2">, </span><span class="s1">times</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">)).</span><span class="s1">getall</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">void </span><span class="s1">testCreateCartItem</span><span class="s2">() </span><span class="s0">throws </span><span
+            class="s1">Exception </span><span class="s2">{</span>
+        <span class="s1">when</span><span class="s2">(</span><span class="s1">cartItemService</span><span
+            class="s2">.</span><span class="s1">create</span><span class="s2">(</span><span class="s1">any</span><span
+            class="s2">(</span><span class="s1">Cart_Items</span><span class="s2">.</span><span
+            class="s0">class</span><span class="s2">))).</span><span class="s1">thenReturn</span><span
+            class="s2">(</span><span class="s1">cartItem</span><span class="s2">);</span>
+
+        <span class="s1">mockMvc</span><span class="s2">.</span><span class="s1">perform</span><span class="s2">(</span><span
+            class="s1">MockMvcRequestBuilders</span><span class="s2">.</span><span class="s1">post</span><span
+            class="s2">(</span><span class="s4">&quot;/api/carts/items&quot;</span><span class="s2">)</span>
+                        <span class="s2">.</span><span class="s1">contentType</span><span class="s2">(</span><span
+            class="s1">MediaType</span><span class="s2">.</span><span class="s1">APPLICATION_JSON</span><span
+            class="s2">)</span>
+                        <span class="s2">.</span><span class="s1">content</span><span class="s2">(</span><span
+            class="s1">objectMapper</span><span class="s2">.</span><span class="s1">writeValueAsString</span><span
+            class="s2">(</span><span class="s1">cartItem</span><span class="s2">)))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">status</span><span class="s2">().</span><span
+            class="s1">isCreated</span><span class="s2">())</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.cart_item_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.cart_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.product_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">200</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.quantity&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">5</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andDo</span><span class="s2">(</span><span
+            class="s1">print</span><span class="s2">());</span>
+
+        <span class="s1">verify</span><span class="s2">(</span><span class="s1">cartItemService</span><span
+            class="s2">, </span><span class="s1">times</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">)).</span><span class="s1">create</span><span class="s2">(</span><span class="s1">any</span><span
+            class="s2">(</span><span class="s1">Cart_Items</span><span class="s2">.</span><span
+            class="s0">class</span><span class="s2">));</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">void </span><span class="s1">testGetCartItemById</span><span class="s2">() </span><span class="s0">throws </span><span
+            class="s1">Exception </span><span class="s2">{</span>
+        <span class="s1">when</span><span class="s2">(</span><span class="s1">cartItemService</span><span
+            class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s1">anyLong</span><span
+            class="s2">())).</span><span class="s1">thenReturn</span><span class="s2">(</span><span
+            class="s1">cartItem</span><span class="s2">);</span>
+
+        <span class="s1">mockMvc</span><span class="s2">.</span><span class="s1">perform</span><span class="s2">(</span><span
+            class="s1">MockMvcRequestBuilders</span><span class="s2">.</span><span class="s1">get</span><span
+            class="s2">(</span><span class="s4">&quot;/api/carts/items/{cartItemId}&quot;</span><span
+            class="s2">, </span><span class="s5">1</span><span class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">status</span><span class="s2">().</span><span
+            class="s1">isOk</span><span class="s2">())</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.cart_item_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.cart_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.product_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">200</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.quantity&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">5</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andDo</span><span class="s2">(</span><span
+            class="s1">print</span><span class="s2">());</span>
+
+        <span class="s1">verify</span><span class="s2">(</span><span class="s1">cartItemService</span><span
+            class="s2">, </span><span class="s1">times</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">)).</span><span class="s1">read</span><span class="s2">(</span><span
+            class="s1">anyLong</span><span class="s2">());</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">void </span><span class="s1">testUpdateCartItem</span><span class="s2">() </span><span class="s0">throws </span><span
+            class="s1">Exception </span><span class="s2">{</span>
+        <span class="s1">when</span><span class="s2">(</span><span class="s1">cartItemService</span><span
+            class="s2">.</span><span class="s1">update</span><span class="s2">(</span><span class="s1">any</span><span
+            class="s2">(</span><span class="s1">Cart_Items</span><span class="s2">.</span><span
+            class="s0">class</span><span class="s2">))).</span><span class="s1">thenReturn</span><span
+            class="s2">(</span><span class="s1">cartItem</span><span class="s2">);</span>
+
+        <span class="s1">mockMvc</span><span class="s2">.</span><span class="s1">perform</span><span class="s2">(</span><span
+            class="s1">MockMvcRequestBuilders</span><span class="s2">.</span><span class="s1">put</span><span
+            class="s2">(</span><span class="s4">&quot;/api/carts/items&quot;</span><span class="s2">)</span>
+                        <span class="s2">.</span><span class="s1">contentType</span><span class="s2">(</span><span
+            class="s1">MediaType</span><span class="s2">.</span><span class="s1">APPLICATION_JSON</span><span
+            class="s2">)</span>
+                        <span class="s2">.</span><span class="s1">content</span><span class="s2">(</span><span
+            class="s1">objectMapper</span><span class="s2">.</span><span class="s1">writeValueAsString</span><span
+            class="s2">(</span><span class="s1">cartItem</span><span class="s2">)))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">status</span><span class="s2">().</span><span
+            class="s1">isOk</span><span class="s2">())</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.cart_item_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.cart_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.product_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">200</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$.quantity&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">5</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andDo</span><span class="s2">(</span><span
+            class="s1">print</span><span class="s2">());</span>
+
+        <span class="s1">verify</span><span class="s2">(</span><span class="s1">cartItemService</span><span
+            class="s2">, </span><span class="s1">times</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">)).</span><span class="s1">update</span><span class="s2">(</span><span class="s1">any</span><span
+            class="s2">(</span><span class="s1">Cart_Items</span><span class="s2">.</span><span
+            class="s0">class</span><span class="s2">));</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">void </span><span class="s1">testDeleteCartItem</span><span class="s2">() </span><span class="s0">throws </span><span
+            class="s1">Exception </span><span class="s2">{</span>
+        <span class="s1">doNothing</span><span class="s2">().</span><span class="s1">when</span><span
+            class="s2">(</span><span class="s1">cartItemService</span><span class="s2">).</span><span
+            class="s1">delete</span><span class="s2">(</span><span class="s1">anyLong</span><span class="s2">());</span>
+
+        <span class="s1">mockMvc</span><span class="s2">.</span><span class="s1">perform</span><span class="s2">(</span><span
+            class="s1">MockMvcRequestBuilders</span><span class="s2">.</span><span class="s1">delete</span><span
+            class="s2">(</span><span class="s4">&quot;/api/carts/items/{cartItemId}&quot;</span><span
+            class="s2">, </span><span class="s5">1</span><span class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">status</span><span class="s2">().</span><span
+            class="s1">isNoContent</span><span class="s2">())</span>
+                <span class="s2">.</span><span class="s1">andDo</span><span class="s2">(</span><span
+            class="s1">print</span><span class="s2">());</span>
+
+        <span class="s1">verify</span><span class="s2">(</span><span class="s1">cartItemService</span><span
+            class="s2">, </span><span class="s1">times</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">)).</span><span class="s1">delete</span><span class="s2">(</span><span
+            class="s1">anyLong</span><span class="s2">());</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">void </span><span class="s1">testGetAllCartItems</span><span class="s2">() </span><span class="s0">throws </span><span
+            class="s1">Exception </span><span class="s2">{</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Cart_Items</span><span
+            class="s2">&gt; </span><span class="s1">cartItems </span><span class="s2">= </span><span class="s1">Collections</span><span
+            class="s2">.</span><span class="s1">singletonList</span><span class="s2">(</span><span
+            class="s1">cartItem</span><span class="s2">);</span>
+        <span class="s1">when</span><span class="s2">(</span><span class="s1">cartItemService</span><span
+            class="s2">.</span><span class="s1">getAll</span><span class="s2">()).</span><span
+            class="s1">thenReturn</span><span class="s2">(</span><span class="s1">cartItems</span><span
+            class="s2">);</span>
+
+        <span class="s1">mockMvc</span><span class="s2">.</span><span class="s1">perform</span><span class="s2">(</span><span
+            class="s1">MockMvcRequestBuilders</span><span class="s2">.</span><span class="s1">get</span><span
+            class="s2">(</span><span class="s4">&quot;/api/carts/items&quot;</span><span class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">status</span><span class="s2">().</span><span
+            class="s1">isOk</span><span class="s2">())</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].cart_item_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].cart_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].product_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">200</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].quantity&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">5</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andDo</span><span class="s2">(</span><span
+            class="s1">print</span><span class="s2">());</span>
+
+        <span class="s1">verify</span><span class="s2">(</span><span class="s1">cartItemService</span><span
+            class="s2">, </span><span class="s1">times</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">)).</span><span class="s1">getAll</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">void </span><span class="s1">testGetCartItemsByCartId</span><span class="s2">() </span><span
+            class="s0">throws </span><span class="s1">Exception </span><span class="s2">{</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Cart_Items</span><span
+            class="s2">&gt; </span><span class="s1">cartItems </span><span class="s2">= </span><span class="s1">Collections</span><span
+            class="s2">.</span><span class="s1">singletonList</span><span class="s2">(</span><span
+            class="s1">cartItem</span><span class="s2">);</span>
+        <span class="s1">when</span><span class="s2">(</span><span class="s1">cartItemService</span><span
+            class="s2">.</span><span class="s1">getCartItemsByCartId</span><span class="s2">(</span><span class="s1">anyLong</span><span
+            class="s2">())).</span><span class="s1">thenReturn</span><span class="s2">(</span><span
+            class="s1">cartItems</span><span class="s2">);</span>
+
+        <span class="s1">mockMvc</span><span class="s2">.</span><span class="s1">perform</span><span class="s2">(</span><span
+            class="s1">MockMvcRequestBuilders</span><span class="s2">.</span><span class="s1">get</span><span
+            class="s2">(</span><span class="s4">&quot;/api/carts/items/cart/{cartId}&quot;</span><span
+            class="s2">, </span><span class="s5">1</span><span class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">status</span><span class="s2">().</span><span
+            class="s1">isOk</span><span class="s2">())</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].cart_item_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].cart_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].product_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">200</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].quantity&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">5</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andDo</span><span class="s2">(</span><span
+            class="s1">print</span><span class="s2">());</span>
+
+        <span class="s1">verify</span><span class="s2">(</span><span class="s1">cartItemService</span><span
+            class="s2">, </span><span class="s1">times</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">)).</span><span class="s1">getCartItemsByCartId</span><span class="s2">(</span><span class="s1">anyLong</span><span
+            class="s2">());</span>
+    <span class="s2">}</span>
+
+    <span class="s1">@Test</span>
+    <span class="s0">void </span><span class="s1">testGetCartItemsByProductId</span><span class="s2">() </span><span
+            class="s0">throws </span><span class="s1">Exception </span><span class="s2">{</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Cart_Items</span><span
+            class="s2">&gt; </span><span class="s1">cartItems </span><span class="s2">= </span><span class="s1">Collections</span><span
+            class="s2">.</span><span class="s1">singletonList</span><span class="s2">(</span><span
+            class="s1">cartItem</span><span class="s2">);</span>
+        <span class="s1">when</span><span class="s2">(</span><span class="s1">cartItemService</span><span
+            class="s2">.</span><span class="s1">getCartItemsByProductId</span><span class="s2">(</span><span class="s1">anyLong</span><span
+            class="s2">())).</span><span class="s1">thenReturn</span><span class="s2">(</span><span
+            class="s1">cartItems</span><span class="s2">);</span>
+
+        <span class="s1">mockMvc</span><span class="s2">.</span><span class="s1">perform</span><span class="s2">(</span><span
+            class="s1">MockMvcRequestBuilders</span><span class="s2">.</span><span class="s1">get</span><span
+            class="s2">(</span><span class="s4">&quot;/api/carts/items/product/{productId}&quot;</span><span class="s2">, </span><span
+            class="s5">200</span><span class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">status</span><span class="s2">().</span><span
+            class="s1">isOk</span><span class="s2">())</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].cart_item_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].cart_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].product_id&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">200</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andExpect</span><span class="s2">(</span><span class="s1">MockMvcResultMatchers</span><span
+            class="s2">.</span><span class="s1">jsonPath</span><span class="s2">(</span><span class="s4">&quot;$[0].quantity&quot;</span><span
+            class="s2">).</span><span class="s1">value</span><span class="s2">(</span><span class="s5">5</span><span
+            class="s2">))</span>
+                <span class="s2">.</span><span class="s1">andDo</span><span class="s2">(</span><span
+            class="s1">print</span><span class="s2">());</span>
+
+        <span class="s1">verify</span><span class="s2">(</span><span class="s1">cartItemService</span><span
+            class="s2">, </span><span class="s1">times</span><span class="s2">(</span><span class="s5">1</span><span
+            class="s2">)).</span><span class="s1">getCartItemsByProductId</span><span class="s2">(</span><span
+            class="s1">anyLong</span><span class="s2">());</span>
+    <span class="s2">}}</span>
+</pre>
+</body>
+</html>

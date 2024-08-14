@@ -1,0 +1,40 @@
+<template>
+  <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <FetchUsers/>
+
+  <div id="app">
+    <Cart/>
+  </div>
+</template>
+
+<script>
+import HelloWorld from './components/HelloWorld.vue'
+import FetchUsers from './components/FetchUsers.vue';
+import Cart from "@/components/Cart.vue";
+
+export default {
+  name: 'App',
+  components: {
+    HelloWorld,
+    FetchUsers,
+    Cart
+
+
+  }
+
+
+}
+
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
