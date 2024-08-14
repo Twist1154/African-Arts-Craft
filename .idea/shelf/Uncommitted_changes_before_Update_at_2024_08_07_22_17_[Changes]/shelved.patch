@@ -1,150 +1,3 @@
-Index: src/main/java/za/ac/cput/domain/Users.java
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
-<+>package za.ac.cput.domain;\r\n\r\nimport jakarta.persistence.Entity;\r\nimport jakarta.persistence.GeneratedValue;\r\nimport jakarta.persistence.GenerationType;\r\nimport jakarta.persistence.Id;\r\n\r\nimport java.io.Serializable;\r\nimport java.time.LocalDate;\r\n\r\n/**\r\n * Users.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 23-Jul-24\r\n */\r\n@Entity\r\npublic class Users implements Serializable {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long user_id;\r\n    private String username;\r\n    private String password;\r\n    private String email;\r\n    private String first_name;\r\n    private String last_name;\r\n    private LocalDate created_at;\r\n    private LocalDate updated_at;\r\n\r\n    public Users() {\r\n    }\r\n\r\n    public Users(Builder builder) {\r\n        this.user_id = builder.user_id;\r\n        this.username = builder.username;\r\n        this.password = builder.password;\r\n        this.email = builder.email;\r\n        this.first_name = builder.first_name;\r\n        this.last_name = builder.last_name;\r\n        this.created_at = builder.created_at;\r\n        this.updated_at = builder.updated_at;\r\n    }\r\n\r\n    public long getUser_id() {\r\n        return user_id;\r\n    }\r\n\r\n    public String getUsername() {\r\n        return username;\r\n    }\r\n\r\n    public String getPassword() {\r\n        return password;\r\n    }\r\n\r\n    public String getEmail() {\r\n        return email;\r\n    }\r\n\r\n    public String getFirst_name() {\r\n        return first_name;\r\n    }\r\n\r\n    public String getLast_name() {\r\n        return last_name;\r\n    }\r\n\r\n    public LocalDate getCreated_at() {\r\n        return created_at;\r\n    }\r\n\r\n    public LocalDate getUpdated_at() {\r\n        return updated_at;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (!(o instanceof Users users)) return false;\r\n\r\n        if (getUser_id() != users.getUser_id()) return false;\r\n        if (getUsername() != null ? !getUsername().equals(users.getUsername()) : users.getUsername() != null)\r\n            return false;\r\n        if (getPassword() != null ? !getPassword().equals(users.getPassword()) : users.getPassword() != null)\r\n            return false;\r\n        if (getEmail() != null ? !getEmail().equals(users.getEmail()) : users.getEmail() != null) return false;\r\n        if (getFirst_name() != null ? !getFirst_name().equals(users.getFirst_name()) : users.getFirst_name() != null)\r\n            return false;\r\n        if (getLast_name() != null ? !getLast_name().equals(users.getLast_name()) : users.getLast_name() != null)\r\n            return false;\r\n        if (getCreated_at() != null ? !getCreated_at().equals(users.getCreated_at()) : users.getCreated_at() != null)\r\n            return false;\r\n        return getUpdated_at() != null ? getUpdated_at().equals(users.getUpdated_at()) : users.getUpdated_at() == null;\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        int result = (int) (getUser_id() ^ (getUser_id() >>> 32));\r\n        result = 31 * result + (getUsername() != null ? getUsername().hashCode() : 0);\r\n        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);\r\n        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);\r\n        result = 31 * result + (getFirst_name() != null ? getFirst_name().hashCode() : 0);\r\n        result = 31 * result + (getLast_name() != null ? getLast_name().hashCode() : 0);\r\n        result = 31 * result + (getCreated_at() != null ? getCreated_at().hashCode() : 0);\r\n        result = 31 * result + (getUpdated_at() != null ? getUpdated_at().hashCode() : 0);\r\n        return result;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Users{\" +\r\n                \"Users ID: \" + user_id +\r\n                \", USERNAME: '\" + username + '\\'' +\r\n                \", PASSWORD: '\" + password + '\\'' +\r\n                \", EMAIL: '\" + email + '\\'' +\r\n                \", FIRST NAME: '\" + first_name + '\\'' +\r\n                \", LAST NAME: '\" + last_name + '\\'' +\r\n                \", CREATED AT: \" + created_at +\r\n                \", UPDATED AT: \" + updated_at +\r\n                '}';\r\n    }\r\n\r\n    public static class Builder {\r\n        private long user_id;\r\n        private String username;\r\n        private String password;\r\n        private String email;\r\n        private String first_name;\r\n        private String last_name;\r\n        private LocalDate created_at;\r\n        private LocalDate updated_at;\r\n\r\n        public Builder setUser_id(long user_id) {\r\n            this.user_id = user_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setUsername(String username) {\r\n            this.username = username;\r\n            return this;\r\n        }\r\n\r\n        public Builder setPassword(String password) {\r\n            this.password = password;\r\n            return this;\r\n        }\r\n\r\n        public Builder setEmail(String email) {\r\n            this.email = email;\r\n            return this;\r\n        }\r\n\r\n        public Builder setFirst_name(String first_name) {\r\n            this.first_name = first_name;\r\n            return this;\r\n        }\r\n\r\n        public Builder setLast_name(String last_name) {\r\n            this.last_name = last_name;\r\n            return this;\r\n        }\r\n\r\n        public Builder setCreated_at(LocalDate created_at) {\r\n            this.created_at = created_at;\r\n            return this;\r\n        }\r\n\r\n        public Builder setUpdated_at(LocalDate updated_at) {\r\n            this.updated_at = updated_at;\r\n            return this;\r\n        }\r\n\r\n        public Builder copy(Users users) {\r\n            this.user_id = users.getUser_id();\r\n            this.username = users.getUsername();\r\n            this.password = users.getPassword();\r\n            this.email = users.getEmail();\r\n            this.first_name = users.getFirst_name();\r\n            this.last_name = users.getLast_name();\r\n            this.created_at = users.getCreated_at();\r\n            this.updated_at = users.getUpdated_at();\r\n            return this;\r\n        }\r\n\r\n        public Users build() {\r\n            return new Users(this);\r\n        }\r\n    }\r\n}\r\n
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
-diff --git a/src/main/java/za/ac/cput/domain/Users.java b/src/main/java/za/ac/cput/domain/Users.java
---- a/src/main/java/za/ac/cput/domain/Users.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
-+++ b/src/main/java/za/ac/cput/domain/Users.java	(date 1722792624845)
-@@ -1,12 +1,11 @@
- package za.ac.cput.domain;
- 
--import jakarta.persistence.Entity;
--import jakarta.persistence.GeneratedValue;
--import jakarta.persistence.GenerationType;
--import jakarta.persistence.Id;
-+import jakarta.persistence.*;
-+import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
- 
- import java.io.Serializable;
- import java.time.LocalDate;
-+import java.util.Objects;
- 
- /**
-  * Users.java
-@@ -28,6 +27,10 @@
-     private LocalDate created_at;
-     private LocalDate updated_at;
- 
-+    // Adding relationship
-+    @Embedded
-+    private Addresses addresses;
-+
-     public Users() {
-     }
- 
-@@ -40,6 +43,7 @@
-         this.last_name = builder.last_name;
-         this.created_at = builder.created_at;
-         this.updated_at = builder.updated_at;
-+        this.addresses = builder.addresses;
-     }
- 
-     public long getUser_id() {
-@@ -53,7 +57,6 @@
-     public String getPassword() {
-         return password;
-     }
--
-     public String getEmail() {
-         return email;
-     }
-@@ -73,51 +76,34 @@
-     public LocalDate getUpdated_at() {
-         return updated_at;
-     }
-+    public Addresses getAddresses() {
-+        return addresses;
-+    }
- 
-     @Override
-     public boolean equals(Object o) {
-         if (this == o) return true;
-         if (!(o instanceof Users users)) return false;
--
--        if (getUser_id() != users.getUser_id()) return false;
--        if (getUsername() != null ? !getUsername().equals(users.getUsername()) : users.getUsername() != null)
--            return false;
--        if (getPassword() != null ? !getPassword().equals(users.getPassword()) : users.getPassword() != null)
--            return false;
--        if (getEmail() != null ? !getEmail().equals(users.getEmail()) : users.getEmail() != null) return false;
--        if (getFirst_name() != null ? !getFirst_name().equals(users.getFirst_name()) : users.getFirst_name() != null)
--            return false;
--        if (getLast_name() != null ? !getLast_name().equals(users.getLast_name()) : users.getLast_name() != null)
--            return false;
--        if (getCreated_at() != null ? !getCreated_at().equals(users.getCreated_at()) : users.getCreated_at() != null)
--            return false;
--        return getUpdated_at() != null ? getUpdated_at().equals(users.getUpdated_at()) : users.getUpdated_at() == null;
-+        return getUser_id() == users.getUser_id() && Objects.equals(getUsername(), users.getUsername()) && Objects.equals(getPassword(), users.getPassword()) && Objects.equals(getEmail(), users.getEmail()) && Objects.equals(getFirst_name(), users.getFirst_name()) && Objects.equals(getLast_name(), users.getLast_name()) && Objects.equals(getCreated_at(), users.getCreated_at()) && Objects.equals(getUpdated_at(), users.getUpdated_at()) && Objects.equals(getAddresses(), users.getAddresses());
-     }
- 
-     @Override
-     public int hashCode() {
--        int result = (int) (getUser_id() ^ (getUser_id() >>> 32));
--        result = 31 * result + (getUsername() != null ? getUsername().hashCode() : 0);
--        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
--        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
--        result = 31 * result + (getFirst_name() != null ? getFirst_name().hashCode() : 0);
--        result = 31 * result + (getLast_name() != null ? getLast_name().hashCode() : 0);
--        result = 31 * result + (getCreated_at() != null ? getCreated_at().hashCode() : 0);
--        result = 31 * result + (getUpdated_at() != null ? getUpdated_at().hashCode() : 0);
--        return result;
-+        return Objects.hash(getUser_id(), getUsername(), getPassword(), getEmail(), getFirst_name(), getLast_name(), getCreated_at(), getUpdated_at(), getAddresses());
-     }
- 
-     @Override
-     public String toString() {
-         return "Users{" +
--                "Users ID: " + user_id +
--                ", USERNAME: '" + username + '\'' +
--                ", PASSWORD: '" + password + '\'' +
--                ", EMAIL: '" + email + '\'' +
--                ", FIRST NAME: '" + first_name + '\'' +
--                ", LAST NAME: '" + last_name + '\'' +
--                ", CREATED AT: " + created_at +
--                ", UPDATED AT: " + updated_at +
-+                "user_id=" + user_id +
-+                ", username='" + username + '\'' +
-+                ", password='" + password + '\'' +
-+                ", email='" + email + '\'' +
-+                ", first_name='" + first_name + '\'' +
-+                ", last_name='" + last_name + '\'' +
-+                ", created_at=" + created_at +
-+                ", updated_at=" + updated_at +
-+                ", addresses=" + addresses +
-                 '}';
-     }
- 
-@@ -130,6 +116,7 @@
-         private String last_name;
-         private LocalDate created_at;
-         private LocalDate updated_at;
-+        private Addresses addresses;
- 
-         public Builder setUser_id(long user_id) {
-             this.user_id = user_id;
-@@ -171,6 +158,11 @@
-             return this;
-         }
- 
-+        public Builder setAddresses(Addresses addresses) {
-+            this.addresses = addresses;
-+            return this;
-+        }
-+
-         public Builder copy(Users users) {
-             this.user_id = users.getUser_id();
-             this.username = users.getUsername();
-@@ -180,6 +172,7 @@
-             this.last_name = users.getLast_name();
-             this.created_at = users.getCreated_at();
-             this.updated_at = users.getUpdated_at();
-+            this.addresses = users.getAddresses();
-             return this;
-         }
- 
 Index: src/main/java/za/ac/cput/controller/ProductController.java
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
@@ -153,8 +6,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
 diff --git a/src/main/java/za/ac/cput/controller/ProductController.java b/src/main/java/za/ac/cput/controller/ProductController.java
---- a/src/main/java/za/ac/cput/controller/ProductController.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
-+++ b/src/main/java/za/ac/cput/controller/ProductController.java	(date 1722860577210)
+--- a/src/main/java/za/ac/cput/controller/ProductController.java	
++++ b/src/main/java/za/ac/cput/controller/ProductController.java	
 @@ -13,14 +13,6 @@
  import java.time.LocalDate;
  import java.util.List;
@@ -263,86 +116,6 @@ diff --git a/src/main/java/za/ac/cput/controller/ProductController.java b/src/ma
      @GetMapping("/updated-before")
      public ResponseEntity<List<Products>> getProductsUpdatedBefore(@RequestParam LocalDate updatedAt) {
          List<Products> products = productService.findByUpdatedAtBefore(updatedAt);
-Index: src/main/java/za/ac/cput/domain/Shipping_Methods.java
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
-<+>package za.ac.cput.domain;\r\n\r\nimport jakarta.persistence.*;\r\n\r\nimport java.io.Serializable;\r\nimport java.time.LocalDate;\r\n\r\n/**\r\n * ShippingMethods.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 23-Jul-24\r\n */\r\n\r\n\r\n@Entity\r\npublic class Shipping_Methods implements Serializable {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long shipping_method_id;\r\n    private String name;\r\n    private String description;\r\n    private double cost;\r\n    private String delivery_time;\r\n    private Addresses address_id;\r\n\r\n    public Shipping_Methods() {\r\n    }\r\n\r\n    public Shipping_Methods(Builder builder) {\r\n        this.shipping_method_id = builder.shipping_method_id;\r\n        this.name = builder.name;\r\n        this.description = builder.description;\r\n        this.cost = builder.cost;\r\n        this.delivery_time = builder.delivery_time;\r\n    }\r\n\r\n    public long getShipping_method_id() {\r\n        return shipping_method_id;\r\n    }\r\n\r\n    public String getName() {\r\n        return name;\r\n    }\r\n\r\n    public String getDescription() {\r\n        return description;\r\n    }\r\n\r\n    public double getCost() {\r\n        return cost;\r\n    }\r\n\r\n    public String getDelivery_time() {\r\n        return delivery_time;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Shipping_Methods{\" +\r\n                \"Shipping Method ID: \" + shipping_method_id +\r\n                \", NAME: '\" + name + '\\'' +\r\n                \", DESCRIPTION: '\" + description + '\\'' +\r\n                \", COST: \" + cost +\r\n                \", DELIVERY TIME: '\" + delivery_time + '\\'' +\r\n                '}';\r\n    }\r\n\r\n    public static class Builder {\r\n        private long shipping_method_id;\r\n        private String name;\r\n        private String description;\r\n        private double cost;\r\n        private String delivery_time;\r\n\r\n        public Builder setShipping_method_id(long shipping_method_id) {\r\n            this.shipping_method_id = shipping_method_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setName(String name) {\r\n            this.name = name;\r\n            return this;\r\n        }\r\n\r\n        public Builder setDescription(String description) {\r\n            this.description = description;\r\n            return this;\r\n        }\r\n\r\n        public Builder setCost(double cost) {\r\n            this.cost = cost;\r\n            return this;\r\n        }\r\n\r\n        public Builder setDelivery_time(String delivery_time) {\r\n            this.delivery_time = delivery_time;\r\n            return this;\r\n        }\r\n\r\n        public Builder copy(Shipping_Methods shipping_methods) {\r\n            this.shipping_method_id = shipping_methods.getShipping_method_id();\r\n            this.name = shipping_methods.getName();\r\n            this.description = shipping_methods.getDescription();\r\n            this.cost = shipping_methods.getCost();\r\n            this.delivery_time = shipping_methods.getDelivery_time();\r\n            return this;\r\n        }\r\n\r\n        public Shipping_Methods build() {\r\n            return new Shipping_Methods(this);\r\n        }\r\n    }\r\n}\r\n\r\n
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
-diff --git a/src/main/java/za/ac/cput/domain/Shipping_Methods.java b/src/main/java/za/ac/cput/domain/Shipping_Methods.java
---- a/src/main/java/za/ac/cput/domain/Shipping_Methods.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
-+++ b/src/main/java/za/ac/cput/domain/Shipping_Methods.java	(date 1722808254099)
-@@ -25,8 +25,13 @@
-     private String delivery_time;
-     private Addresses address_id;
- 
-+    @ManyToOne
-+    @JoinColumn(name = "address_id")
-+    private Addresses addresses;
-     public Shipping_Methods() {
-     }
-+    // Added relationships
-+
- 
-     public Shipping_Methods(Builder builder) {
-         this.shipping_method_id = builder.shipping_method_id;
-Index: src/main/java/za/ac/cput/domain/Addresses.java
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
-<+>package za.ac.cput.domain;\r\n\r\nimport jakarta.persistence.*;\r\nimport java.io.Serializable;\r\nimport java.time.LocalDate;\r\n\r\n/**\r\n * Addresses.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 23-Jul-24\r\n */\r\n\r\n\r\n@Entity\r\npublic class Addresses implements Serializable {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long address_id;\r\n    private long user_id;\r\n    private String address_line1;\r\n    private String address_line2;\r\n    private String city;\r\n    private String province;\r\n    private String postal_code;\r\n    private String country;\r\n    private LocalDate created_at;\r\n    private LocalDate updated_at;\r\n\r\n    public Addresses() {\r\n    }\r\n\r\n    public Addresses(Builder builder) {\r\n        this.address_id = builder.address_id;\r\n        this.user_id = builder.user_id;\r\n        this.address_line1 = builder.address_line1;\r\n        this.address_line2 = builder.address_line2;\r\n        this.city = builder.city;\r\n        this.province = builder.province;\r\n        this.postal_code = builder.postal_code;\r\n        this.country = builder.country;\r\n        this.created_at = builder.created_at;\r\n        this.updated_at = builder.updated_at;\r\n    }\r\n\r\n    public long getAddress_id() {\r\n        return address_id;\r\n    }\r\n\r\n    public long getUser_id() {\r\n        return user_id;\r\n    }\r\n\r\n    public String getAddress_line1() {\r\n        return address_line1;\r\n    }\r\n\r\n    public String getAddress_line2() {\r\n        return address_line2;\r\n    }\r\n\r\n    public String getCity() {\r\n        return city;\r\n    }\r\n\r\n    public String getProvince() {\r\n        return province;\r\n    }\r\n\r\n    public String getPostal_code() {\r\n        return postal_code;\r\n    }\r\n\r\n    public String getCountry() {\r\n        return country;\r\n    }\r\n\r\n    public LocalDate getCreated_at() {\r\n        return created_at;\r\n    }\r\n\r\n    public LocalDate getUpdated_at() {\r\n        return updated_at;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (!(o instanceof Addresses addresses)) return false;\r\n\r\n        if (getAddress_id() != addresses.getAddress_id()) return false;\r\n        if (getUser_id() != addresses.getUser_id()) return false;\r\n        if (getAddress_line1() != null ? !getAddress_line1().equals(addresses.getAddress_line1()) : addresses.getAddress_line1() != null)\r\n            return false;\r\n        if (getAddress_line2() != null ? !getAddress_line2().equals(addresses.getAddress_line2()) : addresses.getAddress_line2() != null)\r\n            return false;\r\n        if (getCity() != null ? !getCity().equals(addresses.getCity()) : addresses.getCity() != null) return false;\r\n        if (getProvince() != null ? !getProvince().equals(addresses.getProvince()) : addresses.getProvince() != null)\r\n            return false;\r\n        if (getPostal_code() != null ? !getPostal_code().equals(addresses.getPostal_code()) : addresses.getPostal_code() != null)\r\n            return false;\r\n        if (getCountry() != null ? !getCountry().equals(addresses.getCountry()) : addresses.getCountry() != null)\r\n            return false;\r\n        if (getCreated_at() != null ? !getCreated_at().equals(addresses.getCreated_at()) : addresses.getCreated_at() != null)\r\n            return false;\r\n        return getUpdated_at() != null ? getUpdated_at().equals(addresses.getUpdated_at()) : addresses.getUpdated_at() == null;\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        int result = (int) (getAddress_id() ^ (getAddress_id() >>> 32));\r\n        result = 31 * result + (int) (getUser_id() ^ (getUser_id() >>> 32));\r\n        result = 31 * result + (getAddress_line1() != null ? getAddress_line1().hashCode() : 0);\r\n        result = 31 * result + (getAddress_line2() != null ? getAddress_line2().hashCode() : 0);\r\n        result = 31 * result + (getCity() != null ? getCity().hashCode() : 0);\r\n        result = 31 * result + (getProvince() != null ? getProvince().hashCode() : 0);\r\n        result = 31 * result + (getPostal_code() != null ? getPostal_code().hashCode() : 0);\r\n        result = 31 * result + (getCountry() != null ? getCountry().hashCode() : 0);\r\n        result = 31 * result + (getCreated_at() != null ? getCreated_at().hashCode() : 0);\r\n        result = 31 * result + (getUpdated_at() != null ? getUpdated_at().hashCode() : 0);\r\n        return result;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Addresses{\" +\r\n                \"Address ID: \" + address_id +\r\n                \", USER ID: \" + user_id +\r\n                \", ADDRESS LINE1: '\" + address_line1 + '\\'' +\r\n                \", ADDRESS LINE2: '\" + address_line2 + '\\'' +\r\n                \", CITY: '\" + city + '\\'' +\r\n                \", PROVINCE: '\" + province + '\\'' +\r\n                \", POSTAL CODE: '\" + postal_code + '\\'' +\r\n                \", COUNTRY: '\" + country + '\\'' +\r\n                \", CREATED AT: \" + created_at +\r\n                \", UPDATED AT: \" + updated_at +\r\n                '}';\r\n    }\r\n\r\n    public static class Builder {\r\n        private long address_id;\r\n        private long user_id;\r\n        private String address_line1;\r\n        private String address_line2;\r\n        private String city;\r\n        private String province;\r\n        private String postal_code;\r\n        private String country;\r\n        private LocalDate created_at;\r\n        private LocalDate updated_at;\r\n\r\n        public Builder setAddress_id(long address_id) {\r\n            this.address_id = address_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setUser_id(long user_id) {\r\n            this.user_id = user_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setAddress_line1(String address_line1) {\r\n            this.address_line1 = address_line1;\r\n            return this;\r\n        }\r\n\r\n        public Builder setAddress_line2(String address_line2) {\r\n            this.address_line2 = address_line2;\r\n            return this;\r\n        }\r\n\r\n        public Builder setCity(String city) {\r\n            this.city = city;\r\n            return this;\r\n        }\r\n\r\n        public Builder setProvince(String province) {\r\n            this.province = province;\r\n            return this;\r\n        }\r\n\r\n        public Builder setPostal_code(String postal_code) {\r\n            this.postal_code = postal_code;\r\n            return this;\r\n        }\r\n\r\n        public Builder setCountry(String country) {\r\n            this.country = country;\r\n            return this;\r\n        }\r\n\r\n        public Builder setCreated_at(LocalDate created_at) {\r\n            this.created_at = created_at;\r\n            return this;\r\n        }\r\n\r\n        public Builder setUpdated_at(LocalDate updated_at) {\r\n            this.updated_at = updated_at;\r\n            return this;\r\n        }\r\n\r\n        public Builder copy(Addresses addresses) {\r\n            this.address_id = addresses.getAddress_id();\r\n            this.user_id = addresses.getUser_id();\r\n            this.address_line1 = addresses.getAddress_line1();\r\n            this.address_line2 = addresses.getAddress_line2();\r\n            this.city = addresses.getCity();\r\n            this.province = addresses.getProvince();\r\n            this.postal_code = addresses.getPostal_code();\r\n            this.country = addresses.getCountry();\r\n            this.created_at = addresses.getCreated_at();\r\n            this.updated_at = addresses.getUpdated_at();\r\n            return this;\r\n        }\r\n\r\n        public Addresses build() {\r\n            return new Addresses(this);\r\n        }\r\n    }\r\n}\r\n\r\n
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
-diff --git a/src/main/java/za/ac/cput/domain/Addresses.java b/src/main/java/za/ac/cput/domain/Addresses.java
---- a/src/main/java/za/ac/cput/domain/Addresses.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
-+++ b/src/main/java/za/ac/cput/domain/Addresses.java	(date 1722791831377)
-@@ -11,9 +11,9 @@
-  * Student Num: 220455430
-  * @date 23-Jul-24
-  */
-+// remust be ebedded to user because it not an entity but it falls under a user
- 
--
--@Entity
-+@Embeddable
- public class Addresses implements Serializable {
-     @Id
-     @GeneratedValue(strategy = GenerationType.IDENTITY)
-Index: src/main/java/za/ac/cput/factory/Userfactory.java
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
-<+>package za.ac.cput.factory;\r\n\r\nimport za.ac.cput.domain.Users;\r\nimport za.ac.cput.util.Helper;\r\n\r\nimport java.time.LocalDate;\r\n\r\n/**\r\n * Userfactory.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 24-Jul-24\r\n */\r\n\r\npublic class Userfactory {\r\n\r\n    public static Users buildUser(long user_id, String username, String password,\r\n                                  String email, String first_name, String last_name,\r\n                                  LocalDate created_at, LocalDate updated_at) {\r\n\r\n        if (Helper.isNullOrEmpty(username) ||\r\n                Helper.isNullOrEmpty(password) ||\r\n                Helper.isNullOrEmpty(first_name) ||\r\n                Helper.isNullOrEmpty(last_name)\r\n        ) return null;\r\n\r\n        String regex = \"^(.+)@(\\\\S+)$\";\r\n        if (!Helper.isEmailValid(email, regex) ||\r\n                Helper.isNullOrEmpty(email)\r\n        ) return null;\r\n\r\n        return new Users.Builder()\r\n                .setUser_id(user_id)\r\n                .setUsername(username)\r\n                .setPassword(password)\r\n                .setEmail(email)\r\n                .setFirst_name(first_name)\r\n                .setLast_name(last_name)\r\n                .setCreated_at(created_at)\r\n                .setUpdated_at(updated_at)\r\n                .build();\r\n    }\r\n}\r\n
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
-diff --git a/src/main/java/za/ac/cput/factory/Userfactory.java b/src/main/java/za/ac/cput/factory/Userfactory.java
---- a/src/main/java/za/ac/cput/factory/Userfactory.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
-+++ b/src/main/java/za/ac/cput/factory/Userfactory.java	(date 1722801214330)
-@@ -1,5 +1,6 @@
- package za.ac.cput.factory;
- 
-+import za.ac.cput.domain.Addresses;
- import za.ac.cput.domain.Users;
- import za.ac.cput.util.Helper;
- 
-@@ -17,7 +18,7 @@
- 
-     public static Users buildUser(long user_id, String username, String password,
-                                   String email, String first_name, String last_name,
--                                  LocalDate created_at, LocalDate updated_at) {
-+                                  LocalDate created_at, LocalDate updated_at, Addresses addresses) {
- 
-         if (Helper.isNullOrEmpty(username) ||
-                 Helper.isNullOrEmpty(password) ||
-@@ -39,6 +40,7 @@
-                 .setLast_name(last_name)
-                 .setCreated_at(created_at)
-                 .setUpdated_at(updated_at)
-+                .setAddresses(addresses)
-                 .build();
-     }
- }
 Index: .idea/misc.xml
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
@@ -351,8 +124,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
 diff --git a/.idea/misc.xml b/.idea/misc.xml
---- a/.idea/misc.xml	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
-+++ b/.idea/misc.xml	(date 1722106704288)
+--- a/.idea/misc.xml	
++++ b/.idea/misc.xml	
 @@ -13,7 +13,7 @@
      <option name="enabled" value="true" />
      <option name="wasEnabledAtLeastOnce" value="true" />
@@ -363,61 +136,6 @@ diff --git a/.idea/misc.xml b/.idea/misc.xml
    </component>
  </project>
 \ No newline at end of file
-Index: src/main/java/za/ac/cput/domain/Reviews.java
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
-<+>package za.ac.cput.domain;\r\n\r\nimport jakarta.persistence.*;\r\n\r\nimport java.io.Serializable;\r\nimport java.time.LocalDate;\r\n\r\n/**\r\n * Reviews.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 23-Jul-24\r\n */\r\n\r\n\r\n@Entity\r\npublic class Reviews implements Serializable {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long review_id;\r\n    private long product_id;\r\n    private long user_id;\r\n    private int rating;\r\n    private String comment;\r\n    private LocalDate created_at;\r\n\r\n    public Reviews() {\r\n    }\r\n\r\n    public Reviews(Builder builder) {\r\n        this.review_id = builder.review_id;\r\n        this.product_id = builder.product_id;\r\n        this.user_id = builder.user_id;\r\n        this.rating = builder.rating;\r\n        this.comment = builder.comment;\r\n        this.created_at = builder.created_at;\r\n    }\r\n\r\n    public long getReview_id() {\r\n        return review_id;\r\n    }\r\n\r\n    public long getProduct_id() {\r\n        return product_id;\r\n    }\r\n\r\n    public long getUser_id() {\r\n        return user_id;\r\n    }\r\n\r\n    public int getRating() {\r\n        return rating;\r\n    }\r\n\r\n    public String getComment() {\r\n        return comment;\r\n    }\r\n\r\n    public LocalDate getCreated_at() {\r\n        return created_at;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (!(o instanceof Reviews reviews)) return false;\r\n\r\n        if (getReview_id() != reviews.getReview_id()) return false;\r\n        if (getProduct_id() != reviews.getProduct_id()) return false;\r\n        if (getUser_id() != reviews.getUser_id()) return false;\r\n        if (getRating() != reviews.getRating()) return false;\r\n        if (getComment() != null ? !getComment().equals(reviews.getComment()) : reviews.getComment() != null)\r\n            return false;\r\n        return getCreated_at() != null ? getCreated_at().equals(reviews.getCreated_at()) : reviews.getCreated_at() == null;\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        int result = (int) (getReview_id() ^ (getReview_id() >>> 32));\r\n        result = 31 * result + (int) (getProduct_id() ^ (getProduct_id() >>> 32));\r\n        result = 31 * result + (int) (getUser_id() ^ (getUser_id() >>> 32));\r\n        result = 31 * result + getRating();\r\n        result = 31 * result + (getComment() != null ? getComment().hashCode() : 0);\r\n        result = 31 * result + (getCreated_at() != null ? getCreated_at().hashCode() : 0);\r\n        return result;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Reviews{\" +\r\n                \"Review ID: \" + review_id +\r\n                \", PRODUCT ID: \" + product_id +\r\n                \", USER ID: \" + user_id +\r\n                \", RATING: \" + rating +\r\n                \", COMMENT: '\" + comment + '\\'' +\r\n                \", CREATED AT: \" + created_at +\r\n                '}';\r\n    }\r\n\r\n    public static class Builder {\r\n        private long review_id;\r\n        private long product_id;\r\n        private long user_id;\r\n        private int rating;\r\n        private String comment;\r\n        private LocalDate created_at;\r\n\r\n        public Builder setReview_id(long review_id) {\r\n            this.review_id = review_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setProduct_id(long product_id) {\r\n            this.product_id = product_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setUser_id(long user_id) {\r\n            this.user_id = user_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setRating(int rating) {\r\n            this.rating = rating;\r\n            return this;\r\n        }\r\n\r\n        public Builder setComment(String comment) {\r\n            this.comment = comment;\r\n            return this;\r\n        }\r\n\r\n        public Builder setCreated_at(LocalDate created_at) {\r\n            this.created_at = created_at;\r\n            return this;\r\n        }\r\n\r\n        public Builder copy(Reviews reviews) {\r\n            this.review_id = reviews.getReview_id();\r\n            this.product_id = reviews.getProduct_id();\r\n            this.user_id = reviews.getUser_id();\r\n            this.rating = reviews.getRating();\r\n            this.comment = reviews.getComment();\r\n            this.created_at = reviews.getCreated_at();\r\n            return this;\r\n        }\r\n\r\n        public Reviews build() {\r\n            return new Reviews(this);\r\n        }\r\n    }\r\n}\r\n\r\n
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
-diff --git a/src/main/java/za/ac/cput/domain/Reviews.java b/src/main/java/za/ac/cput/domain/Reviews.java
---- a/src/main/java/za/ac/cput/domain/Reviews.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
-+++ b/src/main/java/za/ac/cput/domain/Reviews.java	(date 1722365743454)
-@@ -13,6 +13,7 @@
-  * @date 23-Jul-24
-  */
- 
-+// reviews are under products
- 
- @Entity
- public class Reviews implements Serializable {
-Index: src/main/java/za/ac/cput/domain/Discounts.java
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
-<+>package za.ac.cput.domain;\r\n\r\nimport jakarta.persistence.*;\r\n\r\nimport java.io.Serializable;\r\nimport java.time.LocalDate;\r\n\r\n/**\r\n * Discounts.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 23-Jul-24\r\n */\r\n\r\n@Entity\r\npublic class Discounts implements Serializable {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long discount_id;\r\n    private String code;\r\n    private String description;\r\n    private double discount_percent;\r\n    private LocalDate start_date;\r\n    private LocalDate end_date;\r\n    private int max_uses;\r\n\r\n    public Discounts() {\r\n    }\r\n\r\n    public Discounts(Builder builder) {\r\n        this.discount_id = builder.discount_id;\r\n        this.code = builder.code;\r\n        this.description = builder.description;\r\n        this.discount_percent = builder.discount_percent;\r\n        this.start_date = builder.start_date;\r\n        this.end_date = builder.end_date;\r\n        this.max_uses = builder.max_uses;\r\n    }\r\n\r\n    public long getDiscount_id() {\r\n        return discount_id;\r\n    }\r\n\r\n    public String getCode() {\r\n        return code;\r\n    }\r\n\r\n    public String getDescription() {\r\n        return description;\r\n    }\r\n\r\n    public double getDiscount_percent() {\r\n        return discount_percent;\r\n    }\r\n\r\n    public LocalDate getStart_date() {\r\n        return start_date;\r\n    }\r\n\r\n    public LocalDate getEnd_date() {\r\n        return end_date;\r\n    }\r\n\r\n    public int getMax_uses() {\r\n        return max_uses;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (!(o instanceof Discounts discounts)) return false;\r\n\r\n        if (getDiscount_id() != discounts.getDiscount_id()) return false;\r\n        if (Double.compare(getDiscount_percent(), discounts.getDiscount_percent()) != 0) return false;\r\n        if (getMax_uses() != discounts.getMax_uses()) return false;\r\n        if (getCode() != null ? !getCode().equals(discounts.getCode()) : discounts.getCode() != null) return false;\r\n        if (getDescription() != null ? !getDescription().equals(discounts.getDescription()) : discounts.getDescription() != null)\r\n            return false;\r\n        if (getStart_date() != null ? !getStart_date().equals(discounts.getStart_date()) : discounts.getStart_date() != null)\r\n            return false;\r\n        return getEnd_date() != null ? getEnd_date().equals(discounts.getEnd_date()) : discounts.getEnd_date() == null;\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        int result;\r\n        long temp;\r\n        result = (int) (getDiscount_id() ^ (getDiscount_id() >>> 32));\r\n        result = 31 * result + (getCode() != null ? getCode().hashCode() : 0);\r\n        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);\r\n        temp = Double.doubleToLongBits(getDiscount_percent());\r\n        result = 31 * result + (int) (temp ^ (temp >>> 32));\r\n        result = 31 * result + (getStart_date() != null ? getStart_date().hashCode() : 0);\r\n        result = 31 * result + (getEnd_date() != null ? getEnd_date().hashCode() : 0);\r\n        result = 31 * result + getMax_uses();\r\n        return result;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Discounts{\" +\r\n                \"Discount ID: \" + discount_id +\r\n                \", CODE: '\" + code + '\\'' +\r\n                \", DESCRIPTION: '\" + description + '\\'' +\r\n                \", DISCOUNT PERCENT: \" + discount_percent +\r\n                \", START DATE: \" + start_date +\r\n                \", END DATE: \" + end_date +\r\n                \", MAX USES: \" + max_uses +\r\n                '}';\r\n    }\r\n\r\n    public static class Builder {\r\n        private long discount_id;\r\n        private String code;\r\n        private String description;\r\n        private double discount_percent;\r\n        private LocalDate start_date;\r\n        private LocalDate end_date;\r\n        private int max_uses;\r\n\r\n        public Builder setDiscount_id(long discount_id) {\r\n            this.discount_id = discount_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setCode(String code) {\r\n            this.code = code;\r\n            return this;\r\n        }\r\n\r\n        public Builder setDescription(String description) {\r\n            this.description = description;\r\n            return this;\r\n        }\r\n\r\n        public Builder setDiscount_percent(double discount_percent) {\r\n            this.discount_percent = discount_percent;\r\n            return this;\r\n        }\r\n\r\n        public Builder setStart_date(LocalDate start_date) {\r\n            this.start_date = start_date;\r\n            return this;\r\n        }\r\n\r\n        public Builder setEnd_date(LocalDate end_date) {\r\n            this.end_date = end_date;\r\n            return this;\r\n        }\r\n\r\n        public Builder setMax_uses(int max_uses) {\r\n            this.max_uses = max_uses;\r\n            return this;\r\n        }\r\n\r\n        public Builder copy(Discounts discounts) {\r\n            this.discount_id = discounts.getDiscount_id();\r\n            this.code = discounts.getCode();\r\n            this.description = discounts.getDescription();\r\n            this.discount_percent = discounts.getDiscount_percent();\r\n            this.start_date = discounts.getStart_date();\r\n            this.end_date = discounts.getEnd_date();\r\n            this.max_uses = discounts.getMax_uses();\r\n            return this;\r\n        }\r\n\r\n        public Discounts build() {\r\n            return new Discounts(this);\r\n        }\r\n    }\r\n}\r\n\r\n
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
-diff --git a/src/main/java/za/ac/cput/domain/Discounts.java b/src/main/java/za/ac/cput/domain/Discounts.java
---- a/src/main/java/za/ac/cput/domain/Discounts.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
-+++ b/src/main/java/za/ac/cput/domain/Discounts.java	(date 1722365411517)
-@@ -13,6 +13,7 @@
-  * @date 23-Jul-24
-  */
- 
-+// this is also not an entity its part of a product
- @Entity
- public class Discounts implements Serializable {
-     @Id
-Index: src/main/java/za/ac/cput/domain/Order_Items.java
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
-<+>package za.ac.cput.domain;\r\n\r\nimport jakarta.persistence.*;\r\nimport java.io.Serializable;\r\n\r\n/**\r\n * Order_Items.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 23-Jul-24\r\n */\r\n\r\n@Entity\r\npublic class Order_Items implements Serializable {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long order_item_id;\r\n    private long order_id;\r\n    private long product_id;\r\n    private int quantity;\r\n    private double price;\r\n\r\n    public Order_Items() {\r\n    }\r\n\r\n    public Order_Items(Builder builder) {\r\n        this.order_item_id = builder.order_item_id;\r\n        this.order_id = builder.order_id;\r\n        this.product_id = builder.product_id;\r\n        this.quantity = builder.quantity;\r\n        this.price = builder.price;\r\n    }\r\n\r\n    public long getOrder_item_id() {\r\n        return order_item_id;\r\n    }\r\n\r\n    public long getOrder_id() {\r\n        return order_id;\r\n    }\r\n\r\n    public long getProduct_id() {\r\n        return product_id;\r\n    }\r\n\r\n    public int getQuantity() {\r\n        return quantity;\r\n    }\r\n\r\n    public double getPrice() {\r\n        return price;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Order_Items{\" +\r\n                \"Order Item ID: \" + order_item_id +\r\n                \", ORDER ID: \" + order_id +\r\n                \", PRODUCT ID: \" + product_id +\r\n                \", QUANTITY: \" + quantity +\r\n                \", PRICE: \" + price +\r\n                '}';\r\n    }\r\n\r\n    public static class Builder {\r\n        private long order_item_id;\r\n        private long order_id;\r\n        private long product_id;\r\n        private int quantity;\r\n        private double price;\r\n\r\n        public Builder setOrder_item_id(long order_item_id) {\r\n            this.order_item_id = order_item_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setOrder_id(long order_id) {\r\n            this.order_id = order_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setProduct_id(long product_id) {\r\n            this.product_id = product_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setQuantity(int quantity) {\r\n            this.quantity = quantity;\r\n            return this;\r\n        }\r\n\r\n        public Builder setPrice(double price) {\r\n            this.price = price;\r\n            return this;\r\n        }\r\n\r\n        public Builder copy(Order_Items order_items) {\r\n            this.order_item_id = order_items.getOrder_item_id();\r\n            this.order_id = order_items.getOrder_id();\r\n            this.product_id = order_items.getProduct_id();\r\n            this.quantity = order_items.getQuantity();\r\n            this.price = order_items.getPrice();\r\n            return this;\r\n        }\r\n\r\n        public Order_Items build() {\r\n            return new Order_Items(this);\r\n        }\r\n    }\r\n}\r\n\r\n
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
-diff --git a/src/main/java/za/ac/cput/domain/Order_Items.java b/src/main/java/za/ac/cput/domain/Order_Items.java
---- a/src/main/java/za/ac/cput/domain/Order_Items.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
-+++ b/src/main/java/za/ac/cput/domain/Order_Items.java	(date 1722365411579)
-@@ -11,6 +11,8 @@
-  * @date 23-Jul-24
-  */
- 
-+// order items is under order
-+
- @Entity
- public class Order_Items implements Serializable {
-     @Id
 Index: .idea/workspace.xml
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
@@ -426,8 +144,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
 diff --git a/.idea/workspace.xml b/.idea/workspace.xml
---- a/.idea/workspace.xml	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
-+++ b/.idea/workspace.xml	(date 1723059575917)
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
 @@ -5,29 +5,22 @@
    </component>
    <component name="ChangeListManager">
@@ -725,89 +443,6 @@ diff --git a/.idea/workspace.xml b/.idea/workspace.xml
      </task>
      <task id="LOCAL-00001" summary="first">
        <option name="closed" value="true" />
-Index: src/main/java/za/ac/cput/domain/Cart_Items.java
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
-<+>package za.ac.cput.domain;\r\n\r\nimport jakarta.persistence.*;\r\n\r\nimport java.io.Serializable;\r\n\r\n/**\r\n * Cart_Items.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 23-Jul-24\r\n */\r\n\r\n\r\n@Entity\r\npublic class Cart_Items implements Serializable {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long cart_item_id;\r\n    private long cart_id;\r\n    private long product_id;\r\n    private int quantity;\r\n\r\n    public Cart_Items() {\r\n    }\r\n\r\n    public Cart_Items(Builder builder) {\r\n        this.cart_item_id = builder.cart_item_id;\r\n        this.cart_id = builder.cart_id;\r\n        this.product_id = builder.product_id;\r\n        this.quantity = builder.quantity;\r\n    }\r\n\r\n    public long getCart_item_id() {\r\n        return cart_item_id;\r\n    }\r\n\r\n    public long getCart_id() {\r\n        return cart_id;\r\n    }\r\n\r\n    public long getProduct_id() {\r\n        return product_id;\r\n    }\r\n\r\n    public int getQuantity() {\r\n        return quantity;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Cart_Items{\" +\r\n                \"Cart Item ID: \" + cart_item_id +\r\n                \", CART ID: \" + cart_id +\r\n                \", PRODUCT ID: \" + product_id +\r\n                \", QUANTITY: \" + quantity +\r\n                '}';\r\n    }\r\n\r\n    public static class Builder {\r\n        private long cart_item_id;\r\n        private long cart_id;\r\n        private long product_id;\r\n        private int quantity;\r\n\r\n        public Builder setCart_item_id(long cart_item_id) {\r\n            this.cart_item_id = cart_item_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setCart_id(long cart_id) {\r\n            this.cart_id = cart_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setProduct_id(long product_id) {\r\n            this.product_id = product_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setQuantity(int quantity) {\r\n            this.quantity = quantity;\r\n            return this;\r\n        }\r\n\r\n        public Builder copy(Cart_Items cart_items) {\r\n            this.cart_item_id = cart_items.getCart_item_id();\r\n            this.cart_id = cart_items.getCart_id();\r\n            this.product_id = cart_items.getProduct_id();\r\n            this.quantity = cart_items.getQuantity();\r\n            return this;\r\n        }\r\n\r\n        public Cart_Items build() {\r\n            return new Cart_Items(this);\r\n        }\r\n    }\r\n}\r\n\r\n
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
-diff --git a/src/main/java/za/ac/cput/domain/Cart_Items.java b/src/main/java/za/ac/cput/domain/Cart_Items.java
---- a/src/main/java/za/ac/cput/domain/Cart_Items.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
-+++ b/src/main/java/za/ac/cput/domain/Cart_Items.java	(date 1722365411610)
-@@ -12,7 +12,7 @@
-  * @date 23-Jul-24
-  */
- 
--
-+// cart items should be in cart
- @Entity
- public class Cart_Items implements Serializable {
-     @Id
-Index: src/main/java/za/ac/cput/domain/Wishlist_Items.java
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
-<+>package za.ac.cput.domain;\r\n\r\nimport jakarta.persistence.*;\r\n\r\nimport java.io.Serializable;\r\nimport java.time.LocalDate;\r\n\r\n/**\r\n * Wishlist_Items.java\r\n *\r\n * @author Rethabile Ntsekhe\r\n * Student Num: 220455430\r\n * @date 23-Jul-24\r\n */\r\n\r\n\r\n@Entity\r\npublic class Wishlist_Items implements Serializable {\r\n    @Id\r\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\r\n    private long wishlist_item_id;\r\n    private long wishlist_id;\r\n    private long product_id;\r\n    private LocalDate added_at;\r\n\r\n    public Wishlist_Items() {\r\n    }\r\n\r\n    public Wishlist_Items(Builder builder) {\r\n        this.wishlist_item_id = builder.wishlist_item_id;\r\n        this.wishlist_id = builder.wishlist_id;\r\n        this.product_id = builder.product_id;\r\n        this.added_at = builder.added_at;\r\n    }\r\n\r\n    public long getWishlist_item_id() {\r\n        return wishlist_item_id;\r\n    }\r\n\r\n    public long getWishlist_id() {\r\n        return wishlist_id;\r\n    }\r\n\r\n    public long getProduct_id() {\r\n        return product_id;\r\n    }\r\n\r\n    public LocalDate getAdded_at() {\r\n        return added_at;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (!(o instanceof Wishlist_Items that)) return false;\r\n\r\n        if (getWishlist_item_id() != that.getWishlist_item_id()) return false;\r\n        if (getWishlist_id() != that.getWishlist_id()) return false;\r\n        if (getProduct_id() != that.getProduct_id()) return false;\r\n        return getAdded_at() != null ? getAdded_at().equals(that.getAdded_at()) : that.getAdded_at() == null;\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        int result = (int) (getWishlist_item_id() ^ (getWishlist_item_id() >>> 32));\r\n        result = 31 * result + (int) (getWishlist_id() ^ (getWishlist_id() >>> 32));\r\n        result = 31 * result + (int) (getProduct_id() ^ (getProduct_id() >>> 32));\r\n        result = 31 * result + (getAdded_at() != null ? getAdded_at().hashCode() : 0);\r\n        return result;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Wishlist_Items{\" +\r\n                \"Wishlist Item ID: \" + wishlist_item_id +\r\n                \", WISHLIST ID: \" + wishlist_id +\r\n                \", PRODUCT ID: \" + product_id +\r\n                \", ADDED AT: \" + added_at +\r\n                '}';\r\n    }\r\n\r\n    public static class Builder {\r\n        private long wishlist_item_id;\r\n        private long wishlist_id;\r\n        private long product_id;\r\n        private LocalDate added_at;\r\n\r\n        public Builder setWishlist_item_id(long wishlist_item_id) {\r\n            this.wishlist_item_id = wishlist_item_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setWishlist_id(long wishlist_id) {\r\n            this.wishlist_id = wishlist_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setProduct_id(long product_id) {\r\n            this.product_id = product_id;\r\n            return this;\r\n        }\r\n\r\n        public Builder setAdded_at(LocalDate added_at) {\r\n            this.added_at = added_at;\r\n            return this;\r\n        }\r\n\r\n        public Builder copy(Wishlist_Items wishlist_items) {\r\n            this.wishlist_item_id = wishlist_items.getWishlist_item_id();\r\n            this.wishlist_id = wishlist_items.getWishlist_id();\r\n            this.product_id = wishlist_items.getProduct_id();\r\n            this.added_at = wishlist_items.getAdded_at();\r\n            return this;\r\n        }\r\n\r\n        public Wishlist_Items build() {\r\n            return new Wishlist_Items(this);\r\n        }\r\n    }\r\n}\r\n\r\n
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
-diff --git a/src/main/java/za/ac/cput/domain/Wishlist_Items.java b/src/main/java/za/ac/cput/domain/Wishlist_Items.java
---- a/src/main/java/za/ac/cput/domain/Wishlist_Items.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
-+++ b/src/main/java/za/ac/cput/domain/Wishlist_Items.java	(date 1722365411541)
-@@ -13,7 +13,7 @@
-  * @date 23-Jul-24
-  */
- 
--
-+// wishlist_items should fall under wishlist
- @Entity
- public class Wishlist_Items implements Serializable {
-     @Id
-Index: src/test/java/za/ac/cput/service/UserServiceTest.java
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
-<+>package za.ac.cput.service;\r\n\r\nimport org.junit.jupiter.api.BeforeEach;\r\nimport org.junit.jupiter.api.Test;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.boot.test.context.SpringBootTest;\r\nimport org.springframework.test.annotation.DirtiesContext;\r\nimport za.ac.cput.domain.Users;\r\nimport za.ac.cput.repository.UserRepository;\r\n\r\nimport java.time.LocalDate;\r\nimport java.util.List;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\n@SpringBootTest\r\n@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)\r\npublic class UserServiceTest {\r\n\r\n    @Autowired\r\n    private UserService userService;\r\n\r\n    @Autowired\r\n    private UserRepository userRepository;\r\n\r\n    private Users user;\r\n\r\n    @BeforeEach\r\n    void setUp() {\r\n        userRepository.deleteAll();\r\n\r\n        user = new Users.Builder()\r\n                .setUser_id(1L)\r\n                .setUsername(\"Twist11577\")\r\n                .setPassword(\"password\")\r\n                .setEmail(\"rethabile@gmail.com\")\r\n                .setFirst_name(\"Rethabile\")\r\n                .setLast_name(\"Ntsekhe\")\r\n                .setCreated_at(LocalDate.of(2024, 7, 24))\r\n                .setUpdated_at(LocalDate.of(2024, 8, 24))\r\n                .build();\r\n    }\r\n\r\n    @Test\r\n    void testCreate() {\r\n        Users createdUser = userService.create(user);\r\n        assertNotNull(createdUser);\r\n        assertEquals(user.getUsername(), createdUser.getUsername());\r\n    }\r\n\r\n    @Test\r\n    void testRead() {\r\n        Users createdUser = userService.create(user);\r\n        Users foundUser = userService.read(String.valueOf(createdUser.getUser_id()));\r\n        assertNotNull(foundUser);\r\n        assertEquals(user.getUsername(), foundUser.getUsername());\r\n    }\r\n\r\n    @Test\r\n    void testUpdate() {\r\n        Users createdUser = userService.create(user);\r\n        Users updatedUser = new Users.Builder()\r\n                .copy(createdUser)\r\n                .setUsername(\"Ntsekhe_1154\")\r\n                .build();\r\n        Users result = userService.update(updatedUser);\r\n        assertNotNull(result);\r\n        assertEquals(\"Ntsekhe_1154\", result.getUsername());\r\n    }\r\n\r\n    @Test\r\n    void testDelete() {\r\n        Users createdUser = userService.create(user);\r\n        userService.delete(String.valueOf(createdUser.getUser_id()));\r\n        Users foundUser = userService.read(String.valueOf(createdUser.getUser_id()));\r\n        assertNull(foundUser);\r\n    }\r\n\r\n    @Test\r\n    void testFindAll() {\r\n        userService.create(user);\r\n        List<Users> users = userService.findAll();\r\n        assertFalse(users.isEmpty());\r\n    }\r\n\r\n    @Test\r\n    void testFindByUsername() {\r\n        userService.create(user);\r\n        List<Users> users = userService.findByUsername(\"Twist11577\");\r\n        assertFalse(users.isEmpty());\r\n    }\r\n\r\n    @Test\r\n    void testFindByEmail() {\r\n        userService.create(user);\r\n        List<Users> users = userService.findByEmail(\"rethabile@gmail.com\");\r\n        assertFalse(users.isEmpty());\r\n    }\r\n\r\n    @Test\r\n    void testFindUsersByLastName() {\r\n        userService.create(user);\r\n        List<Users> users = userService.findByLastName(\"Ntsekhe\");\r\n        assertFalse(users.isEmpty());\r\n    }\r\n\r\n    @Test\r\n    void testFindUsersCreatedAfter() {\r\n        userService.create(user);\r\n        List<Users> users = userService.findUsersCreatedAfter(LocalDate.of(2024, 7, 1));\r\n        assertFalse(users.isEmpty());\r\n    }\r\n}\r\n
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
-diff --git a/src/test/java/za/ac/cput/service/UserServiceTest.java b/src/test/java/za/ac/cput/service/UserServiceTest.java
---- a/src/test/java/za/ac/cput/service/UserServiceTest.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
-+++ b/src/test/java/za/ac/cput/service/UserServiceTest.java	(date 1722807789582)
-@@ -5,6 +5,7 @@
- import org.springframework.beans.factory.annotation.Autowired;
- import org.springframework.boot.test.context.SpringBootTest;
- import org.springframework.test.annotation.DirtiesContext;
-+import za.ac.cput.domain.Addresses;
- import za.ac.cput.domain.Users;
- import za.ac.cput.repository.UserRepository;
- 
-@@ -29,6 +30,18 @@
-     void setUp() {
-         userRepository.deleteAll();
- 
-+        Addresses addresses = new Addresses.Builder()
-+                .setAddress_line1("123 Main St")
-+                .setAddress_line2("Suite 1")
-+                .setCity("Cape Town")
-+                .setProvince("Western Cape")
-+                .setPostal_code("8001")
-+                .setCountry("South Africa")
-+                .setCreated_at(LocalDate.of(2023, 7, 24))
-+                .setUpdated_at(LocalDate.of(2023, 8, 24))
-+                .build();
-+
-+
-         user = new Users.Builder()
-                 .setUser_id(1L)
-                 .setUsername("Twist11577")
-@@ -38,6 +51,7 @@
-                 .setLast_name("Ntsekhe")
-                 .setCreated_at(LocalDate.of(2024, 7, 24))
-                 .setUpdated_at(LocalDate.of(2024, 8, 24))
-+                .setAddresses(addresses)
-                 .build();
-     }
- 
 Index: src/test/java/za/ac/cput/factory/ProductFactoryTest.java
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
@@ -816,8 +451,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
 diff --git a/src/test/java/za/ac/cput/factory/ProductFactoryTest.java b/src/test/java/za/ac/cput/factory/ProductFactoryTest.java
---- a/src/test/java/za/ac/cput/factory/ProductFactoryTest.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
-+++ b/src/test/java/za/ac/cput/factory/ProductFactoryTest.java	(date 1722785030781)
+--- a/src/test/java/za/ac/cput/factory/ProductFactoryTest.java	
++++ b/src/test/java/za/ac/cput/factory/ProductFactoryTest.java	
 @@ -1,12 +1,70 @@
  package za.ac.cput.factory;
  
@@ -892,84 +527,6 @@ diff --git a/src/test/java/za/ac/cput/factory/ProductFactoryTest.java b/src/test
 +        assertNull(product);
 +    }
 +}
-Index: src/test/java/za/ac/cput/factory/UserfactoryTest.java
-IDEA additional info:
-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
-<+>package za.ac.cput.factory;\r\n\r\nimport org.junit.jupiter.api.Test;\r\nimport za.ac.cput.domain.Users;\r\n\r\nimport java.time.LocalDate;\r\n\r\nimport static org.junit.jupiter.api.Assertions.*;\r\n\r\nclass UserfactoryTest {\r\n\r\n    @Test\r\n    void buildUser_Success() {\r\n        long user_id = 1;\r\n        String username = \"Twist11577\";\r\n        String password = \"password\";\r\n        String email = \"rethabile@gmail.com\";\r\n        String first_name = \"Rethabile\";\r\n        String last_name = \"Ntsekhe\";\r\n        LocalDate created_at = LocalDate.of(2023, 7, 24);\r\n        LocalDate updated_at = LocalDate.of(2023, 8, 24);\r\n\r\n        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);\r\n\r\n        assertNotNull(user);\r\n        assertEquals(username, user.getUsername());\r\n        assertEquals(password, user.getPassword());\r\n        assertEquals(email, user.getEmail());\r\n        assertEquals(first_name, user.getFirst_name());\r\n        assertEquals(last_name, user.getLast_name());\r\n        assertEquals(created_at, user.getCreated_at());\r\n        assertEquals(updated_at, user.getUpdated_at());\r\n    }\r\n\r\n    @Test\r\n    void buildUser_Failure_NullFields() {\r\n        long user_id = 1;\r\n        String username = null;\r\n        String password = \"password\";\r\n        String email = \"rethabile@gmail.com\";\r\n        String first_name = \"Rethabile\";\r\n        String last_name = \"Twist\";\r\n        LocalDate created_at = LocalDate.of(2024, 7, 24);\r\n        LocalDate updated_at = LocalDate.of(2024, 8, 24);\r\n\r\n        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);\r\n\r\n        assertNull(user);\r\n    }\r\n\r\n    @Test\r\n    void buildUser_Failure_InvalidEmail() {\r\n        long user_id = 1;\r\n        String username = \"Twist11577\";\r\n        String password = \"password123\";\r\n        String email = \"rethabile.gmail.com\";\r\n        String first_name = \"Rethabile\";\r\n        String last_name = \"Twist\";\r\n        LocalDate created_at = LocalDate.of(2023, 7, 24);\r\n        LocalDate updated_at = LocalDate.of(2023, 8, 24);\r\n\r\n        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);\r\n\r\n        assertNull(user);\r\n    }\r\n}\r\n
-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
-<+>UTF-8
-===================================================================
-diff --git a/src/test/java/za/ac/cput/factory/UserfactoryTest.java b/src/test/java/za/ac/cput/factory/UserfactoryTest.java
---- a/src/test/java/za/ac/cput/factory/UserfactoryTest.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
-+++ b/src/test/java/za/ac/cput/factory/UserfactoryTest.java	(date 1722807160192)
-@@ -1,6 +1,7 @@
- package za.ac.cput.factory;
- 
- import org.junit.jupiter.api.Test;
-+import za.ac.cput.domain.Addresses;
- import za.ac.cput.domain.Users;
- 
- import java.time.LocalDate;
-@@ -19,8 +20,17 @@
-         String last_name = "Ntsekhe";
-         LocalDate created_at = LocalDate.of(2023, 7, 24);
-         LocalDate updated_at = LocalDate.of(2023, 8, 24);
--
--        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);
-+        Addresses addresses = new Addresses.Builder()
-+                .setAddress_line1("123 Main St")
-+                .setAddress_line2("Suite 1")
-+                .setCity("Cape Town")
-+                .setProvince("Western Cape")
-+                .setPostal_code("8001")
-+                .setCountry("South Africa")
-+                .setCreated_at(LocalDate.of(2023, 7, 24))
-+                .setUpdated_at(LocalDate.of(2023, 8, 24))
-+                .build();
-+        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at, addresses);
- 
-         assertNotNull(user);
-         assertEquals(username, user.getUsername());
-@@ -42,8 +52,17 @@
-         String last_name = "Twist";
-         LocalDate created_at = LocalDate.of(2024, 7, 24);
-         LocalDate updated_at = LocalDate.of(2024, 8, 24);
--
--        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);
-+        Addresses addresses = new Addresses.Builder()
-+                .setAddress_line1("123 Main St")
-+                .setAddress_line2("Suite 1")
-+                .setCity("Cape Town")
-+                .setProvince("Western Cape")
-+                .setPostal_code("8001")
-+                .setCountry("South Africa")
-+                .setCreated_at(LocalDate.of(2023, 7, 24))
-+                .setUpdated_at(LocalDate.of(2023, 8, 24))
-+                .build();
-+        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at, addresses);
- 
-         assertNull(user);
-     }
-@@ -58,8 +77,17 @@
-         String last_name = "Twist";
-         LocalDate created_at = LocalDate.of(2023, 7, 24);
-         LocalDate updated_at = LocalDate.of(2023, 8, 24);
--
--        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);
-+        Addresses addresses = new Addresses.Builder()
-+                .setAddress_line1("123 Main St")
-+                .setAddress_line2("Suite 1")
-+                .setCity("Cape Town")
-+                .setProvince("Western Cape")
-+                .setPostal_code("8001")
-+                .setCountry("South Africa")
-+                .setCreated_at(LocalDate.of(2023, 7, 24))
-+                .setUpdated_at(LocalDate.of(2023, 8, 24))
-+                .build();
-+        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at, addresses);
- 
-         assertNull(user);
-     }
 Index: src/test/java/za/ac/cput/controller/ProductControllerTest.java
 IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
@@ -978,8 +535,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
 diff --git a/src/test/java/za/ac/cput/controller/ProductControllerTest.java b/src/test/java/za/ac/cput/controller/ProductControllerTest.java
---- a/src/test/java/za/ac/cput/controller/ProductControllerTest.java	(revision b7c9b0a9427648dbc538ee4df16baae666e45321)
-+++ b/src/test/java/za/ac/cput/controller/ProductControllerTest.java	(date 1722785512448)
+--- a/src/test/java/za/ac/cput/controller/ProductControllerTest.java	
++++ b/src/test/java/za/ac/cput/controller/ProductControllerTest.java	
 @@ -1,52 +1,226 @@
  package za.ac.cput.controller;
  
@@ -1202,21 +759,4 @@ diff --git a/src/test/java/za/ac/cput/controller/ProductControllerTest.java b/sr
 +        ResponseEntity<List<Products>> response = productController.getProductsCreatedAfter(LocalDate.of(2024, 7, 1));
 +
 +        assertNotNull(response);
-+        assertEquals(HttpStatus.OK, response.getStatusCode());
-+        assertEquals(products, response.getBody());
-+        verify(productService, times(1)).findByCreatedAtAfter(LocalDate.of(2024, 7, 1));
-+    }
-+
-+    @Test
-+    void testGetProductsUpdatedBefore() {
-+        List<Products> products = Arrays.asList(product);
-+        when(productService.findByUpdatedAtBefore(any(LocalDate.class))).thenReturn(products);
-+
-+        ResponseEntity<List<Products>> response = productController.getProductsUpdatedBefore(LocalDate.of(2024, 8, 1));
-+
-+        assertNotNull(response);
-+        assertEquals(HttpStatus.OK, response.getStatusCode());
-+        assertEquals(products, response.getBody());
-+        verify(productService, times(1)).findByUpdatedAtBefore(LocalDate.of(2024, 8, 1));
-+    }
-+}
++        assertEquals(HttpStatus.OK, resp
