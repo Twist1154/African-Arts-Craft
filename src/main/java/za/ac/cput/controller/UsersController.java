@@ -46,7 +46,7 @@ public class UsersController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Users> updateUser(@PathVariable("id") long id, @RequestBody Users user) {
         Users existingUser = userService.read(String.valueOf(id));
         if (existingUser != null) {

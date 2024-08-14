@@ -4,12 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import za.ac.cput.domain.Products;
 import za.ac.cput.service.IProductService;
-import za.ac.cput.service.ProductService;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -20,7 +17,6 @@ import java.util.List;
  * Student Num: 220455430
  * @date 26-Jul-24
  */
-
 @RestController
 @RequestMapping("/product")
 @CrossOrigin(origins = "*")
@@ -50,9 +46,9 @@ public class ProductController {
 
 
     /**
-     * Endpoint: http://localhost:8080/store/product/getid/{id}
+     * Endpoint: http://localhost:8080/store/product/{id}
      */
-    @GetMapping("/getid/{id}")
+    @GetMapping("/id/{id}")
     public ResponseEntity<Products> getProductById(@PathVariable Long id) {
         Products product = productService.read(id);
         if (product != null) {
@@ -69,10 +65,10 @@ public class ProductController {
     public ResponseEntity<Products> updateProduct(@PathVariable Long id, @RequestBody Products product) {
         Products existingProduct = productService.read(id);
         if (existingProduct != null) {
-            //update the fields that can be changed
+            // Update the fields that can be changed
             Products updatedProduct = new Products.Builder()
                     .copy(existingProduct)
-                    .setName(product.getName()) //update fields
+                    .setName(product.getName()) // Update fields
                     .setDescription(product.getDescription())
                     .setPrice(product.getPrice())
                     .setStockQuantity(product.getStockQuantity())
@@ -157,9 +153,6 @@ public class ProductController {
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
-    /**
-     * Endpoint: http://localhost:8080/store/product/updated-before
-     */
     @GetMapping("/updated-before")
     public ResponseEntity<List<Products>> getProductsUpdatedBefore(@RequestParam LocalDate updatedAt) {
         List<Products> products = productService.findByUpdatedAtBefore(updatedAt);

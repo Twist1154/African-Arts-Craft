@@ -30,8 +30,8 @@ class ProductServiceTest {
                 .setPrice(10.99)
                 .setStockQuantity(10)
                 .setCategoryId(1)
-                .setCreatedAt(LocalDate.now())
-                .setUpdatedAt(LocalDate.now())
+                .setCreatedAt(LocalDate.now().atStartOfDay())
+                .setUpdatedAt(LocalDate.now().atStartOfDay())
                 .setImagePath("path/to/image.jpg")
                 .build();
     }
@@ -107,7 +107,7 @@ class ProductServiceTest {
         productService.create(product);
         List<Products> products = productService.findByCreatedAtAfter(LocalDate.now().minusDays(1));
         assertFalse(products.isEmpty());
-        assertTrue(products.get(0).getCreatedAt().isAfter(LocalDate.now().minusDays(1)));
+        assertTrue(products.get(0).getCreatedAt().isAfter(LocalDate.now().minusDays(1).atStartOfDay()));
     }
 
     @Test
@@ -115,6 +115,6 @@ class ProductServiceTest {
         productService.create(product);
         List<Products> products = productService.findByUpdatedAtBefore(LocalDate.now().plusDays(1));
         assertFalse(products.isEmpty());
-        assertTrue(products.get(0).getUpdatedAt().isBefore(LocalDate.now().plusDays(1)));
+        assertTrue(products.get(0).getUpdatedAt().isBefore(LocalDate.now().plusDays(1).atStartOfDay()));
     }
 }

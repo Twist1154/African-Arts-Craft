@@ -29,7 +29,9 @@ public class Products implements Serializable {
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
     private String imagePath;
+
 
     public Products() {
     }
