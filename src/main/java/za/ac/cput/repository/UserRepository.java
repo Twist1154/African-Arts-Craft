@@ -37,4 +37,6 @@ public interface UserRepository extends JpaRepository<Users, String> {
 
     @Query(value = "SELECT * FROM users u WHERE u.created_at >= :createdAt", nativeQuery = true)
     List<Users> findUsersCreatedAfter(@Param("createdAt") LocalDate createdAt);
+
+    Users findByEmailAndPassword(String email, String password);
 }

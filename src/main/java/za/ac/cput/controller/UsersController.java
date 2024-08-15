@@ -20,7 +20,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/users")
 public class UsersController {
 
     private final UserService userService;
@@ -30,7 +30,7 @@ public class UsersController {
         this.userService = userService;
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Users> createUser(@RequestBody Users user) {
         Users createdUser = userService.create(user);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
@@ -46,7 +46,7 @@ public class UsersController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<Users> updateUser(@PathVariable("id") long id, @RequestBody Users user) {
         Users existingUser = userService.read(String.valueOf(id));
         if (existingUser != null) {
@@ -113,5 +113,15 @@ public class UsersController {
         }
         List<Users> users = userService.findUsersCreatedAfter(date);
         return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @PostMapping("/validate")
+    public ResponseEntity<String> validateUser(@RequestParam String email, @RequestParam String password) {
+        boolean isValid = userService.validateUser(email, password);
+        if (isValid) {
+            return ResponseEntity.ok("User is valid");
+        } else {
+            return ResponseEntity.status(401).body("Invalid email or password");
+        }
     }
 }

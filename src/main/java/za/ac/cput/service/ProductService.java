@@ -16,7 +16,6 @@ import java.util.Optional;
  * Student Num: 220455430
  * @date 26-Jul-24
  */
-
 @Service
 public class ProductService implements IProductService {
     private final ProductRepository productRepository;
@@ -46,7 +45,6 @@ public class ProductService implements IProductService {
     public List<Products> findAll() {
         return productRepository.findAll();
     }
-
 
     @Override
     public void delete(long id) {

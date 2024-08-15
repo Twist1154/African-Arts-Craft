@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * Cart.java
+ * CartController.java
  *
  * @author Rethabile Ntsekhe
  * Student Num: 220455430
@@ -17,8 +17,8 @@ import java.time.LocalDate;
 public class Cart implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long cart_id;
-    private long user_id;
+    private long cartId;
+    private long userId;
     private LocalDate created_at;
     private LocalDate updated_at;
 
@@ -26,18 +26,18 @@ public class Cart implements Serializable {
     }
 
     public Cart(Builder builder) {
-        this.cart_id = builder.cart_id;
-        this.user_id = builder.user_id;
+        this.cartId = builder.cartId;
+        this.userId = builder.userId;
         this.created_at = builder.created_at;
         this.updated_at = builder.updated_at;
     }
 
     public long getCart_id() {
-        return cart_id;
+        return cartId;
     }
 
     public long getUser_id() {
-        return user_id;
+        return userId;
     }
 
     public LocalDate getCreated_at() {
@@ -47,6 +47,7 @@ public class Cart implements Serializable {
     public LocalDate getUpdated_at() {
         return updated_at;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -72,26 +73,26 @@ public class Cart implements Serializable {
     @Override
     public String toString() {
         return "Cart{" +
-                "Cart ID: " + cart_id +
-                ", USER ID: " + user_id +
+                "Cart ID: " + cartId +
+                ", USER ID: " + userId +
                 ", CREATED AT: " + created_at +
                 ", UPDATED AT: " + updated_at +
                 '}';
     }
 
     public static class Builder {
-        private long cart_id;
-        private long user_id;
+        private long cartId;
+        private long userId;
         private LocalDate created_at;
         private LocalDate updated_at;
 
         public Builder setCart_id(long cart_id) {
-            this.cart_id = cart_id;
+            this.cartId = cart_id;
             return this;
         }
 
         public Builder setUser_id(long user_id) {
-            this.user_id = user_id;
+            this.userId = user_id;
             return this;
         }
 
@@ -106,8 +107,8 @@ public class Cart implements Serializable {
         }
 
         public Builder copy(Cart cart) {
-            this.cart_id = cart.getCart_id();
-            this.user_id = cart.getUser_id();
+            this.cartId = cart.getCart_id();
+            this.userId = cart.getUser_id();
             this.created_at = cart.getCreated_at();
             this.updated_at = cart.getUpdated_at();
             return this;
