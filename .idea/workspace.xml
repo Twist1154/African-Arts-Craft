@@ -5,7 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2dfc9b97-bcf6-48f1-9f27-38897c268d23" name="Changes" comment="update project DStructure&#10;domain Customer.java Done&#10;factory CustomerFactory.java and tests done&#10;Service CustomerService.java and tests done&#10;Controllers CustomerController.java and tests still to be modified">
+      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/OrderItemsRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/OrderRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/IOrderItemsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/IOrderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/OrderItemsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/OrderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/service/OrderItemsServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/service/OrderServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Order_Items.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Order_Items.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Orders.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Orders.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/CustomerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/CustomerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/OrderFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/OrderFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/OrderItemFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/OrderItemFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/CustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/ICustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/controller/ProductControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/controller/ProductControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/factory/CustomerFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/factory/CustomerFactoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/service/CartItemServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/service/CartItemServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/service/CustomerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/service/CustomerServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/application-test.properties" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,12 +68,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SIGN_OFF_COMMIT" value="true" />
-    <option name="UPDATE_TYPE" value="REBASE" />
-  </component>
-  <component name="JavaAutoRunManager">
-    <enabled-run-configurations>
-      <run-configuration type="JUnit" name="ProductControllerTest" />
-    </enabled-run-configurations>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -102,6 +120,7 @@
     "JUnit.CategoriesServiceTest.executor": "Run",
     "JUnit.CustomerFactoryTest.executor": "Run",
     "JUnit.CustomerServiceTest.create.executor": "Run",
+    "JUnit.CustomerServiceTest.executor": "Run",
     "JUnit.ProductControllerTest.executor": "Run",
     "JUnit.ProductControllerTest.getProductsUpdatedBefore.executor": "Run",
     "JUnit.ProductServiceTest.create.executor": "Run",
@@ -161,21 +180,15 @@
       <recent name="C:\Users\retha\Documents\JetBrains Academy\African Art Craft\src\main\resources\static" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="za.ac.cput.controller" />
       <recent name="za.ac.cput.service" />
+      <recent name="za.ac.cput.controller" />
       <recent name="za.ac.cput.factory" />
     </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CustomerFactoryTest">
-    <configuration name="generated-requests | #26" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="26" requestIdentifier="#26" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="generated-requests | #27" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="27" requestIdentifier="#27" runType="Run single request">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="JUnit.CustomerServiceTest">
     <configuration name="CustomerFactoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="African-Arts-Craft" />
       <extension name="coverage">
@@ -191,7 +204,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CustomerServiceTest.create" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CustomerServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="African-Arts-Craft" />
       <extension name="coverage">
         <pattern>
@@ -201,8 +214,22 @@
       </extension>
       <option name="PACKAGE_NAME" value="za.ac.cput.service" />
       <option name="MAIN_CLASS_NAME" value="za.ac.cput.service.CustomerServiceTest" />
-      <option name="METHOD_NAME" value="create" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="African-Arts-Craft" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="za.ac.cput.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="za.ac.cput.service" />
+      <option name="MAIN_CLASS_NAME" value="za.ac.cput.service.UserServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -236,13 +263,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="African-Arts-Craft" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="za.ac.cput.Application" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="za.ac.cput.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CustomerServiceTest" />
+        <item itemvalue="JUnit.UserServiceTest" />
+        <item itemvalue="Spring Boot.Application" />
         <item itemvalue="JUnit.CustomerFactoryTest" />
         <item itemvalue="JUnit.UserServiceTest.testCreate" />
-        <item itemvalue="JUnit.CustomerServiceTest.create" />
-        <item itemvalue="HTTP Request.generated-requests | #27" />
-        <item itemvalue="HTTP Request.generated-requests | #26" />
       </list>
     </recent_temporary>
   </component>
@@ -250,7 +290,6 @@
     <attachedChunks>
       <set>
         <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
-        <option value="jdk-17.0.9-jbr-17.0.9-4caba194b151-51f1b679" />
         <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
@@ -278,6 +317,10 @@
       <workItem from="1722431833505" duration="13118000" />
       <workItem from="1722851475000" duration="21583000" />
       <workItem from="1722934156461" duration="604000" />
+      <workItem from="1723934706184" duration="313000" />
+      <workItem from="1724002075315" duration="599000" />
+      <workItem from="1724003040264" duration="329000" />
+      <workItem from="1724004620471" duration="15575000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <option name="closed" value="true" />
@@ -616,6 +659,11 @@
           <properties class="org.springframework.beans.factory.BeanCreationException" package="org.springframework.beans.factory" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/za/ac/cput/Application.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint log-message="true" log-stack="true" type="java-exception" />
