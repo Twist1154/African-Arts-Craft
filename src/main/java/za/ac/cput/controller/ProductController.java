@@ -48,7 +48,7 @@ public class ProductController {
     /**
      * Endpoint: http://localhost:8080/store/product/{id}
      */
-    @GetMapping("/id/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<Products> getProductById(@PathVariable Long id) {
         Products product = productService.read(id);
         if (product != null) {
@@ -158,4 +158,5 @@ public class ProductController {
         List<Products> products = productService.findByUpdatedAtBefore(updatedAt);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
+
 }

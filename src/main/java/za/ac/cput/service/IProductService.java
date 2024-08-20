@@ -14,11 +14,11 @@ import java.util.List;
  */
 
 public interface IProductService extends IService<Products, Long> {
-    void delete(long id);
+    void delete(Long id);
 
     List<Products> findByName(String name);
 
-    List<Products> findByCategoryId(long categoryId);
+    List<Products> findByCategoryId(Long categoryId);
 
     List<Products> findByPriceBetween(double minPrice, double maxPrice);
 
@@ -27,4 +27,5 @@ public interface IProductService extends IService<Products, Long> {
     List<Products> findByCreatedAtAfter(LocalDate createdAt);
 
     List<Products> findByUpdatedAtBefore(LocalDate updatedAt);
+
 }

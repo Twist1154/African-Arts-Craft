@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 
 public class ProductFactory {
 
-    public static Products buildProduct(long productId, String name, String description,
-                                        double price, int stockQuantity, long categoryId,
+    public static Products buildProduct(Long productId, String name, String description,
+                                        double price, int stockQuantity, Long categoryId,
                                         LocalDateTime createdAt, LocalDateTime updatedAt, String imagePath) {
         if (Helper.isNullOrEmpty(name) ||
                 Helper.isNullOrEmpty(description) ||

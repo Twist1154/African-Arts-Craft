@@ -15,7 +15,7 @@ import jakarta.persistence.*;
 public class Categories implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long category_id;
+    private Long categoryId;
     private String name;
     private String description;
 
@@ -23,13 +23,13 @@ public class Categories implements Serializable {
     }
 
     public Categories(Builder builder) {
-        this.category_id = builder.category_id;
+        this.categoryId = builder.categoryId;
         this.name = builder.name;
         this.description = builder.description;
     }
 
-    public long getCategory_id() {
-        return category_id;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
     public String getName() {
@@ -44,19 +44,19 @@ public class Categories implements Serializable {
     @Override
     public String toString() {
         return "Categories{" +
-                "Category ID: " + category_id +
+                "Category ID: " + categoryId +
                 ", NAME: '" + name + '\'' +
                 ", DESCRIPTION: '" + description + '\'' +
                 '}';
     }
 
     public static class Builder {
-        private long category_id;
+        private Long categoryId;
         private String name;
         private String description;
 
-        public Builder setCategory_id(long category_id) {
-            this.category_id = category_id;
+        public Builder setCategoryId(Long categoryId) {
+            this.categoryId = categoryId;
             return this;
         }
 
@@ -71,7 +71,7 @@ public class Categories implements Serializable {
         }
 
         public Builder copy(Categories categories) {
-            this.category_id = categories.getCategory_id();
+            this.categoryId = categories.getCategoryId();
             this.name = categories.getName();
             this.description = categories.getDescription();
             return this;

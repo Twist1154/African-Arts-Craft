@@ -1,7 +1,5 @@
 package za.ac.cput.util;
 
-import za.ac.cput.domain.Orders;
-
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -26,7 +24,7 @@ public class Helper {
         return i == null;
     }
 
-    public static boolean isNullOrEmpty(List<Orders> s) {
+    public static boolean isNullOrEmpty(List<Object> s) {
         return s == null || s.isEmpty();
     }
 

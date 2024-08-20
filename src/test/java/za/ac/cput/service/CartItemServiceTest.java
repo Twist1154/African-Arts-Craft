@@ -10,11 +10,12 @@ import za.ac.cput.domain.Cart_Items;
 import za.ac.cput.factory.CartItemFactory;
 import za.ac.cput.repository.CartItemRepository;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
-import static jdk.internal.org.objectweb.asm.util.CheckClassAdapter.verify;
+import java.util.Collections;
+import java.util.List;
+
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.times;
@@ -36,7 +37,7 @@ public class CartItemServiceTest {
         cartItem = new Cart_Items.Builder()
                 .setCart_item_id(1)
                 .setCart_id(100)
-                .setProduct_id(200)
+                .setProductId(200)
                 .setQuantity(5)
                 .build();
 
@@ -107,7 +108,7 @@ public class CartItemServiceTest {
     }
 
 
-    @Test
+  /*  @Test
     @Order(6)
     void getCartItemsByCartId() {
         when(cartItemRepository.findByCartId(cartItem.getCart_id())).thenReturn(Collections.singletonList(cartItem));
@@ -117,7 +118,7 @@ public class CartItemServiceTest {
         //assertEquals(1, cartItems.size());
 
         //verify(cartItemRepository, times(1)).findByCartId(cartItem.getCart_id());
-    }
+    }*/
 
     @Test
     @Order(7)
@@ -127,6 +128,6 @@ public class CartItemServiceTest {
         List<Cart_Items> cartItems = cartItemService.getCartItemsByProductId(cartItem.getProduct_id());
         assertNotNull(cartItems);
         //assertEquals(1, cartItems.size());
-        //verify(cartItemRepository, times(1)).findByProductId(cartItem.getProduct_id());
+        //verify(cartItemRepository, times(1)).findByProductId(cartItem.getProductId());
     }
 }

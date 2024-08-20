@@ -9,6 +9,7 @@ import org.springframework.http.*;
 import za.ac.cput.domain.Products;
 
 import java.time.LocalDate;
+import java.time.chrono.ChronoLocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,14 +25,14 @@ class ProductControllerTest {
     @BeforeEach
     void setUp() {
         product = new Products.Builder()
-                .setProductId(28)
+                .setProductId(28L)
                 .setName("African head")
                 .setDescription("This is a test product")
                 .setPrice(10.99)
                 .setStockQuantity(10)
-                .setCategoryId(1)
-                .setCreatedAt(LocalDate.now())
-                .setUpdatedAt(LocalDate.now())
+                .setCategoryId(1L)
+                .setCreatedAt(LocalDate.now().atStartOfDay())
+                .setUpdatedAt(LocalDate.now().atStartOfDay())
                 .setImagePath("path/to/image.jpg")
                 .build();
     }
@@ -123,7 +124,7 @@ class ProductControllerTest {
         ResponseEntity<Products[]> response = restTemplate.getForEntity("/store/api/products/created-after?createdAt=" + LocalDate.now().minusDays(1), Products[].class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertTrue(response.getBody()[0].getCreatedAt().isAfter(LocalDate.now().minusDays(1)));
+        assertTrue(response.getBody()[0].getCreatedAt().isAfter(LocalDate.now().minusDays(1).atStartOfDay()));
     }
 
     @Test
@@ -132,6 +133,6 @@ class ProductControllerTest {
         ResponseEntity<Products[]> response = restTemplate.getForEntity("/store/api/products/updated-before?updatedAt=" + LocalDate.now(), Products[].class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
-        assertTrue(response.getBody()[0].getUpdatedAt().isBefore(LocalDate.now().plusDays(1)));
+        assertTrue(response.getBody()[0].getUpdatedAt().isBefore(ChronoLocalDateTime.from(LocalDate.now().plusDays(1))));
     }
 }

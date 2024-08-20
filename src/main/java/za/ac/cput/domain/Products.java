@@ -19,12 +19,12 @@ import java.time.LocalDateTime;
 public class Products implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long productId;
+    private Long productId;
     private String name;
     private String description;
     private double price;
     private int stockQuantity;
-    private long categoryId;
+    private Long categoryId;
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
@@ -48,7 +48,7 @@ public class Products implements Serializable {
         this.imagePath = builder.imagePath;
     }
 
-    public long getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
@@ -68,7 +68,7 @@ public class Products implements Serializable {
         return stockQuantity;
     }
 
-    public long getCategoryId() {
+    public Long getCategoryId() {
         return categoryId;
     }
 
@@ -136,17 +136,17 @@ public class Products implements Serializable {
     }
 
     public static class Builder {
-        private long productId;
+        private Long productId;
         private String name;
         private String description;
         private double price;
         private int stockQuantity;
-        private long categoryId;
+        private Long categoryId;
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
         private String imagePath;
 
-        public Builder setProductId(long productId) {
+        public Builder setProductId(Long productId) {
             this.productId = productId;
             return this;
         }
@@ -171,7 +171,7 @@ public class Products implements Serializable {
             return this;
         }
 
-        public Builder setCategoryId(long categoryId) {
+        public Builder setCategoryId(Long categoryId) {
             this.categoryId = categoryId;
             return this;
         }

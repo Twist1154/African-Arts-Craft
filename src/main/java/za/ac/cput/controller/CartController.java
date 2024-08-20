@@ -20,7 +20,7 @@ CartItemsController Class
  */
 
 @RestController
-@RequestMapping("/api/carts")
+@RequestMapping("/carts")
 public class CartController {
 
     private final CartService cartService;
@@ -34,11 +34,18 @@ public class CartController {
 
     // Cart Endpoints
 
-    @PostMapping  //Will create a new cart
+    @PostMapping("/create")
     public ResponseEntity<Cart> createCart(@RequestBody Cart cart) {
-        Cart createdCart = cartService.create(cart);
-        return new ResponseEntity<>(createdCart, HttpStatus.CREATED);
+        System.out.println("Received cart: " + cart);
+        try {
+            Cart createdCart = cartService.create(cart);
+            return new ResponseEntity<>(createdCart, HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
 
     @GetMapping("/{userId}") //Made to retreive cart for a user
     public ResponseEntity<List<Cart>> getCartsByUserId(@PathVariable Long userId) {

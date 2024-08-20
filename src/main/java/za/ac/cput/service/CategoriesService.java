@@ -37,7 +37,7 @@ public class CategoriesService implements ICategoriesService {
 
     @Override
     public Categories update(Categories category) {
-        if (this.categoriesRepository.existsById(category.getCategory_id()))
+        if (this.categoriesRepository.existsById(category.getCategoryId()))
             return categoriesRepository.save(category);
         return null;
     }

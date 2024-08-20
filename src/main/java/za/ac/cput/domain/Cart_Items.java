@@ -48,7 +48,6 @@ public class Cart_Items implements Serializable {
     }
 
     public int getQuantity() {
-
         return quantity;
     }
 
@@ -114,4 +113,3 @@ public class Cart_Items implements Serializable {
         }
     }
 }
-
