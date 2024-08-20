@@ -15,7 +15,7 @@ import java.time.LocalDate;
 
 
 @Entity
-public class Reviews implements Serializable {
+public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long review_id;
@@ -25,10 +25,10 @@ public class Reviews implements Serializable {
     private String comment;
     private LocalDate created_at;
 
-    public Reviews() {
+    public Review() {
     }
 
-    public Reviews(Builder builder) {
+    public Review(Builder builder) {
         this.review_id = builder.review_id;
         this.product_id = builder.product_id;
         this.user_id = builder.user_id;
@@ -64,7 +64,7 @@ public class Reviews implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Reviews reviews)) return false;
+        if (!(o instanceof Review reviews)) return false;
 
         if (getReview_id() != reviews.getReview_id()) return false;
         if (getProduct_id() != reviews.getProduct_id()) return false;
@@ -136,7 +136,7 @@ public class Reviews implements Serializable {
             return this;
         }
 
-        public Builder copy(Reviews reviews) {
+        public Builder copy(Review reviews) {
             this.review_id = reviews.getReview_id();
             this.product_id = reviews.getProduct_id();
             this.user_id = reviews.getUser_id();
@@ -146,8 +146,8 @@ public class Reviews implements Serializable {
             return this;
         }
 
-        public Reviews build() {
-            return new Reviews(this);
+        public Review build() {
+            return new Review(this);
         }
     }
 }
