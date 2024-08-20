@@ -47,7 +47,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         productRepository.deleteById(id);
     }
 
@@ -57,7 +57,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Products> findByCategoryId(long categoryId) {
+    public List<Products> findByCategoryId(Long categoryId) {
         return productRepository.findByCategoryId(categoryId);
     }
 
@@ -80,4 +80,5 @@ public class ProductService implements IProductService {
     public List<Products> findByUpdatedAtBefore(LocalDate updatedAt) {
         return productRepository.findByUpdatedAtBefore(updatedAt);
     }
+
 }

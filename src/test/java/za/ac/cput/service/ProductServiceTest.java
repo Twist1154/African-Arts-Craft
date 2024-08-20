@@ -24,12 +24,12 @@ class ProductServiceTest {
     @BeforeEach
     void setUp() {
         product = new Products.Builder()
-                .setProductId(26)
+                .setProductId(1L)
                 .setName("African head ")
                 .setDescription("This is a test product")
                 .setPrice(10.99)
                 .setStockQuantity(10)
-                .setCategoryId(1)
+                .setCategoryId(1L)
                 .setCreatedAt(LocalDate.now().atStartOfDay())
                 .setUpdatedAt(LocalDate.now().atStartOfDay())
                 .setImagePath("path/to/image.jpg")
@@ -81,7 +81,7 @@ class ProductServiceTest {
     @Test
     void findByCategoryId() {
         productService.create(product);
-        List<Products> products = productService.findByCategoryId(1);
+        List<Products> products = productService.findByCategoryId(1L);
         assertFalse(products.isEmpty());
         assertEquals(1, products.get(0).getCategoryId());
     }
