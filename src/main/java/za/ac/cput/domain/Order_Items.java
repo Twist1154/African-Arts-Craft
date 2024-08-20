@@ -7,7 +7,9 @@ import java.io.Serializable;
  * Order_Items.java
  *
  * @author Rethabile Ntsekhe
+ * @author Sibabalwe Ngandana
  * Student Num: 220455430
+ * Student Num: 220193894
  * @date 23-Jul-24
  */
 
@@ -16,32 +18,42 @@ public class Order_Items implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long order_item_id;
-    private long order_id;
-    private long product_id;
+
+    @ManyToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "order_id", nullable = false)
+    private Orders order;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "productId", nullable = false)
+    private Products product;
+
     private int quantity;
     private double price;
 
+    // No-argument constructor
     public Order_Items() {
     }
 
+    // Builder-based constructor
     public Order_Items(Builder builder) {
         this.order_item_id = builder.order_item_id;
-        this.order_id = builder.order_id;
-        this.product_id = builder.product_id;
+        this.order = builder.order;
+        this.product = builder.product;
         this.quantity = builder.quantity;
         this.price = builder.price;
     }
 
+    // Getters
     public long getOrder_item_id() {
         return order_item_id;
     }
 
-    public long getOrder_id() {
-        return order_id;
+    public Orders getOrder() {
+        return order;
     }
 
-    public long getProduct_id() {
-        return product_id;
+    public Products getProduct() {
+        return product;
     }
 
     public int getQuantity() {
@@ -56,8 +68,8 @@ public class Order_Items implements Serializable {
     public String toString() {
         return "Order_Items{" +
                 "Order Item ID: " + order_item_id +
-                ", ORDER ID: " + order_id +
-                ", PRODUCT ID: " + product_id +
+                ", ORDER ID: " + order.getOrder_id() +
+                ", PRODUCT ID: " + product.getProductId() +
                 ", QUANTITY: " + quantity +
                 ", PRICE: " + price +
                 '}';
@@ -65,8 +77,8 @@ public class Order_Items implements Serializable {
 
     public static class Builder {
         private long order_item_id;
-        private long order_id;
-        private long product_id;
+        private Orders order;
+        private Products product;
         private int quantity;
         private double price;
 
@@ -75,13 +87,13 @@ public class Order_Items implements Serializable {
             return this;
         }
 
-        public Builder setOrder_id(long order_id) {
-            this.order_id = order_id;
+        public Builder setOrder(Orders order) {
+            this.order = order;
             return this;
         }
 
-        public Builder setProduct_id(long product_id) {
-            this.product_id = product_id;
+        public Builder setProduct(Products product) {
+            this.product = product;
             return this;
         }
 
@@ -97,8 +109,8 @@ public class Order_Items implements Serializable {
 
         public Builder copy(Order_Items order_items) {
             this.order_item_id = order_items.getOrder_item_id();
-            this.order_id = order_items.getOrder_id();
-            this.product_id = order_items.getProduct_id();
+            this.order = order_items.getOrder();
+            this.product = order_items.getProduct();
             this.quantity = order_items.getQuantity();
             this.price = order_items.getPrice();
             return this;

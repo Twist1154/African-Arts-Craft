@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="african_arts_Store@localhost" uuid="020060dc-1fcc-420a-94d5-fd658aed6648">
+    <data-source source="LOCAL" name="african_arts_Store@localhost" uuid="08eea60c-0627-44b9-a91a-f88478b5843c">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
