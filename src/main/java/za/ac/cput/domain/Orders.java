@@ -1,9 +1,11 @@
 package za.ac.cput.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Orders.java
@@ -18,7 +20,16 @@ public class Orders implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long order_id;
-    private long user_id;
+
+    // Added this method
+    @Getter
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
+    private Users user; // Changed from user_id to user
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Order_Items> orderItems;
+
     private double total_amount;
     private LocalDate order_date;
     private String status;
@@ -33,7 +44,7 @@ public class Orders implements Serializable {
 
     public Orders(Builder builder) {
         this.order_id = builder.order_id;
-        this.user_id = builder.user_id;
+        this.user = builder.user; // Changed from user_id to user
         this.total_amount = builder.total_amount;
         this.order_date = builder.order_date;
         this.status = builder.status;
@@ -46,10 +57,6 @@ public class Orders implements Serializable {
 
     public long getOrder_id() {
         return order_id;
-    }
-
-    public long getUser_id() {
-        return user_id;
     }
 
     public double getTotal_amount() {
@@ -90,7 +97,7 @@ public class Orders implements Serializable {
         if (!(o instanceof Orders orders)) return false;
 
         if (getOrder_id() != orders.getOrder_id()) return false;
-        if (getUser_id() != orders.getUser_id()) return false;
+        // if (getUser_id() != orders.getUser_id()) return false;
         if (Double.compare(getTotal_amount(), orders.getTotal_amount()) != 0) return false;
         if (getOrder_date() != null ? !getOrder_date().equals(orders.getOrder_date()) : orders.getOrder_date() != null)
             return false;
@@ -111,7 +118,7 @@ public class Orders implements Serializable {
         int result;
         long temp;
         result = (int) (getOrder_id() ^ (getOrder_id() >>> 32));
-        result = 31 * result + (int) (getUser_id() ^ (getUser_id() >>> 32));
+        result = 31 * result + (getUser() != null ? getUser().hashCode() : 0); // Updated this line
         temp = Double.doubleToLongBits(getTotal_amount());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (getOrder_date() != null ? getOrder_date().hashCode() : 0);
@@ -128,7 +135,7 @@ public class Orders implements Serializable {
     public String toString() {
         return "Orders{" +
                 "Order ID: " + order_id +
-                ", USER ID: " + user_id +
+                ", USER: " + user + // Changed from user_id to user
                 ", TOTAL AMOUNT: " + total_amount +
                 ", ORDER DATE: " + order_date +
                 ", STATUS: '" + status + '\'' +
@@ -142,7 +149,7 @@ public class Orders implements Serializable {
 
     public static class Builder {
         private long order_id;
-        private long user_id;
+        private Users user; // Changed from long user_id to Users user
         private double total_amount;
         private LocalDate order_date;
         private String status;
@@ -157,8 +164,8 @@ public class Orders implements Serializable {
             return this;
         }
 
-        public Builder setUser_id(long user_id) {
-            this.user_id = user_id;
+        public Builder setUser(Users user) { // Changed from setUser_id to setUser
+            this.user = user;
             return this;
         }
 
@@ -204,7 +211,7 @@ public class Orders implements Serializable {
 
         public Builder copy(Orders orders) {
             this.order_id = orders.getOrder_id();
-            this.user_id = orders.getUser_id();
+            this.user = orders.getUser(); // Changed from user_id to user
             this.total_amount = orders.getTotal_amount();
             this.order_date = orders.getOrder_date();
             this.status = orders.getStatus();
