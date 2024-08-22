@@ -35,5 +35,4 @@ public interface ProductRepository extends JpaRepository<Products, Long> {
     // Find products updated before a certain date
     List<Products> findByUpdatedAtBefore(LocalDate updatedAt);
 
-
 }

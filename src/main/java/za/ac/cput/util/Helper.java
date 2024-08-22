@@ -28,6 +28,10 @@ public class Helper {
         return s == null || s.isEmpty();
     }
 
+    public static boolean isNullOrEmpty(Object s) {
+        return s == null;
+    }
+
     public static boolean isEmailValid(String email, String regex) {
         return Pattern.compile(regex)
                 .matcher(email)

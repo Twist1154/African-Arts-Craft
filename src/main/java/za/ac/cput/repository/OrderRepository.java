@@ -20,19 +20,5 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<Orders, Long> {
 
-    // Find all orders by a specific user
-    @Query("SELECT o FROM Orders o WHERE o.user.user_id = :userId")
-    List<Orders> findByUserId(@Param("userId") long userId);
-
-    // Find all orders with a specific status
-    @Query("SELECT o FROM Orders o WHERE o.status = :status")
-    List<Orders> findByStatus(@Param("status") String status);
-
-    // Find all orders created after a specific date
-    @Query("SELECT o FROM Orders o WHERE o.created_at >= :createdAt")
-    List<Orders> findOrdersCreatedAfter(@Param("createdAt") LocalDate createdAt);
-
-    // Find all orders within a specific date range
-    @Query("SELECT o FROM Orders o WHERE o.order_date BETWEEN :startDate AND :endDate")
-    List<Orders> findOrdersByDateRange(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
+    void deleteByOrderId(Long orderId);
 }

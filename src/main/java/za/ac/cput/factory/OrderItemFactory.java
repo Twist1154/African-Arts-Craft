@@ -14,14 +14,13 @@ import za.ac.cput.util.Helper;
  */
 
 public class OrderItemFactory {
-    public static Order_Items buildOrderItem(long order_item_id, Orders order, Products product,
-                                             int quantity, double price) {
+    public static Order_Items buildOrderItem(Long orderItemId, Orders order, Products product, int quantity, double price) {
         if (Helper.isDoubleNullOrEmpty(price) || Helper.isNullOrEmpty(quantity)) {
             return null;
         }
 
         return new Order_Items.Builder()
-                .setOrder_item_id(order_item_id)
+                .setOrderItemId(orderItemId)
                 .setOrder(order)  // Pass the entire Orders object
                 .setProduct(product)  // Pass the entire Products object
                 .setQuantity(quantity)

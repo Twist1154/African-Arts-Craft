@@ -16,14 +16,5 @@ import java.util.List;
 
 @Service
 public interface IOrderService extends IService<Orders, Long> {
-
-    void delete(Long id);
-
-    List<Orders> findByUserId(long userId);
-
-    List<Orders> findByStatus(String status);
-
-    List<Orders> findOrdersCreatedAfter(LocalDate createdAt);
-
-    List<Orders> findOrdersByDateRange(LocalDate startDate, LocalDate endDate);
+    void deleteByOrderId(Long orderId);
 }

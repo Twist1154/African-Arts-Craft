@@ -15,16 +15,17 @@ import java.io.Serializable;
 
 @Entity
 public class Order_Items implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long order_item_id;
+    private Long orderItemId;
 
     @ManyToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "order_id", nullable = false)
+    @JoinColumn(name = "order_id", nullable = false)
     private Orders order;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "productId", nullable = false)
+    @JoinColumn(name = "product_id", nullable = false)
     private Products product;
 
     private int quantity;
@@ -36,7 +37,7 @@ public class Order_Items implements Serializable {
 
     // Builder-based constructor
     public Order_Items(Builder builder) {
-        this.order_item_id = builder.order_item_id;
+        this.orderItemId = builder.orderItemId;
         this.order = builder.order;
         this.product = builder.product;
         this.quantity = builder.quantity;
@@ -44,8 +45,8 @@ public class Order_Items implements Serializable {
     }
 
     // Getters
-    public long getOrder_item_id() {
-        return order_item_id;
+    public Long getOrderItemId() {
+        return orderItemId;
     }
 
     public Orders getOrder() {
@@ -67,8 +68,8 @@ public class Order_Items implements Serializable {
     @Override
     public String toString() {
         return "Order_Items{" +
-                "Order Item ID: " + order_item_id +
-                ", ORDER ID: " + order.getOrder_id() +
+                "Order Item ID: " + orderItemId +
+                ", ORDER ID: " + order.getOrderId() +
                 ", PRODUCT ID: " + product.getProductId() +
                 ", QUANTITY: " + quantity +
                 ", PRICE: " + price +
@@ -76,14 +77,14 @@ public class Order_Items implements Serializable {
     }
 
     public static class Builder {
-        private long order_item_id;
+        private Long orderItemId;
         private Orders order;
         private Products product;
         private int quantity;
         private double price;
 
-        public Builder setOrder_item_id(long order_item_id) {
-            this.order_item_id = order_item_id;
+        public Builder setOrderItemId(Long orderItemId) {
+            this.orderItemId = orderItemId;
             return this;
         }
 
@@ -107,12 +108,12 @@ public class Order_Items implements Serializable {
             return this;
         }
 
-        public Builder copy(Order_Items order_items) {
-            this.order_item_id = order_items.getOrder_item_id();
-            this.order = order_items.getOrder();
-            this.product = order_items.getProduct();
-            this.quantity = order_items.getQuantity();
-            this.price = order_items.getPrice();
+        public Builder copy(Order_Items orderItems) {
+            this.orderItemId = orderItems.getOrderItemId();
+            this.order = orderItems.getOrder();
+            this.product = orderItems.getProduct();
+            this.quantity = orderItems.getQuantity();
+            this.price = orderItems.getPrice();
             return this;
         }
 
@@ -121,4 +122,3 @@ public class Order_Items implements Serializable {
         }
     }
 }
-
