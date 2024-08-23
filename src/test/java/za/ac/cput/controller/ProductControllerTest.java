@@ -40,6 +40,7 @@ class ProductControllerTest {
     @Test
     void createProduct() {
         ResponseEntity<Products> response = restTemplate.postForEntity("/store/api/products", product, Products.class);
+        System.out.println(response);
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals(product.getName(), response.getBody().getName());

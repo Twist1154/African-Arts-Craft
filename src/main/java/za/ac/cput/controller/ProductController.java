@@ -130,8 +130,12 @@ public class ProductController {
      * Endpoint: http://localhost:8080/store/product/price
      */
     @GetMapping("/price")
-    public ResponseEntity<List<Products>> getProductsByPriceRange(@RequestParam double minPrice, @RequestParam double maxPrice) {
+    public ResponseEntity<List<Products>> getProductsByPriceRange(
+            @RequestParam double minPrice,
+            @RequestParam double maxPrice
+    ) {
         List<Products> products = productService.findByPriceBetween(minPrice, maxPrice);
+        System.out.println(products);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
@@ -141,6 +145,7 @@ public class ProductController {
     @GetMapping("/stock")
     public ResponseEntity<List<Products>> getProductsByStockQuantityGreaterThan(@RequestParam int stockQuantity) {
         List<Products> products = productService.findByStockQuantityGreaterThan(stockQuantity);
+        System.out.println(products);
         return new ResponseEntity<>(products, HttpStatus.OK);
     }
 
