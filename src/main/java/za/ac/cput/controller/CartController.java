@@ -11,10 +11,11 @@ import za.ac.cput.service.CartService;
 
 import java.util.List;
 import java.util.Set;
-/*
+
+/**
 Author: Masithembe Ndzotyana
 Student Num:219145091
-CartItemsController Class
+ CartController Class
 
 
  */
@@ -32,21 +33,20 @@ public class CartController {
         this.cartItemService = cartItemService;
     }
 
-    // Cart Endpoints
 
-    @PostMapping  //Will create a new cart
+    @PostMapping
     public ResponseEntity<Cart> createCart(@RequestBody Cart cart) {
         Cart createdCart = cartService.create(cart);
         return new ResponseEntity<>(createdCart, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{userId}") //Made to retreive cart for a user
+    @GetMapping("/{userId}")
     public ResponseEntity<List<Cart>> getCartsByUserId(@PathVariable Long userId) {
         List<Cart> carts = cartService.read(userId);
         return new ResponseEntity<>(carts, HttpStatus.OK);
     }
 
-    @PutMapping //Updates a cart
+    @PutMapping
     public ResponseEntity<Cart> updateCart(@RequestBody Cart cart) {
         Cart updatedCart = cartService.update(cart);
         return new ResponseEntity<>(updatedCart, HttpStatus.OK);
@@ -58,13 +58,12 @@ public class CartController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping //Retreives alla carts by the user IDs
+    @GetMapping
     public ResponseEntity<Set<Cart>> getAllCarts() {
         Set<Cart> carts = cartService.getall();
         return new ResponseEntity<>(carts, HttpStatus.OK);
     }
 
-    // Cart Item Endpoints
 
     @PostMapping("/items") // Creates a new cart item
     public ResponseEntity<Cart_Items> createCartItem(@RequestBody Cart_Items cartItem) {
@@ -90,19 +89,19 @@ public class CartController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/items") // Retrieves all cart items.
+    @GetMapping("/items")
     public ResponseEntity<List<Cart_Items>> getAllCartItems() {
         List<Cart_Items> cartItems = cartItemService.getAll();
         return new ResponseEntity<>(cartItems, HttpStatus.OK);
     }
 
-    @GetMapping("/items/cart/{cartId}") // Retrieves cart items by cart ID.
+    @GetMapping("/items/cart/{cartId}")
     public ResponseEntity<List<Cart_Items>> getCartItemsByCartId(@PathVariable Long cartId) {
         List<Cart_Items> cartItems = cartItemService.getCartItemsByCartId(cartId);
         return new ResponseEntity<>(cartItems, HttpStatus.OK);
     }
 
-    @GetMapping("/items/product/{productId}") //Retrieves cart items by product ID.
+    @GetMapping("/items/product/{productId}")
     public ResponseEntity<List<Cart_Items>> getCartItemsByProductId(@PathVariable Long productId) {
         List<Cart_Items> cartItems = cartItemService.getCartItemsByProductId(productId);
         return new ResponseEntity<>(cartItems, HttpStatus.OK);

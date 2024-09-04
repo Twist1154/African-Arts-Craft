@@ -4,7 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2dfc9b97-bcf6-48f1-9f27-38897c268d23" name="Changes" comment="needs to be fixed" />
+    <list default="true" id="2dfc9b97-bcf6-48f1-9f27-38897c268d23" name="Changes" comment="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/front-end/package-lock.json&#10;#&#9;src/front-end/package.json&#10;#&#9;src/front-end/src/App.vue&#10;#&#9;src/front-end/src/components/FetchUsers.vue&#10;#&#9;src/front-end/src/main.js">
+      <change afterPath="$PROJECT_DIR$/src/frontend/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/babel.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/jsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/src/App.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/src/assets/Live_Edge_Mesquite_Slab_Dining_Table_2_large.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/src/assets/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/src/assets/woodChair.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/src/components/HelloWorld.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/src/components/ShoppingCartPage.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/src/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/frontend/vue.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/front-end/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/front-end/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/front-end/src/App.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/front-end/src/components/Cart.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/front-end/src/components/FetchUsers.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/front-end/src/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/CartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/CartItemsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/CartItemsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Cart_Items.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Cart_Items.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/CartFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/CartFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/CartItemFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/CartItemFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/CartItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/CartItemRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/CartRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/CartRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/CartItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/CartItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/CartService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/controller/CartControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/controller/CartControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/controller/CartItemsControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/controller/CartItemsControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/service/CartItemServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/service/CartItemServiceTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,10 +52,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
-        <option value="Vue Composition API Component" />
         <option value="Interface" />
         <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Vue Composition API Component" />
       </list>
     </option>
   </component>
@@ -40,12 +78,37 @@
         <option value="Rethabile Ntsekhe" />
       </list>
     </option>
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SIGN_OFF_COMMIT" value="true" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Masithembe21&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Masithembe21/African-Arts-Craft&quot;,
+    &quot;accountId&quot;: &quot;c9168b1f-addc-48a1-8973-d8b87232ea4f&quot;
+  }
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -68,6 +131,7 @@
     "HTTP Request.generated-requests | #11.executor": "Run",
     "HTTP Request.generated-requests | #12.executor": "Run",
     "HTTP Request.generated-requests | #13.executor": "Run",
+    "HTTP Request.generated-requests | #2.executor": "Run",
     "HTTP Request.generated-requests | #3.executor": "Run",
     "HTTP Request.generated-requests | #4.executor": "Run",
     "HTTP Request.generated-requests | #5.executor": "Run",
@@ -78,6 +142,12 @@
     "JUnit.AddressServiceTest.create.executor": "Run",
     "JUnit.AddressServiceTest.executor": "Run",
     "JUnit.AddressServiceTest.findAll.executor": "Run",
+    "JUnit.CartFactoryTest.executor": "Run",
+    "JUnit.CartItemServiceTest.create.executor": "Run",
+    "JUnit.CartItemServiceTest.executor": "Run",
+    "JUnit.CartItemServiceTest.getCartItemsByCartId.executor": "Run",
+    "JUnit.CartItemServiceTest.read.executor": "Run",
+    "JUnit.CartServiceTest,a_create and 4 more.executor": "Run",
     "JUnit.ProductServiceTest.create.executor": "Run",
     "JUnit.ProductServiceTest.executor": "Run",
     "JUnit.UserControllerTest.executor": "Run",
@@ -102,7 +172,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/retha/Documents/JetBrains Academy/African Art Craft/src/front-end/src",
+    "last_opened_file_path": "C:/Users/RSL OUCS 43/IdeaProjects/musicNote",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -123,6 +193,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\RSL OUCS 43\IdeaProjects\African-Arts-Craft\src\frontend\src\assets" />
       <recent name="C:\Users\retha\Documents\JetBrains Academy\African Art Craft\src\front-end\src" />
       <recent name="C:\Users\retha\Documents\JetBrains Academy\African Art Craft\src\front-end\src\pages" />
       <recent name="C:\Users\retha\Documents\JetBrains Academy\African Art Craft\src\front-end\src\components" />
@@ -143,18 +214,67 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="HTTP Request.generated-requests | #13">
-    <configuration name="generated-requests | #11" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="11" requestIdentifier="#11" runType="Run single request">
-      <method v="2" />
+  <component name="RunManager" selected="JUnit.CartItemServiceTest.read">
+    <configuration name="CartItemServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="African-Arts-Craft" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="za.ac.cput.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="za.ac.cput.service" />
+      <option name="MAIN_CLASS_NAME" value="za.ac.cput.service.CartItemServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="generated-requests | #12" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="12" requestIdentifier="#12" runType="Run single request">
-      <method v="2" />
+    <configuration name="CartItemServiceTest.getCartItemsByCartId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="African-Arts-Craft" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="za.ac.cput.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="za.ac.cput.service" />
+      <option name="MAIN_CLASS_NAME" value="za.ac.cput.service.CartItemServiceTest" />
+      <option name="METHOD_NAME" value="getCartItemsByCartId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="generated-requests | #13" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="13" requestIdentifier="#13" runType="Run single request">
-      <method v="2" />
+    <configuration name="CartItemServiceTest.read" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="African-Arts-Craft" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="za.ac.cput.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="za.ac.cput.service" />
+      <option name="MAIN_CLASS_NAME" value="za.ac.cput.service.CartItemServiceTest" />
+      <option name="METHOD_NAME" value="read" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="generated-requests | #6" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="6" requestIdentifier="#6" runType="Run single request">
-      <method v="2" />
+    <configuration name="CartServiceTest,a_create and 4 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="African-Arts-Craft" />
+      <option name="TEST_OBJECT" value="pattern" />
+      <patterns>
+        <pattern testClass="za.ac.cput.service.CartServiceTest,a_create" />
+        <pattern testClass="za.ac.cput.service.CartServiceTest,b_read" />
+        <pattern testClass="za.ac.cput.service.CartServiceTest,c_update" />
+        <pattern testClass="za.ac.cput.service.CartServiceTest,d_delete" />
+        <pattern testClass="za.ac.cput.service.CartServiceTest,e_getall" />
+      </patterns>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="African Art Craft" />
@@ -184,20 +304,19 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.generated-requests | #13" />
-        <item itemvalue="HTTP Request.generated-requests | #11" />
+        <item itemvalue="JUnit.CartItemServiceTest.read" />
+        <item itemvalue="JUnit.CartItemServiceTest.getCartItemsByCartId" />
         <item itemvalue="Spring Boot.Application" />
-        <item itemvalue="HTTP Request.generated-requests | #6" />
-        <item itemvalue="HTTP Request.generated-requests | #12" />
+        <item itemvalue="JUnit.CartServiceTest,a_create and 4 more" />
+        <item itemvalue="JUnit.CartItemServiceTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-17.0.10-corretto-17.0.10-4caba194b151-5cd809f4" />
-        <option value="jdk-17.0.9-jbr-17.0.9-4caba194b151-51f1b679" />
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
       </set>
     </attachedChunks>
   </component>
@@ -219,6 +338,16 @@
       <workItem from="1722236876814" duration="7992000" />
       <workItem from="1722258640852" duration="2186000" />
       <workItem from="1722273964784" duration="4119000" />
+      <workItem from="1723941180257" duration="3540000" />
+      <workItem from="1723945691134" duration="7636000" />
+      <workItem from="1724028210012" duration="5592000" />
+      <workItem from="1724445495855" duration="5086000" />
+      <workItem from="1725054291304" duration="1273000" />
+      <workItem from="1725056513183" duration="1901000" />
+      <workItem from="1725236816634" duration="11376000" />
+      <workItem from="1725300660785" duration="5760000" />
+      <workItem from="1725320741475" duration="3034000" />
+      <workItem from="1725439503686" duration="526000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <option name="closed" value="true" />
@@ -468,7 +597,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722339959894</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/front-end/package-lock.json&#10;#&#9;src/front-end/package.json&#10;#&#9;src/front-end/src/App.vue&#10;#&#9;src/front-end/src/components/FetchUsers.vue&#10;#&#9;src/front-end/src/main.js">
+      <option name="closed" value="true" />
+      <created>1723585437833</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1723585437833</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -505,7 +642,9 @@
     <MESSAGE value="Products.java&#10;ProductFactory&#10;ProductRepository&#10;ProductService&#10;ProductController&#10;Compeleted" />
     <MESSAGE value="needs" />
     <MESSAGE value="needs to be fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="needs to be fixed" />
+    <MESSAGE value="Modified cart and cart items, also modified factory test, repositories, service and service test. Working on the front-end now." />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/front-end/package-lock.json&#10;#&#9;src/front-end/package.json&#10;#&#9;src/front-end/src/App.vue&#10;#&#9;src/front-end/src/components/FetchUsers.vue&#10;#&#9;src/front-end/src/main.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/front-end/package-lock.json&#10;#&#9;src/front-end/package.json&#10;#&#9;src/front-end/src/App.vue&#10;#&#9;src/front-end/src/components/FetchUsers.vue&#10;#&#9;src/front-end/src/main.js" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -515,6 +654,16 @@
           <properties class="org.springframework.beans.factory.BeanCreationException" package="org.springframework.beans.factory" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/za/ac/cput/Application.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Users.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint log-message="true" log-stack="true" type="java-exception" />

@@ -8,9 +8,9 @@ import java.util.Objects;
 /**
  * Cart_Items.java
  *
- * @author Rethabile Ntsekhe
- * Student Num: 220455430
- * @date 23-Jul-24
+ * @author MAsithembe Ndzotyana
+ * Student Num: 219145091
+ * @date 23 Aug 2024
  */
 
 

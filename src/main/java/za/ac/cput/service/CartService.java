@@ -9,6 +9,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Author: Masithembe Ndzotyana
+ * Student Num:219145091
+ * CartService Class
+ */
+
 @Service
 public class CartService implements ICartService {
 

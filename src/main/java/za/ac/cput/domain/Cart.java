@@ -8,9 +8,9 @@ import java.time.LocalDate;
 /**
  * CartController.java
  *
- * @author Rethabile Ntsekhe
- * Student Num: 220455430
- * @date 23-Jul-24
+ * @author Masithembe Ndzotyana
+ * Student Num: 219145091
+ * @date 23 Aug 2024
  */
 
 @Entity

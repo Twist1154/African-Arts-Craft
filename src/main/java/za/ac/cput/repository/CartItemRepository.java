@@ -7,6 +7,13 @@ import za.ac.cput.domain.Cart_Items;
 
 import java.util.List;
 
+/**
+ * Author: Masithembe Ndzotyana
+ * Student Num:219145091
+ * Date : 23 Aug 2024
+ * CartItemsRepository Class
+ */
+
 @Repository
 public interface CartItemRepository extends JpaRepository<Cart_Items, Long> {
 

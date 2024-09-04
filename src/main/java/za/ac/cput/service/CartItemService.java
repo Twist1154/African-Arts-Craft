@@ -11,6 +11,12 @@ import java.util.Optional;
 
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
+/**
+ * Author: Masithembe Ndzotyana
+ * Student Num:219145091
+ * CartItemService Class
+ */
+
 @Service
 public class CartItemService implements ICartItemService {
 

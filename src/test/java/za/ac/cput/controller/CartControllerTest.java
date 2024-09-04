@@ -51,7 +51,6 @@ public class CartControllerTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        // Initialize test data
         LocalDate startDate = LocalDate.parse("2024-02-01");
         LocalDate endDate = LocalDate.parse("2024-02-05");
 

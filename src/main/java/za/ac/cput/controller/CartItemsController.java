@@ -8,9 +8,10 @@ import za.ac.cput.domain.Cart_Items;
 import za.ac.cput.service.CartItemService;
 
 import java.util.List;
-/*
-Masithembe Ndzotyana
-219145091
+
+/**
+ Author: Masithembe Ndzotyana
+ Student Num:219145091
 CartItemsController Class
 
 
