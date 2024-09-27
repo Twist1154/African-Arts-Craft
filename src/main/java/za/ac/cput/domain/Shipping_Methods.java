@@ -1,9 +1,9 @@
 package za.ac.cput.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 /**
  * ShippingMethods.java
@@ -13,53 +13,37 @@ import java.time.LocalDate;
  * @date 23-Jul-24
  */
 
-
+@Getter
 @Entity
 public class Shipping_Methods implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long shipping_method_id;
+    private long id;
     private String name;
     private String description;
     private double cost;
     private String delivery_time;
-    private Long address_id;
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 
     public Shipping_Methods() {
     }
 
     public Shipping_Methods(Builder builder) {
-        this.shipping_method_id = builder.shipping_method_id;
+        this.id = builder.id;
         this.name = builder.name;
         this.description = builder.description;
         this.cost = builder.cost;
         this.delivery_time = builder.delivery_time;
     }
 
-    public long getShipping_method_id() {
-        return shipping_method_id;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public double getCost() {
-        return cost;
-    }
-
-    public String getDelivery_time() {
-        return delivery_time;
-    }
 
     @Override
     public String toString() {
         return "Shipping_Methods{" +
-                "Shipping Method ID: " + shipping_method_id +
+                "Shipping Method ID: " + id +
                 ", NAME: '" + name + '\'' +
                 ", DESCRIPTION: '" + description + '\'' +
                 ", COST: " + cost +
@@ -68,14 +52,15 @@ public class Shipping_Methods implements Serializable {
     }
 
     public static class Builder {
-        private long shipping_method_id;
+        private long id;
         private String name;
         private String description;
         private double cost;
         private String delivery_time;
+        private Address address;
 
-        public Builder setShipping_method_id(long shipping_method_id) {
-            this.shipping_method_id = shipping_method_id;
+        public Builder setId(long id) {
+            this.id = id;
             return this;
         }
 
@@ -99,8 +84,13 @@ public class Shipping_Methods implements Serializable {
             return this;
         }
 
+        public Builder setAddress(Address address) {
+            this.address = address;
+            return this;
+        }
+
         public Builder copy(Shipping_Methods shipping_methods) {
-            this.shipping_method_id = shipping_methods.getShipping_method_id();
+            this.id = shipping_methods.getId();
             this.name = shipping_methods.getName();
             this.description = shipping_methods.getDescription();
             this.cost = shipping_methods.getCost();

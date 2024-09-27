@@ -13,9 +13,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 import za.ac.cput.domain.Cart;
 import za.ac.cput.domain.Cart_Items;
+import za.ac.cput.domain.Products;
+import za.ac.cput.domain.User;
 import za.ac.cput.service.CartItemService;
 import za.ac.cput.service.CartService;
 
@@ -51,21 +52,34 @@ public class CartControllerTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
+        User user = new User.Builder()
+                .setId(1001)
+                .setUsername("johndoe")
+                .setPassword("password")
+                .setEmail("gfjhg")
+                .setFirst_name("John")
+                .setLast_name("Doe")
+                .setCreated_at(LocalDate.parse("2024-02-01"))
+                .setUpdated_at(LocalDate.parse("2024-02-05"))
+                .build();
+
+        Products products = new Products();
+
         // Initialize test data
         LocalDate startDate = LocalDate.parse("2024-02-01");
         LocalDate endDate = LocalDate.parse("2024-02-05");
 
         cart = new Cart.Builder()
-                .setCart_id(1)
-                .setUser_id(1001)
+                .setId(1)
+                .setUser(user)
                 .setCreated_at(startDate)
                 .setUpdated_at(endDate)
                 .build();
 
         cartItem = new Cart_Items.Builder()
-                .setCart_item_id(1)
-                .setCart_id(1)
-                .setProduct_id(200)
+                .setId(1)
+                .setCart(cart)
+                .setProducts(products)
                 .setQuantity(5)
                 .build();
 

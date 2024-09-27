@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import za.ac.cput.domain.Users;
+import za.ac.cput.domain.User;
 import za.ac.cput.service.UserService;
 
 import java.time.LocalDate;
@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class UsersControllerTest {
+public class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -31,7 +31,7 @@ public class UsersControllerTest {
 
     @Test
     void testCreateUser() throws Exception {
-        Users user = new Users.Builder()
+        User user = new User.Builder()
                 .setUsername("john_doe")
                 .setPassword("password123")
                 .setEmail("john.doe@example.com")
@@ -41,7 +41,7 @@ public class UsersControllerTest {
                 .setUpdated_at(LocalDate.now())
                 .build();
 
-        when(userService.create(any(Users.class))).thenReturn(user);
+        when(userService.create(any(User.class))).thenReturn(user);
 
         mockMvc.perform(post("/store/api/users")
                         .contentType(MediaType.APPLICATION_JSON)

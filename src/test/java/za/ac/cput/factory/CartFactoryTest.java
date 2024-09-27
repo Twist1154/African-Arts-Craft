@@ -2,6 +2,7 @@ package za.ac.cput.factory;
 
 import org.junit.jupiter.api.Test;
 import za.ac.cput.domain.Cart;
+import za.ac.cput.domain.User;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,11 +20,13 @@ class CartFactoryTest {
         LocalDate startDate = LocalDate.parse("01-02-24", formatter);
         LocalDate endDate = LocalDate.parse("05-02-24", formatter);
 
-        Cart cart = CartFactory.buildCart(1, 1001, startDate, endDate);
+        User user = new User();
+
+        Cart cart = CartFactory.buildCart(1, user, startDate, endDate);
 
 
-        assertEquals(1, cart.getCart_id());
-        assertEquals(1001, cart.getUser_id());
+        assertEquals(1, cart.getId());
+        assertEquals(1001, cart.getId());
         assertEquals(startDate, cart.getCreated_at());
         assertEquals(endDate, cart.getUpdated_at());
     }

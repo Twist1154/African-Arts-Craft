@@ -2,10 +2,9 @@ package za.ac.cput.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.ac.cput.domain.Addresses;
+import za.ac.cput.domain.Address;
 import za.ac.cput.repository.AddressRepository;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,26 +28,26 @@ public class AddressService implements IAddressService {
     }
 
     @Override
-    public Addresses create(Addresses address) {
+    public Address create(Address address) {
         return addressRepository.save(address);
     }
 
     @Override
-    public Addresses read(Long id) {
-        Optional<Addresses> address = addressRepository.findById(id);
+    public Address read(Long id) {
+        Optional<Address> address = addressRepository.findById(id);
         return address.orElse(null);
     }
 
     @Override
-    public Addresses update(Addresses address) {
-        if (addressRepository.existsById(address.getAddress_id())) {
+    public Address update(Address address) {
+        if (addressRepository.existsById(address.getId())) {
             return addressRepository.save(address);
         }
         return null;
     }
 
     @Override
-    public List<Addresses> findAll() {
+    public List<Address> findAll() {
         return addressRepository.findAll();
     }
 

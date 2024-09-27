@@ -10,7 +10,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
+import za.ac.cput.domain.Cart;
 import za.ac.cput.domain.Cart_Items;
+import za.ac.cput.domain.Products;
 import za.ac.cput.service.CartItemService;
 
 import java.util.Arrays;
@@ -44,10 +46,12 @@ public class CartItemsControllerTest {
 
     @BeforeEach
     void setUp() {
+        Cart cart = new Cart();
+        Products products = new Products();
         cartItem = new Cart_Items.Builder()
-                .setCart_item_id(1)
-                .setCart_id(100)
-                .setProduct_id(200)
+                .setId(1)
+                .setCart(cart)
+                .setProducts(products)
                 .setQuantity(5)
                 .build();
     }

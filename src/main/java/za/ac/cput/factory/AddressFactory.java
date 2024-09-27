@@ -1,7 +1,7 @@
 package za.ac.cput.factory;
 
-import za.ac.cput.domain.Addresses;
-import za.ac.cput.domain.Users;
+import za.ac.cput.domain.Address;
+import za.ac.cput.domain.User;
 import za.ac.cput.util.Helper;
 
 import java.time.LocalDate;
@@ -15,10 +15,10 @@ import java.time.LocalDate;
  */
 
 public class AddressFactory {
-    public static Addresses buildAddress(long address_id, long user_id, String address_line1,
-                                         String address_line2, String city, String province,
-                                         String postal_code, String country,
-                                         LocalDate created_at, LocalDate updated_at) {
+    public static Address buildAddress(long address_id, User user, String address_line1,
+                                       String address_line2, String city, String province,
+                                       String postal_code, String country,
+                                       LocalDate created_at, LocalDate updated_at) {
         if (Helper.isNullOrEmpty(address_line1) ||
                 Helper.isNullOrEmpty(city) ||
                 Helper.isNullOrEmpty(province) ||
@@ -26,9 +26,9 @@ public class AddressFactory {
                 Helper.isNullOrEmpty(country)
         ) return null;
 
-        return new Addresses.Builder()
-                .setAddress_id(address_id)
-                .setUser_id(user_id)
+        return new Address.Builder()
+                .setId(address_id)
+                .setUser(user)
                 .setAddress_line1(address_line1)
                 .setAddress_line2(address_line2)
                 .setCity(city)

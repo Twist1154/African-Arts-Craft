@@ -1,7 +1,7 @@
 package za.ac.cput.factory;
 
 import za.ac.cput.domain.Orders;
-import za.ac.cput.domain.Users;
+import za.ac.cput.domain.User;
 import za.ac.cput.util.Helper;
 
 import java.time.LocalDate;
@@ -16,7 +16,7 @@ import java.time.LocalDate;
 
 public class OrderFactory {
 
-    public static Orders buildOrder(Users user, Double total_amount,
+    public static Orders buildOrder(User user, Double total_amount,
                                     LocalDate order_date, String status, String shipping_address,
                                     String billing_address, String payment_method,
                                     LocalDate created_at, LocalDate updated_at) {
@@ -29,7 +29,7 @@ public class OrderFactory {
         }
 
         return new Orders.Builder()
-                .setUser(user) // Pass the Users object instead of user_id
+                .setUser(user) // Pass the User object instead of user_id
                 .setTotal_amount(total_amount)
                 .setOrder_date(order_date)
                 .setStatus(status)

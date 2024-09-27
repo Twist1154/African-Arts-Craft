@@ -11,15 +11,15 @@ import za.ac.cput.util.Helper;
  * @date 26-Jul-24
  */
 
-public class CategoryFactory {
+public class CategoriesFactory {
 
-    public static Categories buildCategory(Long categoryId, String name, String description) {
+    public static Categories buildCategory(Long id, String name, String description) {
         if (Helper.isNullOrEmpty(name) ||
                 Helper.isNullOrEmpty(description)
         ) return null;
 
         return new Categories.Builder()
-                .setCategoryId(categoryId)
+                .setCategoryId(id)
                 .setName(name)
                 .setDescription(description)
                 .build();

@@ -72,7 +72,7 @@ public class ProductController {
                     .setDescription(product.getDescription())
                     .setPrice(product.getPrice())
                     .setStockQuantity(product.getStockQuantity())
-                    .setCategoryId(product.getCategoryId())
+                    .setSubCategories(product.getSubCategories())
                     .setCreatedAt(product.getCreatedAt())
                     .setUpdatedAt(product.getUpdatedAt())
                     .setImagePath(product.getImagePath())

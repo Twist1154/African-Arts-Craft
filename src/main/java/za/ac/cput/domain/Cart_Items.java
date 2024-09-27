@@ -1,6 +1,7 @@
 package za.ac.cput.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -13,42 +14,29 @@ import java.util.Objects;
  * @date 23-Jul-24
  */
 
-
+@Getter
 @Entity
 public class Cart_Items implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long cart_item_id;
-    private long cartId;
-    private long productId;
+    private long id;
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+    @OneToOne
+    @JoinColumn(name = "product_id")
+    private Products product;
+
     private int quantity;
 
     public Cart_Items() {
     }
 
     public Cart_Items(Builder builder) {
-        this.cart_item_id = builder.cart_item_id;
-        this.cartId = builder.cartId;
-        this.productId = builder.product_id;
+        this.id = builder.id;
+        this.cart = builder.cart;
+        this.product = builder.products;
         this.quantity = builder.quantity;
-    }
-
-    public long getCart_item_id() {
-        return cart_item_id;
-    }
-
-    public long getCart_id() {
-
-        return cartId;
-    }
-
-    public long getProduct_id() {
-
-        return productId;
-    }
-
-    public int getQuantity() {
-        return quantity;
     }
 
     @Override
@@ -56,42 +44,42 @@ public class Cart_Items implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cart_Items cartItems = (Cart_Items) o;
-        return cart_item_id == cartItems.cart_item_id && cartId == cartItems.cartId && productId == cartItems.productId && quantity == cartItems.quantity;
+        return id == cartItems.id && quantity == cartItems.quantity && Objects.equals(cart, cartItems.cart) && Objects.equals(product, cartItems.product);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cart_item_id, cartId, productId, quantity);
+        return Objects.hash(id, cart, product, quantity);
     }
 
     @Override
     public String toString() {
         return "Cart_Items{" +
-                "Cart Item ID: " + cart_item_id +
-                ", CART ID: " + cartId +
-                ", PRODUCT ID: " + productId +
+                "ID: " + id +
+                ", CART : " + cart +
+                ", PRODUCT : " + product +
                 ", QUANTITY: " + quantity +
                 '}';
     }
 
     public static class Builder {
-        private long cart_item_id;
-        private long cartId;
-        private long product_id;
+        private long id;
+        private Cart cart;
+        private Products products;
         private int quantity;
 
-        public Builder setCart_item_id(long cart_item_id) {
-            this.cart_item_id = cart_item_id;
+        public Builder setId(long id) {
+            this.id = id;
             return this;
         }
 
-        public Builder setCart_id(long cart_id) {
-            this.cartId = cart_id;
+        public Builder setCart(Cart cart) {
+            this.cart = cart;
             return this;
         }
 
-        public Builder setProduct_id(long product_id) {
-            this.product_id = product_id;
+        public Builder setProducts(Products products) {
+            this.products = products;
             return this;
         }
 
@@ -101,9 +89,9 @@ public class Cart_Items implements Serializable {
         }
 
         public Builder copy(Cart_Items cart_items) {
-            this.cart_item_id = cart_items.getCart_item_id();
-            this.cartId = cart_items.getCart_id();
-            this.product_id = cart_items.getProduct_id();
+            this.id = cart_items.getId();
+            this.cart = cart_items.getCart();
+            this.products = cart_items.getProduct();
             this.quantity = cart_items.getQuantity();
             return this;
         }

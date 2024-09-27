@@ -1,7 +1,7 @@
 package za.ac.cput.service;
 
 import org.springframework.stereotype.Service;
-import za.ac.cput.domain.Users;
+import za.ac.cput.domain.User;
 
 import java.util.List;
 
@@ -14,13 +14,13 @@ import java.util.List;
  */
 
 @Service
-public interface IUserService extends IService<Users, String> {
+public interface IUserService extends IService<User, String> {
 
     void delete(String id);
 
-    List<Users> findByUsername(String username);
+    List<User> findByUsername(String username);
 
-    List<Users> findByLastName(String last_name);
+    List<User> findByLastName(String last_name);
 
-    List<Users> findByEmail(String email);
+    List<User> findByEmail(String email);
 }

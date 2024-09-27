@@ -1,6 +1,6 @@
 package za.ac.cput.factory;
 
-import za.ac.cput.domain.Users;
+import za.ac.cput.domain.User;
 import za.ac.cput.util.Helper;
 
 import java.time.LocalDate;
@@ -15,9 +15,9 @@ import java.time.LocalDate;
 
 public class Userfactory {
 
-    public static Users buildUser(long user_id, String username, String password,
-                                  String email, String first_name, String last_name,
-                                  LocalDate created_at, LocalDate updated_at) {
+    public static User buildUser(Long id, String username, String password,
+                                 String email, String first_name, String last_name,
+                                 LocalDate created_at, LocalDate updated_at) {
 
         if (Helper.isNullOrEmpty(username) ||
                 Helper.isNullOrEmpty(password) ||
@@ -30,8 +30,8 @@ public class Userfactory {
                 Helper.isNullOrEmpty(email)
         ) return null;
 
-        return new Users.Builder()
-                .setUser_id(user_id)
+        return new User.Builder()
+                .setId(id)
                 .setUsername(username)
                 .setPassword(password)
                 .setEmail(email)

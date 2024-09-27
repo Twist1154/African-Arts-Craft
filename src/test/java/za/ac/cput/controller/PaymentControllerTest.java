@@ -12,8 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import za.ac.cput.domain.Orders;
 import za.ac.cput.domain.Payments;
 import za.ac.cput.service.PaymentService;
 
@@ -22,8 +22,6 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 class PaymentControllerTest {
 
@@ -38,9 +36,11 @@ class PaymentControllerTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+        Orders orders = new Orders();
+
         payment = new Payments.Builder()
-                .setPayment_id(1L)
-                .setOrder_id(1001L)
+                .setId(1L)
+                .setOrders(orders)
                 .setPayment_date(LocalDate.of(2024, 7, 23))
                 .setPayment_amount(500.00)
                 .setPayment_method("Credit Card")

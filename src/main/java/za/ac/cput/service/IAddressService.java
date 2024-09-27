@@ -1,10 +1,6 @@
 package za.ac.cput.service;
 
-import za.ac.cput.domain.Addresses;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
+import za.ac.cput.domain.Address;
 
 /**
  * IAddressService.java
@@ -14,7 +10,7 @@ import java.util.Optional;
  * @date 27-Jul-24
  */
 
-public interface IAddressService extends IService<Addresses, Long> {
+public interface IAddressService extends IService<Address, Long> {
 
 
 }

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Products;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -21,7 +20,7 @@ public interface ProductRepository extends JpaRepository<Products, Long> {
     List<Products> findByName(String name);
 
     // Find products by category ID
-    List<Products> findByCategoryId(Long categoryId);
+    List<Products> findBySubCategories_Id(Long subCategoryiesId);
 
     // Find products by price range
     List<Products> findByPriceBetween(double minPrice, double maxPrice);

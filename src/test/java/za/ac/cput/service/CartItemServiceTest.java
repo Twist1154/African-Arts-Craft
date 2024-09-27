@@ -1,16 +1,13 @@
 package za.ac.cput.service;
 
 import org.junit.jupiter.api.*;
-import org.mockito.MockitoAnnotations;
-import org.mockito.verification.VerificationMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.Cart;
 import za.ac.cput.domain.Cart_Items;
+import za.ac.cput.domain.Products;
 import za.ac.cput.factory.CartItemFactory;
 import za.ac.cput.repository.CartItemRepository;
-
-import java.util.Optional;
 
 import java.util.Collections;
 import java.util.List;
@@ -18,7 +15,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -28,15 +24,16 @@ public class CartItemServiceTest {
     private CartItemRepository cartItemRepository;
     @Autowired
     private CartItemService cartItemService;
-
-    private Cart_Items cartItem = CartItemFactory.buildCartItem(012, 013, 014, 123);
+    Cart cart = new Cart();
+    Products products = new Products();
+    private Cart_Items cartItem = CartItemFactory.buildCartItem(012, cart, products, 123);
 
     @BeforeEach
    /* void setUp() {
         MockitoAnnotations.openMocks(this);
         cartItem = new Cart_Items.Builder()
                 .setCart_item_id(1)
-                .setCart_id(100)
+                .setId(100)
                 .setProductId(200)
                 .setQuantity(5)
                 .build();
@@ -64,7 +61,7 @@ public class CartItemServiceTest {
     void read() {
         //when(cartItemRepository.findById(cartItem.getCart_item_id())).thenReturn(Optional.of(cartItem));
 
-        Cart_Items read = cartItemService.read(cartItem.getCart_item_id());
+        Cart_Items read = cartItemService.read(cartItem.getId());
         assertNotNull(read);
         assertEquals(cartItem, read);
         System.out.println(read);
@@ -76,7 +73,7 @@ public class CartItemServiceTest {
     @Order(3)
     void update() {
         // when(cartItemRepository.save(cartItem)).thenReturn(cartItem);
-        Cart_Items newCartItems = new Cart_Items.Builder().copy(cartItem).setCart_item_id(18)
+        Cart_Items newCartItems = new Cart_Items.Builder().copy(cartItem).setId(18)
                 .build();
 
         Cart_Items updated = cartItemService.update(newCartItems);
@@ -89,7 +86,7 @@ public class CartItemServiceTest {
     @Test
     @Order(4)
     void delete() {
-        cartItemService.delete(cartItem.getCart_item_id());
+        cartItemService.delete(cartItem.getId());
         System.out.println("Successfully deleted cart id");
         //verify(cartItemRepository, times(1)).deleteById(cartItem.getCart_item_id());
     }
@@ -123,9 +120,9 @@ public class CartItemServiceTest {
     @Test
     @Order(7)
     void getCartItemsByProductId() {
-        when(cartItemRepository.findByProductId(cartItem.getProduct_id())).thenReturn(Collections.singletonList(cartItem));
+        when(cartItemRepository.findByProductId(cartItem.getId())).thenReturn(Collections.singletonList(cartItem));
 
-        List<Cart_Items> cartItems = cartItemService.getCartItemsByProductId(cartItem.getProduct_id());
+        List<Cart_Items> cartItems = cartItemService.getCartItemsByProductId(cartItem.getId());
         assertNotNull(cartItems);
         //assertEquals(1, cartItems.size());
         //verify(cartItemRepository, times(1)).findByProductId(cartItem.getProductId());

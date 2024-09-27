@@ -70,7 +70,7 @@ public class Order_Items implements Serializable {
         return "Order_Items{" +
                 "Order Item ID: " + orderItemId +
                 ", ORDER ID: " + order.getOrderId() +
-                ", PRODUCT ID: " + product.getProductId() +
+                ", PRODUCT ID: " + product.getId() +
                 ", QUANTITY: " + quantity +
                 ", PRICE: " + price +
                 '}';

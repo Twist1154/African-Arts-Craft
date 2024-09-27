@@ -21,8 +21,8 @@ public class Orders implements Serializable {
     private Long orderId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
-    private Users user;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Order_Items> orderItems;
@@ -36,7 +36,6 @@ public class Orders implements Serializable {
     private LocalDate created_at;
     private LocalDate updated_at;
 
-    // No-argument constructor
     public Orders() {
     }
 
@@ -59,7 +58,7 @@ public class Orders implements Serializable {
         return orderId;
     }
 
-    public Users getUser() {
+    public User getUser() {
         return user;
     }
 
@@ -103,7 +102,7 @@ public class Orders implements Serializable {
     public String toString() {
         return "Orders{" +
                 "Order ID: " + orderId +
-                ", USER: " + user.getUser_id() +
+                ", USER: " + user.getId() +
                 ", TOTAL AMOUNT: " + total_amount +
                 ", ORDER DATE: " + order_date +
                 ", STATUS: '" + status + '\'' +
@@ -117,7 +116,7 @@ public class Orders implements Serializable {
 
     public static class Builder {
         private Long orderId;
-        private Users user;
+        private User user;
         private double total_amount;
         private LocalDate order_date;
         private String status;
@@ -132,7 +131,7 @@ public class Orders implements Serializable {
             return this;
         }
 
-        public Builder setUser(Users user) {
+        public Builder setUser(User user) {
             this.user = user;
             return this;
         }

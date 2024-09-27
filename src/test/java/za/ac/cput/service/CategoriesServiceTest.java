@@ -45,7 +45,7 @@ class CategoriesServiceTest {
     @Test
     void read() {
         Categories savedCategory = categoriesService.create(category);
-        Optional<Categories> foundCategory = Optional.ofNullable(categoriesService.read(savedCategory.getCategoryId()));
+        Optional<Categories> foundCategory = Optional.ofNullable(categoriesService.read(savedCategory.getId()));
         assertTrue(foundCategory.isPresent());
         assertEquals(savedCategory.getName(), foundCategory.get().getName());
     }

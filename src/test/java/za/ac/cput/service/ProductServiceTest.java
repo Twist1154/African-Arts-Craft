@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import za.ac.cput.domain.Products;
+import za.ac.cput.domain.SubCategory;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,13 +24,18 @@ class ProductServiceTest {
 
     @BeforeEach
     void setUp() {
+        SubCategory subCategories = new SubCategory();
+        SubCategory subCategory = new SubCategory();
+
+        List<SubCategory> subCategoryList = List.of(subCategories, subCategory);
+
         product = new Products.Builder()
-                .setProductId(1L)
+                .setId(1L)
                 .setName("African head ")
                 .setDescription("This is a test product")
                 .setPrice(10.99)
                 .setStockQuantity(10)
-                .setCategoryId(1L)
+                .setSubCategories(subCategoryList)
                 .setCreatedAt(LocalDate.now().atStartOfDay())
                 .setUpdatedAt(LocalDate.now().atStartOfDay())
                 .setImagePath("path/to/image.jpg")
@@ -46,9 +52,9 @@ class ProductServiceTest {
     @Test
     void read() {
         Products createdProduct = productService.create(product);
-        Products readProduct = productService.read(createdProduct.getProductId());
+        Products readProduct = productService.read(createdProduct.getId());
         assertNotNull(readProduct);
-        assertEquals(createdProduct.getProductId(), readProduct.getProductId());
+        assertEquals(createdProduct.getId(), readProduct.getId());
     }
 
     @Test
@@ -83,7 +89,7 @@ class ProductServiceTest {
         productService.create(product);
         List<Products> products = productService.findByCategoryId(1L);
         assertFalse(products.isEmpty());
-        assertEquals(1, products.get(0).getCategoryId());
+        assertEquals(1, products.get(0).getSubCategories().size());
     }
 
     @Test

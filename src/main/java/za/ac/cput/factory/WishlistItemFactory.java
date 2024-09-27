@@ -1,28 +1,47 @@
 package za.ac.cput.factory;
 
+
 import za.ac.cput.domain.Products;
+import za.ac.cput.domain.WishlistItem;
 import za.ac.cput.domain.Wishlist;
-import za.ac.cput.domain.Wishlist_Items;
-import za.ac.cput.util.Helper;
+
+import java.time.LocalDateTime;
 
 /**
- * WishlistItemFactory.java
+ * Factory class for creating instances of {@link WishlistItem}.
+ * Provides static methods to create {@link WishlistItem} objects from various inputs.
  *
- * @author Rethabile Ntsekhe
- * Student Num: 220455430
- * @date 26-Jul-24
+ * Author: Rethabile Ntsekhe
+ * Date: 20-Sep-24
  */
 public class WishlistItemFactory {
-    public static Wishlist_Items buildWishlistItem(Long wishlist_item_id, Wishlist wishlist, Products product) {
-        // Check if any of the IDs are null
-        if (Helper.isNullOrEmpty(wishlist) || Helper.isNullOrEmpty(product)) {
-            return null;
+
+    /**
+     * Creates a {@link WishlistItem} instance with the necessary parameters.
+     *
+     * @param products  the {@link Products} associated with this wishlist item
+     * @param wishlist  the {@link Wishlist} this item belongs to
+     * @param dateAdded the date when the item was added to the wishlist
+     * @return a new {@link WishlistItem} object with properties set from the input parameters
+     */
+    public static WishlistItem createWishlistItem(Products products, Wishlist wishlist, LocalDateTime dateAdded) {
+        if (products == null) {
+            throw new IllegalArgumentException("Product cannot be null in WishlistItemFactory");
         }
 
-        return new Wishlist_Items.Builder()
-                .setWishlistItemId(wishlist_item_id)
-                .setWishlist(wishlist)  // Use the variable directly
-                .setProduct(product)    // Ensure method names match those in Wishlist_Items
+        if (wishlist == null) {
+            throw new IllegalArgumentException("Wishlist cannot be null in WishlistItemFactory");
+        }
+
+        // Set default value if dateAdded is null
+        if (dateAdded == null) {
+            dateAdded = LocalDateTime.now();
+        }
+
+        return new WishlistItem.Builder()
+                .setProducts(products)
+                .setWishlist(wishlist)
+                .setDateAdded(dateAdded)
                 .build();
     }
 }

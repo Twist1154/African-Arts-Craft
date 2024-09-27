@@ -20,7 +20,7 @@ public class ShippingMethodFactory {
         ) return null;
 
         return new Shipping_Methods.Builder()
-                .setShipping_method_id(shipping_method_id)
+                .setId(shipping_method_id)
                 .setName(name)
                 .setDescription(description)
                 .setCost(cost)

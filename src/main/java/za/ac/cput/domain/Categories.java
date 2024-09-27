@@ -3,6 +3,8 @@ package za.ac.cput.domain;
 import java.io.Serializable;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+
 /**
  * Categories.java
  *
@@ -10,12 +12,12 @@ import jakarta.persistence.*;
  * Student Num: 220455430
  * @date 23-Jul-24
  */
-
+@Getter
 @Entity
 public class Categories implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long categoryId;
+    private Long id;
     private String name;
     private String description;
 
@@ -23,13 +25,13 @@ public class Categories implements Serializable {
     }
 
     public Categories(Builder builder) {
-        this.categoryId = builder.categoryId;
+        this.id = builder.categoryId;
         this.name = builder.name;
         this.description = builder.description;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -44,7 +46,7 @@ public class Categories implements Serializable {
     @Override
     public String toString() {
         return "Categories{" +
-                "Category ID: " + categoryId +
+                "Category ID: " + id +
                 ", NAME: '" + name + '\'' +
                 ", DESCRIPTION: '" + description + '\'' +
                 '}';
@@ -71,7 +73,7 @@ public class Categories implements Serializable {
         }
 
         public Builder copy(Categories categories) {
-            this.categoryId = categories.getCategoryId();
+            this.categoryId = categories.getId();
             this.name = categories.getName();
             this.description = categories.getDescription();
             return this;

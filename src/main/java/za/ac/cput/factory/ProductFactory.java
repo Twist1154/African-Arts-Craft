@@ -1,9 +1,11 @@
 package za.ac.cput.factory;
 
 import za.ac.cput.domain.Products;
+import za.ac.cput.domain.SubCategory;
 import za.ac.cput.util.Helper;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * ProductFactory.java
@@ -16,7 +18,7 @@ import java.time.LocalDateTime;
 public class ProductFactory {
 
     public static Products buildProduct(Long productId, String name, String description,
-                                        double price, int stockQuantity, Long categoryId,
+                                        double price, int stockQuantity, List<SubCategory> subCategory,
                                         LocalDateTime createdAt, LocalDateTime updatedAt, String imagePath) {
         if (Helper.isNullOrEmpty(name) ||
                 Helper.isNullOrEmpty(description) ||
@@ -25,12 +27,12 @@ public class ProductFactory {
         ) return null;
 
         return new Products.Builder()
-                .setProductId(productId)
+                .setId(productId)
                 .setName(name)
                 .setDescription(description)
                 .setPrice(price)
                 .setStockQuantity(stockQuantity)
-                .setCategoryId(categoryId)
+                .setSubCategories(subCategory)
                 .setCreatedAt(createdAt)
                 .setUpdatedAt(updatedAt)
                 .setImagePath(imagePath)

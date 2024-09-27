@@ -1,7 +1,7 @@
 package za.ac.cput.factory;
 
 import org.junit.jupiter.api.Test;
-import za.ac.cput.domain.Users;
+import za.ac.cput.domain.User;
 
 import java.time.LocalDate;
 
@@ -20,7 +20,7 @@ class UserfactoryTest {
         LocalDate created_at = LocalDate.of(2023, 7, 24);
         LocalDate updated_at = LocalDate.of(2023, 8, 24);
 
-        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);
+        User user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);
 
         assertNotNull(user);
         assertEquals(username, user.getUsername());
@@ -43,7 +43,7 @@ class UserfactoryTest {
         LocalDate created_at = LocalDate.of(2024, 7, 24);
         LocalDate updated_at = LocalDate.of(2024, 8, 24);
 
-        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);
+        User user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);
 
         assertNull(user);
     }
@@ -59,7 +59,7 @@ class UserfactoryTest {
         LocalDate created_at = LocalDate.of(2023, 7, 24);
         LocalDate updated_at = LocalDate.of(2023, 8, 24);
 
-        Users user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);
+        User user = Userfactory.buildUser(user_id, username, password, email, first_name, last_name, created_at, updated_at);
 
         assertNull(user);
     }

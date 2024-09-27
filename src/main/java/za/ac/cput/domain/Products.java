@@ -6,25 +6,31 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Products.java
  *
- * @author Rethabile Ntsekhe
+ * Author: Rethabile Ntsekhe
  * Student Num: 220455430
- * @date 23-Jul-24
+ * Date: 23-Jul-24
  */
 
 @Entity
 public class Products implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long productId;
+    private Long id;
+
     private String name;
     private String description;
     private double price;
     private int stockQuantity;
-    private Long categoryId;
+    @OneToMany
+    @JoinColumn(name = "subcategory_id", nullable = false)
+    private List<SubCategory> subCategories;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
@@ -32,24 +38,23 @@ public class Products implements Serializable {
 
     private String imagePath;
 
-
     public Products() {
     }
 
     public Products(Builder builder) {
-        this.productId = builder.productId;
+        this.id = builder.id;
         this.name = builder.name;
         this.description = builder.description;
         this.price = builder.price;
         this.stockQuantity = builder.stockQuantity;
-        this.categoryId = builder.categoryId;
+        this.subCategories = builder.subCategories;
         this.createdAt = builder.createdAt;
         this.updatedAt = builder.updatedAt;
         this.imagePath = builder.imagePath;
     }
 
-    public Long getProductId() {
-        return productId;
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -68,8 +73,8 @@ public class Products implements Serializable {
         return stockQuantity;
     }
 
-    public Long getCategoryId() {
-        return categoryId;
+    public List<SubCategory> getSubCategories() {
+        return subCategories;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -87,48 +92,25 @@ public class Products implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Products products)) return false;
-
-        if (getProductId() != products.getProductId()) return false;
-        if (Double.compare(getPrice(), products.getPrice()) != 0) return false;
-        if (getStockQuantity() != products.getStockQuantity()) return false;
-        if (getCategoryId() != products.getCategoryId()) return false;
-        if (getName() != null ? !getName().equals(products.getName()) : products.getName() != null) return false;
-        if (getDescription() != null ? !getDescription().equals(products.getDescription()) : products.getDescription() != null)
-            return false;
-        if (getCreatedAt() != null ? !getCreatedAt().equals(products.getCreatedAt()) : products.getCreatedAt() != null)
-            return false;
-        if (getUpdatedAt() != null ? !getUpdatedAt().equals(products.getUpdatedAt()) : products.getUpdatedAt() != null)
-            return false;
-        return getImagePath() != null ? getImagePath().equals(products.getImagePath()) : products.getImagePath() == null;
+        if (o == null || getClass() != o.getClass()) return false;
+        Products products = (Products) o;
+        return Double.compare(products.price, price) == 0 && stockQuantity == products.stockQuantity && Objects.equals(id, products.id) && Objects.equals(name, products.name) && Objects.equals(description, products.description) && Objects.equals(subCategories, products.subCategories) && Objects.equals(createdAt, products.createdAt) && Objects.equals(updatedAt, products.updatedAt) && Objects.equals(imagePath, products.imagePath);
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = (int) (getProductId() ^ (getProductId() >>> 32));
-        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
-        result = 31 * result + (getDescription() != null ? getDescription().hashCode() : 0);
-        temp = Double.doubleToLongBits(getPrice());
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + getStockQuantity();
-        result = 31 * result + (int) (getCategoryId() ^ (getCategoryId() >>> 32));
-        result = 31 * result + (getCreatedAt() != null ? getCreatedAt().hashCode() : 0);
-        result = 31 * result + (getUpdatedAt() != null ? getUpdatedAt().hashCode() : 0);
-        result = 31 * result + (getImagePath() != null ? getImagePath().hashCode() : 0);
-        return result;
+        return Objects.hash(id, name, description, price, stockQuantity, subCategories, createdAt, updatedAt, imagePath);
     }
 
     @Override
     public String toString() {
         return "Products{" +
-                "Product ID: " + productId +
+                "Product ID: " + id +
                 ", NAME: '" + name + '\'' +
                 ", DESCRIPTION: '" + description + '\'' +
                 ", PRICE: " + price +
                 ", STOCK QUANTITY: " + stockQuantity +
-                ", CATEGORY ID: " + categoryId +
+                ", SUB CATEGORIES: " + subCategories +
                 ", CREATED AT: " + createdAt +
                 ", UPDATED AT: " + updatedAt +
                 ", IMAGE PATH: '" + imagePath + '\'' +
@@ -136,18 +118,18 @@ public class Products implements Serializable {
     }
 
     public static class Builder {
-        private Long productId;
+        private Long id;
         private String name;
         private String description;
         private double price;
         private int stockQuantity;
-        private Long categoryId;
+        private List<SubCategory> subCategories;
         private LocalDateTime createdAt;
         private LocalDateTime updatedAt;
         private String imagePath;
 
-        public Builder setProductId(Long productId) {
-            this.productId = productId;
+        public Builder setId(Long id) {
+            this.id = id;
             return this;
         }
 
@@ -171,8 +153,8 @@ public class Products implements Serializable {
             return this;
         }
 
-        public Builder setCategoryId(Long categoryId) {
-            this.categoryId = categoryId;
+        public Builder setSubCategories(List<SubCategory> subCategories) {
+            this.subCategories = subCategories;
             return this;
         }
 
@@ -192,12 +174,12 @@ public class Products implements Serializable {
         }
 
         public Builder copy(Products products) {
-            this.productId = products.getProductId();
+            this.id = products.getId();
             this.name = products.getName();
             this.description = products.getDescription();
             this.price = products.getPrice();
             this.stockQuantity = products.getStockQuantity();
-            this.categoryId = products.getCategoryId();
+            this.subCategories = products.getSubCategories();
             this.createdAt = products.getCreatedAt();
             this.updatedAt = products.getUpdatedAt();
             this.imagePath = products.getImagePath();

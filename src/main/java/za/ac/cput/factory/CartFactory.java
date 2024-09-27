@@ -1,6 +1,7 @@
 package za.ac.cput.factory;
 
 import za.ac.cput.domain.Cart;
+import za.ac.cput.domain.User;
 import za.ac.cput.util.Helper;
 
 import java.time.LocalDate;
@@ -14,17 +15,17 @@ import java.time.LocalDate;
  */
 
 public class CartFactory {
-    public static Cart buildCart(long cart_id, long userId, LocalDate created_at, LocalDate updated_at) {
+    public static Cart buildCart(long id, User user, LocalDate created_at, LocalDate updated_at) {
 
-        if (Helper.isNullOrEmpty(cart_id) ||
-                Helper.isNullOrEmpty(userId) ||
+        if (Helper.isNullOrEmpty(id) ||
+                Helper.isNullOrEmpty(user) ||
                 Helper.isNullOrEmpty(String.valueOf(created_at)) ||
                 Helper.isNullOrEmpty(String.valueOf(updated_at))
         ) return null;
 
         return new Cart.Builder()
-                .setCart_id(cart_id)
-                .setUser_id(userId)
+                .setId(id)
+                .setUser(user)
                 .setCreated_at(created_at)
                 .setUpdated_at(updated_at)
                 .build();

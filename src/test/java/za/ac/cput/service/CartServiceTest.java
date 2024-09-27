@@ -1,11 +1,13 @@
 package za.ac.cput.service;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.Cart;
+import za.ac.cput.domain.User;
 import za.ac.cput.factory.CartFactory;
 
 import java.time.LocalDate;
@@ -25,8 +27,14 @@ class CartServiceTest {
     LocalDate startDate = LocalDate.parse("01-02-24", formatter);
     LocalDate endDate = LocalDate.parse("05-02-24", formatter);
 
-    private Cart cart = CartFactory.buildCart(1, 001, startDate, endDate);
+    private Cart cart;
 
+    @BeforeEach
+    void setUp() {
+        User user = new User();
+        cart = CartFactory.buildCart(1, user, startDate, endDate);
+
+    }
 
     @Test
     void a_create() {
@@ -38,14 +46,14 @@ class CartServiceTest {
 
     @Test
     void b_read() {
-        List<Cart> read = service.read(cart.getCart_id());
+        List<Cart> read = service.read(cart.getId());
         assertNotNull(read);
         System.out.println(read);
     }
 
     @Test
     void c_update() {
-        Cart newCart = new Cart.Builder().copy(cart).setCart_id(0002).build();
+        Cart newCart = new Cart.Builder().copy(cart).setId(0002).build();
         Cart updated = service.update(newCart);
         assertNotNull(updated);
         System.out.println(updated);
@@ -54,7 +62,7 @@ class CartServiceTest {
 
     @Test
     void d_delete() {
-        service.delete(cart.getCart_id());
+        service.delete(cart.getId());
         System.out.println("cart deleted");
     }
 
