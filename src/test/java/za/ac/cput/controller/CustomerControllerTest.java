@@ -10,7 +10,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import za.ac.cput.domain.Customer;
 import za.ac.cput.factory.CustomerFactory;
-import za.ac.cput.service.ICustomerService;
 
 import java.time.LocalDate;
 
@@ -62,7 +61,7 @@ class CustomerControllerTest {
         assertNotNull(response);
         assertNotNull(response.getBody());
         customer1 = response.getBody();  // Capture the ID assigned by the database
-        assertNotEquals(0L, customer1.getCustomerId());
+        assertNotEquals(0L, customer1.getId());
 
         ResponseEntity<Customer> response2 = restTemplate.postForEntity(createURL, customer2, Customer.class);
         assertNotNull(response2);
@@ -73,11 +72,11 @@ class CustomerControllerTest {
     @Test
     @Order(2)
     void read() {
-        String readURL = BASE_URL + "/read/" + customer1.getCustomerId();
+        String readURL = BASE_URL + "/read/" + customer1.getId();
         ResponseEntity<Customer> response = restTemplate.getForEntity(readURL, Customer.class);
         assertNotNull(response);
         assertNotNull(response.getBody());
-        assertEquals(customer1.getCustomerId(), response.getBody().getCustomerId());
+        assertEquals(customer1.getId(), response.getBody().getId());
     }
 
     @Test

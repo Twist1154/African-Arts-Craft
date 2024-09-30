@@ -36,23 +36,23 @@ class AddressServiceTest {
                 .setUsername("testuser")
                 .setPassword("password")
                 .setEmail("test@example.com")
-                .setFirst_name("Test")
-                .setLast_name("User")
-                .setCreated_at(LocalDate.now())
-                .setUpdated_at(LocalDate.now())
+                .setFirstName("Test")
+                .setLastName("User")
+                .setCreatedAt(LocalDate.now())
+                .setUpdatedAt(LocalDate.now())
                 .build();
 
         address = new Address.Builder()
                 .setId(1L)
                 .setUser(user)
-                .setAddress_line1("123 Test St")
-                .setAddress_line2("Apt 4B")
+                .setAddressLine1("123 Test St")
+                .setAddressLine2("Apt 4B")
                 .setCity("Test City")
                 .setProvince("Test Province")
-                .setPostal_code("12345")
+                .setPostalCode("12345")
                 .setCountry("Test Country")
-                .setCreated_at(LocalDate.now())
-                .setUpdated_at(LocalDate.now())
+                .setCreatedAt(LocalDate.now())
+                .setUpdatedAt(LocalDate.now())
                 .build();
     }
 
@@ -62,7 +62,7 @@ class AddressServiceTest {
         System.out.println(createdAddress);
         assertNotNull(createdAddress);
         assertEquals(address.getId(), createdAddress.getId());
-        assertEquals(address.getAddress_line1(), createdAddress.getAddress_line1());
+        assertEquals(address.getAddressLine1(), createdAddress.getAddressLine1());
     }
 
     @Test
@@ -80,12 +80,12 @@ class AddressServiceTest {
         Address createdAddress = addressService.create(address);
         createdAddress = new Address.Builder()
                 .copy(createdAddress)
-                .setAddress_line1("new Address updated address")
+                .setAddressLine1("new Address updated address")
                 .build();
         Address updatedAddress = addressService.update(createdAddress);
         System.out.println(updatedAddress);
         assertNotNull(updatedAddress);
-        assertEquals("new Address updated address", updatedAddress.getAddress_line1());
+        assertEquals("new Address updated address", updatedAddress.getAddressLine1());
     }
 
     @Test

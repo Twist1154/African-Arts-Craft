@@ -2,20 +2,15 @@ package za.ac.cput.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.ac.cput.domain.Cart_Items;
-import za.ac.cput.domain.Products;
+import za.ac.cput.domain.CartItems;
 import za.ac.cput.repository.CartItemRepository;
 
 import java.util.List;
-import java.util.Optional;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 public class CartItemService implements ICartItemService {
 
     private final CartItemRepository cartItemRepository;
-
 
     @Autowired
     public CartItemService(CartItemRepository cartItemsRepository) {
@@ -23,19 +18,33 @@ public class CartItemService implements ICartItemService {
     }
 
     @Override
-    public Cart_Items create(Cart_Items cartItems) {
+    public CartItems create(CartItems cartItems) {
         return cartItemRepository.save(cartItems);
     }
 
     @Override
-    public Cart_Items read(Long id) {
-        Optional<Cart_Items> product = cartItemRepository.findById(id);
-        return product.orElse(null);
+    public CartItems read(Long id) {
+        return cartItemRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Cart_Items update(Cart_Items cartItems) {
-        return cartItemRepository.save(cartItems);
+    public CartItems update(CartItems cartItems) {
+        CartItems existingProduct = read(cartItems.getId());
+        if (existingProduct != null) {
+            CartItems updatedProduct = new CartItems.Builder()
+                    .copy(cartItems)
+                    .setProduct(cartItems.getProduct())
+                    .setCart(cartItems.getCart())
+                    .setQuantity(cartItems.getQuantity())
+                    .build();
+            return cartItemRepository.save(updatedProduct);
+        }
+        throw new IllegalArgumentException("Attempt to update a non-existent cart item with ID: " + cartItems.getId());
+    }
+
+    @Override
+    public List<CartItems> findAll() {
+        return cartItemRepository.findAll();
     }
 
     @Override
@@ -43,33 +52,13 @@ public class CartItemService implements ICartItemService {
         cartItemRepository.deleteById(id);
     }
 
-
     @Override
-    public List<Cart_Items> getAll() {
-        return cartItemRepository.findAll();
+    public List<CartItems> findByCart_Id(Long cartId) {
+        return cartItemRepository.findByCart_Id(cartId);
     }
 
     @Override
-    public List<Cart_Items> getCartItemsByCartId(long cartId) {
-        return cartItemRepository.findByCartId(cartId);
+    public List<CartItems> findByProduct_Id(Long productId) {
+        return cartItemRepository.findByProduct_Id(productId);
     }
-   /* @Override
-    public List<Cart_Items>getCartItemsByCartItemId(long cart_Item_Id){
-        return cartItemRepository.findByCart_Item_Id(cart_Item_Id);}*/
-
-    @Override
-    public List<Cart_Items> getCartItemsByProductId(long productId) {
-        return cartItemRepository.findByProductId(productId);
-    }
-
-    @Override
-    public Cart_Items saveCartItem(Cart_Items cartItem) {
-        return cartItemRepository.save(cartItem);
-    }
-
-    @Override
-    public void deleteCartItem(long cartItemId) {
-        cartItemRepository.deleteById(cartItemId);
-    }
-
 }

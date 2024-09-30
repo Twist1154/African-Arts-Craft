@@ -14,17 +14,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class WishlistFactoryTest {
 
     private User user;
-    private Products products;
+    private Product product;
     private Wishlist wishlist;
     private List<WishlistItem> wishlistItems;
-    private Categories categories;
+    private Category category;
     private List<SubCategory> subCategory;
 
     @BeforeEach
     void setup() {
         wishlist = new Wishlist();
         // Create a sample Category object using the factory method
-        categories = new Categories();
+        category = new Category();
 
         // Create sample SubCategory objects using the factory method
         SubCategory subCategory1 = new SubCategory();
@@ -33,25 +33,25 @@ class WishlistFactoryTest {
 
 
         // Create a sample Product object using the factory method
-        products = new Products();
+        product = new Product();
 
         // Set up a sample User object
         user = new User.Builder()
-                .setFirst_name("John")
-                .setLast_name("Doe")
+                .setFirstName("John")
+                .setLastName("Doe")
                 .setEmail("johndoe@example.com")
                 .setPassword("password123")
                 .build();
 
         // Create WishlistItem objects using the factory method
         WishlistItem wishlistitem1 = WishlistItemFactory.createWishlistItem(
-                products,
+                product,
                 wishlist,
                 LocalDateTime.now()
         );
 
         WishlistItem wishlistitem2 = WishlistItemFactory.createWishlistItem(
-                products,
+                product,
                 wishlist,
                 LocalDateTime.now()
         );

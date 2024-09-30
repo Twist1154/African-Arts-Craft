@@ -45,7 +45,6 @@ public class SubCategoryService implements ISubCategory {
                     .setId(existingSubCategory.getId())
                     .setCategory(subCategory.getCategory())
                     .setName(subCategory.getName())
-                    .setDescription(subCategory.getDescription())
                     .build();
             return subCategoryRepository.save(updatedSubCategory);
         } else {

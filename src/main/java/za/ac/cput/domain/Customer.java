@@ -4,9 +4,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * Customer.java
@@ -14,11 +16,12 @@ import java.time.LocalDate;
  * @author Sibabalwe
  * @date 07 August 22024
  */
+@Getter
 @Entity
 public class Customer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long customerId;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -27,12 +30,12 @@ public class Customer implements Serializable {
     private LocalDate createdAt;
     private LocalDate updatedAt;
 
-    // Default constructor
-    protected Customer() {
+
+    public Customer() {
     }
 
     public Customer(Builder builder) {
-        this.customerId = builder.customerId;
+        this.id = builder.id;
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
         this.email = builder.email;
@@ -42,71 +45,23 @@ public class Customer implements Serializable {
         this.updatedAt = builder.updatedAt;
     }
 
-    // Getters and Setters
-
-    public long getCustomerId() {
-        return customerId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public LocalDate getCreatedAt() {
-        return createdAt;
-    }
-
-    public LocalDate getUpdatedAt() {
-        return updatedAt;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Customer customer)) return false;
-
-        if (getCustomerId() != customer.getCustomerId()) return false;
-        if (getFirstName() != null ? !getFirstName().equals(customer.getFirstName()) : customer.getFirstName() != null)
-            return false;
-        if (getLastName() != null ? !getLastName().equals(customer.getLastName()) : customer.getLastName() != null)
-            return false;
-        if (getEmail() != null ? !getEmail().equals(customer.getEmail()) : customer.getEmail() != null) return false;
-        if (getCreatedAt() != null ? !getCreatedAt().equals(customer.getCreatedAt()) : customer.getCreatedAt() != null)
-            return false;
-        return getUpdatedAt() != null ? getUpdatedAt().equals(customer.getUpdatedAt()) : customer.getUpdatedAt() == null;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return Objects.equals(id, customer.id) && Objects.equals(firstName, customer.firstName) && Objects.equals(lastName, customer.lastName) && Objects.equals(email, customer.email) && Objects.equals(password, customer.password) && Objects.equals(phoneNumber, customer.phoneNumber) && Objects.equals(createdAt, customer.createdAt) && Objects.equals(updatedAt, customer.updatedAt);
     }
 
     @Override
     public int hashCode() {
-        int result = (int) (getCustomerId() ^ (getCustomerId() >>> 32));
-        result = 31 * result + (getFirstName() != null ? getFirstName().hashCode() : 0);
-        result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
-        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
-        result = 31 * result + (getCreatedAt() != null ? getCreatedAt().hashCode() : 0);
-        result = 31 * result + (getUpdatedAt() != null ? getUpdatedAt().hashCode() : 0);
-        return result;
+        return Objects.hash(id, firstName, lastName, email, password, phoneNumber, createdAt, updatedAt);
     }
 
     @Override
     public String toString() {
         return "Customer{" +
-                "customerId=" + customerId +
+                "customer ID =" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
@@ -117,7 +72,7 @@ public class Customer implements Serializable {
     }
 
     public static class Builder {
-        private long customerId;
+        private Long id;
         private String firstName;
         private String lastName;
         private String email;
@@ -126,8 +81,8 @@ public class Customer implements Serializable {
         private LocalDate createdAt;
         private LocalDate updatedAt;
 
-        public Builder setCustomerId(long customerId) {
-            this.customerId = customerId;
+        public Builder setId(Long id) {
+            this.id = id;
             return this;
         }
 
@@ -167,7 +122,7 @@ public class Customer implements Serializable {
         }
 
         public Builder copy(Customer customer) {
-            this.customerId = customer.customerId;
+            this.id = customer.id;
             this.firstName = customer.firstName;
             this.lastName = customer.lastName;
             this.email = customer.email;

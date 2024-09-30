@@ -1,6 +1,6 @@
 package za.ac.cput.factory;
 
-import za.ac.cput.domain.Products;
+import za.ac.cput.domain.Product;
 import za.ac.cput.domain.Review;
 import za.ac.cput.domain.User;
 import za.ac.cput.util.Helper;
@@ -16,20 +16,22 @@ import java.time.LocalDate;
  */
 
 public class ReviewFactory {
-    public static Review buildReview(long review_id, Products product, User user, int rating,
-                                     String comment, LocalDate created_at) {
+    public static Review buildReview(Long id,
+                                     Product product,
+                                     User user,
+                                     int rating,
+                                     String comment
+    ) {
         if (Helper.isNullOrEmpty(rating) ||
-                Helper.isNullOrEmpty(comment) ||
-                Helper.isNullOrEmpty(String.valueOf(created_at))
+                Helper.isNullOrEmpty(comment)
         ) return null;
 
         return new Review.Builder()
-                .setId(review_id)
+                .setId(id)
                 .setProduct(product)
-                .setUsers(user)
+                .setUser(user)
                 .setRating(rating)
                 .setComment(comment)
-                .setCreated_at(created_at)
                 .build();
     }
 }

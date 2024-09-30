@@ -15,9 +15,14 @@ import java.time.LocalDate;
 
 public class Userfactory {
 
-    public static User buildUser(Long id, String username, String password,
-                                 String email, String first_name, String last_name,
-                                 LocalDate created_at, LocalDate updated_at) {
+    public static User buildUser(Long id,
+                                 String username,
+                                 String password,
+                                 String email,
+                                 String first_name,
+                                 String last_name,
+                                 LocalDate created_at,
+                                 LocalDate updated_at) {
 
         if (Helper.isNullOrEmpty(username) ||
                 Helper.isNullOrEmpty(password) ||
@@ -35,10 +40,10 @@ public class Userfactory {
                 .setUsername(username)
                 .setPassword(password)
                 .setEmail(email)
-                .setFirst_name(first_name)
-                .setLast_name(last_name)
-                .setCreated_at(created_at)
-                .setUpdated_at(updated_at)
+                .setFirstName(first_name)
+                .setLastName(last_name)
+                .setCreatedAt(created_at)
+                .setUpdatedAt(updated_at)
                 .build();
     }
 }

@@ -32,7 +32,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User read(String s) {
+    public User read(Long s) {
         return userRepository.findById(s).orElse(null);
     }
 
@@ -42,7 +42,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(Long id) {
         userRepository.deleteById(id);
     }
 
@@ -67,11 +67,11 @@ public class UserService implements IUserService {
     }
 
     public List<User> findUsersCreatedAfter(LocalDate createdAt) {
-        return userRepository.findUsersCreatedAfter(createdAt);
+        return userRepository.findByCreatedAtAfter(createdAt);
     }
 
     public boolean validateUser(String email, String password) {
-        User user = userRepository.findByEmailAndPassword(email, password);
+        User user = (User) userRepository.findByEmailAndPassword(email, password);
         return user != null;
     }
 }

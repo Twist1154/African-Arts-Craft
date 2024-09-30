@@ -35,10 +35,10 @@ public class UserControllerTest {
                 .setUsername("john_doe")
                 .setPassword("password123")
                 .setEmail("john.doe@example.com")
-                .setFirst_name("John")
-                .setLast_name("Doe")
-                .setCreated_at(LocalDate.now())
-                .setUpdated_at(LocalDate.now())
+                .setFirstName("John")
+                .setLastName("Doe")
+                .setCreatedAt(LocalDate.now())
+                .setUpdatedAt(LocalDate.now())
                 .build();
 
         when(userService.create(any(User.class))).thenReturn(user);

@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Address;
 
+import java.util.List;
+
 /**
  * AddressRepository.java
  *
@@ -14,5 +16,13 @@ import za.ac.cput.domain.Address;
 
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Long> {
+    Address findByUserId(Long userId);
 
+    List<Address> findAllByUserId(Long userId);
+
+    List<Address> findAllByPostalCode(String postalCode);
+
+    List<Address> findAllByCity(String city);
+
+    List<Address> findAllByProvince(String province);
 }

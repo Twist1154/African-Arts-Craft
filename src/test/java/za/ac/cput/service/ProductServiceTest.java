@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
-import za.ac.cput.domain.Products;
+import za.ac.cput.domain.Product;
 import za.ac.cput.domain.SubCategory;
 
 import java.time.LocalDate;
@@ -20,7 +20,7 @@ class ProductServiceTest {
     @Autowired
     private ProductService productService;
 
-    private Products product;
+    private Product product;
 
     @BeforeEach
     void setUp() {
@@ -29,42 +29,39 @@ class ProductServiceTest {
 
         List<SubCategory> subCategoryList = List.of(subCategories, subCategory);
 
-        product = new Products.Builder()
+        product = new Product.Builder()
                 .setId(1L)
                 .setName("African head ")
                 .setDescription("This is a test product")
                 .setPrice(10.99)
-                .setStockQuantity(10)
                 .setSubCategories(subCategoryList)
-                .setCreatedAt(LocalDate.now().atStartOfDay())
-                .setUpdatedAt(LocalDate.now().atStartOfDay())
                 .setImagePath("path/to/image.jpg")
                 .build();
     }
 
     @Test
     void create() {
-        Products createdProduct = productService.create(product);
+        Product createdProduct = productService.create(product);
         assertNotNull(createdProduct);
         assertEquals(product.getName(), createdProduct.getName());
     }
 
     @Test
     void read() {
-        Products createdProduct = productService.create(product);
-        Products readProduct = productService.read(createdProduct.getId());
+        Product createdProduct = productService.create(product);
+        Product readProduct = productService.read(createdProduct.getId());
         assertNotNull(readProduct);
         assertEquals(createdProduct.getId(), readProduct.getId());
     }
 
     @Test
     void update() {
-        Products createdProduct = productService.create(product);
-        createdProduct = new Products.Builder()
+        Product createdProduct = productService.create(product);
+        createdProduct = new Product.Builder()
                 .copy(createdProduct)
                 .setName("Updated Test Product")
                 .build();
-        Products updatedProduct = productService.update(createdProduct);
+        Product updatedProduct = productService.update(createdProduct);
         assertNotNull(updatedProduct);
         assertEquals("Updated Test Product", updatedProduct.getName());
     }
@@ -72,14 +69,14 @@ class ProductServiceTest {
     @Test
     void findAll() {
         productService.create(product);
-        List<Products> products = productService.findAll();
+        List<Product> products = productService.findAll();
         assertFalse(products.isEmpty());
     }
 
     @Test
     void findByName() {
         productService.create(product);
-        List<Products> products = productService.findByName("African head");
+        List<Product> products = productService.findByName("African head");
         assertFalse(products.isEmpty());
         assertEquals("African head", products.get(0).getName());
     }
@@ -87,7 +84,7 @@ class ProductServiceTest {
     @Test
     void findByCategoryId() {
         productService.create(product);
-        List<Products> products = productService.findByCategoryId(1L);
+        List<Product> products = productService.findByCategoryId(1L);
         assertFalse(products.isEmpty());
         assertEquals(1, products.get(0).getSubCategories().size());
     }
@@ -95,23 +92,17 @@ class ProductServiceTest {
     @Test
     void findByPriceBetween() {
         productService.create(product);
-        List<Products> products = productService.findByPriceBetween(10.00, 11.00);
+        List<Product> products = productService.findByPriceBetween(10.00, 11.00);
         assertFalse(products.isEmpty());
         assertTrue(products.get(0).getPrice() >= 10.00 && products.get(0).getPrice() <= 11.00);
     }
 
-    @Test
-    void findByStockQuantityGreaterThan() {
-        productService.create(product);
-        List<Products> products = productService.findByStockQuantityGreaterThan(5); // Adjusted for testing
-        assertFalse(products.isEmpty());
-        assertTrue(products.get(0).getStockQuantity() > 5);
-    }
+
 
     @Test
     void findByCreatedAtAfter() {
         productService.create(product);
-        List<Products> products = productService.findByCreatedAtAfter(LocalDate.now().minusDays(1));
+        List<Product> products = productService.findByCreatedAtAfter(LocalDate.now().minusDays(1));
         assertFalse(products.isEmpty());
         assertTrue(products.get(0).getCreatedAt().isAfter(LocalDate.now().minusDays(1).atStartOfDay()));
     }
@@ -119,7 +110,7 @@ class ProductServiceTest {
     @Test
     void findByUpdatedAtBefore() {
         productService.create(product);
-        List<Products> products = productService.findByUpdatedAtBefore(LocalDate.now().plusDays(1));
+        List<Product> products = productService.findByUpdatedAtBefore(LocalDate.now().plusDays(1));
         assertFalse(products.isEmpty());
         assertTrue(products.get(0).getUpdatedAt().isBefore(LocalDate.now().plusDays(1).atStartOfDay()));
     }

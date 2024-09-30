@@ -23,13 +23,13 @@ public class ReviewController {
 
     @PostMapping
     public ResponseEntity<Review> createReview(@RequestBody Review review) {
-        Review savedReview = service.save(review);
+        Review savedReview = service.create(review);
         return new ResponseEntity<>(savedReview, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Review> getReviewById(@PathVariable Long id) {
-        Review review = service.findById(id);
+        Review review = service.read(id);
         return review != null ? new ResponseEntity<>(review, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 

@@ -1,133 +1,96 @@
 package za.ac.cput.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Objects;
 
-/**
- * Orders.java
- *
- * @author Rethabile Ntsekhe
- * Student Num: 220455430
- * @date 23-Jul-24
- */
-
+@Getter
 @Entity
 public class Orders implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Order_Items> orderItems;
-
-    private double total_amount;
-    private LocalDate order_date;
+    private double totalAmount;
     private String status;
-    private String shipping_address;
-    private String billing_address;
-    private String payment_method;
-    private LocalDate created_at;
-    private LocalDate updated_at;
+
+    @ManyToOne
+    private Address address;
+
+    @OneToOne
+    private Payments payment;
+
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
 
     public Orders() {
     }
 
-    // Builder-based constructor
+
     public Orders(Builder builder) {
-        this.orderId = builder.orderId;
+        this.id = builder.id;
         this.user = builder.user;
-        this.total_amount = builder.total_amount;
-        this.order_date = builder.order_date;
+        this.totalAmount = builder.totalAmount;
         this.status = builder.status;
-        this.shipping_address = builder.shipping_address;
-        this.billing_address = builder.billing_address;
-        this.payment_method = builder.payment_method;
-        this.created_at = builder.created_at;
-        this.updated_at = builder.updated_at;
+        this.address = builder.address;
+        this.payment = builder.payment;
+        this.createdAt = builder.createdAt;
+        this.updatedAt = builder.updatedAt;
     }
 
-    // Getters
-    public Long getOrderId() {
-        return orderId;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Orders orders = (Orders) o;
+        return Double.compare(totalAmount, orders.totalAmount) == 0 &&
+                Objects.equals(id, orders.id) &&
+                Objects.equals(user, orders.user) &&
+                Objects.equals(status, orders.status) &&
+                Objects.equals(address, orders.address) &&
+                Objects.equals(payment, orders.payment) &&
+                Objects.equals(createdAt, orders.createdAt) &&
+                Objects.equals(updatedAt, orders.updatedAt);
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public List<Order_Items> getOrderItems() {
-        return orderItems;
-    }
-
-    public double getTotal_amount() {
-        return total_amount;
-    }
-
-    public LocalDate getOrder_date() {
-        return order_date;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public String getShipping_address() {
-        return shipping_address;
-    }
-
-    public String getBilling_address() {
-        return billing_address;
-    }
-
-    public String getPayment_method() {
-        return payment_method;
-    }
-
-    public LocalDate getCreated_at() {
-        return created_at;
-    }
-
-    public LocalDate getUpdated_at() {
-        return updated_at;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, user, totalAmount, status, address, payment, createdAt, updatedAt);
     }
 
     @Override
     public String toString() {
         return "Orders{" +
-                "Order ID: " + orderId +
-                ", USER: " + user.getId() +
-                ", TOTAL AMOUNT: " + total_amount +
-                ", ORDER DATE: " + order_date +
+                "Order ID: " + id +
+                ", USER: " + (user != null ? user.getId() : "null") +
+                ", TOTAL AMOUNT: " + totalAmount +
                 ", STATUS: '" + status + '\'' +
-                ", SHIPPING ADDRESS: '" + shipping_address + '\'' +
-                ", BILLING ADDRESS: '" + billing_address + '\'' +
-                ", PAYMENT METHOD: '" + payment_method + '\'' +
-                ", CREATED AT: " + created_at +
-                ", UPDATED AT: " + updated_at +
+                ", SHIPPING ADDRESS: " + address +
+                ", PAYMENT METHOD: " + payment +
+                ", CREATED AT: " + createdAt +
+                ", UPDATED AT: " + updatedAt +
                 '}';
     }
 
     public static class Builder {
-        private Long orderId;
+        private Long id;
         private User user;
-        private double total_amount;
-        private LocalDate order_date;
+        private double totalAmount;
         private String status;
-        private String shipping_address;
-        private String billing_address;
-        private String payment_method;
-        private LocalDate created_at;
-        private LocalDate updated_at;
+        private Address address;
+        private Payments payment;
+        private LocalDate createdAt;
+        private LocalDate updatedAt;
 
-        public Builder setOrderId(Long orderId) {
-            this.orderId = orderId;
+        public Builder setId(Long id) {
+            this.id = id;
             return this;
         }
 
@@ -136,13 +99,8 @@ public class Orders implements Serializable {
             return this;
         }
 
-        public Builder setTotal_amount(double total_amount) {
-            this.total_amount = total_amount;
-            return this;
-        }
-
-        public Builder setOrder_date(LocalDate order_date) {
-            this.order_date = order_date;
+        public Builder setTotalAmount(double totalAmount) {
+            this.totalAmount = totalAmount;
             return this;
         }
 
@@ -151,42 +109,35 @@ public class Orders implements Serializable {
             return this;
         }
 
-        public Builder setShipping_address(String shipping_address) {
-            this.shipping_address = shipping_address;
+        public Builder setAddress(Address address) {
+            this.address = address;
             return this;
         }
 
-        public Builder setBilling_address(String billing_address) {
-            this.billing_address = billing_address;
+        public Builder setPayment(Payments payment) {
+            this.payment = payment;
             return this;
         }
 
-        public Builder setPayment_method(String payment_method) {
-            this.payment_method = payment_method;
+        public Builder setCreatedAt(LocalDate createdAt) {
+            this.createdAt = createdAt;
             return this;
         }
 
-        public Builder setCreated_at(LocalDate created_at) {
-            this.created_at = created_at;
-            return this;
-        }
-
-        public Builder setUpdated_at(LocalDate updated_at) {
-            this.updated_at = updated_at;
+        public Builder setUpdatedAt(LocalDate updatedAt) {
+            this.updatedAt = updatedAt;
             return this;
         }
 
         public Builder copy(Orders orders) {
-            this.orderId = orders.getOrderId();
+            this.id = orders.getId();
             this.user = orders.getUser();
-            this.total_amount = orders.getTotal_amount();
-            this.order_date = orders.getOrder_date();
+            this.totalAmount = orders.getTotalAmount();
             this.status = orders.getStatus();
-            this.shipping_address = orders.getShipping_address();
-            this.billing_address = orders.getBilling_address();
-            this.payment_method = orders.getPayment_method();
-            this.created_at = orders.getCreated_at();
-            this.updated_at = orders.getUpdated_at();
+            this.address = orders.getAddress();
+            this.payment = orders.getPayment();
+            this.createdAt = orders.getCreatedAt();
+            this.updatedAt = orders.getUpdatedAt();
             return this;
         }
 

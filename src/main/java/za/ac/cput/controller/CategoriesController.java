@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import za.ac.cput.domain.Categories;
-import za.ac.cput.service.CategoriesService;
+import za.ac.cput.domain.Category;
+import za.ac.cput.service.CategoryService;
 
 import java.util.List;
 
@@ -22,19 +22,19 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 // Allow CORS for this controller this is optional allows requests from port 3000
 public class CategoriesController {
-    private final CategoriesService categoriesService;
+    private final CategoryService categoryService;
 
     @Autowired
-    public CategoriesController(CategoriesService categoriesService) {
-        this.categoriesService = categoriesService;
+    public CategoriesController(CategoryService categoryService) {
+        this.categoryService = categoryService;
     }
 
     /**
      * Endpoint: http://localhost:8080/store/categories/create
      */
     @PostMapping("/create")
-    public ResponseEntity<Categories> createCategory(@RequestBody Categories category) {
-        Categories createdCategory = categoriesService.create(category);
+    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+        Category createdCategory = categoryService.create(category);
         return new ResponseEntity<>(createdCategory, HttpStatus.CREATED);
     }
 
@@ -42,8 +42,8 @@ public class CategoriesController {
      * Endpoint: http://localhost:8080/store/categories/get/{id}
      */
     @GetMapping("/get/{id}")
-    public ResponseEntity<Categories> getCategoryById(@PathVariable Long id) {
-        Categories category = categoriesService.read(id);
+    public ResponseEntity<Category> getCategoryById(@PathVariable Long id) {
+        Category category = categoryService.read(id);
         if (category != null) {
             return new ResponseEntity<>(category, HttpStatus.OK);
         } else {
@@ -55,8 +55,8 @@ public class CategoriesController {
      * Endpoint: http://localhost:8080/store/categories/update
      */
     @PutMapping("/update")
-    public ResponseEntity<Categories> updateCategory(@RequestBody Categories category) {
-        Categories updatedCategory = categoriesService.update(category);
+    public ResponseEntity<Category> updateCategory(@RequestBody Category category) {
+        Category updatedCategory = categoryService.update(category);
         if (updatedCategory != null) {
             return new ResponseEntity<>(updatedCategory, HttpStatus.OK);
         } else {
@@ -68,8 +68,8 @@ public class CategoriesController {
      * Endpoint: http://localhost:8080/store/categories/getAll
      */
     @GetMapping("/getAll")
-    public ResponseEntity<List<Categories>> getAllCategories() {
-        List<Categories> categoriesList = categoriesService.findAll();
-        return new ResponseEntity<>(categoriesList, HttpStatus.OK);
+    public ResponseEntity<List<Category>> getAllCategories() {
+        List<Category> categoryList = categoryService.findAll();
+        return new ResponseEntity<>(categoryList, HttpStatus.OK);
     }
 }

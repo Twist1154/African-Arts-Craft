@@ -2,7 +2,7 @@ package za.ac.cput.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import za.ac.cput.domain.Order_Items;
+import za.ac.cput.domain.OrderItem;
 
 /**
  * OrderItemsRepository.java
@@ -13,7 +13,7 @@ import za.ac.cput.domain.Order_Items;
  */
 
 @Repository
-public interface OrderItemsRepository extends JpaRepository<Order_Items, Long> {
+public interface OrderItemsRepository extends JpaRepository<OrderItem, Long> {
     @Override
     void deleteById(Long id);
 }

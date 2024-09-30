@@ -15,10 +15,16 @@ import java.time.LocalDate;
  */
 
 public class AddressFactory {
-    public static Address buildAddress(long address_id, User user, String address_line1,
-                                       String address_line2, String city, String province,
-                                       String postal_code, String country,
-                                       LocalDate created_at, LocalDate updated_at) {
+    public static Address buildAddress(Long id,
+                                       User user,
+                                       String address_line1,
+                                       String addressLine2,
+                                       String city,
+                                       String province,
+                                       String postal_code,
+                                       String country,
+                                       LocalDate created_at,
+                                       LocalDate updated_at) {
         if (Helper.isNullOrEmpty(address_line1) ||
                 Helper.isNullOrEmpty(city) ||
                 Helper.isNullOrEmpty(province) ||
@@ -27,16 +33,16 @@ public class AddressFactory {
         ) return null;
 
         return new Address.Builder()
-                .setId(address_id)
+                .setId(id)
                 .setUser(user)
-                .setAddress_line1(address_line1)
-                .setAddress_line2(address_line2)
+                .setAddressLine1(address_line1)
+                .setAddressLine2(addressLine2)
                 .setCity(city)
                 .setProvince(province)
-                .setPostal_code(postal_code)
+                .setPostalCode(postal_code)
                 .setCountry(country)
-                .setCreated_at(created_at)
-                .setUpdated_at(updated_at)
+                .setCreatedAt(created_at)
+                .setUpdatedAt(updated_at)
                 .build();
     }
 }

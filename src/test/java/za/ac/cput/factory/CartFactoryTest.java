@@ -22,12 +22,10 @@ class CartFactoryTest {
 
         User user = new User();
 
-        Cart cart = CartFactory.buildCart(1, user, startDate, endDate);
+        Cart cart = CartFactory.buildCart(1L, user, 800.00);
 
 
         assertEquals(1, cart.getId());
         assertEquals(1001, cart.getId());
-        assertEquals(startDate, cart.getCreated_at());
-        assertEquals(endDate, cart.getUpdated_at());
     }
 }

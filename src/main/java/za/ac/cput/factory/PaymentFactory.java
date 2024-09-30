@@ -15,16 +15,21 @@ import java.time.LocalDate;
  */
 
 public class PaymentFactory {
-    public static Payments buildPayment(long payment_id, Orders order, LocalDate payment_date,
-                                        double payment_amount, String payment_method, String payment_status) {
+
+    public static Payments buildPayment(Long id,
+                                        Orders order,
+                                        LocalDate payment_date,
+                                        double payment_amount,
+                                        String payment_method,
+                                        String payment_status) {
+
         if (Helper.isDoubleNullOrEmpty(payment_amount) ||
-                Helper.isNullOrEmpty(String.valueOf(payment_date)) ||
                 Helper.isNullOrEmpty(payment_method) ||
                 Helper.isNullOrEmpty(payment_status)
         ) return null;
 
         return new Payments.Builder()
-                .setId(payment_id)
+                .setId(id)
                 .setOrders(order)
                 .setPayment_date(payment_date)
                 .setPayment_amount(payment_amount)

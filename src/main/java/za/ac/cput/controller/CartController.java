@@ -5,10 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import za.ac.cput.domain.Cart;
-import za.ac.cput.domain.Cart_Items;
+import za.ac.cput.domain.CartItems;
 import za.ac.cput.service.CartItemService;
 import za.ac.cput.service.CartService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 /*
@@ -22,97 +23,129 @@ CartItemsController Class
 @RestController
 @RequestMapping("/carts")
 public class CartController {
-
     private final CartService cartService;
-    private final CartItemService cartItemService;
 
     @Autowired
-    public CartController(CartService cartService, CartItemService cartItemService) {
+    public CartController(CartService cartService) {
         this.cartService = cartService;
-        this.cartItemService = cartItemService;
     }
 
-    // Cart Endpoints
-
-    @PostMapping("/create")
+    /**
+     * Creates a new cart.
+     *
+     * @param cart the cart to be created
+     * @return ResponseEntity containing the created Cart and HTTP status code
+     */
+    @PostMapping
     public ResponseEntity<Cart> createCart(@RequestBody Cart cart) {
-        System.out.println("Received cart: " + cart);
-        try {
-            Cart createdCart = cartService.create(cart);
-            return new ResponseEntity<>(createdCart, HttpStatus.CREATED);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        Cart createdCart = cartService.create(cart);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdCart);
+    }
+
+    /**
+     * Retrieves a cart by its ID.
+     *
+     * @param id the ID of the cart to retrieve
+     * @return ResponseEntity containing the Cart if found, or a 404 Not Found status if not
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<Cart> getCartById(@PathVariable Long id) {
+        Cart cart = cartService.read(id);
+        if (cart != null) {
+            return ResponseEntity.ok(cart);
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 
-
-    @GetMapping("/{userId}") //Made to retreive cart for a user
-    public ResponseEntity<List<Cart>> getCartsByUserId(@PathVariable Long userId) {
-        List<Cart> carts = cartService.read(userId);
-        return new ResponseEntity<>(carts, HttpStatus.OK);
-    }
-
-    @PutMapping //Updates a cart
-    public ResponseEntity<Cart> updateCart(@RequestBody Cart cart) {
+    /**
+     * Updates an existing cart.
+     *
+     * @param id   the ID of the cart to be updated
+     * @param cart the updated cart details
+     * @return ResponseEntity containing the updated Cart and HTTP status code, or 404 Not Found if not found
+     */
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Cart> updateCart(@PathVariable Long id, @RequestBody Cart cart) {
         Cart updatedCart = cartService.update(cart);
-        return new ResponseEntity<>(updatedCart, HttpStatus.OK);
+        if (updatedCart != null) {
+            return ResponseEntity.ok(updatedCart);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @DeleteMapping("/{userId}") ///Deletes a cart by user ID.
-    public ResponseEntity<Void> deleteCart(@PathVariable Long userId) {
-        cartService.delete(userId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    /**
+     * Deletes a cart by its ID.
+     *
+     * @param id the ID of the cart to delete
+     * @return ResponseEntity with HTTP status code indicating success or failure
+     */
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Void> deleteCart(@PathVariable Long id) {
+        cartService.deleteByUserId(id);
+        return ResponseEntity.ok().build();
     }
 
-    @GetMapping //Retreives alla carts by the user IDs
-    public ResponseEntity<Set<Cart>> getAllCarts() {
-        Set<Cart> carts = cartService.getall();
-        return new ResponseEntity<>(carts, HttpStatus.OK);
+    /**
+     * Retrieves all carts.
+     *
+     * @return ResponseEntity containing the list of all Carts and HTTP status code
+     */
+    @GetMapping
+    public ResponseEntity<List<Cart>> getAllCarts() {
+        List<Cart> cartList = cartService.findAll();
+        return ResponseEntity.ok(cartList);
     }
 
-    // Cart Item Endpoints
-
-    @PostMapping("/items") // Creates a new cart item
-    public ResponseEntity<Cart_Items> createCartItem(@RequestBody Cart_Items cartItem) {
-        Cart_Items createdCartItem = cartItemService.create(cartItem);
-        return new ResponseEntity<>(createdCartItem, HttpStatus.CREATED);
+    /**
+     * Retrieves all carts associated with a specific user ID.
+     *
+     * @param userId the user ID to search by
+     * @return ResponseEntity containing the list of Carts associated with the given user ID
+     */
+    @GetMapping("/byUser/{userId}")
+    public ResponseEntity<List<Cart>> getCartsByUserId(@PathVariable Long userId) {
+        List<Cart> carts = cartService.findByUserId(userId);
+        return ResponseEntity.ok(carts);
     }
 
-    @GetMapping("/items/{cartItemId}") // Retrieves a cart item by its ID
-    public ResponseEntity<Cart_Items> getCartItemById(@PathVariable Long cartItemId) {
-        Cart_Items cartItem = cartItemService.read(cartItemId);
-        return new ResponseEntity<>(cartItem, HttpStatus.OK);
+    /**
+     * Retrieves all carts created after a specific date.
+     *
+     * @param date the date to search by
+     * @return ResponseEntity containing the list of Carts created after the given date
+     */
+    @GetMapping("/created-after/{date}")
+    public ResponseEntity<List<Cart>> getCartsCreatedAfter(@PathVariable String date) {
+        LocalDateTime createdAt = LocalDateTime.parse(date);
+        List<Cart> carts = cartService.findByCreatedAtAfter(createdAt);
+        return ResponseEntity.ok(carts);
     }
 
-    @PutMapping("/items") // Updates an existing cart item.
-    public ResponseEntity<Cart_Items> updateCartItem(@RequestBody Cart_Items cartItem) {
-        Cart_Items updatedCartItem = cartItemService.update(cartItem);
-        return new ResponseEntity<>(updatedCartItem, HttpStatus.OK);
+    /**
+     * Retrieves all carts with a total greater than a specified amount.
+     *
+     * @param total the minimum total value to search by
+     * @return ResponseEntity containing the list of Carts with a total greater than the specified amount
+     */
+    @GetMapping("/total-greater-than/{total}")
+    public ResponseEntity<List<Cart>> getCartsByTotalGreaterThan(@PathVariable Double total) {
+        List<Cart> carts = cartService.findByTotalGreaterThan(total);
+        return ResponseEntity.ok(carts);
     }
 
-    @DeleteMapping("/items/{cartItemId}") //Deletes a cart item by its ID
-    public ResponseEntity<Void> deleteCartItem(@PathVariable Long cartItemId) {
-        cartItemService.delete(cartItemId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @GetMapping("/items") // Retrieves all cart items.
-    public ResponseEntity<List<Cart_Items>> getAllCartItems() {
-        List<Cart_Items> cartItems = cartItemService.getAll();
-        return new ResponseEntity<>(cartItems, HttpStatus.OK);
-    }
-
-    @GetMapping("/items/cart/{cartId}") // Retrieves cart items by cart ID.
-    public ResponseEntity<List<Cart_Items>> getCartItemsByCartId(@PathVariable Long cartId) {
-        List<Cart_Items> cartItems = cartItemService.getCartItemsByCartId(cartId);
-        return new ResponseEntity<>(cartItems, HttpStatus.OK);
-    }
-
-    @GetMapping("/items/product/{productId}") //Retrieves cart items by product ID.
-    public ResponseEntity<List<Cart_Items>> getCartItemsByProductId(@PathVariable Long productId) {
-        List<Cart_Items> cartItems = cartItemService.getCartItemsByProductId(productId);
-        return new ResponseEntity<>(cartItems, HttpStatus.OK);
+    /**
+     * Retrieves all carts updated after a specific date.
+     *
+     * @param date the date to search by
+     * @return ResponseEntity containing the list of Carts updated after the given date
+     */
+    @GetMapping("/updated-after/{date}")
+    public ResponseEntity<List<Cart>> getCartsUpdatedAfter(@PathVariable String date) {
+        LocalDateTime updatedAt = LocalDateTime.parse(date);
+        List<Cart> carts = cartService.findByUpdatedAtAfter(updatedAt);
+        return ResponseEntity.ok(carts);
     }
 }
 

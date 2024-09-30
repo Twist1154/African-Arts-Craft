@@ -1,6 +1,6 @@
 package za.ac.cput.service;
 
-import za.ac.cput.domain.Order_Items;
+import za.ac.cput.domain.OrderItem;
 
 /**
  * IOrderItemsService.java
@@ -10,6 +10,6 @@ import za.ac.cput.domain.Order_Items;
  * @date 23-Jul-24
  */
 
-public interface IOrderItemsService extends IService<Order_Items, Long> {
+public interface IOrderItemsService extends IService<OrderItem, Long> {
     void deleteById(Long id);
 }

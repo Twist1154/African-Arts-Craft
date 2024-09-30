@@ -15,19 +15,19 @@ import java.time.LocalDate;
  */
 
 public class CartFactory {
-    public static Cart buildCart(long id, User user, LocalDate created_at, LocalDate updated_at) {
+    public static Cart buildCart(Long id,
+                                 User user,
+                                 Double total
+    ) {
 
         if (Helper.isNullOrEmpty(id) ||
-                Helper.isNullOrEmpty(user) ||
-                Helper.isNullOrEmpty(String.valueOf(created_at)) ||
-                Helper.isNullOrEmpty(String.valueOf(updated_at))
+                Helper.isNullOrEmpty(user)
         ) return null;
 
         return new Cart.Builder()
                 .setId(id)
                 .setUser(user)
-                .setCreated_at(created_at)
-                .setUpdated_at(updated_at)
+                .setTotal(total)
                 .build();
     }
 }

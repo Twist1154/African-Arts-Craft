@@ -12,8 +12,10 @@ import java.util.Objects;
 public class Payments implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+
     @OneToOne
+    @JoinColumn(name = "order_id", nullable = false)
     private Orders order;
     private LocalDate payment_date;
     private double payment_amount;
@@ -60,14 +62,14 @@ public class Payments implements Serializable {
     }
 
     public static class Builder {
-        private long id;
+        private Long id;
         private Orders order;
         private LocalDate payment_date;
         private double payment_amount;
         private String payment_method;
         private String payment_status;
 
-        public Builder setId(long id) {
+        public Builder setId(Long id) {
             this.id = id;
             return this;
         }

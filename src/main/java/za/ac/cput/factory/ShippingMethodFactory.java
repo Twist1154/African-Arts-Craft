@@ -1,30 +1,33 @@
 package za.ac.cput.factory;
 
-import za.ac.cput.domain.Shipping_Methods;
+import za.ac.cput.domain.ShippingMethods;
 import za.ac.cput.util.Helper;
 
 /**
  * ShippingMethodFactory.java
  *
- * @author Rethabile Ntsekhe
+ * author Rethabile Ntsekhe
  * Student Num: 220455430
- * @date 26-Jul-24
+ * date 26-Jul-24
  */
 
 public class ShippingMethodFactory {
-    public static Shipping_Methods buildShippingMethod(long shipping_method_id, String name,
-                                                       String description, double cost,
-                                                       String delivery_time) {
+    public static ShippingMethods buildShippingMethod(Long id,
+                                                      String name,
+                                                      String description,
+                                                      double cost,
+                                                      String delivery_time) {
         if (Helper.isNullOrEmpty(name) ||
-                Helper.isDoubleNullOrEmpty(cost)
+                Helper.isDoubleNullOrEmpty(cost) ||
+                Helper.isNullOrEmpty(delivery_time)
         ) return null;
 
-        return new Shipping_Methods.Builder()
-                .setId(shipping_method_id)
+        return new ShippingMethods.Builder()
+                .setId(id)
                 .setName(name)
                 .setDescription(description)
                 .setCost(cost)
-                .setDelivery_time(delivery_time)
+                .setDeliveryTime(delivery_time)
                 .build();
     }
 }

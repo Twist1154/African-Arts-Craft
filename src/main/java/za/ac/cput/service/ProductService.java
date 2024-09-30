@@ -1,8 +1,9 @@
 package za.ac.cput.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.ac.cput.domain.Products;
+import za.ac.cput.domain.Product;
 import za.ac.cput.repository.ProductRepository;
 
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ import java.util.Optional;
  * Student Num: 220455430
  * @date 26-Jul-24
  */
+@Slf4j
 @Service
 public class ProductService implements IProductService {
     private final ProductRepository productRepository;
@@ -26,23 +28,22 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Products create(Products products) {
-        return productRepository.save(products);
+    public Product create(Product product) {
+        return productRepository.save(product);
     }
 
     @Override
-    public Products read(Long id) {
-        Optional<Products> product = productRepository.findById(id);
-        return product.orElse(null);
+    public Product read(Long id) {
+        return productRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Products update(Products products) {
-        return productRepository.save(products);
+    public Product update(Product product) {
+        return productRepository.save(product);
     }
 
     @Override
-    public List<Products> findAll() {
+    public List<Product> findAll() {
         return productRepository.findAll();
     }
 
@@ -52,32 +53,28 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Products> findByName(String name) {
+    public List<Product> findByName(String name) {
         return productRepository.findByName(name);
     }
 
     @Override
-    public List<Products> findByCategoryId(Long categoryId) {
+    public List<Product> findByCategoryId(Long categoryId) {
         return productRepository.findBySubCategories_Id(categoryId);
     }
 
     @Override
-    public List<Products> findByPriceBetween(double minPrice, double maxPrice) {
+    public List<Product> findByPriceBetween(double minPrice, double maxPrice) {
         return productRepository.findByPriceBetween(minPrice, maxPrice);
     }
 
-    @Override
-    public List<Products> findByStockQuantityGreaterThan(int stockQuantity) {
-        return productRepository.findByStockQuantityGreaterThan(stockQuantity);
-    }
 
     @Override
-    public List<Products> findByCreatedAtAfter(LocalDate createdAt) {
+    public List<Product> findByCreatedAtAfter(LocalDate createdAt) {
         return productRepository.findByCreatedAtAfter(createdAt);
     }
 
     @Override
-    public List<Products> findByUpdatedAtBefore(LocalDate updatedAt) {
+    public List<Product> findByUpdatedAtBefore(LocalDate updatedAt) {
         return productRepository.findByUpdatedAtBefore(updatedAt);
     }
 

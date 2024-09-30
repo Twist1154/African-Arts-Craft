@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.Customer;
 import za.ac.cput.factory.CustomerFactory;
-import za.ac.cput.service.ICustomerService;
 
 import java.time.LocalDate;
 
@@ -51,7 +50,7 @@ class CustomerServiceTest {
     void create() {
         Customer savedCustomer1 = customerService.create(customer1);
         assertNotNull(savedCustomer1);
-        assertNotEquals(0L, savedCustomer1.getCustomerId()); // Ensure ID is auto-generated
+        assertNotEquals(0L, savedCustomer1.getId()); // Ensure ID is auto-generated
         System.out.println(savedCustomer1);
 
         Customer savedCustomer2 = customerService.create(customer2);
@@ -61,9 +60,9 @@ class CustomerServiceTest {
     @Test
     @Order(2)
     void read() {
-        Customer readCustomer = customerService.read(customer1.getCustomerId());
+        Customer readCustomer = customerService.read(customer1.getId());
         assertNotNull(readCustomer);
-        assertEquals(customer1.getCustomerId(), readCustomer.getCustomerId());
+        assertEquals(customer1.getId(), readCustomer.getId());
     }
 
     /*
@@ -79,8 +78,8 @@ class CustomerServiceTest {
     @Test
     @Order(4)
     void delete() {
-        customerService.delete(customer1.getCustomerId());
-        Customer deletedCustomer = customerService.read(customer1.getCustomerId());
+        customerService.delete(customer1.getId());
+        Customer deletedCustomer = customerService.read(customer1.getId());
         assertNull(deletedCustomer);
     }
 

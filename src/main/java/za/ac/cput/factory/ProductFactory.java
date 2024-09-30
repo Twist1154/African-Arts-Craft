@@ -1,40 +1,38 @@
 package za.ac.cput.factory;
 
-import za.ac.cput.domain.Products;
+import za.ac.cput.domain.Product;
 import za.ac.cput.domain.SubCategory;
 import za.ac.cput.util.Helper;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
  * ProductFactory.java
- *
- * @author Rethabile Ntsekhe
+ * <p>
+ * author Rethabile Ntsekhe
  * Student Num: 220455430
- * @date 26-Jul-24
+ * date 26-Jul-24
  */
 
 public class ProductFactory {
 
-    public static Products buildProduct(Long productId, String name, String description,
-                                        double price, int stockQuantity, List<SubCategory> subCategory,
-                                        LocalDateTime createdAt, LocalDateTime updatedAt, String imagePath) {
+    public static Product buildProduct(Long id,
+                                       String name,
+                                       String description,
+                                       double price,
+                                       List<SubCategory> subCategory,
+                                       String imagePath) {
         if (Helper.isNullOrEmpty(name) ||
                 Helper.isNullOrEmpty(description) ||
-                Helper.isDoubleNullOrEmpty(price) ||
-                Helper.isNullOrEmpty(stockQuantity)
+                Helper.isDoubleNullOrEmpty(price)
         ) return null;
 
-        return new Products.Builder()
-                .setId(productId)
+        return new Product.Builder()
+                .setId(id)
                 .setName(name)
                 .setDescription(description)
                 .setPrice(price)
-                .setStockQuantity(stockQuantity)
                 .setSubCategories(subCategory)
-                .setCreatedAt(createdAt)
-                .setUpdatedAt(updatedAt)
                 .setImagePath(imagePath)
                 .build();
     }

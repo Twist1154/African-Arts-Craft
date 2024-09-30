@@ -26,10 +26,10 @@ class UserfactoryTest {
         assertEquals(username, user.getUsername());
         assertEquals(password, user.getPassword());
         assertEquals(email, user.getEmail());
-        assertEquals(first_name, user.getFirst_name());
-        assertEquals(last_name, user.getLast_name());
-        assertEquals(created_at, user.getCreated_at());
-        assertEquals(updated_at, user.getUpdated_at());
+        assertEquals(first_name, user.getFirstName());
+        assertEquals(last_name, user.getLastName());
+        assertEquals(created_at, user.getCreatedAt());
+        assertEquals(updated_at, user.getUpdatedAt());
     }
 
     @Test

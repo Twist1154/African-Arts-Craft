@@ -1,8 +1,8 @@
 package za.ac.cput.factory;
 
 import za.ac.cput.domain.Cart;
-import za.ac.cput.domain.Cart_Items;
-import za.ac.cput.domain.Products;
+import za.ac.cput.domain.CartItems;
+import za.ac.cput.domain.Product;
 import za.ac.cput.util.Helper;
 
 /**
@@ -14,18 +14,20 @@ import za.ac.cput.util.Helper;
  */
 
 public class CartItemFactory {
-    public static Cart_Items buildCartItem(long id, Cart cart, Products products,
-                                           int quantity) {
+    public static CartItems buildCartItem(Long id,
+                                          Cart cart,
+                                          Product product,
+                                          int quantity) {
         if (Helper.isNullOrEmpty(id) ||
                 Helper.isNullOrEmpty(cart) ||
-                Helper.isNullOrEmpty(products) ||
+                Helper.isNullOrEmpty(product) ||
                 Helper.isNullOrEmpty(quantity)
         ) return null;
 
-        return new Cart_Items.Builder()
+        return new CartItems.Builder()
                 .setId(id)
                 .setCart(cart)
-                .setProducts(products)
+                .setProduct(product)
                 .setQuantity(quantity)
                 .build();
     }

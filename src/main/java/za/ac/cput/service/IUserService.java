@@ -14,9 +14,9 @@ import java.util.List;
  */
 
 @Service
-public interface IUserService extends IService<User, String> {
+public interface IUserService extends IService<User, Long> {
 
-    void delete(String id);
+    void delete(Long id);
 
     List<User> findByUsername(String username);
 

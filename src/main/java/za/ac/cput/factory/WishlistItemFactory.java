@@ -1,7 +1,7 @@
 package za.ac.cput.factory;
 
 
-import za.ac.cput.domain.Products;
+import za.ac.cput.domain.Product;
 import za.ac.cput.domain.WishlistItem;
 import za.ac.cput.domain.Wishlist;
 
@@ -19,13 +19,16 @@ public class WishlistItemFactory {
     /**
      * Creates a {@link WishlistItem} instance with the necessary parameters.
      *
-     * @param products  the {@link Products} associated with this wishlist item
+     * @param product  the {@link Product} associated with this wishlist item
      * @param wishlist  the {@link Wishlist} this item belongs to
      * @param dateAdded the date when the item was added to the wishlist
      * @return a new {@link WishlistItem} object with properties set from the input parameters
      */
-    public static WishlistItem createWishlistItem(Products products, Wishlist wishlist, LocalDateTime dateAdded) {
-        if (products == null) {
+    public static WishlistItem createWishlistItem(Product product,
+                                                  Wishlist wishlist,
+                                                  LocalDateTime dateAdded
+    ) {
+        if (product == null) {
             throw new IllegalArgumentException("Product cannot be null in WishlistItemFactory");
         }
 
@@ -39,7 +42,7 @@ public class WishlistItemFactory {
         }
 
         return new WishlistItem.Builder()
-                .setProducts(products)
+                .setProduct(product)
                 .setWishlist(wishlist)
                 .setDateAdded(dateAdded)
                 .build();

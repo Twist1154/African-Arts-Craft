@@ -47,21 +47,21 @@ public class WishlistService implements iWishlist {
 
     /**
      * Read and retrieve a wishlist by its ID.
-     * Lazily loads WishlistItems and their related Products to avoid LazyInitializationException.
+     * Lazily loads WishlistItems and their related Product to avoid LazyInitializationException.
      *
      * @param id the ID of the wishlist to retrieve
      * @return the found wishlist
      * @throws EntityNotFoundException if the wishlist is not found
      */
     @Override
-    @Transactional(readOnly = true) // Mark this read-only as it doesn't modify the database
+    @Transactional(readOnly = true)
     public Wishlist read(Long id) {
         Wishlist wishlist = wishlistRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Wishlist not found"));
 
-        // Access to initialize lazy-loaded collections (WishlistItems and their Products' SubCategories)
+
         for (WishlistItem item : wishlist.getWishlistItems()) {
-            item.getProducts().getSubCategories().size(); // Ensure subCategory is initialized
+            item.getProduct().getSubCategories().size();
         }
         return wishlist;
     }
@@ -81,7 +81,7 @@ public class WishlistService implements iWishlist {
             // Use the Builder pattern to create an updated version of the wishlist
             Wishlist updatedWishlist = new Wishlist.Builder()
                     .copy(existingWishlist)
-                    .setUsers(wishlist.getUser())
+                    .setUser(wishlist.getUser())
                     .setWishlistItems(wishlist.getWishlistItems())
                     .build();
             return wishlistRepository.save(updatedWishlist);

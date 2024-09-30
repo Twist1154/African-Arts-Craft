@@ -48,7 +48,7 @@ public class WishlistItemService implements IWishlistItems {
             WishlistItem updatedItem = new WishlistItem.Builder()
                     .copy(wishListItem)
                     .setId(existingWishlistItem.getId()) // Preserve the ID
-                    .setProducts(wishListItem.getProducts())  // Update other fields
+                    .setProduct(wishListItem.getProduct())  // Update other fields
                     .setDateAdded(wishListItem.getDateAdded())
                     .setWishlist(wishListItem.getWishlist())
                     .build();

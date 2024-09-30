@@ -11,8 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import za.ac.cput.domain.Cart;
-import za.ac.cput.domain.Cart_Items;
-import za.ac.cput.domain.Products;
+import za.ac.cput.domain.CartItems;
+import za.ac.cput.domain.Product;
 import za.ac.cput.service.CartItemService;
 
 import java.util.Arrays;
@@ -42,23 +42,23 @@ public class CartItemsControllerTest {
     @MockBean
     private CartItemService cartItemService;
 
-    private Cart_Items cartItem;
+    private CartItems cartItem;
 
     @BeforeEach
     void setUp() {
         Cart cart = new Cart();
-        Products products = new Products();
-        cartItem = new Cart_Items.Builder()
-                .setId(1)
+        Product product = new Product();
+        cartItem = new CartItems.Builder()
+                .setId(1L)
                 .setCart(cart)
-                .setProducts(products)
+                .setProduct(product)
                 .setQuantity(5)
                 .build();
     }
 
     @Test
     void createCartItem() throws Exception {
-        Mockito.when(cartItemService.create(Mockito.any(Cart_Items.class))).thenReturn(cartItem);
+        Mockito.when(cartItemService.create(Mockito.any(CartItems.class))).thenReturn(cartItem);
 
         mockMvc.perform((RequestBuilder) post("/api/cart-items/create")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -84,7 +84,7 @@ public class CartItemsControllerTest {
 
     @Test
     void updateCartItem() throws Exception {
-        Mockito.when(cartItemService.update(Mockito.any(Cart_Items.class))).thenReturn(cartItem);
+        Mockito.when(cartItemService.update(Mockito.any(CartItems.class))).thenReturn(cartItem);
 
         mockMvc.perform((RequestBuilder) put("/api/cart-items/update")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -106,8 +106,8 @@ public class CartItemsControllerTest {
 
     @Test
     void getAllCartItems() throws Exception {
-        List<Cart_Items> cartItems = Arrays.asList(cartItem);
-        Mockito.when(cartItemService.getAll()).thenReturn(cartItems);
+        List<CartItems> cartItems = Arrays.asList(cartItem);
+        Mockito.when(cartItemService.findAll()).thenReturn(cartItems);
 
         mockMvc.perform(get("/api/cart-items/all"))
                 .andExpect(status().isOk())
@@ -119,8 +119,8 @@ public class CartItemsControllerTest {
 
     @Test
     void getCartItemsByCartId() throws Exception {
-        List<Cart_Items> cartItems = Arrays.asList(cartItem);
-        Mockito.when(cartItemService.getCartItemsByCartId(100L)).thenReturn(cartItems);
+        List<CartItems> cartItems = Arrays.asList(cartItem);
+        Mockito.when(cartItemService.findByCart_Id(100L)).thenReturn(cartItems);
 
         mockMvc.perform(get("/api/cart-items/cart/100"))
                 .andExpect(status().isOk())
@@ -132,8 +132,8 @@ public class CartItemsControllerTest {
 
     @Test
     void getCartItemsByProductId() throws Exception {
-        List<Cart_Items> cartItems = Arrays.asList(cartItem);
-        Mockito.when(cartItemService.getCartItemsByProductId(200L)).thenReturn(cartItems);
+        List<CartItems> cartItems = Arrays.asList(cartItem);
+        Mockito.when(cartItemService.findByProduct_Id(200L)).thenReturn(cartItems);
 
         mockMvc.perform(get("/api/cart-items/product/200"))
                 .andExpect(status().isOk())

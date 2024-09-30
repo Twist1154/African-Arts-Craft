@@ -2,7 +2,7 @@ package za.ac.cput.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import za.ac.cput.domain.Products;
+import za.ac.cput.domain.Product;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,22 +16,20 @@ import java.util.List;
  */
 
 @Repository
-public interface ProductRepository extends JpaRepository<Products, Long> {
-    List<Products> findByName(String name);
+public interface ProductRepository extends JpaRepository<Product, Long> {
+    List<Product> findByName(String name);
 
     // Find products by category ID
-    List<Products> findBySubCategories_Id(Long subCategoryiesId);
+    List<Product> findBySubCategories_Id(Long subCategoryiesId);
 
     // Find products by price range
-    List<Products> findByPriceBetween(double minPrice, double maxPrice);
+    List<Product> findByPriceBetween(double minPrice, double maxPrice);
 
-    // Find products by stock quantity greater than
-    List<Products> findByStockQuantityGreaterThan(int stockQuantity);
 
     // Find products created after a certain date
-    List<Products> findByCreatedAtAfter(LocalDate createdAt);
+    List<Product> findByCreatedAtAfter(LocalDate createdAt);
 
     // Find products updated before a certain date
-    List<Products> findByUpdatedAtBefore(LocalDate updatedAt);
+    List<Product> findByUpdatedAtBefore(LocalDate updatedAt);
 
 }

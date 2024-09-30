@@ -2,10 +2,10 @@ package za.ac.cput.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * User.java
@@ -18,19 +18,34 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany
-    @JoinColumn(name = "address_id")
-    private List<Address> address;
+
+    @Column(nullable = false, unique = true)
     private String username;
+
+    @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false, unique = true)
     private String email;
-    private String first_name;
-    private String last_name;
-    private LocalDate created_at;
-    private LocalDate updated_at;
+
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+    @Column(name = "created_at")
+    private LocalDate createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDate updatedAt;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Address> address;
 
     public User() {
     }
@@ -40,12 +55,25 @@ public class User implements Serializable {
         this.username = builder.username;
         this.password = builder.password;
         this.email = builder.email;
-        this.first_name = builder.first_name;
-        this.last_name = builder.last_name;
-        this.created_at = builder.created_at;
-        this.updated_at = builder.updated_at;
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.createdAt = builder.createdAt;
+        this.updatedAt = builder.updatedAt;
+        this.address = builder.address;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(email, user.email) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(createdAt, user.createdAt) && Objects.equals(updatedAt, user.updatedAt) && Objects.equals(address, user.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, email, firstName, lastName, createdAt, updatedAt, address);
+    }
 
     @Override
     public String toString() {
@@ -54,31 +82,27 @@ public class User implements Serializable {
                 ", USERNAME: '" + username + '\'' +
                 ", PASSWORD: '" + password + '\'' +
                 ", EMAIL: '" + email + '\'' +
-                ", FIRST NAME: '" + first_name + '\'' +
-                ", LAST NAME: '" + last_name + '\'' +
-                ", CREATED AT: " + created_at +
-                ", UPDATED AT: " + updated_at +
+                ", FIRST NAME: '" + firstName + '\'' +
+                ", LAST NAME: '" + lastName + '\'' +
+                ", CREATED AT: " + createdAt +
+                ", UPDATED AT: " + updatedAt +
+                ", ADDRESS: " + address +
                 '}';
     }
 
     public static class Builder {
         private Long id;
-        private List<Address> address;
         private String username;
         private String password;
         private String email;
-        private String first_name;
-        private String last_name;
-        private LocalDate created_at;
-        private LocalDate updated_at;
+        private String firstName;
+        private String lastName;
+        private LocalDate createdAt;
+        private LocalDate updatedAt;
+        private List<Address> address;
 
-        public Builder setId(long user_id) {
-            this.id = user_id;
-            return this;
-        }
-
-        public Builder setAddress(List<Address> address) {
-            this.address = address;
+        public Builder setId(long userId) {
+            this.id = userId;
             return this;
         }
 
@@ -97,23 +121,28 @@ public class User implements Serializable {
             return this;
         }
 
-        public Builder setFirst_name(String first_name) {
-            this.first_name = first_name;
+        public Builder setFirstName(String firstName) {
+            this.firstName = firstName;
             return this;
         }
 
-        public Builder setLast_name(String last_name) {
-            this.last_name = last_name;
+        public Builder setLastName(String lastName) {
+            this.lastName = lastName;
             return this;
         }
 
-        public Builder setCreated_at(LocalDate created_at) {
-            this.created_at = created_at;
+        public Builder setCreatedAt(LocalDate createdAt) {
+            this.createdAt = createdAt;
             return this;
         }
 
-        public Builder setUpdated_at(LocalDate updated_at) {
-            this.updated_at = updated_at;
+        public Builder setUpdatedAt(LocalDate updatedAt) {
+            this.updatedAt = updatedAt;
+            return this;
+        }
+
+        public Builder setAddress(List<Address> address) {
+            this.address = address;
             return this;
         }
 
@@ -122,10 +151,10 @@ public class User implements Serializable {
             this.username = user.getUsername();
             this.password = user.getPassword();
             this.email = user.getEmail();
-            this.first_name = user.getFirst_name();
-            this.last_name = user.getLast_name();
-            this.created_at = user.getCreated_at();
-            this.updated_at = user.getUpdated_at();
+            this.firstName = user.getFirstName();
+            this.lastName = user.getLastName();
+            this.createdAt = user.getCreatedAt();
+            this.updatedAt = user.getUpdatedAt();
             return this;
         }
 

@@ -3,9 +3,6 @@ package za.ac.cput.service;
 import org.springframework.stereotype.Service;
 import za.ac.cput.domain.Orders;
 
-import java.time.LocalDate;
-import java.util.List;
-
 /**
  * IOrderService.java
  *
@@ -16,5 +13,5 @@ import java.util.List;
 
 @Service
 public interface IOrderService extends IService<Orders, Long> {
-    void deleteByOrderId(Long orderId);
+    void deleteById(Long orderId);
 }

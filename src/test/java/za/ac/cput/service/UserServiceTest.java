@@ -34,10 +34,10 @@ public class UserServiceTest {
                 .setUsername("Twist11577")
                 .setPassword("password")
                 .setEmail("rethabile@gmail.com")
-                .setFirst_name("Rethabile")
-                .setLast_name("Ntsekhe")
-                .setCreated_at(LocalDate.of(2024, 7, 24))
-                .setUpdated_at(LocalDate.of(2024, 8, 24))
+                .setFirstName("Rethabile")
+                .setLastName("Ntsekhe")
+                .setCreatedAt(LocalDate.of(2024, 7, 24))
+                .setUpdatedAt(LocalDate.of(2024, 8, 24))
                 .build();
     }
 
@@ -51,7 +51,7 @@ public class UserServiceTest {
     @Test
     void testRead() {
         User createdUser = userService.create(user);
-        User foundUser = userService.read(String.valueOf(createdUser.getId()));
+        User foundUser = userService.read(createdUser.getId());
         assertNotNull(foundUser);
         assertEquals(user.getUsername(), foundUser.getUsername());
     }
@@ -71,8 +71,8 @@ public class UserServiceTest {
     @Test
     void testDelete() {
         User createdUser = userService.create(user);
-        userService.delete(String.valueOf(createdUser.getId()));
-        User foundUser = userService.read(String.valueOf(createdUser.getId()));
+        userService.delete(createdUser.getId());
+        User foundUser = userService.read(createdUser.getId());
         assertNull(foundUser);
     }
 

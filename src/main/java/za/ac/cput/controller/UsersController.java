@@ -37,8 +37,8 @@ public class UsersController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") long id) {
-        User user = userService.read(String.valueOf(id));
+    public ResponseEntity<User> getUserById(@PathVariable("id") Long id) {
+        User user = userService.read(id);
         if (user != null) {
             return new ResponseEntity<>(user, HttpStatus.OK);
         } else {
@@ -47,8 +47,8 @@ public class UsersController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
-        User existingUser = userService.read(String.valueOf(id));
+    public ResponseEntity<User> updateUser(@PathVariable("id") Long id, @RequestBody User user) {
+        User existingUser = userService.read(id);
         if (existingUser != null) {
             // Update the fields that can be changed
             User updatedUser = new User.Builder()
@@ -56,10 +56,10 @@ public class UsersController {
                     .setUsername(user.getUsername()) // Update fields
                     .setPassword(user.getPassword())
                     .setEmail(user.getEmail())
-                    .setFirst_name(user.getFirst_name())
-                    .setLast_name(user.getLast_name())
-                    .setCreated_at(existingUser.getCreated_at()) // Preserve creation date
-                    .setUpdated_at(LocalDate.now()) // Set current date as update date
+                    .setFirstName(user.getFirstName())
+                    .setLastName(user.getLastName())
+                    .setCreatedAt(existingUser.getCreatedAt()) // Preserve creation date
+                    .setUpdatedAt(LocalDate.now()) // Set current date as update date
                     .build();
             User savedUser = userService.update(updatedUser);
             return new ResponseEntity<>(savedUser, HttpStatus.OK);
@@ -69,10 +69,10 @@ public class UsersController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable("id") long id) {
-        User existingUser = userService.read(String.valueOf(id));
+    public ResponseEntity<Void> deleteUser(@PathVariable("id") Long id) {
+        User existingUser = userService.read(id);
         if (existingUser != null) {
-            userService.delete(String.valueOf(id));
+            userService.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

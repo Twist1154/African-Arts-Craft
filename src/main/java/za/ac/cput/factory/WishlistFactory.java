@@ -41,7 +41,7 @@ public class WishlistFactory {
 
         return new Wishlist.Builder()
                 .setId(id)
-                .setUsers(user)
+                .setUser(user)
                 .setWishlistItems(wishlistItems)
                 .setCreatedAt(createdAt)
                 .setDeletedAt(deletedAt)

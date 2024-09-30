@@ -2,17 +2,17 @@ package za.ac.cput.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import za.ac.cput.domain.Cart;
-import za.ac.cput.domain.Cart_Items;
+import za.ac.cput.domain.CartItems;
 
 import java.util.List;
 
 @Repository
-public interface CartItemRepository extends JpaRepository<Cart_Items, Long> {
+public interface CartItemRepository extends JpaRepository<CartItems, Long> {
 
-    List<Cart_Items> findByCartId(long cartId);
+    List<CartItems> findByCart_Id(Long cart_id);
 
-    //List<Cart_Items> findByCart_Item_Id(long cart_Item_Id);
 
-    List<Cart_Items> findByProductId(long product_id);
+    List<CartItems> findByProduct_Id(Long product_id);
+
+    void deleteByCart_Id(Long cart_id);
 }

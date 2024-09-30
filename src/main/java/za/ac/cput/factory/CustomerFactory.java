@@ -23,7 +23,7 @@ public class CustomerFactory {
         }
 
         return new Customer.Builder()
-                .setCustomerId(customerId)
+                .setId(customerId)
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmail(email)

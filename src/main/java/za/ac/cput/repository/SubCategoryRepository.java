@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface SubCategoryRepository extends JpaRepository<SubCategory, Long> {
-    // Additional query methods if needed
-    List<SubCategory> findAllById(Long id);
+
+    List<SubCategory> findAllByProduct_Id(Long id);
 }

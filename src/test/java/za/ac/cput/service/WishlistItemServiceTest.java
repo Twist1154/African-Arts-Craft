@@ -3,7 +3,7 @@ package za.ac.cput.service;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import za.ac.cput.domain.Products;
+import za.ac.cput.domain.Product;
 import za.ac.cput.domain.Wishlist;
 import za.ac.cput.domain.WishlistItem;
 import za.ac.cput.repository.WishlistItemRepository;
@@ -23,7 +23,7 @@ class WishlistItemServiceTest {
     @Autowired
     private WishlistItemRepository repository;
 
-    private Products product;
+    private Product product;
     private Wishlist wishlist;
     private List<WishlistItem> wishlistItems;
 
@@ -35,18 +35,18 @@ class WishlistItemServiceTest {
 
     @BeforeEach
     void setUp() {
-        product = productService.read(16L);  // Fetching a product from the database
-        wishlist = wishlistService.read(7L); // Fetching a wishlist from the database
+        product = productService.read(16L);
+        wishlist = wishlistService.read(7L);
 
         // Create WishListItems
         WishlistItem item1 = new WishlistItem.Builder()
-                .setProducts(product)
+                .setProduct(product)
                 .setDateAdded(LocalDateTime.now())
                 .setWishlist(wishlist)
                 .build();
 
         WishlistItem item2 = new WishlistItem.Builder()
-                .setProducts(product)
+                .setProduct(product)
                 .setDateAdded(LocalDateTime.now())
                 .setWishlist(wishlist)
                 .build();
@@ -70,7 +70,7 @@ class WishlistItemServiceTest {
         // Test creating a new wishlist item
         WishlistItem createdItem = service.create(wishlistItems.get(0));
         assertNotNull(createdItem);
-        assertEquals(wishlistItems.get(0).getProducts().getId(), createdItem.getProducts().getId());
+        assertEquals(wishlistItems.get(0).getProduct().getId(), createdItem.getProduct().getId());
         assertEquals(wishlistItems.get(0).getWishlist().getId(), createdItem.getWishlist().getId());
         assertEquals(wishlistItems.get(0).getDateAdded(), createdItem.getDateAdded());
     }

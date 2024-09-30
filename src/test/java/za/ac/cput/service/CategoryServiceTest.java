@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
-import za.ac.cput.domain.Categories;
+import za.ac.cput.domain.Category;
 import za.ac.cput.repository.CategoriesRepository;
 
 import java.util.List;
@@ -15,58 +15,56 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-class CategoriesServiceTest {
+class CategoryServiceTest {
 
     @Autowired
-    private CategoriesService categoriesService;
+    private CategoryService categoryService;
 
     @Autowired
     private CategoriesRepository categoriesRepository;
 
-    private Categories category;
+    private Category category;
 
     @BeforeEach
     void setUp() {
         // Initialize a sample category
-        category = new Categories.Builder()
+        category = new Category.Builder()
                 .setName("Electronics")
-                .setDescription("Electronic items")
                 .build();
     }
 
     @Test
     void create() {
-        Categories savedCategory = categoriesService.create(category);
+        Category savedCategory = categoryService.create(category);
         assertNotNull(savedCategory);
         assertEquals(category.getName(), savedCategory.getName());
-        assertEquals(category.getDescription(), savedCategory.getDescription());
     }
 
     @Test
     void read() {
-        Categories savedCategory = categoriesService.create(category);
-        Optional<Categories> foundCategory = Optional.ofNullable(categoriesService.read(savedCategory.getId()));
+        Category savedCategory = categoryService.create(category);
+        Optional<Category> foundCategory = Optional.ofNullable(categoryService.read(savedCategory.getId()));
         assertTrue(foundCategory.isPresent());
         assertEquals(savedCategory.getName(), foundCategory.get().getName());
     }
 
     @Test
     void update() {
-        Categories savedCategory = categoriesService.create(category);
-        Categories updatedCategory = new Categories.Builder()
+        Category savedCategory = categoryService.create(category);
+        Category updatedCategory = new Category.Builder()
                 .copy(savedCategory)
-                .setDescription("Updated description")
+                .setName("Updated name")
                 .build();
-        Categories result = categoriesService.update(updatedCategory);
-        assertEquals("Updated description", result.getDescription());
+        Category result = categoryService.update(updatedCategory);
+        assertEquals("Updated description", result.getName());
     }
 
     @Test
     void findAll() {
-        categoriesService.create(category);
-        List<Categories> categoriesList = categoriesService.findAll();
+        categoryService.create(category);
+        List<Category> categoryList = categoryService.findAll();
 
-        assertFalse(categoriesList.isEmpty());
-        assertTrue(categoriesList.stream().anyMatch(cat -> cat.getName().equals(category.getName())));
+        assertFalse(categoryList.isEmpty());
+        assertTrue(categoryList.stream().anyMatch(cat -> cat.getName().equals(category.getName())));
     }
 }

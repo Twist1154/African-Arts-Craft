@@ -1,13 +1,8 @@
 package za.ac.cput.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Orders;
-
-import java.time.LocalDate;
-import java.util.List;
 
 /**
  * OrderRepository.java
@@ -20,5 +15,5 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<Orders, Long> {
 
-    void deleteByOrderId(Long orderId);
+    void deleteById(Long id);
 }

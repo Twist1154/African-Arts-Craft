@@ -3,43 +3,44 @@ package za.ac.cput.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * WishlistItem.java
+ * Represents an item within a wishlist.
+ * Each WishlistItem is associated with a single product and belongs to a Wishlist.
  *
- * @author Rethabile Ntsekhe
+ * Author: Rethabile Ntsekhe
  * Student Num: 220455430
- * @date 20-Sep-24
+ * Date: 20-Sep-24
  */
-
 @Entity
 @Getter
 @Table(name = "wish_list_items")
-public class WishlistItem {
+public class WishlistItem implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id", nullable = false)
-    private Products products;
-
+    private Product product;  // Single product in the wishlist item
 
     private LocalDateTime dateAdded;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)  // Use lazy fetching to defer loading until needed
     @JoinColumn(name = "wishlist_id")
     private Wishlist wishlist;
 
+    // Default constructor made private to enforce Builder usage
     public WishlistItem() {
     }
 
     public WishlistItem(Builder builder) {
         this.id = builder.id;
-        this.products = builder.products;
+        this.product = builder.product;
         this.dateAdded = builder.dateAdded;
         this.wishlist = builder.wishlist;
     }
@@ -48,27 +49,34 @@ public class WishlistItem {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof WishlistItem that)) return false;
-        return Objects.equals(id, that.id) && Objects.equals(products, that.products) && Objects.equals(dateAdded, that.dateAdded) && Objects.equals(wishlist, that.wishlist);
+        return Objects.equals(id, that.id) &&
+                Objects.equals(product, that.product) &&
+                Objects.equals(dateAdded, that.dateAdded) &&
+                Objects.equals(wishlist, that.wishlist);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, products, dateAdded, wishlist);
+        return Objects.hash(id, product, dateAdded, wishlist);
     }
 
     @Override
     public String toString() {
         return "\n WishlistItem{" +
                 "id=" + id +
-                ", product=" + products.getName() +
+                ", product=" + (product != null ? product.getName() : "N/A") +
                 ", dateAdded=" + dateAdded +
-                ", wishlist=" + wishlist.getId() +
+                ", wishlist=" + (wishlist != null ? wishlist.getId() : "N/A") +
                 "}\n";
     }
 
+    /**
+     * Builder pattern class for WishlistItem.
+     * Facilitates easy construction and immutability of WishlistItem objects.
+     */
     public static class Builder {
         private Long id;
-        private Products products;
+        private Product product;
         private LocalDateTime dateAdded;
         private Wishlist wishlist;
 
@@ -77,8 +85,8 @@ public class WishlistItem {
             return this;
         }
 
-        public Builder setProducts(Products products) {
-            this.products = products;
+        public Builder setProduct(Product product) {
+            this.product = product;
             return this;
         }
 
@@ -93,10 +101,10 @@ public class WishlistItem {
         }
 
         public Builder copy(WishlistItem wishlistItem) {
-            this.id = wishlistItem.id;
-            this.products = wishlistItem.products;
-            this.dateAdded = wishlistItem.dateAdded;
-            this.wishlist = wishlistItem.wishlist;
+            this.id = wishlistItem.getId();
+            this.product = wishlistItem.getProduct();
+            this.dateAdded = wishlistItem.getDateAdded();
+            this.wishlist = wishlistItem.getWishlist();
             return this;
         }
 

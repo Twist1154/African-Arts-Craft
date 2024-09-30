@@ -1,24 +1,18 @@
 package za.ac.cput.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+
 import java.io.Serializable;
+import java.util.Objects;
 
-/**
- * Order_Items.java
- *
- * @author Rethabile Ntsekhe
- * @author Sibabalwe Ngandana
- * Student Num: 220455430
- * Student Num: 220193894
- * @date 23-Jul-24
- */
-
+@Getter
 @Entity
-public class Order_Items implements Serializable {
+public class OrderItem implements Serializable { // Changed class name to singular
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderItemId;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
@@ -26,65 +20,58 @@ public class Order_Items implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false)
-    private Products product;
+    private Product product;
 
     private int quantity;
     private double price;
 
-    // No-argument constructor
-    public Order_Items() {
+    public OrderItem() {
     }
 
-    // Builder-based constructor
-    public Order_Items(Builder builder) {
-        this.orderItemId = builder.orderItemId;
+    public OrderItem(Builder builder) {
+        this.id = builder.id;
         this.order = builder.order;
         this.product = builder.product;
         this.quantity = builder.quantity;
         this.price = builder.price;
     }
 
-    // Getters
-    public Long getOrderItemId() {
-        return orderItemId;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderItem that = (OrderItem) o;
+        return quantity == that.quantity && Double.compare(price, that.price) == 0 &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(order, that.order) &&
+                Objects.equals(product, that.product);
     }
 
-    public Orders getOrder() {
-        return order;
-    }
-
-    public Products getProduct() {
-        return product;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public double getPrice() {
-        return price;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, order, product, quantity, price);
     }
 
     @Override
     public String toString() {
-        return "Order_Items{" +
-                "Order Item ID: " + orderItemId +
-                ", ORDER ID: " + order.getOrderId() +
-                ", PRODUCT ID: " + product.getId() +
+        return "OrderItem{" +
+                "Order Item ID: " + id +
+                ", ORDER ID: " + (order != null ? order.getId() : "N/A") + // Null check for safety
+                ", PRODUCT ID: " + (product != null ? product.getName() : "N/A") + // Null check for safety
                 ", QUANTITY: " + quantity +
                 ", PRICE: " + price +
                 '}';
     }
 
     public static class Builder {
-        private Long orderItemId;
+        private Long id;
         private Orders order;
-        private Products product;
+        private Product product;
         private int quantity;
         private double price;
 
-        public Builder setOrderItemId(Long orderItemId) {
-            this.orderItemId = orderItemId;
+        public Builder setId(Long id) {
+            this.id = id;
             return this;
         }
 
@@ -93,7 +80,7 @@ public class Order_Items implements Serializable {
             return this;
         }
 
-        public Builder setProduct(Products product) {
+        public Builder setProduct(Product product) {
             this.product = product;
             return this;
         }
@@ -108,8 +95,8 @@ public class Order_Items implements Serializable {
             return this;
         }
 
-        public Builder copy(Order_Items orderItems) {
-            this.orderItemId = orderItems.getOrderItemId();
+        public Builder copy(OrderItem orderItems) {
+            this.id = orderItems.getId();
             this.order = orderItems.getOrder();
             this.product = orderItems.getProduct();
             this.quantity = orderItems.getQuantity();
@@ -117,8 +104,8 @@ public class Order_Items implements Serializable {
             return this;
         }
 
-        public Order_Items build() {
-            return new Order_Items(this);
+        public OrderItem build() {
+            return new OrderItem(this);
         }
     }
 }

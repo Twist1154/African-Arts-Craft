@@ -3,7 +3,6 @@ package za.ac.cput.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -31,17 +30,19 @@ public class Wishlist {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "wishlist", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "wishlist", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<WishlistItem> wishlistItems;
 
     private LocalDateTime createdAt;
     private LocalDateTime deletedAt;
 
+
     public Wishlist() {
     }
 
-    private Wishlist(Builder builder) {
+
+    public Wishlist(Builder builder) {
         this.id = builder.id;
         this.user = builder.user;
         this.wishlistItems = builder.wishlistItems;
@@ -88,7 +89,7 @@ public class Wishlist {
             return this;
         }
 
-        public Builder setUsers(User user) {
+        public Builder setUser(User user) {
             this.user = user;
             return this;
         }

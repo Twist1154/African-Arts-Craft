@@ -1,6 +1,6 @@
 package za.ac.cput.service;
 
-import za.ac.cput.domain.Categories;
+import za.ac.cput.domain.Category;
 
 import java.util.List;
 
@@ -12,6 +12,6 @@ import java.util.List;
  * @date 30-Jul-24
  */
 
-public interface ICategoriesService extends IService<Categories, Long> {
-    List<Categories> findAll();
+public interface ICategoriesService extends IService<Category, Long> {
+    List<Category> findAll();
 }

@@ -1,6 +1,6 @@
 package za.ac.cput.service;
 
-import za.ac.cput.domain.Products;
+import za.ac.cput.domain.Product;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,19 +13,17 @@ import java.util.List;
  * @date 27-Jul-24
  */
 
-public interface IProductService extends IService<Products, Long> {
+public interface IProductService extends IService<Product, Long> {
     void delete(Long id);
 
-    List<Products> findByName(String name);
+    List<Product> findByName(String name);
 
-    List<Products> findByCategoryId(Long categoryId);
+    List<Product> findByCategoryId(Long categoryId);
 
-    List<Products> findByPriceBetween(double minPrice, double maxPrice);
+    List<Product> findByPriceBetween(double minPrice, double maxPrice);
 
-    List<Products> findByStockQuantityGreaterThan(int stockQuantity);
+    List<Product> findByCreatedAtAfter(LocalDate createdAt);
 
-    List<Products> findByCreatedAtAfter(LocalDate createdAt);
-
-    List<Products> findByUpdatedAtBefore(LocalDate updatedAt);
+    List<Product> findByUpdatedAtBefore(LocalDate updatedAt);
 
 }

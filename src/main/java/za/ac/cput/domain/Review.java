@@ -2,6 +2,7 @@ package za.ac.cput.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.springframework.data.annotation.CreatedDate;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -20,17 +21,18 @@ import java.util.Objects;
 public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Products product;
+    private Product product;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
     private int rating;
     private String comment;
+    @CreatedDate
     private LocalDate created_at;
 
     public Review() {
@@ -72,24 +74,24 @@ public class Review implements Serializable {
     }
 
     public static class Builder {
-        private long id;
-        private Products product;
+        private Long id;
+        private Product product;
         private User user;
         private int rating;
         private String comment;
         private LocalDate created_at;
 
-        public Builder setId(long id) {
+        public Builder setId(Long id) {
             this.id = id;
             return this;
         }
 
-        public Builder setProduct(Products product) {
+        public Builder setProduct(Product product) {
             this.product = product;
             return this;
         }
 
-        public Builder setUsers(User user) {
+        public Builder setUser(User user) {
             this.user = user;
             return this;
         }

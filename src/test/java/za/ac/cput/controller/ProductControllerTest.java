@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.*;
-import za.ac.cput.domain.Products;
+import za.ac.cput.domain.Product;
 import za.ac.cput.domain.SubCategory;
 
 import java.time.LocalDate;
@@ -21,28 +21,25 @@ class ProductControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    private Products product;
+    private Product product;
 
     @BeforeEach
     void setUp() {
         SubCategory subCategory = new SubCategory();
 
-        product = new Products.Builder()
+        product = new Product.Builder()
                 .setId(28L)
                 .setName("African head")
                 .setDescription("This is a test product")
                 .setPrice(10.99)
-                .setStockQuantity(10)
                 .setSubCategories((List<SubCategory>) subCategory)
-                .setCreatedAt(LocalDate.now().atStartOfDay())
-                .setUpdatedAt(LocalDate.now().atStartOfDay())
                 .setImagePath("path/to/image.jpg")
                 .build();
     }
 
     @Test
     void createProduct() {
-        ResponseEntity<Products> response = restTemplate.postForEntity("/store/api/products", product, Products.class);
+        ResponseEntity<Product> response = restTemplate.postForEntity("/store/api/products", product, Product.class);
         System.out.println(response);
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertNotNull(response.getBody());
@@ -51,8 +48,8 @@ class ProductControllerTest {
 
     @Test
     void getProductById() {
-        Products createdProduct = restTemplate.postForObject("/store/api/products", product, Products.class);
-        ResponseEntity<Products> response = restTemplate.getForEntity("/store/api/products/" + createdProduct.getId(), Products.class);
+        Product createdProduct = restTemplate.postForObject("/store/api/products", product, Product.class);
+        ResponseEntity<Product> response = restTemplate.getForEntity("/store/api/products/" + createdProduct.getId(), Product.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals(createdProduct.getId(), response.getBody().getId());
@@ -60,10 +57,10 @@ class ProductControllerTest {
 
     @Test
     void updateProduct() {
-        Products createdProduct = restTemplate.postForObject("/store/api/products", product, Products.class);
-        createdProduct = new Products.Builder().copy(createdProduct).setName("Updated Product").build();
-        HttpEntity<Products> requestUpdate = new HttpEntity<>(createdProduct);
-        ResponseEntity<Products> response = restTemplate.exchange("/store/api/products", HttpMethod.PUT, requestUpdate, Products.class);
+        Product createdProduct = restTemplate.postForObject("/store/api/products", product, Product.class);
+        createdProduct = new Product.Builder().copy(createdProduct).setName("Updated Product").build();
+        HttpEntity<Product> requestUpdate = new HttpEntity<>(createdProduct);
+        ResponseEntity<Product> response = restTemplate.exchange("/store/api/products", HttpMethod.PUT, requestUpdate, Product.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals("Updated Product", response.getBody().getName());
@@ -71,16 +68,16 @@ class ProductControllerTest {
 
     @Test
     void deleteProduct() {
-        Products createdProduct = restTemplate.postForObject("/store/api/products", product, Products.class);
+        Product createdProduct = restTemplate.postForObject("/store/api/products", product, Product.class);
         restTemplate.delete("/store/api/products/" + createdProduct.getId());
-        ResponseEntity<Products> response = restTemplate.getForEntity("/store/api/products/" + createdProduct.getId(), Products.class);
+        ResponseEntity<Product> response = restTemplate.getForEntity("/store/api/products/" + createdProduct.getId(), Product.class);
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
     }
 
     @Test
     void getAllProducts() {
-        restTemplate.postForObject("/store/api/products", product, Products.class);
-        ResponseEntity<Products[]> response = restTemplate.getForEntity("/store/api/products", Products[].class);
+        restTemplate.postForObject("/store/api/products", product, Product.class);
+        ResponseEntity<Product[]> response = restTemplate.getForEntity("/store/api/products", Product[].class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertTrue(response.getBody().length > 0);
@@ -88,8 +85,8 @@ class ProductControllerTest {
 
     @Test
     void getProductsByName() {
-        restTemplate.postForObject("/store/api/products", product, Products.class);
-        ResponseEntity<Products[]> response = restTemplate.getForEntity("/store/api/products/name/" + product.getName(), Products[].class);
+        restTemplate.postForObject("/store/api/products", product, Product.class);
+        ResponseEntity<Product[]> response = restTemplate.getForEntity("/store/api/products/name/" + product.getName(), Product[].class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals(product.getName(), response.getBody()[0].getName());
@@ -97,8 +94,8 @@ class ProductControllerTest {
 
     @Test
     void getProductsByCategoryId() {
-        restTemplate.postForObject("/store/api/products", product, Products.class);
-        ResponseEntity<Products[]> response = restTemplate.getForEntity("/store/api/products/category/" + product.getSubCategories(), Products[].class);
+        restTemplate.postForObject("/store/api/products", product, Product.class);
+        ResponseEntity<Product[]> response = restTemplate.getForEntity("/store/api/products/category/" + product.getSubCategories(), Product[].class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals(product.getSubCategories(), response.getBody()[0].getSubCategories());
@@ -106,26 +103,19 @@ class ProductControllerTest {
 
     @Test
     void getProductsByPriceRange() {
-        restTemplate.postForObject("/store/api/products", product, Products.class);
-        ResponseEntity<Products[]> response = restTemplate.getForEntity("/store/api/products/price-range?minPrice=10.00&maxPrice=11.00", Products[].class);
+        restTemplate.postForObject("/store/api/products", product, Product.class);
+        ResponseEntity<Product[]> response = restTemplate.getForEntity("/store/api/products/price-range?minPrice=10.00&maxPrice=11.00", Product[].class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertTrue(response.getBody()[0].getPrice() >= 10.00 && response.getBody()[0].getPrice() <= 11.00);
     }
 
-    @Test
-    void getProductsByStockQuantityGreaterThan() {
-        restTemplate.postForObject("/store/api/products", product, Products.class);
-        ResponseEntity<Products[]> response = restTemplate.getForEntity("/store/api/products/stock-quantity-greater-than?stockQuantity=5", Products[].class);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertNotNull(response.getBody());
-        assertTrue(response.getBody()[0].getStockQuantity() > 5);
-    }
+
 
     @Test
     void getProductsCreatedAfter() {
-        restTemplate.postForObject("/store/api/products", product, Products.class);
-        ResponseEntity<Products[]> response = restTemplate.getForEntity("/store/api/products/created-after?createdAt=" + LocalDate.now().minusDays(1), Products[].class);
+        restTemplate.postForObject("/store/api/products", product, Product.class);
+        ResponseEntity<Product[]> response = restTemplate.getForEntity("/store/api/products/created-after?createdAt=" + LocalDate.now().minusDays(1), Product[].class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertTrue(response.getBody()[0].getCreatedAt().isAfter(LocalDate.now().minusDays(1).atStartOfDay()));
@@ -133,8 +123,8 @@ class ProductControllerTest {
 
     @Test
     void getProductsUpdatedBefore() {
-        restTemplate.postForObject("/store/api/products", product, Products.class);
-        ResponseEntity<Products[]> response = restTemplate.getForEntity("/store/api/products/updated-before?updatedAt=" + LocalDate.now(), Products[].class);
+        restTemplate.postForObject("/store/api/products", product, Product.class);
+        ResponseEntity<Product[]> response = restTemplate.getForEntity("/store/api/products/updated-before?updatedAt=" + LocalDate.now(), Product[].class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertTrue(response.getBody()[0].getUpdatedAt().isBefore(ChronoLocalDateTime.from(LocalDate.now().plusDays(1))));

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import za.ac.cput.domain.Cart_Items;
+import za.ac.cput.domain.CartItems;
 import za.ac.cput.service.CartItemService;
 
 import java.util.List;
@@ -28,21 +28,21 @@ public class CartItemsController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Cart_Items> createCartItem(@RequestBody Cart_Items cartItem) {
-        Cart_Items createdCartItem = cartItemService.create(cartItem);
+    public ResponseEntity<CartItems> createCartItem(@RequestBody CartItems cartItem) {
+        CartItems createdCartItem = cartItemService.create(cartItem);
         return new ResponseEntity<>(createdCartItem, HttpStatus.CREATED);
     }
 
     @GetMapping("/read/{id}")
-    public ResponseEntity<Cart_Items> readCartItem(@PathVariable Long id) {
-        Cart_Items cartItem = cartItemService.read(id);
+    public ResponseEntity<CartItems> readCartItem(@PathVariable Long id) {
+        CartItems cartItem = cartItemService.read(id);
         return cartItem != null ? new ResponseEntity<>(cartItem, HttpStatus.OK) :
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Cart_Items> updateCartItem(@RequestBody Cart_Items cartItem) {
-        Cart_Items updatedCartItem = cartItemService.update(cartItem);
+    public ResponseEntity<CartItems> updateCartItem(@RequestBody CartItems cartItem) {
+        CartItems updatedCartItem = cartItemService.update(cartItem);
         return new ResponseEntity<>(updatedCartItem, HttpStatus.OK);
     }
 
@@ -53,20 +53,20 @@ public class CartItemsController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Cart_Items>> getAllCartItems() {
-        List<Cart_Items> cartItems = cartItemService.getAll();
+    public ResponseEntity<List<CartItems>> getAllCartItems() {
+        List<CartItems> cartItems = cartItemService.findAll();
         return new ResponseEntity<>(cartItems, HttpStatus.OK);
     }
 
     @GetMapping("/cart/{cartId}")
-    public ResponseEntity<List<Cart_Items>> getCartItemsByCartId(@PathVariable long cartId) {
-        List<Cart_Items> cartItems = cartItemService.getCartItemsByCartId(cartId);
+    public ResponseEntity<List<CartItems>> getCartItemsByCartId(@PathVariable long cartId) {
+        List<CartItems> cartItems = cartItemService.findByCart_Id(cartId);
         return new ResponseEntity<>(cartItems, HttpStatus.OK);
     }
 
     @GetMapping("/product/{productId}")
-    public ResponseEntity<List<Cart_Items>> getCartItemsByProductId(@PathVariable long productId) {
-        List<Cart_Items> cartItems = cartItemService.getCartItemsByProductId(productId);
+    public ResponseEntity<List<CartItems>> getCartItemsByProductId(@PathVariable long productId) {
+        List<CartItems> cartItems = cartItemService.findByProduct_Id(productId);
         return new ResponseEntity<>(cartItems, HttpStatus.OK);
     }
 }
