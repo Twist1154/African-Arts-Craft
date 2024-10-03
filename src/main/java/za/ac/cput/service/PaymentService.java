@@ -13,10 +13,9 @@ import za.ac.cput.domain.Payments;
 import za.ac.cput.repository.PaymentRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class PaymentService {
+public class PaymentService implements IPayment {
 
     private final PaymentRepository paymentRepository;
 
@@ -29,8 +28,8 @@ public class PaymentService {
         return paymentRepository.save(payment);
     }
 
-    public Optional<Payments> read(Long paymentId) {
-        return paymentRepository.findById(paymentId);
+    public Payments read(Long paymentId) {
+        return paymentRepository.findById(paymentId).orElse(null);
     }
 
     public Payments update(Payments payment) {
@@ -43,5 +42,16 @@ public class PaymentService {
 
     public List<Payments> findAll() {
         return paymentRepository.findAll();
+    }
+
+
+    @Override
+    public List<Payments> findByPaymentStatus(String paymentStatus) {
+        return paymentRepository.findByPaymentStatus(paymentStatus);
+    }
+
+    @Override
+    public Payments findByUser_Id(Long id) {
+        return paymentRepository.findByUser_Id(id);
     }
 }

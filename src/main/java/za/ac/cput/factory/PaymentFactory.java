@@ -2,6 +2,7 @@ package za.ac.cput.factory;
 
 import za.ac.cput.domain.Orders;
 import za.ac.cput.domain.Payments;
+import za.ac.cput.domain.User;
 import za.ac.cput.util.Helper;
 
 import java.time.LocalDate;
@@ -18,23 +19,25 @@ public class PaymentFactory {
 
     public static Payments buildPayment(Long id,
                                         Orders order,
-                                        LocalDate payment_date,
-                                        double payment_amount,
-                                        String payment_method,
-                                        String payment_status) {
+                                        User user,
+                                        double paymentAmount,
+                                        String paymentMethod,
+                                        String paymentStatus,
+                                        LocalDate paymentDate) {
 
-        if (Helper.isDoubleNullOrEmpty(payment_amount) ||
-                Helper.isNullOrEmpty(payment_method) ||
-                Helper.isNullOrEmpty(payment_status)
+        if (Helper.isDoubleNullOrEmpty(paymentAmount) ||
+                Helper.isNullOrEmpty(paymentMethod) ||
+                Helper.isNullOrEmpty(paymentStatus)
         ) return null;
 
         return new Payments.Builder()
                 .setId(id)
+                .setUser(user)
                 .setOrders(order)
-                .setPayment_date(payment_date)
-                .setPayment_amount(payment_amount)
-                .setPayment_method(payment_method)
-                .setPayment_status(payment_status)
+                .setPaymentAmount(paymentAmount)
+                .setPaymentMethod(paymentMethod)
+                .setPaymentStatus(paymentStatus)
+                .setPaymentDate(paymentDate)
                 .build();
     }
 }
