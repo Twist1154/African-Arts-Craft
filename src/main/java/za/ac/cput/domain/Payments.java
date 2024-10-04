@@ -1,5 +1,12 @@
 package za.ac.cput.domain;
 
+/**
+ * Payments.java
+ *
+ * @author Sibusiso Kubalo
+ * Student Num: 218316038
+ */
+
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -15,12 +22,12 @@ public class Payments implements Serializable {
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "order_id")
     private Orders order;
-    private LocalDate payment_date;
-    private double payment_amount;
-    private String payment_method;
-    private String payment_status;
+    private double paymentAmount;
+    private String paymentMethod;
+    private String paymentStatus;
+    private LocalDate paymentDate;
 
     public Payments() {
     }
@@ -28,10 +35,10 @@ public class Payments implements Serializable {
     public Payments(Builder builder) {
         this.id = builder.id;
         this.order = builder.order;
-        this.payment_date = builder.payment_date;
-        this.payment_amount = builder.payment_amount;
-        this.payment_method = builder.payment_method;
-        this.payment_status = builder.payment_status;
+        this.paymentAmount = builder.paymentAmount;
+        this.paymentMethod = builder.paymentMethod;
+        this.paymentStatus = builder.paymentStatus;
+        this.paymentDate = builder.paymentDate;
     }
 
 
@@ -41,33 +48,38 @@ public class Payments implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Payments payments = (Payments) o;
-        return id == payments.id && Double.compare(payment_amount, payments.payment_amount) == 0 && Objects.equals(order, payments.order) && Objects.equals(payment_date, payments.payment_date) && Objects.equals(payment_method, payments.payment_method) && Objects.equals(payment_status, payments.payment_status);
+        return id == payments.id &&
+                Double.compare(paymentAmount, payments.paymentAmount) == 0 &&
+                Objects.equals(order, payments.order) &&
+                Objects.equals(paymentDate, payments.paymentDate) &&
+                Objects.equals(paymentMethod, payments.paymentMethod) &&
+                Objects.equals(paymentStatus, payments.paymentStatus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, order, payment_date, payment_amount, payment_method, payment_status);
+        return Objects.hash(id, order, paymentDate, paymentAmount, paymentMethod, paymentStatus);
     }
 
     @Override
     public String toString() {
         return "Payments{" +
                 "Payment ID: " + id +
-                ", ORDER : " + order +
-                ", PAYMENT DATE: " + payment_date +
-                ", PAYMENT AMOUNT: " + payment_amount +
-                ", PAYMENT METHOD: '" + payment_method + '\'' +
-                ", PAYMENT STATUS: '" + payment_status + '\'' +
+                ", ORDER : " + (order != null ? order.getId() : "N/A") +
+                ", PAYMENT DATE: " + paymentDate +
+                ", PAYMENT AMOUNT: " + paymentAmount +
+                ", PAYMENT METHOD: '" + paymentMethod + '\'' +
+                ", PAYMENT STATUS: '" + paymentStatus + '\'' +
                 '}';
     }
 
     public static class Builder {
         private Long id;
         private Orders order;
-        private LocalDate payment_date;
-        private double payment_amount;
-        private String payment_method;
-        private String payment_status;
+        private double paymentAmount;
+        private String paymentMethod;
+        private String paymentStatus;
+        private LocalDate paymentDate;
 
         public Builder setId(Long id) {
             this.id = id;
@@ -79,33 +91,33 @@ public class Payments implements Serializable {
             return this;
         }
 
-        public Builder setPayment_date(LocalDate payment_date) {
-            this.payment_date = payment_date;
+        public Builder setPaymentDate(LocalDate paymentDate) {
+            this.paymentDate = paymentDate;
             return this;
         }
 
-        public Builder setPayment_amount(double payment_amount) {
-            this.payment_amount = payment_amount;
+        public Builder setPaymentAmount(double paymentAmount) {
+            this.paymentAmount = paymentAmount;
             return this;
         }
 
-        public Builder setPayment_method(String payment_method) {
-            this.payment_method = payment_method;
+        public Builder setPaymentMethod(String paymentMethod) {
+            this.paymentMethod = paymentMethod;
             return this;
         }
 
-        public Builder setPayment_status(String payment_status) {
-            this.payment_status = payment_status;
+        public Builder setPaymentStatus(String paymentStatus) {
+            this.paymentStatus = paymentStatus;
             return this;
         }
 
         public Builder copy(Payments payments) {
             this.id = payments.getId();
             this.order = payments.getOrder();
-            this.payment_date = payments.getPayment_date();
-            this.payment_amount = payments.getPayment_amount();
-            this.payment_method = payments.getPayment_method();
-            this.payment_status = payments.getPayment_status();
+            this.paymentDate = payments.getPaymentDate();
+            this.paymentAmount = payments.getPaymentAmount();
+            this.paymentMethod = payments.getPaymentMethod();
+            this.paymentStatus = payments.getPaymentStatus();
             return this;
         }
 
