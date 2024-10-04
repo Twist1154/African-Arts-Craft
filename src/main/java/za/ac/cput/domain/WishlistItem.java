@@ -11,9 +11,8 @@ import java.util.Objects;
  * Represents an item within a wishlist.
  * Each WishlistItem is associated with a single product and belongs to a Wishlist.
  *
- * Author: Rethabile Ntsekhe
- * Student Num: 220455430
- * Date: 20-Sep-24
+ * Author: Sibusiso Kubalo
+ * Student Num: 218316038
  */
 @Entity
 @Getter

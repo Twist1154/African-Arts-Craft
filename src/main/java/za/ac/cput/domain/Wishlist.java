@@ -14,8 +14,8 @@ import java.util.Objects;
  * This entity class is mapped to the "wishlist" table in the database.
  * It uses Lombok annotations to reduce boilerplate code.
  *
- * Author: Rethabile Ntsekhe
- * Date: 25-Aug-24
+ * Author: Siibusiso Kubalo
+ * Student Num: 218316038
  */
 @Entity
 @Getter

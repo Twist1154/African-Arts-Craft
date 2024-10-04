@@ -1,12 +1,23 @@
 package za.ac.cput.service;
 
+/**
+ * PaymentServiceTest.java
+ *
+ * @author Sibusiso Kubalo
+ * Student Num: 218316038
+ */
+
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.DirtiesContext;
-import za.ac.cput.domain.Product;
-import za.ac.cput.domain.SubCategory;
+import org.springframework.transaction.annotation.Transactional;
+import za.ac.cput.domain.Orders;
+import za.ac.cput.domain.Payments;
+import za.ac.cput.domain.User;
+import za.ac.cput.repository.PaymentRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,104 +25,72 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-class ProductServiceTest {
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Transactional
+class PaymentServiceTest {
 
     @Autowired
-    private ProductService productService;
+    private PaymentService paymentService;
 
-    private Product product;
+    @Autowired
+    private PaymentRepository paymentRepository;
+
+    private Payments payment;
 
     @BeforeEach
     void setUp() {
-        SubCategory subCategories = new SubCategory();
-        SubCategory subCategory = new SubCategory();
-
-        List<SubCategory> subCategoryList = List.of(subCategories, subCategory);
-
-        product = new Product.Builder()
+        Orders orders = new Orders();
+        User user = new User();
+        payment = new Payments.Builder()
                 .setId(1L)
-                .setName("African head ")
-                .setDescription("This is a test product")
-                .setPrice(10.99)
-                .setSubCategories(subCategoryList)
-                .setImagePath("path/to/image.jpg")
+                .setOrders(orders)
+                .setUser(user)
+                .setPaymentAmount(500.00)
+                .setPaymentMethod("Credit Card")
+                .setPaymentStatus("Completed")
+                .setPaymentDate(LocalDate.of(2024, 7, 23))
                 .build();
     }
 
     @Test
-    void create() {
-        Product createdProduct = productService.create(product);
-        assertNotNull(createdProduct);
-        assertEquals(product.getName(), createdProduct.getName());
+    void testCreate() {
+        Payments created = paymentService.create(payment);
+        assertNotNull(created);
+        assertEquals(payment.getPaymentAmount(), created.getPaymentAmount());
     }
 
     @Test
-    void read() {
-        Product createdProduct = productService.create(product);
-        Product readProduct = productService.read(createdProduct.getId());
-        assertNotNull(readProduct);
-        assertEquals(createdProduct.getId(), readProduct.getId());
+    void testRead() {
+        paymentService.create(payment);
+        Payments read = paymentService.read(payment.getId());
+        assertNotNull(read);
+        assertEquals(payment.getId(), read.getId());
     }
 
     @Test
-    void update() {
-        Product createdProduct = productService.create(product);
-        createdProduct = new Product.Builder()
-                .copy(createdProduct)
-                .setName("Updated Test Product")
+    void testUpdate() {
+        Payments created = paymentService.read(1L);
+        Payments update = new Payments.Builder()
+                .copy(created)
+                .setPaymentAmount(600.00)
                 .build();
-        Product updatedProduct = productService.update(createdProduct);
-        assertNotNull(updatedProduct);
-        assertEquals("Updated Test Product", updatedProduct.getName());
+
+        Payments updated = paymentService.update(update);
+        assertEquals(600.00, updated.getPaymentAmount());
     }
 
     @Test
-    void findAll() {
-        productService.create(product);
-        List<Product> products = productService.findAll();
-        assertFalse(products.isEmpty());
+    void testDelete() {
+        Payments created = paymentService.create(payment);
+        paymentService.delete(created.getId());
+        Payments deleted = paymentService.read(created.getId());
+        assertNull(deleted);
     }
 
     @Test
-    void findByName() {
-        productService.create(product);
-        List<Product> products = productService.findByName("African head");
-        assertFalse(products.isEmpty());
-        assertEquals("African head", products.get(0).getName());
-    }
-
-    @Test
-    void findByCategoryId() {
-        productService.create(product);
-        List<Product> products = productService.findByCategoryId(1L);
-        assertFalse(products.isEmpty());
-        assertEquals(1, products.get(0).getSubCategories().size());
-    }
-
-    @Test
-    void findByPriceBetween() {
-        productService.create(product);
-        List<Product> products = productService.findByPriceBetween(10.00, 11.00);
-        assertFalse(products.isEmpty());
-        assertTrue(products.get(0).getPrice() >= 10.00 && products.get(0).getPrice() <= 11.00);
-    }
-
-
-
-    @Test
-    void findByCreatedAtAfter() {
-        productService.create(product);
-        List<Product> products = productService.findByCreatedAtAfter(LocalDate.now().minusDays(1));
-        assertFalse(products.isEmpty());
-        assertTrue(products.get(0).getCreatedAt().isAfter(LocalDate.now().minusDays(1).atStartOfDay()));
-    }
-
-    @Test
-    void findByUpdatedAtBefore() {
-        productService.create(product);
-        List<Product> products = productService.findByUpdatedAtBefore(LocalDate.now().plusDays(1));
-        assertFalse(products.isEmpty());
-        assertTrue(products.get(0).getUpdatedAt().isBefore(LocalDate.now().plusDays(1).atStartOfDay()));
+    void testFindAll() {
+        paymentService.create(payment);
+        List<Payments> paymentsList = paymentService.findAll();
+        assertFalse(paymentsList.isEmpty());
     }
 }

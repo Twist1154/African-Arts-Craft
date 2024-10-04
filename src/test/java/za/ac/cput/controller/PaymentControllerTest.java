@@ -9,79 +9,96 @@ package za.ac.cput.controller;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import za.ac.cput.domain.Orders;
 import za.ac.cput.domain.Payments;
 import za.ac.cput.service.PaymentService;
 
 import java.time.LocalDate;
-import java.util.Optional;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
+@SpringBootTest
+@TestMethodOrder(OrderAnnotation.class)
+@Transactional
 class PaymentControllerTest {
 
-    @Mock
+    @Autowired
     private PaymentService paymentService;
 
-    @InjectMocks
+    @Autowired
     private PaymentController paymentController;
 
     private Payments payment;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
         Orders orders = new Orders();
-
         payment = new Payments.Builder()
-                .setId(1L)
                 .setOrders(orders)
-                .setPayment_date(LocalDate.of(2024, 7, 23))
-                .setPayment_amount(500.00)
-                .setPayment_method("Credit Card")
-                .setPayment_status("Completed")
+                .setPaymentDate(LocalDate.of(2024, 7, 23))
+                .setPaymentAmount(500.00)
+                .setPaymentMethod("Credit Card")
+                .setPaymentStatus("Completed")
                 .build();
     }
 
     @Test
     void testCreatePayment() {
-        when(paymentService.create(payment)).thenReturn(payment);
         ResponseEntity<Payments> response = paymentController.createPayment(payment);
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals(payment, response.getBody());
+        Payments createdPayment = response.getBody();
+        assertNotNull(createdPayment);
+        assertEquals(payment.getPaymentAmount(), createdPayment.getPaymentAmount());
     }
 
     @Test
     void testReadPayment() {
-        when(paymentService.read(1L)).thenReturn(Optional.of(payment));
-        ResponseEntity<Payments> response = paymentController.readPayment(1L);
+        Payments createdPayment = paymentService.create(payment);
+        ResponseEntity<Payments> response = paymentController.readPayment(createdPayment.getId());
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals(payment, response.getBody());
+        assertEquals(createdPayment.getId(), response.getBody().getId());
     }
 
     @Test
     void testUpdatePayment() {
-        when(paymentService.update(payment)).thenReturn(payment);
-        ResponseEntity<Payments> response = paymentController.updatePayment(payment);
+        Payments createdPayment = paymentService.create(payment);
+
+        Payments updated = new Payments.Builder()
+                .copy(createdPayment)
+                .setPaymentAmount(600.00)
+                .build();
+
+
+        ResponseEntity<Payments> response = paymentController.updatePayment(updated);
         assertEquals(200, response.getStatusCodeValue());
-        assertEquals(payment, response.getBody());
+        Payments updatedPayment = response.getBody();
+        assertNotNull(updatedPayment);
+        assertEquals(600.00, updatedPayment.getPaymentAmount());
     }
 
     @Test
     void testDeletePayment() {
-        doNothing().when(paymentService).delete(1L);
-        ResponseEntity<Void> response = paymentController.deletePayment(1L);
+        Payments createdPayment = paymentService.create(payment);
+        ResponseEntity<Void> response = paymentController.deletePayment(createdPayment.getId());
         assertEquals(204, response.getStatusCodeValue());
-        verify(paymentService, times(1)).delete(1L);
+
+        // Confirm deletion
+        Payments deletedPayment = paymentService.read(createdPayment.getId());
+        assertNull(deletedPayment);
     }
 
     @Test
     void testGetAllPayments() {
-        // Test code for getAllPayments() can be added here.
+        paymentService.create(payment);
+        ResponseEntity<List<Payments>> response = paymentController.getAllPayments();
+        assertEquals(200, response.getStatusCodeValue());
+        assertFalse(response.getBody().isEmpty());
     }
 }
