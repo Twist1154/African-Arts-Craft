@@ -19,7 +19,7 @@ import java.util.List;
  * @date 06-Oct-24
  */
 @RestController
-@RequestMapping("/api/inventory") // Base path for inventory operations
+@RequestMapping("/inventory") // Base path for inventory operations
 public class InventoryController {
 
     @Autowired
@@ -85,6 +85,18 @@ public class InventoryController {
     @GetMapping("/all")
     public ResponseEntity<List<InventoryItem>> findAll() {
         List<InventoryItem> items = inventoryService.findAll();
+        return new ResponseEntity<>(items, HttpStatus.OK);
+    }
+
+    /**
+     * Retrieve all inventory items by product ID.
+     *
+     * @param productId the ID of the product.
+     * @return ResponseEntity with a list of inventory items and HTTP status.
+     */
+    @GetMapping("/product/{productId}")
+    public ResponseEntity<List<InventoryItem>> findByProduct_Id(@PathVariable Long productId) {
+        List<InventoryItem> items = inventoryService.findByProduct_Id(productId);
         return new ResponseEntity<>(items, HttpStatus.OK);
     }
 }

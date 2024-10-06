@@ -1,5 +1,6 @@
 package za.ac.cput.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -27,6 +28,7 @@ public class SubCategory {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
+    @JsonBackReference // Ignore the back reference during serialization to prevent infinite recursion
     private Product product;
 
     public SubCategory() {

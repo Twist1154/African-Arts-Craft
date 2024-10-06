@@ -38,7 +38,7 @@ class SubCategoryServiceTest {
     void setUp() {
         // Use existing products and categories in the database for testing
         product = productService.read(1L);
-        category = categoryService.read(1L);
+        category = categoryService.read(2L);
 
         // Create a SubCategory without manually setting the ID
         subCategory = SubCategoryFactory.createSubCategory(
@@ -51,9 +51,9 @@ class SubCategoryServiceTest {
 
     @AfterEach
     void tearDown() {
-        if (subCategory != null && subCategory.getId() != null) {
+        /*if (subCategory != null && subCategory.getId() != null) {
             subCategoryService.delete(subCategory.getId());
-        }
+        }*/
     }
 
     @Test

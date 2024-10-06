@@ -56,6 +56,11 @@ public class InventoryServiceImply implements InventoryService {
     }
 
     @Override
+    public List<InventoryItem> findByProduct_Id(Long productId) {
+        return repository.findByProduct_Id(productId);
+    }
+
+    @Override
     public List<InventoryItem> findAll() {
         return repository.findAll();
     }

@@ -2,6 +2,8 @@ package za.ac.cput.service;
 
 import za.ac.cput.domain.InventoryItem;
 
+import java.util.List;
+
 /**
  * InventoryService.java
  *
@@ -12,4 +14,6 @@ import za.ac.cput.domain.InventoryItem;
 
 public interface InventoryService extends IService<InventoryItem, Long> {
     void deleteById(Long id);
+
+    List<InventoryItem> findByProduct_Id(Long productId);
 }

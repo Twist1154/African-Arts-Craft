@@ -20,4 +20,6 @@ public interface InventoryRepository extends JpaRepository<InventoryItem, Long> 
     List<InventoryItem> findInventoryItemByVendorLocation(String vendLocation);
 
     List<InventoryItem> findInventoryItemByQuantityGreaterThan(int itemQuantity);
+
+    List<InventoryItem> findByProduct_Id(Long productId);
 }

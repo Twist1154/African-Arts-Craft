@@ -97,4 +97,13 @@ class InventoryServiceImplyTest {
         assertFalse(items.isEmpty());
         assertTrue(items.contains(inventoryItem));
     }
+
+    @Test
+    @Order(6)
+    void findByProduct_Id() {
+        List<InventoryItem> items = service.findByProduct_Id(6L);
+        System.out.println("Inventory Items by Product ID: " + items);
+        assertFalse(items.isEmpty());
+        assertTrue(items.contains(inventoryItem));
+    }
 }

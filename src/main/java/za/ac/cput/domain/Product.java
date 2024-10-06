@@ -1,5 +1,6 @@
 package za.ac.cput.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,6 +30,7 @@ public class Product implements Serializable {
 
     // Specify the mappedBy attribute to indicate SubCategory is the owner of the relationship
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference // Manage serialization to prevent infinite recursion
     private List<SubCategory> subCategories;
 
     @CreationTimestamp
