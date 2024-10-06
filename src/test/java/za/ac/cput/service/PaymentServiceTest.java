@@ -11,79 +11,86 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 import za.ac.cput.domain.Orders;
 import za.ac.cput.domain.Payments;
+import za.ac.cput.domain.User;
 import za.ac.cput.repository.PaymentRepository;
 
 import java.time.LocalDate;
-import java.util.Optional;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Transactional
 class PaymentServiceTest {
 
-    @Mock
-    private PaymentRepository paymentRepository;
-
-    @InjectMocks
+    @Autowired
     private PaymentService paymentService;
+
+    @Autowired
+    private PaymentRepository paymentRepository;
 
     private Payments payment;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
         Orders orders = new Orders();
+        User user = new User();
         payment = new Payments.Builder()
                 .setId(1L)
                 .setOrders(orders)
-                .setPayment_date(LocalDate.of(2024, 7, 23))
-                .setPayment_amount(500.00)
-                .setPayment_method("Credit Card")
-                .setPayment_status("Completed")
+                .setUser(user)
+                .setPaymentAmount(500.00)
+                .setPaymentMethod("Credit Card")
+                .setPaymentStatus("Completed")
+                .setPaymentDate(LocalDate.of(2024, 7, 23))
                 .build();
     }
 
     @Test
     void testCreate() {
-        when(paymentRepository.save(payment)).thenReturn(payment);
         Payments created = paymentService.create(payment);
-        assertEquals(payment, created);
-        verify(paymentRepository, times(1)).save(payment);
+        assertNotNull(created);
+        assertEquals(payment.getPaymentAmount(), created.getPaymentAmount());
     }
 
     @Test
     void testRead() {
-        when(paymentRepository.findById(1L)).thenReturn(Optional.of(payment));
-        Optional<Payments> read = paymentService.read(1L);
-        assertTrue(read.isPresent());
-        assertEquals(payment, read.get());
+        paymentService.create(payment);
+        Payments read = paymentService.read(payment.getId());
+        assertNotNull(read);
+        assertEquals(payment.getId(), read.getId());
     }
 
     @Test
     void testUpdate() {
-        when(paymentRepository.save(payment)).thenReturn(payment);
-        Payments updated = paymentService.update(payment);
-        assertEquals(payment, updated);
-        verify(paymentRepository, times(1)).save(payment);
+        Payments created = paymentService.read(1L);
+        Payments update = new Payments.Builder()
+                .copy(created)
+                .setPaymentAmount(600.00)
+                .build();
+
+        Payments updated = paymentService.update(update);
+        assertEquals(600.00, updated.getPaymentAmount());
     }
 
     @Test
     void testDelete() {
-        doNothing().when(paymentRepository).deleteById(1L);
-        paymentService.delete(1L);
-        verify(paymentRepository, times(1)).deleteById(1L);
+        Payments created = paymentService.create(payment);
+        paymentService.delete(created.getId());
+        Payments deleted = paymentService.read(created.getId());
+        assertNull(deleted);
     }
 
     @Test
     void testFindAll() {
-        // Test code for findAll() can be added here.
+        paymentService.create(payment);
+        List<Payments> paymentsList = paymentService.findAll();
+        assertFalse(paymentsList.isEmpty());
     }
 }

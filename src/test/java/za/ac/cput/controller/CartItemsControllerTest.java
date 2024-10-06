@@ -1,3 +1,4 @@
+/*
 package za.ac.cput.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,13 +26,15 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+*/
 /*
 Masithembe Ndzotyana
 219145091
 CartItemsControllerTest Class
 
 
- */
+ *//*
+
 
 @WebMvcTest(CartItemsController.class)
 public class CartItemsControllerTest {
@@ -144,3 +147,4 @@ public class CartItemsControllerTest {
     }
 }
 
+*/

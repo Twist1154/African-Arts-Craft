@@ -24,6 +24,10 @@ public class Payments implements Serializable {
     @OneToOne
     @JoinColumn(name = "order_id")
     private Orders order;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     private double paymentAmount;
     private String paymentMethod;
     private String paymentStatus;
@@ -35,6 +39,7 @@ public class Payments implements Serializable {
     public Payments(Builder builder) {
         this.id = builder.id;
         this.order = builder.order;
+        this.user = builder.user;
         this.paymentAmount = builder.paymentAmount;
         this.paymentMethod = builder.paymentMethod;
         this.paymentStatus = builder.paymentStatus;
@@ -42,23 +47,23 @@ public class Payments implements Serializable {
     }
 
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Payments payments = (Payments) o;
-        return id == payments.id &&
-                Double.compare(paymentAmount, payments.paymentAmount) == 0 &&
+        return Double.compare(paymentAmount, payments.paymentAmount) == 0 &&
+                Objects.equals(id, payments.id) &&
                 Objects.equals(order, payments.order) &&
-                Objects.equals(paymentDate, payments.paymentDate) &&
+                Objects.equals(user, payments.user) &&
                 Objects.equals(paymentMethod, payments.paymentMethod) &&
-                Objects.equals(paymentStatus, payments.paymentStatus);
+                Objects.equals(paymentStatus, payments.paymentStatus) &&
+                Objects.equals(paymentDate, payments.paymentDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, order, paymentDate, paymentAmount, paymentMethod, paymentStatus);
+        return Objects.hash(id, order, user, paymentAmount, paymentMethod, paymentStatus, paymentDate);
     }
 
     @Override
@@ -66,6 +71,7 @@ public class Payments implements Serializable {
         return "Payments{" +
                 "Payment ID: " + id +
                 ", ORDER : " + (order != null ? order.getId() : "N/A") +
+                ", USER : " + (user != null ? user.getId() : "N/A") +
                 ", PAYMENT DATE: " + paymentDate +
                 ", PAYMENT AMOUNT: " + paymentAmount +
                 ", PAYMENT METHOD: '" + paymentMethod + '\'' +
@@ -76,6 +82,7 @@ public class Payments implements Serializable {
     public static class Builder {
         private Long id;
         private Orders order;
+        private User user;
         private double paymentAmount;
         private String paymentMethod;
         private String paymentStatus;
@@ -88,6 +95,11 @@ public class Payments implements Serializable {
 
         public Builder setOrders(Orders order) {
             this.order = order;
+            return this;
+        }
+
+        public Builder setUser(User user) {
+            this.user = user;
             return this;
         }
 

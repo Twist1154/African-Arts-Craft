@@ -5,15 +5,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import za.ac.cput.domain.Cart;
+import za.ac.cput.factory.CartFactory;
 import za.ac.cput.repository.CartRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * CartService.java
+ * <p>
+ * Service implementation for managing Cart entities.
+ * Implements ICartService to provide basic CRUD operations and additional query methods.
+ *
+ * @autor Rethabile Ntsekhe
+ * @date 25-Aug-24
+ */
+
 @Slf4j
 @Service
 @Transactional
-public class CartService implements ICartService {
+public class CartService implements ICart {
 
     private final CartRepository cartRepository;
     private final CartItemService cartItemService;
@@ -24,118 +35,224 @@ public class CartService implements ICartService {
         this.cartItemService = cartItemService;
     }
 
+    /**
+     * Creates a new Cart.
+     *
+     * @param cart the Cart entity to be created
+     * @return the created Cart
+     */
     @Override
     public Cart create(Cart cart) {
-        Cart savedCart = cartRepository.save(cart);
-        log.info("Cart created: {}", savedCart);
-        return savedCart;
+        return cartRepository.save(cart);
     }
 
+    /**
+     * Reads a Cart by its ID.
+     *
+     * @param id the ID of the Cart to be read
+     * @return the Cart entity if found, or null if not found
+     */
     @Override
     public Cart read(Long id) {
-        return cartRepository.findById(id).orElse(null); // Consider returning Optional<Cart>
+        return cartRepository.findById(id).orElse(null);
+
     }
 
+
+    /**
+     * Updates an existing Cart.
+     *
+     * @param cartDetails the Cart entity to be updated
+     * @return the updated Cart entity, or null if the Cart does not exist
+     */
     @Override
     public Cart update(Cart cartDetails) {
-        Cart existingCart = read(cartDetails.getId());
-
-        if (existingCart != null) {
-            Cart updatedCart = new Cart.Builder()
-                    .copy(cartDetails)
-                    .setId(existingCart.getId()) // This might not be needed since cartDetails already has the ID
-                    .setUser(cartDetails.getUser())
-                    .setTotal(cartDetails.getTotal())
-                    .build();
-            Cart savedCart = cartRepository.save(updatedCart);
-            log.info("Cart updated: {}", savedCart);
-            return savedCart;
+        if (cartDetails.getId() == null || !cartRepository.existsById(cartDetails.getId())) {
+            throw new IllegalArgumentException("Cart with the given ID does not exist.");
         }
-
-        log.error("Attempted to update a non-existent Cart with ID: {}", cartDetails.getId());
-        return null;
+        Cart existingCartItem = cartRepository.findById(cartDetails.getId()).orElseThrow();
+        Cart updatedCart = CartFactory.createCart(
+                existingCartItem.getId(),
+                cartDetails.getUser(),
+                cartDetails.getTotal(),
+                cartDetails.getCreatedAt(),
+                cartDetails.getUpdatedAt()
+        );
+        return cartRepository.save(updatedCart);
     }
 
-    @Override
-    public void deleteById(Long id) {
-        cartItemService.delete(id); // Ensure this is necessary
-        cartRepository.deleteById(id);
-        log.info("Cart deleted with ID: {}", id);
+    /**
+     * Deletes a Cart and cart items by its Cart ID.
+     *
+     * @param id the ID of the Cart to be deleted
+     * @return true if deteled successfully, otherwise false
+     */
+
+    public boolean delete(Long id) {
+        cartItemService.deleteByCartId(id);
+        cartRepository.deleteById(id); // Use deleteById (standard JpaRepository method)
+
+        // Check if the entity still exists after deletion
+        boolean exists = cartRepository.existsById(id);
+
+        // Return true if it no longer exists (successful deletion), otherwise return false
+        return !exists;
     }
 
+    /**
+     * Finds all Carts in the database.
+     *
+     * @return a list of all Cart entities
+     */
     @Override
     public List<Cart> findAll() {
         return cartRepository.findAll();
     }
 
+    /**
+     * Finds all Carts associated with a specific user ID.
+     *
+     * @param userId the user ID to search by
+     * @return a list of Carts associated with the given user ID
+     */
     @Override
     public List<Cart> findByUserId(Long userId) {
         return cartRepository.findByUserId(userId);
     }
 
+    /**
+     * Finds all Carts created after a specific date.
+     *
+     * @param createdAt the date to search by
+     * @return a list of Carts created after the given date
+     */
     @Override
     public List<Cart> findByCreatedAtAfter(LocalDateTime createdAt) {
         return cartRepository.findByCreatedAtAfter(createdAt);
     }
 
+    /**
+     * Finds all Carts with a total greater than a specified amount.
+     *
+     * @param total the minimum total value to search by
+     * @return a list of Carts with a total greater than the specified amount
+     */
     @Override
     public List<Cart> findByTotalGreaterThan(Double total) {
         return cartRepository.findByTotalGreaterThan(total);
     }
 
+    /**
+     * Finds all Carts that were updated after a certain date.
+     *
+     * @param updatedAt the date to search by
+     * @return a list of Carts updated after the given date
+     */
     @Override
     public List<Cart> findByUpdatedAtAfter(LocalDateTime updatedAt) {
         return cartRepository.findByUpdatedAtAfter(updatedAt);
     }
 
+    /**
+     * Finds all Carts created within a specific date range.
+     *
+     * @param startDate the start date of the range
+     * @param endDate the end date of the range
+     * @return a list of Carts created within the date range
+     */
     @Override
     public List<Cart> findCartsCreatedWithinDateRange(LocalDateTime startDate, LocalDateTime endDate) {
         return cartRepository.findCartsCreatedWithinDateRange(startDate, endDate);
     }
 
+    /**
+     * Finds the Cart with the highest total.
+     *
+     * @return the Cart with the highest total
+     */
     @Override
     public Cart findCartWithHighestTotal() {
         return cartRepository.findCartWithHighestTotal();
     }
 
+    /**
+     * Finds all Carts with a total greater than a specified amount using a native query.
+     *
+     * @param total the minimum total value to search by
+     * @return a list of Carts with a total greater than the specified amount
+     */
     @Override
     public List<Cart> findCartsWithTotalGreaterThan(Double total) {
-        return cartRepository.findCartsWithTotalGreaterThan(total);
+        return cartRepository.findCartByTotalGreaterThan(total);
     }
 
+    /**
+     * Finds all Carts associated with a specific user ID and created after a specific date.
+     *
+     * @param userId the user ID to search by
+     * @param createdAt the date to search by
+     * @return a list of Carts associated with the given user ID and created after the given date
+     */
     @Override
     public List<Cart> findByUserIdAndCreatedAtAfter(Long userId, LocalDateTime createdAt) {
         return cartRepository.findByUserIdAndCreatedAtAfter(userId, createdAt);
     }
 
+    /**
+     * Finds all Carts associated with a specific user ID and updated after a specific date.
+     *
+     * @param userId the user ID to search by
+     * @param updatedAt the date to search by
+     * @return a list of Carts associated with the given user ID and updated after the given date
+     */
     @Override
     public List<Cart> findByUserIdAndUpdatedAtAfter(Long userId, LocalDateTime updatedAt) {
         return cartRepository.findByUserIdAndUpdatedAtAfter(userId, updatedAt);
     }
 
+    /**
+     * Finds all Carts created before a specific date.
+     *
+     * @param createdAt the date to search by
+     * @return a list of Carts created before the given date
+     */
     @Override
     public List<Cart> findByCreatedAtBefore(LocalDateTime createdAt) {
         return cartRepository.findByCreatedAtBefore(createdAt);
     }
 
+    /**
+     * Finds all Carts updated before a specific date.
+     *
+     * @param updatedAt the date to search by
+     * @return a list of Carts updated before the given date
+     */
     @Override
     public List<Cart> findByUpdatedAtBefore(LocalDateTime updatedAt) {
         return cartRepository.findByUpdatedAtBefore(updatedAt);
     }
 
+    /**
+     * Finds all Carts created in the last 30 days.
+     *
+     * @return a list of Carts created in the last 30 days
+     */
     @Override
     public List<Cart> findCartsCreatedInLast30Days() {
         LocalDateTime thirtyDaysAgo = LocalDateTime.now().minusDays(30);
         return cartRepository.findByCreatedAtAfter(thirtyDaysAgo);
     }
 
-
+    /**
+     * Deletes all Carts associated with a specific user ID.
+     *
+     * @param userId the user ID of the Carts to be deleted
+     */
     @Override
-    public void deleteByUserId(Long userId) { // More descriptive method name
+    public void deleteByUserId(Long userId) {
         List<Cart> userCarts = cartRepository.findByUserId(userId);
         for (Cart cart : userCarts) {
             cartRepository.delete(cart);
-            log.info("Deleted cart with ID: {}", cart.getId());
         }
     }
 }

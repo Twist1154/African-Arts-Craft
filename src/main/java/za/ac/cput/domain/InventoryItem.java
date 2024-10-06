@@ -55,7 +55,7 @@ public class InventoryItem implements Serializable {
     @Override
     public String toString() {
         return "InventoryItem{" +
-                "Inventory ID: " + id +
+                "InventoryService ID: " + id +
                 ", PRODUCT NAME: " + (product != null ? product.getName() : "N/A") +
                 ", QUANTITY: " + quantity +
                 ", VENDOR LOCATION: '" + vendorLocation + '\'' +

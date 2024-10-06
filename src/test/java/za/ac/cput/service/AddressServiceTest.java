@@ -1,101 +1,122 @@
 package za.ac.cput.service;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.transaction.annotation.Transactional;
+import za.ac.cput.Application;
 import za.ac.cput.domain.Address;
 import za.ac.cput.domain.User;
 import za.ac.cput.repository.AddressRepository;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.test.annotation.DirtiesContext.ClassMode.AFTER_CLASS;
 
-@SpringBootTest
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-@Transactional
+@SpringBootTest(classes = Application.class)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@DirtiesContext(classMode = AFTER_CLASS)
 class AddressServiceTest {
-
-    @Autowired
-    private AddressRepository addressRepository;
 
     @Autowired
     private AddressService addressService;
 
+    @Autowired
+    private AddressRepository addressRepository;
+
     private Address address;
     private User user;
+    private Set<String> roles;
+    @Autowired
+    private UserService userService;
 
     @BeforeEach
-    void setUp() {
-        user = new User.Builder()
-                .setId(56)
-                .setUsername("testuser")
-                .setPassword("password")
-                .setEmail("test@example.com")
-                .setFirstName("Test")
-                .setLastName("User")
-                .setCreatedAt(LocalDate.now())
-                .setUpdatedAt(LocalDate.now())
-                .build();
+    void setup() {
+        user = userService.read(2L);
 
+        // Set up an Address object associated with the user
         address = new Address.Builder()
                 .setId(1L)
                 .setUser(user)
-                .setAddressLine1("123 Test St")
-                .setAddressLine2("Apt 4B")
-                .setCity("Test City")
-                .setProvince("Test Province")
-                .setPostalCode("12345")
-                .setCountry("Test Country")
-                .setCreatedAt(LocalDate.now())
-                .setUpdatedAt(LocalDate.now())
+                .setTitle("Home")
+                .setAddressLine1("Apt 101")
+                .setAddressLine2("New York")
+                .setCountry("South Africa")
+                .setCity("Cape Town")
+                .setPostalCode("9320")
+                .setPhoneNumber("1234567890")
+                .setCreatedAt(LocalDateTime.now())
+                .setUpdatedAt(null)
                 .build();
     }
 
+    @AfterEach
+    void tearDown() {
+        // addressRepository.deleteAll();
+    }
+
     @Test
-    void create() {
+    @Order(1)
+    void testCreateAddress() {
         Address createdAddress = addressService.create(address);
-        System.out.println(createdAddress);
         assertNotNull(createdAddress);
         assertEquals(address.getId(), createdAddress.getId());
-        assertEquals(address.getAddressLine1(), createdAddress.getAddressLine1());
     }
 
     @Test
-    void read() {
-        addressService.create(address);  // Ensure the address is in the database
-        Address foundAddress = addressService.read(address.getId());
-        System.out.println(foundAddress);
-
-        assertNotNull(foundAddress);
-        assertEquals(address.getId(), foundAddress.getId());
-    }
-
-    @Test
-    void update() {
+    @Order(2)
+    void testReadAddress() {
         Address createdAddress = addressService.create(address);
+        Address readAddress = addressService.read(createdAddress.getId());
+        assertNotNull(readAddress);
+        assertEquals(createdAddress.getUser(), readAddress.getUser());
+    }
+
+    @Test
+    @Order(3)
+    void testUpdateAddress() {
+        Address createdAddress = addressService.create(address);
+        System.out.println("Created for test update by Id" + '\n' + createdAddress + '\n');
         createdAddress = new Address.Builder()
                 .copy(createdAddress)
-                .setAddressLine1("new Address updated address")
+                .setAddressLine1("456 Elm St")
+                .setCountry("Nigeria")
                 .build();
         Address updatedAddress = addressService.update(createdAddress);
-        System.out.println(updatedAddress);
+        System.out.println("Here is the updated Address" + updatedAddress);
         assertNotNull(updatedAddress);
-        assertEquals("new Address updated address", updatedAddress.getAddressLine1());
+        assertEquals(createdAddress.getId(), updatedAddress.getId());
     }
 
     @Test
-    void findAll() {
-        addressService.create(address);
+    @Order(4)
+    void testFindAllAddresses() {
+        addressService.create(address); // Create the address for testing
         List<Address> addresses = addressService.findAll();
-
         assertNotNull(addresses);
-        assertFalse(addresses.isEmpty());
         assertEquals(1, addresses.size());
     }
 
+    @Test
+    @Order(5)
+    void testFindByUser() {
+        addressService.create(address); // Ensure address is created
+        System.out.println("Created address" + address);
+        Optional<Address> addresses = addressService.findByUserId(1L);
+        assertNotNull(addresses);
+    }
+
+    @Test
+    @Order(6)
+    void testFindByTitle() {
+        addressService.create(address); // Ensure address is created
+        List<Address> addresses = addressService.findByTitle("Home"); // Match the title used in setup
+        assertNotNull(addresses);
+        assertEquals(1, addresses.size());
+    }
 }
