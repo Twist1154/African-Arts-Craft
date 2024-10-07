@@ -1,5 +1,6 @@
 package za.ac.cput.factory;
 
+import za.ac.cput.domain.InventoryItem;
 import za.ac.cput.domain.Product;
 import za.ac.cput.domain.SubCategory;
 import za.ac.cput.util.Helper;
@@ -21,7 +22,9 @@ public class ProductFactory {
                                        String description,
                                        double price,
                                        List<SubCategory> subCategory,
-                                       String imagePath) {
+                                       String imagePath,
+                                       InventoryItem inventoryItem
+    ) {
         if (Helper.isNullOrEmpty(name) ||
                 Helper.isNullOrEmpty(description) ||
                 Helper.isDoubleNullOrEmpty(price)
@@ -34,6 +37,7 @@ public class ProductFactory {
                 .setPrice(price)
                 .setSubCategories(subCategory)
                 .setImagePath(imagePath)
+                .setInventoryItem(inventoryItem)
                 .build();
     }
 }

@@ -19,7 +19,8 @@ import java.util.List;
  * @date 06-Oct-24
  */
 @RestController
-@RequestMapping("/inventory") // Base path for inventory operations
+@RequestMapping("/inventory")
+@CrossOrigin(origins = "*")
 public class InventoryController {
 
     @Autowired
@@ -33,6 +34,7 @@ public class InventoryController {
      */
     @PostMapping("/create")
     public ResponseEntity<InventoryItem> create(@RequestBody InventoryItem inventoryItem) {
+        System.out.println("Received inventory item: " + inventoryItem);
         InventoryItem createdItem = inventoryService.create(inventoryItem);
         return new ResponseEntity<>(createdItem, HttpStatus.CREATED);
     }

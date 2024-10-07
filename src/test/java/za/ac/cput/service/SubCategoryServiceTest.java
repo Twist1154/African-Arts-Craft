@@ -5,8 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import za.ac.cput.domain.Category;
+import za.ac.cput.domain.InventoryItem;
 import za.ac.cput.domain.Product;
 import za.ac.cput.domain.SubCategory;
+import za.ac.cput.factory.ProductFactory;
 import za.ac.cput.factory.SubCategoryFactory;
 
 import java.util.List;
@@ -37,14 +39,28 @@ class SubCategoryServiceTest {
     @BeforeEach
     void setUp() {
         // Use existing products and categories in the database for testing
-        product = productService.read(1L);
-        category = categoryService.read(2L);
+        //product = productService.read(1L);
+        //category = categoryService.read(2L);
 
+        InventoryItem inventoryItem = new InventoryItem();
+
+        // Create a Category without manually althouth the subcategories uses already existing products and categories
+        category = new Category.Builder()
+                .setName("Jewellery")
+                .build();
+        product = ProductFactory.buildProduct(
+                null,
+                "Beads",
+                "Beads for sale",
+                50.00,
+                null,
+                "beads.jpg",
+                inventoryItem
+        );
         // Create a SubCategory without manually setting the ID
         subCategory = SubCategoryFactory.createSubCategory(
                 null,
                 category,
-                "beads",
                 product
         );
     }
@@ -62,7 +78,7 @@ class SubCategoryServiceTest {
         SubCategory created = subCategoryService.create(subCategory);
         assertNotNull(created);
         assertNotNull(created.getId());  // Ensure the ID is auto-generated
-        assertEquals(subCategory.getName(), created.getName());
+
         System.out.println("Created SubCategory: " + created);
     }
 
@@ -80,13 +96,11 @@ class SubCategoryServiceTest {
     void update() {
         SubCategory created = subCategoryService.create(subCategory);
         SubCategory updated = new SubCategory.Builder()
-                .copy(created)
-                .setName("Updated Beads")  // Modify the name for testing
+                .copy(created)  // Modify the name for testing
                 .build();
 
         SubCategory result = subCategoryService.update(updated);
         assertNotNull(result);
-        assertEquals(updated.getName(), result.getName());
         System.out.println("Updated SubCategory: " + result);
     }
 

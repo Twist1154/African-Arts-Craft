@@ -59,13 +59,11 @@ class WishlistServiceTest {
         SubCategory subCategory1 = SubCategoryFactory.createSubCategory(
                 null, // Let the ID be generated
                 category,
-                "High Tops",
                 product
         );
         SubCategory subCategory2 = SubCategoryFactory.createSubCategory(
                 null, // Let the ID be generated
                 category,
-                "Low Tops",
                 product
         );
 

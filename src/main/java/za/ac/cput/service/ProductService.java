@@ -3,6 +3,7 @@ package za.ac.cput.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import za.ac.cput.domain.Product;
 import za.ac.cput.repository.ProductRepository;
 
@@ -19,6 +20,7 @@ import java.util.Optional;
  */
 @Slf4j
 @Service
+@Transactional
 public class ProductService implements IProductService {
     private final ProductRepository productRepository;
 
@@ -33,6 +35,7 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Product read(Long id) {
         return productRepository.findById(id).orElse(null);
     }

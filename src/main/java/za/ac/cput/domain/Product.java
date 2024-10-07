@@ -1,5 +1,6 @@
 package za.ac.cput.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -28,10 +30,14 @@ public class Product implements Serializable {
     private String description;
     private double price;
 
-    // Specify the mappedBy attribute to indicate SubCategory is the owner of the relationship
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference // Manage serialization to prevent infinite recursion
-    private List<SubCategory> subCategories;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @JsonManagedReference("productReference")
+    @JsonIgnore
+    private List<SubCategory> subCategories = new ArrayList<>();
+
+    @OneToOne(mappedBy = "product", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @JsonManagedReference("productInventoryReference")
+    private InventoryItem inventoryItem;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -51,19 +57,20 @@ public class Product implements Serializable {
         this.price = builder.price;
         this.subCategories = builder.subCategories;
         this.imagePath = builder.imagePath;
+        this.inventoryItem = builder.inventoryItem;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Product product = (Product) o;
-        return Double.compare(product.price, price) == 0 &&
+        return Double.compare(price, product.price) == 0 &&
                 Objects.equals(id, product.id) &&
                 Objects.equals(name, product.name) &&
                 Objects.equals(description, product.description) &&
                 Objects.equals(subCategories, product.subCategories) &&
+                Objects.equals(inventoryItem, product.inventoryItem) &&
                 Objects.equals(createdAt, product.createdAt) &&
                 Objects.equals(updatedAt, product.updatedAt) &&
                 Objects.equals(imagePath, product.imagePath);
@@ -71,7 +78,7 @@ public class Product implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, price, subCategories, createdAt, updatedAt, imagePath);
+        return Objects.hash(id, name, description, price, subCategories, inventoryItem, createdAt, updatedAt, imagePath);
     }
 
     @Override
@@ -95,6 +102,7 @@ public class Product implements Serializable {
         private double price;
         private List<SubCategory> subCategories;
         private String imagePath;
+        private InventoryItem inventoryItem;
 
         public Builder setId(Long id) {
             this.id = id;
@@ -126,6 +134,11 @@ public class Product implements Serializable {
             return this;
         }
 
+        public Builder setInventoryItem(InventoryItem inventoryItem) {
+            this.inventoryItem = inventoryItem;
+            return this;
+        }
+
         public Builder copy(Product product) {
             this.id = product.getId();
             this.name = product.getName();
@@ -133,6 +146,7 @@ public class Product implements Serializable {
             this.price = product.getPrice();
             this.subCategories = product.getSubCategories();
             this.imagePath = product.getImagePath();
+            this.inventoryItem = product.getInventoryItem();
             return this;
         }
 

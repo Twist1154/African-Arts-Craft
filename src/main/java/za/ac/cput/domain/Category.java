@@ -1,8 +1,12 @@
 package za.ac.cput.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,7 +24,13 @@ public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("categoryReference")
+    @JsonIgnore
+    private List<SubCategory> subCategories = new ArrayList<>();
 
     public Category() {
     }
@@ -28,19 +38,20 @@ public class Category implements Serializable {
     public Category(Builder builder) {
         this.id = builder.id;
         this.name = builder.name;
+        this.subCategories = builder.subCategories != null ? builder.subCategories : new ArrayList<>();
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Category that = (Category) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name);
+        Category category = (Category) o;
+        return Objects.equals(id, category.id) && Objects.equals(name, category.name) && Objects.equals(subCategories, category.subCategories);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, subCategories);
     }
 
     @Override
@@ -48,12 +59,14 @@ public class Category implements Serializable {
         return "Category{" +
                 "Category ID: " + id +
                 ", NAME: '" + name + '\'' +
+                ", Sub Categories: " + subCategories +
                 '}';
     }
 
     public static class Builder {
         private Long id;
         private String name;
+        private List<SubCategory> subCategories;
 
         public Builder setId(Long id) {
             this.id = id;
@@ -65,9 +78,15 @@ public class Category implements Serializable {
             return this;
         }
 
+        public Builder setSubCategories(List<SubCategory> subCategories) {
+            this.subCategories = subCategories;
+            return this;
+        }
+
         public Builder copy(Category category) {
             this.id = category.getId();
             this.name = category.getName();
+            this.subCategories = category.getSubCategories();
             return this;
         }
 

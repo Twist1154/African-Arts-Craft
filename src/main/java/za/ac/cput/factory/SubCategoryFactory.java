@@ -19,33 +19,24 @@ public class SubCategoryFactory {
      *
      * @param id       the ID of the sub-category
      * @param category the parent {@link Category} entity associated with this sub-category
-     * @param name     the name of the sub-category
      * @return a new {@link SubCategory} object with properties set from the input parameters
      */
     public static SubCategory createSubCategory(Long id,
                                                 Category category,
-                                                String name,
                                                 Product product) {
-        // Define constants for the switch cases
-        final int NAME_NULL = 1;
-        final int CATEGORY_NULL = 2; // Removed DESCRIPTION_NULL since it's not in SubCategory
+        // Define constants for the switch cases;
+        final int CATEGORY_NULL = 1; // Removed DESCRIPTION_NULL since it's not in SubCategory
 
         // Calculate the errorFlags based on null or empty checks
         int errorFlags = 0;
 
-        if (Helper.isNullOrEmpty(name)) {
-            errorFlags |= NAME_NULL;
-        }
+
         if (category == null) { // Check directly for null as category is a non-nullable field
             errorFlags |= CATEGORY_NULL;
         }
 
         // Use switch statement to throw exception based on the flags
         switch (errorFlags) {
-            case NAME_NULL | CATEGORY_NULL:
-                throw new IllegalArgumentException("Name and category cannot be null or empty");
-            case NAME_NULL:
-                throw new IllegalArgumentException("Name cannot be null or empty");
             case CATEGORY_NULL:
                 throw new IllegalArgumentException("Category cannot be null or empty");
             default:
@@ -56,7 +47,6 @@ public class SubCategoryFactory {
         return new SubCategory.Builder()
                 .setId(id)
                 .setCategory(category)
-                .setName(name)
                 .setProduct(product)
                 .build();
     }

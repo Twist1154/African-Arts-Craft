@@ -2,8 +2,12 @@ package za.ac.cput.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
+
+import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * SubCategory.java
@@ -14,21 +18,19 @@ import lombok.Getter;
  */
 @Getter
 @Entity
-public class SubCategory {
+public class SubCategory implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
-    @JsonIgnore
+    @JsonIgnoreProperties({"subCategories"})
     private Category category;
 
-    private String name;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    @JsonBackReference // Ignore the back reference during serialization to prevent infinite recursion
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "product_id", nullable = false)
+    @JsonIgnoreProperties({"subCategories"})
     private Product product;
 
     public SubCategory() {
@@ -37,24 +39,36 @@ public class SubCategory {
     public SubCategory(Builder builder) {
         this.id = builder.id;
         this.category = builder.category;
-        this.name = builder.name;
-        this.product = builder.product;  // Set product field in constructor
+        this.product = builder.product;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SubCategory that = (SubCategory) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(category, that.category) &&
+                Objects.equals(product, that.product);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, category, product);
     }
 
     @Override
     public String toString() {
         return "SubCategory{" +
-                "Sub Category ID: " + id +
-                ", CATEGORY ID: " + (category != null ? category.getId() : "null") +
-                ", NAME: '" + name + '\'' +
-                ", PRODUCT ID: " + (product != null ? product.getId() : "null") +
+                "ID=" + id +
+                ", Category ID=" + (category != null ? category.getName() : "null") +
+                ", Product ID=" + (product != null ? product.getName() : "null") +
                 '}';
     }
 
     public static class Builder {
         private Long id;
         private Category category;
-        private String name;
         private Product product;
 
         public Builder setId(Long id) {
@@ -67,21 +81,15 @@ public class SubCategory {
             return this;
         }
 
-        public Builder setName(String name) {
-            this.name = name;
-            return this;
-        }
-
         public Builder setProduct(Product product) {
-            this.product = product;  // Builder method for setting product
+            this.product = product;
             return this;
         }
 
-        public Builder copy(SubCategory sub_category) {
-            this.id = sub_category.id;
-            this.category = sub_category.category;
-            this.name = sub_category.name;
-            this.product = sub_category.product;  // Copy product field
+        public Builder copy(SubCategory subCategory) {
+            this.id = subCategory.id;
+            this.category = subCategory.category;
+            this.product = subCategory.product;
             return this;
         }
 

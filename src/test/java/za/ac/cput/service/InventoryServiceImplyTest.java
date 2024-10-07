@@ -54,7 +54,7 @@ class InventoryServiceImplyTest {
                 null
         );
         InventoryItem createdItem = service.create(newItem);
-
+        System.out.println("Created inventory item: " + createdItem);
         assertNotNull(createdItem);
         assertEquals("Johannesburg", createdItem.getVendorLocation());
     }
@@ -63,6 +63,7 @@ class InventoryServiceImplyTest {
     @Order(2)
     void read() {
         InventoryItem foundItem = service.read(inventoryItem.getId());
+        System.out.println("Found inventory item: " + foundItem);
         assertNotNull(foundItem); // Check if the item is found
         assertEquals(inventoryItem.getId(), foundItem.getId());
     }
@@ -76,6 +77,7 @@ class InventoryServiceImplyTest {
                 .build();
 
         InventoryItem result = service.update(updatedItem);
+        System.out.println("Updated inventory item: " + result);
         assertNotNull(result);
         assertEquals("Durban", result.getVendorLocation());
     }
@@ -93,7 +95,7 @@ class InventoryServiceImplyTest {
     @Order(4)
     void findAll() {
         List<InventoryItem> items = service.findAll();
-        System.out.println("All Inventory Items: " + items);
+        System.out.println("All Inventory Items: " + items.spliterator());
         assertFalse(items.isEmpty());
         assertTrue(items.contains(inventoryItem));
     }
@@ -101,7 +103,7 @@ class InventoryServiceImplyTest {
     @Test
     @Order(6)
     void findByProduct_Id() {
-        List<InventoryItem> items = service.findByProduct_Id(6L);
+        List<InventoryItem> items = service.findByProduct_Id(3L);
         System.out.println("Inventory Items by Product ID: " + items);
         assertFalse(items.isEmpty());
         assertTrue(items.contains(inventoryItem));

@@ -37,6 +37,7 @@ public class ProductController {
         System.out.println("Received product: " + product);
         try {
             Product createdProduct = productService.create(product);
+            System.out.println("Created product: " + createdProduct);
             return new ResponseEntity<>(createdProduct, HttpStatus.CREATED);
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,7 +49,7 @@ public class ProductController {
     /**
      * Endpoint: http://localhost:8080/store/product/{id}
      */
-    @GetMapping("{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         Product product = productService.read(id);
         if (product != null) {

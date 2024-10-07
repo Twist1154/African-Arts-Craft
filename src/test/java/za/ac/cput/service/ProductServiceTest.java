@@ -8,15 +8,11 @@ package za.ac.cput.service;
  */
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.transaction.annotation.Transactional;
 import za.ac.cput.domain.*;
-import za.ac.cput.repository.PaymentRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -59,7 +55,7 @@ class ProductServiceTest {
     @Test
     void read() {
         Product createdProduct = productService.create(product);
-        Product readProduct = productService.read(createdProduct.getId());
+        Product readProduct = productService.read(3L);
         assertNotNull(readProduct);
         assertEquals(createdProduct.getId(), readProduct.getId());
     }
