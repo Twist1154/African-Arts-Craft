@@ -32,6 +32,7 @@ public class SubCategoryService implements ISubCategory {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public SubCategory read(Long id) {
         return subCategoryRepository.findById(id).orElse(null);
     }
@@ -44,7 +45,6 @@ public class SubCategoryService implements ISubCategory {
                     .copy(existingSubCategory)
                     .setId(existingSubCategory.getId())
                     .setCategory(subCategory.getCategory())
-                    .setName(subCategory.getName())
                     .build();
             return subCategoryRepository.save(updatedSubCategory);
         } else {
@@ -70,5 +70,15 @@ public class SubCategoryService implements ISubCategory {
     @Override
     public SubCategory findById(Long id) {
         return subCategoryRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<SubCategory> findAllByProduct_Id(Long id) {
+        return subCategoryRepository.findAllByProduct_Id(id);
+    }
+
+    @Override
+    public List<SubCategory> findAllByCategory_Id(Long id) {
+        return subCategoryRepository.findAllByCategory_Id(id);
     }
 }

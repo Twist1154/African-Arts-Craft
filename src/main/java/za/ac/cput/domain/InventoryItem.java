@@ -1,8 +1,12 @@
 package za.ac.cput.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter; // Added for setter method if needed
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -15,12 +19,14 @@ public class InventoryItem implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "product_id", nullable = false)
+    @JsonBackReference("productInventoryReference")
     private Product product;
 
     private int quantity;
     private String vendorLocation;
+    @UpdateTimestamp
     private LocalDate lastUpdated;
 
     public InventoryItem() {
@@ -55,7 +61,7 @@ public class InventoryItem implements Serializable {
     @Override
     public String toString() {
         return "InventoryItem{" +
-                "Inventory ID: " + id +
+                "InventoryService ID: " + id +
                 ", PRODUCT NAME: " + (product != null ? product.getName() : "N/A") +
                 ", QUANTITY: " + quantity +
                 ", VENDOR LOCATION: '" + vendorLocation + '\'' +

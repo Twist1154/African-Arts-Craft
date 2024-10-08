@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.OrderItem;
 
+import java.util.List;
+
 /**
  * OrderItemsRepository.java
  *
@@ -16,4 +18,9 @@ import za.ac.cput.domain.OrderItem;
 public interface OrderItemsRepository extends JpaRepository<OrderItem, Long> {
     @Override
     void deleteById(Long id);
+
+
+    List<OrderItem> findByOrder_Id(Long orderId);
+
+    void deleteByOrder_Id(Long orderId);
 }

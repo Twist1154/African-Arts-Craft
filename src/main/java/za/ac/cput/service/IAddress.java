@@ -1,35 +1,27 @@
-package za.ac.cput.repository;
+package za.ac.cput.service;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 import za.ac.cput.domain.Address;
-import za.ac.cput.domain.User;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 /**
- * AddressRepository.java
- *
- * Repository interface for accessing Address entities from the database.
- * Extends JpaRepository to provide basic CRUD operations.
- * Custom query methods are defined to find Addresses by specific fields.
+ * IAddress.java
  *
  * @author Rethabile Ntsekhe
- * @date 25-Aug-24
+ * Student Num: 220455430
+ * @date 28-Aug-24
  */
-
-@Repository
-public interface AddressRepository extends JpaRepository<Address, Long> {
+public interface IAddress extends IService<Address, Long> {
 
     /**
      * Finds all Addresses associated with a given User.
      *
-     * @param id the User entity to search by
+     * @param userId the User entity to search by
      * @return a list of Addresses associated with the given User
      */
-    Optional<Address> findByUserId(Long id);
+    Optional<Address> findByUserId(Long userId);
 
     /**
      * Finds all Addresses with a given title.

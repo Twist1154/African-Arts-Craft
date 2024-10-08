@@ -61,7 +61,7 @@ public class WishlistService implements iWishlist {
 
 
         for (WishlistItem item : wishlist.getWishlistItems()) {
-            item.getProduct().getSubCategories().size();
+            item.getProduct();
         }
         return wishlist;
     }

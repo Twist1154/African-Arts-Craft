@@ -1,5 +1,12 @@
 package za.ac.cput.service;
 
+/**
+ * IPaymentS.java
+ *
+ * @author Sibusiso Kubalo
+ * Student Num: 218316038
+ */
+
 import za.ac.cput.domain.Payments;
 
 import java.util.List;

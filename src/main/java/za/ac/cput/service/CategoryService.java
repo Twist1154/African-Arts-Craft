@@ -3,6 +3,7 @@ package za.ac.cput.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import za.ac.cput.domain.Category;
 import za.ac.cput.repository.CategoriesRepository;
 
@@ -17,6 +18,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
+@Transactional
 public class CategoryService implements ICategoriesService {
     private final CategoriesRepository categoriesRepository;
 

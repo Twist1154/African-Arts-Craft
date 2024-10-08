@@ -2,17 +2,64 @@ package za.ac.cput.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import za.ac.cput.domain.CartItems;
+import za.ac.cput.domain.CartItem;
 
 import java.util.List;
 
+/**
+ * CartItemRepository.java
+ * <p>
+ * Repository interface for accessing CartItem entities from the database.
+ * Extends JpaRepository to provide basic CRUD operations.
+ * Custom query methods are defined to find CartItems by specific fields.
+ * <p>
+ * Author: Rethabile Ntsekhe
+ * Student Number: 220455430
+ * Date: 25-Aug-24
+ */
+
 @Repository
-public interface CartItemRepository extends JpaRepository<CartItems, Long> {
+public interface CartItemRepository extends JpaRepository<CartItem, Long> {
 
-    List<CartItems> findByCart_Id(Long cart_id);
+    /**
+     * Finds CartItems by their associated Cart ID.
+     *
+     * @param cartId the ID of the Cart entity to search by
+     * @return a list of CartItems associated with the given Cart ID
+     */
+    List<CartItem> findByCartId(Long cartId);
+
+    /**
+     * Finds CartItems by their associated Product ID.
+     *
+     * @param productId the ID of the Product entity to search by
+     * @return a list of CartItems associated with the given Product ID
+     */
+    List<CartItem> findByProductId(Long productId);
 
 
-    List<CartItems> findByProduct_Id(Long product_id);
+    /**
+     * Finds CartItems by their quantity.
+     *
+     * @param quantity the quantity of items to search by
+     * @return a list of CartItems with the given quantity
+     */
+    List<CartItem> findByQuantity(int quantity);
 
-    void deleteByCart_Id(Long cart_id);
+    /**
+     * Finds CartItems by their associated Cart ID and Product ID.
+     *
+     * @param cartId    the ID of the Cart entity to search by
+     * @param productId the ID of the Product entity to search by
+     * @return a list of CartItems associated with the given Cart ID and Product ID
+     */
+    List<CartItem> findByCartIdAndProductId(Long cartId, Long productId);
+
+
+    /**
+     * Deletes CartItems by their associated Cart ID.
+     *
+     * @param cartId the ID of the Cart entity to search by
+     */
+    void deleteByCartId(Long cartId);
 }

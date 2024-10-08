@@ -1,12 +1,18 @@
 package za.ac.cput.service;
 
+/**
+ * PaymentServiceTest.java
+ *
+ * @author Sibusiso Kubalo
+ * Student Num: 218316038
+ */
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
-import za.ac.cput.domain.Product;
-import za.ac.cput.domain.SubCategory;
+import za.ac.cput.domain.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -49,7 +55,7 @@ class ProductServiceTest {
     @Test
     void read() {
         Product createdProduct = productService.create(product);
-        Product readProduct = productService.read(createdProduct.getId());
+        Product readProduct = productService.read(3L);
         assertNotNull(readProduct);
         assertEquals(createdProduct.getId(), readProduct.getId());
     }
@@ -98,7 +104,6 @@ class ProductServiceTest {
     }
 
 
-
     @Test
     void findByCreatedAtAfter() {
         productService.create(product);
@@ -115,3 +120,4 @@ class ProductServiceTest {
         assertTrue(products.get(0).getUpdatedAt().isBefore(LocalDate.now().plusDays(1).atStartOfDay()));
     }
 }
+

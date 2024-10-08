@@ -2,6 +2,8 @@ package za.ac.cput.service;
 
 import za.ac.cput.domain.SubCategory;
 
+import java.util.List;
+
 /**
  * ISubCategoryService.java
  *
@@ -13,4 +15,8 @@ import za.ac.cput.domain.SubCategory;
 public interface ISubCategory extends IService<SubCategory, Long> {
 
     SubCategory findById(Long id);
+
+    List<SubCategory> findAllByProduct_Id(Long id);
+
+    List<SubCategory> findAllByCategory_Id(Long id);
 }

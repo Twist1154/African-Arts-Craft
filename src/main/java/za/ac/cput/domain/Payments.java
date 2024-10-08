@@ -40,6 +40,7 @@ public class Payments implements Serializable {
         this.paymentDate = builder.paymentDate;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -2,9 +2,11 @@ package za.ac.cput.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import za.ac.cput.domain.Address;
 import za.ac.cput.repository.AddressRepository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,12 +15,11 @@ import java.util.Optional;
  *
  * @author Rethabile Ntsekhe
  * Student Num: 220455430
- * @date 27-Jul-24
+ * @date 28-Aug-24
  */
-
-
 @Service
-public class AddressService implements IAddressService {
+@Transactional
+public class AddressService implements IAddress {
 
     private final AddressRepository addressRepository;
 
@@ -27,23 +28,45 @@ public class AddressService implements IAddressService {
         this.addressRepository = addressRepository;
     }
 
+    /**
+     * @param address The entity to be created.
+     * @return
+     */
     @Override
     public Address create(Address address) {
         return addressRepository.save(address);
     }
 
+    /**
+     * @param id The ID of the entity to be read.
+     * @return address
+     */
     @Override
     public Address read(Long id) {
-        Optional<Address> address = addressRepository.findById(id);
-        return address.orElse(null);
+        return addressRepository.findById(id).orElse(null);
     }
+
 
     @Override
     public Address update(Address address) {
-        if (addressRepository.existsById(address.getId())) {
-            return addressRepository.save(address);
+        Address existingAddress = addressRepository.findById(address.getId()).orElse(null);
+        if (existingAddress != null) {
+            Address updatedAddress = new Address.Builder()
+                    .copy(existingAddress)
+                    .setTitle(address.getTitle())
+                    .setAddressLine1(address.getAddressLine1())
+                    .setAddressLine2(address.getAddressLine2())
+                    .setCountry(address.getCountry())
+                    .setCity(address.getCity())
+                    .setPostalCode(address.getPostalCode())
+                    .setPhoneNumber(address.getPhoneNumber())
+                    .setCreatedAt(address.getCreatedAt())
+                    .setUpdatedAt(address.getUpdatedAt())
+                    .build();
+            return addressRepository.save(updatedAddress);
+        } else {
+            return null;
         }
-        return null;
     }
 
     @Override
@@ -52,4 +75,63 @@ public class AddressService implements IAddressService {
     }
 
 
+    public boolean delete(Long id) {
+        addressRepository.deleteById(id); // Use deleteById (standard JpaRepository method)
+
+        // Check if the entity still exists after deletion
+        boolean exists = addressRepository.existsById(id);
+
+        // Return true if it no longer exists (successful deletion), otherwise return false
+        return !exists;
+    }
+
+    @Override
+    public Optional<Address> findByUserId(Long userId) {
+        return addressRepository.findByUserId(userId);
+    }
+
+    @Override
+    public List<Address> findByTitle(String title) {
+        return addressRepository.findByTitle(title);
+    }
+
+    @Override
+    public List<Address> findByAddressLine1(String addressLine1) {
+        return addressRepository.findByAddressLine1(addressLine1);
+    }
+
+    @Override
+    public List<Address> findByAddressLine2(String addressLine2) {
+        return addressRepository.findByAddressLine2(addressLine2);
+    }
+
+    @Override
+    public List<Address> findByCountry(String country) {
+        return addressRepository.findByCountry(country);
+    }
+
+    @Override
+    public List<Address> findByCity(String city) {
+        return addressRepository.findByCity(city);
+    }
+
+    @Override
+    public List<Address> findByPostalCode(String postalCode) {
+        return addressRepository.findByPostalCode(postalCode);
+    }
+
+    @Override
+    public List<Address> findByPhoneNumber(String phoneNumber) {
+        return addressRepository.findByPhoneNumber(phoneNumber);
+    }
+
+    @Override
+    public List<Address> findByCreatedAtAfter(LocalDateTime createdAt) {
+        return addressRepository.findByCreatedAtAfter(createdAt);
+    }
+
+    @Override
+    public List<Address> findByUpdatedAt(LocalDateTime updatedAt) {
+        return addressRepository.findByUpdatedAt(updatedAt);
+    }
 }

@@ -10,9 +10,8 @@ import java.time.LocalDate;
 /**
  * PaymentFactory.java
  *
- * @author Rethabile Ntsekhe
- * Student Num: 220455430
- * @date 26-Jul-24
+ * @author Sibusiso Kubalo
+ * Student Num: 218316038
  */
 
 public class PaymentFactory {

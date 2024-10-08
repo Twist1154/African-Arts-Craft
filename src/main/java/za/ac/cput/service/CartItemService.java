@@ -2,63 +2,142 @@ package za.ac.cput.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import za.ac.cput.domain.CartItems;
+import org.springframework.transaction.annotation.Transactional;
+import za.ac.cput.domain.CartItem;
 import za.ac.cput.repository.CartItemRepository;
 
 import java.util.List;
 
+/**
+ * CartItemService.java
+ * <p>
+ * Service implementation for managing CartItem entities.
+ * Implements methods for CRUD operations and additional query methods.
+ * <p>
+ * Author: Rethabile Ntsekhe
+ * Student Number: 220455430
+ * Date: 25-Aug-24
+ */
+
 @Service
-public class CartItemService implements ICartItemService {
+@Transactional
+public class CartItemService implements ICartItem {
 
     private final CartItemRepository cartItemRepository;
 
     @Autowired
-    public CartItemService(CartItemRepository cartItemsRepository) {
-        this.cartItemRepository = cartItemsRepository;
+    public CartItemService(CartItemRepository cartItemRepository) {
+        this.cartItemRepository = cartItemRepository;
     }
 
+    /**
+     * Creates a new CartItem in the database.
+     *
+     * @param cartItem the CartItem entity to be created
+     * @return the created CartItem entity
+     */
     @Override
-    public CartItems create(CartItems cartItems) {
-        return cartItemRepository.save(cartItems);
+    public CartItem create(CartItem cartItem) {
+        return cartItemRepository.save(cartItem);
     }
 
+    /**
+     * Reads a CartItem from the database by its ID.
+     *
+     * @param id the ID of the CartItem to be read
+     * @return the CartItem entity with the given ID, or null if not found
+     */
     @Override
-    public CartItems read(Long id) {
+    public CartItem read(Long id) {
         return cartItemRepository.findById(id).orElse(null);
     }
 
+    /**
+     * Updates an existing CartItem in the database.
+     *
+     * @param cartItem the CartItem entity with updated details
+     * @return the updated CartItem entity
+     * @throws IllegalArgumentException if the CartItem with the given ID does not exist
+     */
     @Override
-    public CartItems update(CartItems cartItems) {
-        CartItems existingProduct = read(cartItems.getId());
-        if (existingProduct != null) {
-            CartItems updatedProduct = new CartItems.Builder()
-                    .copy(cartItems)
-                    .setProduct(cartItems.getProduct())
-                    .setCart(cartItems.getCart())
-                    .setQuantity(cartItems.getQuantity())
+    public CartItem update(CartItem cartItem) {
+        CartItem existingCartItem = cartItemRepository.findById(cartItem.getId()).orElse(null);
+        if (existingCartItem != null) {
+            CartItem updatedCartItem = new CartItem.Builder()
+                    .copy(existingCartItem)
+                    .setCart(cartItem.getCart())
+                    .setProduct(cartItem.getProduct())
+                    .setQuantity(cartItem.getQuantity())
                     .build();
-            return cartItemRepository.save(updatedProduct);
+            return cartItemRepository.save(updatedCartItem);
+        } else {
+            throw new IllegalArgumentException("Attempt to update a non-existent cart item with ID: " + cartItem.getId());
         }
-        throw new IllegalArgumentException("Attempt to update a non-existent cart item with ID: " + cartItems.getId());
     }
 
+    /**
+     * Deletes a CartItem from the database by its ID.
+     *
+     * @param id the ID of the CartItem to be deleted
+     * @return true if the CartItem was successfully deleted, false if it was not found
+     */
+
+    public boolean delete(Long id) {
+        cartItemRepository.deleteById(id); // Use deleteById (standard JpaRepository method)
+
+        // Check if the entity still exists after deletion
+        boolean exists = cartItemRepository.existsById(id);
+
+        // Return true if it no longer exists (successful deletion), otherwise return false
+        return !exists;
+    }
+
+    /**
+     * Finds all CartItems in the database.
+     *
+     * @return a list of all CartItems
+     */
     @Override
-    public List<CartItems> findAll() {
+    public List<CartItem> findAll() {
         return cartItemRepository.findAll();
     }
 
+    /**
+     * Finds CartItems by their associated Cart ID.
+     *
+     * @param cartId the ID of the Cart to search by
+     * @return a list of CartItems associated with the given Cart ID
+     */
     @Override
-    public void delete(Long id) {
-        cartItemRepository.deleteById(id);
+    public List<CartItem> findByCartId(Long cartId) {
+        return cartItemRepository.findByCartId(cartId);
+    }
+
+    /**
+     * Finds CartItems by their associated Product ID.
+     *
+     * @param productId the ID of the Product to search by
+     * @return a list of CartItems associated with the given Product ID
+     */
+    @Override
+    public List<CartItem> findByProductId(Long productId) {
+        return cartItemRepository.findByProductId(productId);
+    }
+
+
+    /**
+     * Finds CartItems by their quantity.
+     *
+     * @param quantity the quantity of items to search by
+     * @return a list of CartItems with the given quantity
+     */
+    @Override
+    public List<CartItem> findByQuantity(int quantity) {
+        return cartItemRepository.findByQuantity(quantity);
     }
 
     @Override
-    public List<CartItems> findByCart_Id(Long cartId) {
-        return cartItemRepository.findByCart_Id(cartId);
-    }
-
-    @Override
-    public List<CartItems> findByProduct_Id(Long productId) {
-        return cartItemRepository.findByProduct_Id(productId);
+    public void deleteByCartId(Long cartId) {
+        cartItemRepository.deleteByCartId(cartId);
     }
 }

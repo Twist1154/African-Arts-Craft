@@ -14,6 +14,5 @@ import za.ac.cput.domain.Orders;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Orders, Long> {
-
     void deleteById(Long id);
 }

@@ -9,16 +9,19 @@ import za.ac.cput.domain.Cart;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * CartRepository.java
+ * <p>
+ * Repository interface for accessing Cart entities from the database.
+ * Extends JpaRepository to provide basic CRUD operations.
+ * Custom query methods are defined using JPQL and native queries.
+ *
+ * @author Rethabile Ntsekhe
+ * @date 25-Aug-24
+ */
+
 @Repository
 public interface CartRepository extends JpaRepository<Cart, Long> {
-    /**
-     * Deletes all Carts associated with a specific userId.
-     *
-     * @param userId the ID of the user whose carts should be deleted
-     */
-    void deleteByUser_Id(Long userId);
-
-    void deleteById(Long id);
 
     /**
      * Finds all Carts associated with a given userId.
@@ -56,7 +59,7 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
      * Finds all Carts created within a specific date range using JPQL.
      *
      * @param startDate the start date of the range
-     * @param endDate   the end date of the range
+     * @param endDate the end date of the range
      * @return a list of Carts created within the date range
      */
     @Query("SELECT c FROM Cart c WHERE c.createdAt BETWEEN :startDate AND :endDate")
@@ -77,12 +80,13 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
      * @param total the minimum total value to search by
      * @return a list of Carts with a total greater than the specified amount
      */
-    List<Cart> findCartsWithTotalGreaterThan(@Param("total") Double total);
+
+    List<Cart> findCartByTotalGreaterThan(@Param("total") Double total);
 
     /**
      * Finds all Carts associated with a user and created after a certain date.
      *
-     * @param userId    the ID of the user to search by
+     * @param userId the ID of the user to search by
      * @param createdAt the date to search by
      * @return a list of Carts associated with the given userId and created after the given date
      */
@@ -91,7 +95,7 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
     /**
      * Finds all Carts associated with a user and updated after a certain date.
      *
-     * @param userId    the ID of the user to search by
+     * @param userId the ID of the user to search by
      * @param updatedAt the date to search by
      * @return a list of Carts associated with the given userId and updated after the given date
      */

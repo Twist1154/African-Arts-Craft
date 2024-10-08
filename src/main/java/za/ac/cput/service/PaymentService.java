@@ -1,7 +1,7 @@
 package za.ac.cput.service;
 
 /**
- * PaymentFactoryTest.java
+ * PaymentService.java
  *
  * @author Sibusiso Kubalo
  * Student Num: 218316038
