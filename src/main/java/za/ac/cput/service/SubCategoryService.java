@@ -63,21 +63,25 @@ public class SubCategoryService implements ISubCategory {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<SubCategory> findAll() {
         return subCategoryRepository.findAll();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public SubCategory findById(Long id) {
         return subCategoryRepository.findById(id).orElse(null);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<SubCategory> findAllByProduct_Id(Long id) {
         return subCategoryRepository.findAllByProduct_Id(id);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<SubCategory> findAllByCategory_Id(Long id) {
         return subCategoryRepository.findAllByCategory_Id(id);
     }

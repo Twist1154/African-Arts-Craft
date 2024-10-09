@@ -35,6 +35,7 @@ public class WishlistItemService implements IWishlistItems {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public WishlistItem read(Long id) {
         return repository.findById(id).orElse(null);
     }
@@ -60,6 +61,7 @@ public class WishlistItemService implements IWishlistItems {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<WishlistItem> findAll() {
         return repository.findAll();
     }
@@ -76,11 +78,13 @@ public class WishlistItemService implements IWishlistItems {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<WishlistItem> findByWishlist_Id(Long wishlistId) {
         return repository.findByWishlist_Id(wishlistId);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public void deleteByWishlistId(Long wishlistId) {
         repository.deleteByWishlistId(wishlistId);
 

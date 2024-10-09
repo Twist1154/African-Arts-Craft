@@ -30,7 +30,7 @@ public class SubCategory implements Serializable {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "product_id", nullable = false)
-    @JsonIgnoreProperties({"subCategories"})
+    @JsonBackReference("productReference")
     private Product product;
 
     public SubCategory() {
