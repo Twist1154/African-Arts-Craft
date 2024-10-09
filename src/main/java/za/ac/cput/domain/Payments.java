@@ -49,7 +49,7 @@ public class Payments implements Serializable {
         return id.equals(payments.id) &&
                 Double.compare(paymentAmount, payments.paymentAmount) == 0 &&
                 Objects.equals(order, payments.order) &&
-                Objects.equals(user, payments.user) && // Include user in equality check
+                Objects.equals(user, payments.user) &&
                 Objects.equals(paymentDate, payments.paymentDate) &&
                 Objects.equals(paymentMethod, payments.paymentMethod) &&
                 Objects.equals(paymentStatus, payments.paymentStatus);

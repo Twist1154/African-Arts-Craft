@@ -1,5 +1,6 @@
 package za.ac.cput.factory;
 
+import za.ac.cput.domain.Address;
 import za.ac.cput.domain.ShippingMethods;
 import za.ac.cput.util.Helper;
 
@@ -16,7 +17,9 @@ public class ShippingMethodFactory {
                                                       String name,
                                                       String description,
                                                       double cost,
-                                                      String delivery_time) {
+                                                      String delivery_time,
+                                                      Address address
+    ) {
         if (Helper.isNullOrEmpty(name) ||
                 Helper.isDoubleNullOrEmpty(cost) ||
                 Helper.isNullOrEmpty(delivery_time)
@@ -28,6 +31,7 @@ public class ShippingMethodFactory {
                 .setDescription(description)
                 .setCost(cost)
                 .setDeliveryTime(delivery_time)
+                .setAddress(address)
                 .build();
     }
 }

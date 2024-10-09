@@ -3,6 +3,7 @@ package za.ac.cput.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import za.ac.cput.domain.Review;
 import za.ac.cput.repository.ReviewRepository;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Slf4j
 @Service
+@Transactional
 public class ReviewService implements IReviewService {
     private ReviewRepository repository;
 
@@ -24,6 +26,7 @@ public class ReviewService implements IReviewService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Review read(Long id) {
         return repository.findById(id).orElse(null);
     }
@@ -36,10 +39,10 @@ public class ReviewService implements IReviewService {
                     .copy(review)
                     .setId(existingReview.getId())
                     .setProduct(existingReview.getProduct())
-                    .setUser(review.getUser())
+                    .setUser(existingReview.getUser())
                     .setRating(review.getRating())
                     .setComment(review.getComment())
-                    .setCreated_at(existingReview.getCreated_at())
+                    .setCreatedAt(existingReview.getCreatedAt())
                     .build();
             return repository.save(updatedReview);
         }
@@ -55,5 +58,17 @@ public class ReviewService implements IReviewService {
     @Override
     public void deleteById(Long id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Review> findByProduct_Id(Long product_id) {
+        return repository.findByProduct_Id(product_id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Review> findByUser_Id(Long user_id) {
+        return repository.findByUser_Id(user_id);
     }
 }

@@ -1,5 +1,7 @@
 package za.ac.cput.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
@@ -23,17 +25,19 @@ public class Review implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
+    @JsonIgnore
     private Product product;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
     private int rating;
     private String comment;
     @CreatedDate
-    private LocalDate created_at;
+    private LocalDate createdAt;
 
     public Review() {
     }
@@ -44,7 +48,7 @@ public class Review implements Serializable {
         this.user = builder.user;
         this.rating = builder.rating;
         this.comment = builder.comment;
-        this.created_at = builder.created_at;
+        this.createdAt = builder.createdAt;
     }
 
 
@@ -53,23 +57,23 @@ public class Review implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Review review = (Review) o;
-        return id == review.id && rating == review.rating && Objects.equals(product, review.product) && Objects.equals(user, review.user) && Objects.equals(comment, review.comment) && Objects.equals(created_at, review.created_at);
+        return id == review.id && rating == review.rating && Objects.equals(product, review.product) && Objects.equals(user, review.user) && Objects.equals(comment, review.comment) && Objects.equals(createdAt, review.createdAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, product, user, rating, comment, created_at);
+        return Objects.hash(id, product, user, rating, comment, createdAt);
     }
 
     @Override
     public String toString() {
         return "Reviews{" +
                 "Review ID: " + id +
-                ", PRODUCT : " + product +
-                ", USER : " + user +
+                ", PRODUCT : " + product.getName() +
+                ", USER : " + user.getFirstName() +
                 ", RATING: " + rating +
                 ", COMMENT: '" + comment + '\'' +
-                ", CREATED AT: " + created_at +
+                ", CREATED AT: " + createdAt +
                 '}';
     }
 
@@ -79,7 +83,7 @@ public class Review implements Serializable {
         private User user;
         private int rating;
         private String comment;
-        private LocalDate created_at;
+        private LocalDate createdAt;
 
         public Builder setId(Long id) {
             this.id = id;
@@ -106,8 +110,8 @@ public class Review implements Serializable {
             return this;
         }
 
-        public Builder setCreated_at(LocalDate created_at) {
-            this.created_at = created_at;
+        public Builder setCreatedAt(LocalDate createdAt) {
+            this.createdAt = createdAt;
             return this;
         }
 
@@ -117,7 +121,7 @@ public class Review implements Serializable {
             this.user = reviews.getUser();
             this.rating = reviews.getRating();
             this.comment = reviews.getComment();
-            this.created_at = reviews.getCreated_at();
+            this.createdAt = reviews.getCreatedAt();
             return this;
         }
 

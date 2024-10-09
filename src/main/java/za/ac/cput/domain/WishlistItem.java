@@ -25,15 +25,15 @@ public class WishlistItem implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id", nullable = false)
-    private Product product;  // Single product in the wishlist item
+    private Product product;
 
     private LocalDateTime dateAdded;
 
-    @ManyToOne(fetch = FetchType.LAZY)  // Use lazy fetching to defer loading until needed
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wishlist_id")
     private Wishlist wishlist;
 
-    // Default constructor made private to enforce Builder usage
+
     public WishlistItem() {
     }
 

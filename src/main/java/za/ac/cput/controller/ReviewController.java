@@ -11,7 +11,7 @@ import za.ac.cput.service.ReviewService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/review")
+@RequestMapping("/review")
 public class ReviewController {
 
     private final ReviewService service;
@@ -36,6 +36,18 @@ public class ReviewController {
     @GetMapping
     public ResponseEntity<List<Review>> getAllReviews() {
         List<Review> reviews = service.findAll();
+        return new ResponseEntity<>(reviews, HttpStatus.OK);
+    }
+
+    @GetMapping("/product/{product_id}")
+    public ResponseEntity<List<Review>> getReviewsByProduct(@PathVariable Long product_id) {
+        List<Review> reviews = service.findByProduct_Id(product_id);
+        return new ResponseEntity<>(reviews, HttpStatus.OK);
+    }
+
+    @GetMapping("/user/{user_id}")
+    public ResponseEntity<List<Review>> getReviewsByUser(@PathVariable Long user_id) {
+        List<Review> reviews = service.findByUser_Id(user_id);
         return new ResponseEntity<>(reviews, HttpStatus.OK);
     }
 

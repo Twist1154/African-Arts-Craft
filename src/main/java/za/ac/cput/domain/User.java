@@ -101,8 +101,8 @@ public class User implements Serializable {
         private LocalDate updatedAt;
         private List<Address> address;
 
-        public Builder setId(long userId) {
-            this.id = userId;
+        public Builder setId(Long id) {
+            this.id = id;
             return this;
         }
 

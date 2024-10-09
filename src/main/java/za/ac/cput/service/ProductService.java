@@ -56,27 +56,32 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Product> findByName(String name) {
         return productRepository.findByName(name);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Product> findByCategoryId(Long categoryId) {
         return productRepository.findBySubCategories_Id(categoryId);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Product> findByPriceBetween(double minPrice, double maxPrice) {
         return productRepository.findByPriceBetween(minPrice, maxPrice);
     }
 
 
     @Override
+    @Transactional(readOnly = true)
     public List<Product> findByCreatedAtAfter(LocalDate createdAt) {
         return productRepository.findByCreatedAtAfter(createdAt);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Product> findByUpdatedAtBefore(LocalDate updatedAt) {
         return productRepository.findByUpdatedAtBefore(updatedAt);
     }
