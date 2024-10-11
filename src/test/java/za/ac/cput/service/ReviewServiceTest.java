@@ -39,7 +39,8 @@ class ReviewServiceTest {
                 product,
                 user,
                 5,
-                "Great product"
+                "Great product",
+                null
         );
         review = reviewService.create(saveReview);
     }

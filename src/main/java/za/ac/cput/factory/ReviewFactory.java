@@ -6,6 +6,7 @@ import za.ac.cput.domain.User;
 import za.ac.cput.util.Helper;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * ReviewFactory.java
@@ -20,7 +21,8 @@ public class ReviewFactory {
                                      Product product,
                                      User user,
                                      int rating,
-                                     String comment
+                                     String comment,
+                                     LocalDateTime createdAt
     ) {
         if (Helper.isNullOrEmpty(rating) ||
                 Helper.isNullOrEmpty(comment)
@@ -32,6 +34,7 @@ public class ReviewFactory {
                 .setUser(user)
                 .setRating(rating)
                 .setComment(comment)
+                .setCreatedAt(createdAt)
                 .build();
     }
 }

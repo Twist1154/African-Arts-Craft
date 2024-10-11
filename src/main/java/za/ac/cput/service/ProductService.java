@@ -31,6 +31,7 @@ public class ProductService implements IProductService {
 
     @Override
     public Product create(Product product) {
+        System.out.println("Product to created At Product Services Create methods: " + product);
         return productRepository.save(product);
     }
 

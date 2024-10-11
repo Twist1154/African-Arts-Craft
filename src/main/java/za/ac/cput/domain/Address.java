@@ -1,5 +1,7 @@
 package za.ac.cput.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -22,6 +24,8 @@ public class Address {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference("userAddressReference")
+    @JsonIgnoreProperties("address")
     private User user;
 
     private String title;

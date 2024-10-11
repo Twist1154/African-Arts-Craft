@@ -1,11 +1,11 @@
 package za.ac.cput.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * User.java
@@ -23,6 +23,15 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "avatar")
+    private String avatar;
+
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
     @Column(nullable = false, unique = true)
     private String username;
 
@@ -32,11 +41,10 @@ public class User implements Serializable {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
-
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role")
+    private Set<String> roles = new HashSet<>();
 
     @Column(name = "created_at")
     private LocalDate createdAt;
@@ -45,13 +53,19 @@ public class User implements Serializable {
     private LocalDate updatedAt;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Address> address;
+    @JsonManagedReference("userAddressReference")
+    private List<Address> address = new ArrayList<>();
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Review> review = new ArrayList<>();
 
     public User() {
     }
 
     public User(Builder builder) {
         this.id = builder.id;
+        this.avatar = builder.avatar;
         this.username = builder.username;
         this.password = builder.password;
         this.email = builder.email;
@@ -59,7 +73,9 @@ public class User implements Serializable {
         this.lastName = builder.lastName;
         this.createdAt = builder.createdAt;
         this.updatedAt = builder.updatedAt;
-        this.address = builder.address;
+        this.address = builder.address != null ? builder.address : new ArrayList<>();
+        this.review = builder.review != null ? builder.review : new ArrayList<>();
+        this.roles.addAll(builder.roles);
     }
 
     @Override
@@ -67,18 +83,30 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(email, user.email) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(createdAt, user.createdAt) && Objects.equals(updatedAt, user.updatedAt) && Objects.equals(address, user.address);
+        return Objects.equals(id, user.id) &&
+                Objects.equals(avatar, user.avatar) &&
+                Objects.equals(username, user.username) &&
+                Objects.equals(password, user.password) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(createdAt, user.createdAt) &&
+                Objects.equals(updatedAt, user.updatedAt) &&
+                Objects.equals(address, user.address) &&
+                Objects.equals(review, user.review) &&
+                Objects.equals(roles, user.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, email, firstName, lastName, createdAt, updatedAt, address);
+        return Objects.hash(id, avatar, username, password, email, firstName, lastName, createdAt, updatedAt, address, review, roles);
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "User ID: " + id +
+                ", AVATAR: '" + avatar + '\'' +
                 ", USERNAME: '" + username + '\'' +
                 ", PASSWORD: '" + password + '\'' +
                 ", EMAIL: '" + email + '\'' +
@@ -86,12 +114,15 @@ public class User implements Serializable {
                 ", LAST NAME: '" + lastName + '\'' +
                 ", CREATED AT: " + createdAt +
                 ", UPDATED AT: " + updatedAt +
+                ", role=" + roles +
                 ", ADDRESS: " + address +
+                ", REVIEW: " + review +
                 '}';
     }
 
     public static class Builder {
         private Long id;
+        private String avatar; // Added avatar field
         private String username;
         private String password;
         private String email;
@@ -99,10 +130,17 @@ public class User implements Serializable {
         private String lastName;
         private LocalDate createdAt;
         private LocalDate updatedAt;
+        private Set<String> roles = new HashSet<>();
         private List<Address> address;
+        private List<Review> review;
 
         public Builder setId(Long id) {
             this.id = id;
+            return this;
+        }
+
+        public Builder setAvatar(String avatar) { // Added setAvatar method
+            this.avatar = avatar;
             return this;
         }
 
@@ -141,13 +179,24 @@ public class User implements Serializable {
             return this;
         }
 
+        public Builder setRoles(Set<String> roles) {
+            this.roles = roles;
+            return this;
+        }
+
         public Builder setAddress(List<Address> address) {
             this.address = address;
             return this;
         }
 
+        public Builder setReview(List<Review> review) {
+            this.review = review;
+            return this;
+        }
+
         public Builder copy(User user) {
             this.id = user.getId();
+            this.avatar = user.getAvatar(); // Added avatar copy
             this.username = user.getUsername();
             this.password = user.getPassword();
             this.email = user.getEmail();
@@ -155,6 +204,8 @@ public class User implements Serializable {
             this.lastName = user.getLastName();
             this.createdAt = user.getCreatedAt();
             this.updatedAt = user.getUpdatedAt();
+            this.address = user.getAddress();
+            this.roles = new HashSet<>(user.getRoles());
             return this;
         }
 

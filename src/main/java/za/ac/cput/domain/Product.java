@@ -39,6 +39,11 @@ public class Product implements Serializable {
     @JsonManagedReference("productInventoryReference")
     private InventoryItem inventoryItem;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("productReviewReference")
+    @JsonIgnore
+    private List<Review> review = new ArrayList<>();
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 
@@ -58,6 +63,7 @@ public class Product implements Serializable {
         this.subCategories = builder.subCategories;
         this.imagePath = builder.imagePath;
         this.inventoryItem = builder.inventoryItem;
+        this.review = builder.review;
     }
 
     @Override
@@ -71,6 +77,7 @@ public class Product implements Serializable {
                 Objects.equals(description, product.description) &&
                 Objects.equals(subCategories, product.subCategories) &&
                 Objects.equals(inventoryItem, product.inventoryItem) &&
+                Objects.equals(review, product.review) &&
                 Objects.equals(createdAt, product.createdAt) &&
                 Objects.equals(updatedAt, product.updatedAt) &&
                 Objects.equals(imagePath, product.imagePath);
@@ -78,7 +85,7 @@ public class Product implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, price, subCategories, inventoryItem, createdAt, updatedAt, imagePath);
+        return Objects.hash(id, name, description, price, subCategories, inventoryItem, review, createdAt, updatedAt, imagePath);
     }
 
     @Override
@@ -92,6 +99,8 @@ public class Product implements Serializable {
                 ", CREATED AT: " + createdAt +
                 ", UPDATED AT: " + updatedAt +
                 ", IMAGE PATH: '" + imagePath + '\'' +
+                ", INVENTORY ITEM: " + inventoryItem +
+                ", REVIEWS: " + (review != null ? review : "[]") +
                 '}';
     }
 
@@ -103,6 +112,7 @@ public class Product implements Serializable {
         private List<SubCategory> subCategories;
         private String imagePath;
         private InventoryItem inventoryItem;
+        private List<Review> review;
 
         public Builder setId(Long id) {
             this.id = id;
@@ -139,6 +149,11 @@ public class Product implements Serializable {
             return this;
         }
 
+        public Builder setReview(List<Review> review) {
+            this.review = review;
+            return this;
+        }
+
         public Builder copy(Product product) {
             this.id = product.getId();
             this.name = product.getName();
@@ -147,6 +162,7 @@ public class Product implements Serializable {
             this.subCategories = product.getSubCategories();
             this.imagePath = product.getImagePath();
             this.inventoryItem = product.getInventoryItem();
+            this.review = product.getReview();
             return this;
         }
 

@@ -35,6 +35,7 @@ public class ProductController {
     @PostMapping("/create")
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         System.out.println("Received product: " + product);
+        System.out.println("----------------------------------------------");
         try {
             Product createdProduct = productService.create(product);
             System.out.println("Created product: " + createdProduct);

@@ -62,6 +62,16 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public List<User> findByAvatar(String avatar) {
+        return userRepository.findByAvatar(avatar);
+    }
+
+    @Override
+    public List<User> findByRoles(String role) {
+        return userRepository.findByRoles(role);
+    }
+
+    @Override
     public List<User> findByLastName(String lastName) {
         return userRepository.findByLastName(lastName);
     }

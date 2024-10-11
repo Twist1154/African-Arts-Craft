@@ -2,12 +2,15 @@ package za.ac.cput.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -25,19 +28,21 @@ public class Review implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "product_id")
-    @JsonIgnore
+    @JsonBackReference("productReviewReference")
     private Product product;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnore
+    @JsonIgnoreProperties({"review", "address", "createdAt", "updatedAt", "password", "roles", "email"})
     private User user;
+
     private int rating;
     private String comment;
-    @CreatedDate
-    private LocalDate createdAt;
+
+    @CreationTimestamp
+    private LocalDateTime createdAt;
 
     public Review() {
     }
@@ -83,7 +88,7 @@ public class Review implements Serializable {
         private User user;
         private int rating;
         private String comment;
-        private LocalDate createdAt;
+        private LocalDateTime createdAt;
 
         public Builder setId(Long id) {
             this.id = id;
@@ -110,7 +115,7 @@ public class Review implements Serializable {
             return this;
         }
 
-        public Builder setCreatedAt(LocalDate createdAt) {
+        public Builder setCreatedAt(LocalDateTime createdAt) {
             this.createdAt = createdAt;
             return this;
         }

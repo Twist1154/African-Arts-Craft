@@ -97,6 +97,18 @@ public class UsersController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
+    @GetMapping("/avatar/{avatar}")
+    public ResponseEntity<List<User>> getUsersByAvatar(@PathVariable("avatar") String avatar) {
+        List<User> users = userService.findByAvatar(avatar);
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/roles/{role}")
+    public ResponseEntity<List<User>> getUsersByRoles(@PathVariable("role") String role) {
+        List<User> users = userService.findByRoles(role);
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
     @GetMapping("/lastname/{lastName}")
     public ResponseEntity<List<User>> getUsersByLastName(@PathVariable("lastName") String lastName) {
         List<User> users = userService.findByLastName(lastName);

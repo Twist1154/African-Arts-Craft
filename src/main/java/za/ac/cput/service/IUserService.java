@@ -23,4 +23,14 @@ public interface IUserService extends IService<User, Long> {
     List<User> findByLastName(String last_name);
 
     List<User> findByEmail(String email);
+
+    /**
+     * Finds a list of users by their avatar image URL or path.
+     *
+     * @param avatar the avatar image URL or path to search for
+     * @return a list of users that match the given avatar
+     */
+    List<User> findByAvatar(String avatar);
+
+    List<User> findByRoles(String role);
 }
