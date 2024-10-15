@@ -21,7 +21,7 @@ public class ReviewController {
         this.service = service;
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<Review> createReview(@RequestBody Review review) {
         Review savedReview = service.create(review);
         return new ResponseEntity<>(savedReview, HttpStatus.CREATED);
@@ -33,7 +33,7 @@ public class ReviewController {
         return review != null ? new ResponseEntity<>(review, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<Review>> getAllReviews() {
         List<Review> reviews = service.findAll();
         return new ResponseEntity<>(reviews, HttpStatus.OK);

@@ -2,6 +2,8 @@ package za.ac.cput.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -26,8 +28,9 @@ public class Orders implements Serializable {
 
     @OneToOne
     private Payments payment;
-
+    @CreationTimestamp
     private LocalDate createdAt;
+    @UpdateTimestamp
     private LocalDate updatedAt;
 
     public Orders() {
@@ -41,8 +44,6 @@ public class Orders implements Serializable {
         this.status = builder.status;
         this.address = builder.address;
         this.payment = builder.payment;
-        this.createdAt = builder.createdAt;
-        this.updatedAt = builder.updatedAt;
     }
 
     @Override
@@ -86,8 +87,6 @@ public class Orders implements Serializable {
         private String status;
         private Address address;
         private Payments payment;
-        private LocalDate createdAt;
-        private LocalDate updatedAt;
 
         public Builder setId(Long id) {
             this.id = id;
@@ -119,16 +118,6 @@ public class Orders implements Serializable {
             return this;
         }
 
-        public Builder setCreatedAt(LocalDate createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder setUpdatedAt(LocalDate updatedAt) {
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
         public Builder copy(Orders orders) {
             this.id = orders.getId();
             this.user = orders.getUser();
@@ -136,8 +125,6 @@ public class Orders implements Serializable {
             this.status = orders.getStatus();
             this.address = orders.getAddress();
             this.payment = orders.getPayment();
-            this.createdAt = orders.getCreatedAt();
-            this.updatedAt = orders.getUpdatedAt();
             return this;
         }
 

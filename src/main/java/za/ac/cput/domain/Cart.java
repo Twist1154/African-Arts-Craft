@@ -1,8 +1,11 @@
 package za.ac.cput.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,11 +36,13 @@ public class Cart {
     private User user;
 
     private Double total;
+    @CreationTimestamp
     private LocalDateTime createdAt;
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
+    @JsonManagedReference("cartReference")
     private List<CartItem> cartItems;
 
 
@@ -48,8 +53,6 @@ public class Cart {
         this.id = builder.id;
         this.user = builder.user;
         this.total = builder.total;
-        this.createdAt = builder.createdAt;
-        this.updatedAt = builder.updatedAt;
     }
 
     @Override
@@ -84,8 +87,6 @@ public class Cart {
         private Long id;
         private User user;
         private Double total;
-        private LocalDateTime createdAt;
-        private LocalDateTime updatedAt;
 
         public Builder setId(Long id) {
             this.id = id;
@@ -102,22 +103,10 @@ public class Cart {
             return this;
         }
 
-        public Builder setCreatedAt(LocalDateTime createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder setUpdatedAt(LocalDateTime updatedAt) {
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
         public Builder copy(Cart cart) {
             this.id = cart.getId();
             this.user = cart.getUser();
             this.total = cart.getTotal();
-            this.createdAt = cart.getCreatedAt();
-            this.updatedAt = cart.getUpdatedAt();
             return this;
         }
 

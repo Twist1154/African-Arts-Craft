@@ -6,8 +6,6 @@ import za.ac.cput.domain.Payments;
 import za.ac.cput.domain.User;
 import za.ac.cput.util.Helper;
 
-import java.time.LocalDate;
-
 /**
  * OrderFactory.java
  *
@@ -22,9 +20,7 @@ public class OrderFactory {
                                     double totalAmount,
                                     String status,
                                     Address address,
-                                    Payments payment,
-                                    LocalDate createdAt,
-                                    LocalDate updatedAt
+                                    Payments payment
     ) {
         if (Helper.isDoubleNullOrEmpty(totalAmount) ||
                 Helper.isNullOrEmpty(status) ||
@@ -39,8 +35,6 @@ public class OrderFactory {
                 .setStatus(status)
                 .setAddress(address)
                 .setPayment(payment)
-                .setCreatedAt(createdAt)
-                .setUpdatedAt(updatedAt)
                 .build();
     }
 }

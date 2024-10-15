@@ -1,8 +1,10 @@
 package za.ac.cput.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -28,14 +30,16 @@ public class Wishlist {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties({"address", "review", "firstName", "lastName", "email", "password", "phoneNumber", "roles", "wishlist", "createdAt", "updatedAt", "updatedAt"})
     private User user;
 
-    @OneToMany(mappedBy = "wishlist", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
-    private List<WishlistItem> wishlistItems;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    @JsonIncludeProperties({"id", "name", "price", "imagePath"})
+    private Product product;
 
+    @CreationTimestamp
     private LocalDateTime createdAt;
-    private LocalDateTime deletedAt;
 
 
     public Wishlist() {
@@ -45,19 +49,17 @@ public class Wishlist {
     public Wishlist(Builder builder) {
         this.id = builder.id;
         this.user = builder.user;
-        this.wishlistItems = builder.wishlistItems;
+        this.product = builder.product;
         this.createdAt = builder.createdAt;
-        this.deletedAt = builder.deletedAt;
     }
 
     @Override
     public String toString() {
         return "Wishlist{" +
                 "id=" + id +
-                ", user=" + user +
-                ", wishlistItems=" + wishlistItems +
+                ", user=" + user.getFirstName() +
+                ", Product=" + product.getName() +
                 ", createdAt=" + createdAt +
-                ", deletedAt=" + deletedAt +
                 "}\n ";
     }
 
@@ -68,21 +70,20 @@ public class Wishlist {
         Wishlist wishlist = (Wishlist) o;
         return Objects.equals(id, wishlist.id) &&
                 Objects.equals(user, wishlist.user) &&
-                Objects.equals(createdAt, wishlist.createdAt) &&
-                Objects.equals(deletedAt, wishlist.deletedAt);
+                Objects.equals(product, wishlist.product) &&
+                Objects.equals(createdAt, wishlist.createdAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, createdAt, deletedAt);
+        return Objects.hash(id, user, product, createdAt);
     }
 
     public static class Builder {
         private Long id;
         private User user;
-        private List<WishlistItem> wishlistItems;
+        private Product product;
         private LocalDateTime createdAt;
-        private LocalDateTime deletedAt;
 
         public Builder setId(Long id) {
             this.id = id;
@@ -94,8 +95,8 @@ public class Wishlist {
             return this;
         }
 
-        public Builder setWishlistItems(List<WishlistItem> wishlistItems) {
-            this.wishlistItems = wishlistItems;
+        public Builder setProduct(Product product) {
+            this.product = product;
             return this;
         }
 
@@ -104,17 +105,11 @@ public class Wishlist {
             return this;
         }
 
-        public Builder setDeletedAt(LocalDateTime deletedAt) {
-            this.deletedAt = deletedAt;
-            return this;
-        }
-
         public Builder copy(Wishlist wishlist) {
             this.id = wishlist.getId();
             this.user = wishlist.getUser();
-            this.wishlistItems = wishlist.getWishlistItems();
+            this.product = wishlist.getProduct();
             this.createdAt = wishlist.getCreatedAt();
-            this.deletedAt = wishlist.getDeletedAt();
             return this;
         }
 

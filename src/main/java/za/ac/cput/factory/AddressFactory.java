@@ -28,15 +28,12 @@ public class AddressFactory {
      * @param country      the country of the address
      * @param postalCode   the postal code of the address
      * @param phoneNumber  the phone number associated with the address
-     * @param createdAt    the date the address was created
-     * @param UpdatedAt    the date the address was deleted (if applicable)
      * @return a new {@link Address} object with properties set from the input parameters
      */
     public static Address createAddress(Long id, User user, String title,
                                         String addressLine1, String addressLine2,
                                         String city, String country,
-                                        String postalCode, String phoneNumber,
-                                        LocalDateTime createdAt, LocalDateTime UpdatedAt) {
+                                        String postalCode, String phoneNumber) {
         // Check if any of the required parameters are null
         if (Helper.isNullOrEmpty(user) ||
                 Helper.isNullOrEmpty(title) ||
@@ -60,8 +57,6 @@ public class AddressFactory {
                 .setCountry(country)
                 .setPostalCode(postalCode)
                 .setPhoneNumber(phoneNumber)
-                .setCreatedAt(createdAt)
-                .setUpdatedAt(LocalDateTime.now())
                 .build();
     }
 }

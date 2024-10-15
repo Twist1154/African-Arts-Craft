@@ -49,8 +49,6 @@ public class OrderService implements IOrderService {
                     .setStatus(orders.getStatus())
                     .setAddress(orders.getAddress())
                     .setPayment(orders.getPayment())
-                    .setCreatedAt(existingOrder.getCreatedAt())
-                    .setUpdatedAt(LocalDate.now())
                     .build();
             return orderRepository.save(orders);
         }
