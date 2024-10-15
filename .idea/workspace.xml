@@ -8,7 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2dfc9b97-bcf6-48f1-9f27-38897c268d23" name="Changes" comment="new functionalities  for user">
+    <list default="true" id="2dfc9b97-bcf6-48f1-9f27-38897c268d23" name="Changes" comment="Add getter methods and fix domain classes&#10;&#10;- Added getter methods to `Payments`, `Addresses`, and `Products` classes.&#10;- Ensured proper JPA annotations for the `Addresses` and `Products` classes.&#10;- Updated `AddressController` to include additional endpoints for querying addresses.">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
@@ -401,7 +401,7 @@
       <workItem from="1728900073904" duration="8284000" />
       <workItem from="1728924857697" duration="1178000" />
       <workItem from="1728934347919" duration="2295000" />
-      <workItem from="1729014444404" duration="12773000" />
+      <workItem from="1729014444404" duration="13089000" />
     </task>
     <task id="LOCAL-00004" summary="Structure">
       <option name="closed" value="true" />
@@ -818,7 +818,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="first" />
     <MESSAGE value="first&#10;&#10;Signed-off-by: Twist1154n &lt;rethabile1154n@gmail.com&gt;" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
     <MESSAGE value="Structure&#10;&#10;Signed-off-by: Twist1154n &lt;rethabile1154n@gmail.com&gt;" />
@@ -843,7 +842,8 @@
     <MESSAGE value="update" />
     <MESSAGE value="rethabile review work perfectly" />
     <MESSAGE value="new functionalities  for user" />
-    <option name="LAST_COMMIT_MESSAGE" value="new functionalities  for user" />
+    <MESSAGE value="Add getter methods and fix domain classes&#10;&#10;- Added getter methods to `Payments`, `Addresses`, and `Products` classes.&#10;- Ensured proper JPA annotations for the `Addresses` and `Products` classes.&#10;- Updated `AddressController` to include additional endpoints for querying addresses." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add getter methods and fix domain classes&#10;&#10;- Added getter methods to `Payments`, `Addresses`, and `Products` classes.&#10;- Ensured proper JPA annotations for the `Addresses` and `Products` classes.&#10;- Updated `AddressController` to include additional endpoints for querying addresses." />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WfRunsListSearchHistory">{
