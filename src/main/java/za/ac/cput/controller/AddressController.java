@@ -20,6 +20,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/address")
+@CrossOrigin(origins = "*")
 public class AddressController {
 
     private final AddressService addressService;
