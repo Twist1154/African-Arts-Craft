@@ -1,13 +1,23 @@
 package za.ac.cput.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+/**
+ * Orders.java
+ *
+ * @author Rethabile Ntsekhe
+ * @date 07-Sep-24
+ */
 
 @Getter
 @Entity
@@ -16,34 +26,49 @@ public class Orders implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    private double totalAmount;
+    private Long userID;
+    private Long addressID;
+    private double totalPrice;
     private String status;
 
-    @ManyToOne
-    private Address address;
-
-    @OneToOne
-    private Payments payment;
     @CreationTimestamp
-    private LocalDate createdAt;
-    @UpdateTimestamp
-    private LocalDate updatedAt;
+    private LocalDate orderDate;
+
+    // OneToMany relationship with OrderItems
+    @Setter
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     public Orders() {
     }
 
-
     public Orders(Builder builder) {
         this.id = builder.id;
-        this.user = builder.user;
-        this.totalAmount = builder.totalAmount;
+        this.userID = builder.userID;
+        this.addressID = builder.addressID;
+        this.totalPrice = builder.totalPrice;
         this.status = builder.status;
-        this.address = builder.address;
-        this.payment = builder.payment;
+        this.orderDate = builder.orderDate;
+        this.orderItems = builder.orderItems;
+    }
+
+    // Method to add an order item
+    public void addOrderItem(OrderItem orderItem) {
+        if (orderItem != null) {
+            this.orderItems.add(orderItem);
+
+            // Update total price
+            this.totalPrice += orderItem.getPrice() * orderItem.getQuantity();
+        }
+    }
+
+    // Method to remove an order item
+    public void removeOrderItem(OrderItem orderItem) {
+        if (orderItem != null && this.orderItems.remove(orderItem)) {
+            // Update total price
+            this.totalPrice -= orderItem.getPrice() * orderItem.getQuantity();
+        }
     }
 
     @Override
@@ -51,55 +76,67 @@ public class Orders implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Orders orders = (Orders) o;
-        return Double.compare(totalAmount, orders.totalAmount) == 0 &&
+        return Double.compare(orders.totalPrice, totalPrice) == 0 &&
                 Objects.equals(id, orders.id) &&
-                Objects.equals(user, orders.user) &&
+                Objects.equals(userID, orders.userID) &&
+                Objects.equals(addressID, orders.addressID) &&
                 Objects.equals(status, orders.status) &&
-                Objects.equals(address, orders.address) &&
-                Objects.equals(payment, orders.payment) &&
-                Objects.equals(createdAt, orders.createdAt) &&
-                Objects.equals(updatedAt, orders.updatedAt);
+                Objects.equals(orderDate, orders.orderDate) &&
+                Objects.equals(orderItems, orders.orderItems);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, totalAmount, status, address, payment, createdAt, updatedAt);
+        return Objects.hash(
+                id,
+                userID,
+                addressID,
+                totalPrice,
+                status,
+                orderDate,
+                orderItems
+        );
     }
 
     @Override
     public String toString() {
-        return "Orders{" +
-                "Order ID: " + id +
-                ", USER: " + (user != null ? user.getId() : "null") +
-                ", TOTAL AMOUNT: " + totalAmount +
-                ", STATUS: '" + status + '\'' +
-                ", SHIPPING ADDRESS: " + address +
-                ", PAYMENT METHOD: " + payment +
-                ", CREATED AT: " + createdAt +
-                ", UPDATED AT: " + updatedAt +
+        return "\n Orders: " +
+                "\n id=" + id +
+                "\n userID=" + userID +
+                "\n addressID=" + addressID +
+                "\n totalPrice=" + totalPrice +
+                "\n status='" + status + '\'' +
+                "\n orderDate=" + orderDate +
+                "\n orderItems size: " + orderItems.size() +
                 '}';
     }
 
     public static class Builder {
         private Long id;
-        private User user;
-        private double totalAmount;
+        private Long userID;
+        private Long addressID;
         private String status;
-        private Address address;
-        private Payments payment;
+        private double totalPrice;
+        private LocalDate orderDate;
+        private List<OrderItem> orderItems = new ArrayList<>();
 
         public Builder setId(Long id) {
             this.id = id;
             return this;
         }
 
-        public Builder setUser(User user) {
-            this.user = user;
+        public Builder setUserID(Long userID) {
+            this.userID = userID;
             return this;
         }
 
-        public Builder setTotalAmount(double totalAmount) {
-            this.totalAmount = totalAmount;
+        public Builder setAddressID(Long addressID) {
+            this.addressID = addressID;
+            return this;
+        }
+
+        public Builder setTotalPrice(double totalPrice) {
+            this.totalPrice = totalPrice;
             return this;
         }
 
@@ -108,23 +145,24 @@ public class Orders implements Serializable {
             return this;
         }
 
-        public Builder setAddress(Address address) {
-            this.address = address;
+        public Builder setOrderDate(LocalDate orderDate) {
+            this.orderDate = orderDate;
             return this;
         }
 
-        public Builder setPayment(Payments payment) {
-            this.payment = payment;
+        public Builder setOrderItems(List<OrderItem> orderItems) {
+            this.orderItems = orderItems;
             return this;
         }
 
         public Builder copy(Orders orders) {
             this.id = orders.getId();
-            this.user = orders.getUser();
-            this.totalAmount = orders.getTotalAmount();
+            this.userID = orders.getUserID();
+            this.addressID = orders.getAddressID();
+            this.totalPrice = orders.getTotalPrice();
             this.status = orders.getStatus();
-            this.address = orders.getAddress();
-            this.payment = orders.getPayment();
+            this.orderItems = orders.getOrderItems();
+            this.orderDate = orders.getOrderDate();
             return this;
         }
 

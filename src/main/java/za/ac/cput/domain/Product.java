@@ -10,9 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * Product.java
@@ -30,6 +28,9 @@ public class Product implements Serializable {
     private String name;
     private String description;
     private double price;
+
+//    @ManyToMany(mappedBy = "products")
+//    private Set<Orders> orders = new HashSet<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST, orphanRemoval = true)
     @JsonManagedReference("productReference")
