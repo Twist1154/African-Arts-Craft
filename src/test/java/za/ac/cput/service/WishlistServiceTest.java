@@ -5,8 +5,6 @@ import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import za.ac.cput.domain.*;
-import za.ac.cput.factory.CategoryFactory;
-import za.ac.cput.factory.SubCategoryFactory;
 import za.ac.cput.repository.*;
 
 import java.time.LocalDateTime;
@@ -25,117 +23,62 @@ class WishlistServiceTest {
     @Autowired
     private WishlistService wishlistService;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private ProductRepository productRepository;
-
-    @Autowired
-    private CategoriesRepository categoryRepository;
-
-    @Autowired
-    private SubCategoryRepository subCategoryRepository;
-
     private Wishlist wishlist;
     private Product product;
-    private List<SubCategory> subCategories;
-    private Category category;
     private User user;
-    private List<WishlistItem> wishlistItems;
+    private Product item1;  // Declared here as an instance variable
+
     @Autowired
-    private SubCategoryService subCategoryService;
+    private UserService userService;
+
+    @Autowired
+    private ProductService productService;
 
     @BeforeEach
     void setup() {
-        // Set up Category and create to get generated ID
-        category = CategoryFactory.buildCategory(
-                null,
-                "Sneakers"
-        );
-        category = categoryRepository.save(category); // Save the Category first
+        user = userService.read(1L);
+        assertNotNull(user, "User should not be null in setup");
 
-        // Create and create SubCategory objects
-        SubCategory subCategory1 = SubCategoryFactory.createSubCategory(
-                null, // Let the ID be generated
-                category,
-                product
-        );
-        SubCategory subCategory2 = SubCategoryFactory.createSubCategory(
-                null, // Let the ID be generated
-                category,
-                product
-        );
+        // Fetch Products from service for testing
+        item1 = productService.read(1L);  // Remove 'public static'
 
-        // Save each SubCategory to generate the ID
-        subCategory1 = subCategoryRepository.save(subCategory1);
-        subCategory2 = subCategoryRepository.save(subCategory2);
+        // Ensure products are retrieved correctly
+        assertNotNull(item1, "Item1 should not be null");
 
-        subCategories = List.of(subCategory1, subCategory2);
-
-        // Create and create Product object (you need to initialize required fields)
-        product = new Product();
-        product = productRepository.save(product);
-
-        // Set up User and create to get generated ID
-        user = new User(); // Initialize with appropriate fields if needed
-        user = userRepository.save(user);
-
-        // Set up Wishlist and WishlistItems
+        // Initialize the wishlist
         wishlist = new Wishlist.Builder()
+                .setId(null) // Set ID to null for Hibernate to auto-generate
                 .setUser(user)
+                .setProduct(item1)  // Use item1 here
                 .setCreatedAt(LocalDateTime.now())
                 .build();
-        wishlist = wishlistRepository.save(wishlist); // Save Wishlist first to get ID
 
-        // Set up WishlistItems and reference the saved Product and Wishlist
-        WishlistItem item1 = new WishlistItem.Builder()
-                .setProduct(product)
-                .setDateAdded(LocalDateTime.now())
-                .setWishlist(wishlist)
-                .build();
-        WishlistItem item2 = new WishlistItem.Builder()
-                .setProduct(product)
-                .setDateAdded(LocalDateTime.now())
-                .setWishlist(wishlist)
-                .build();
+        wishlistRepository.save(wishlist); // Save to persist the wishlist
 
-        wishlistItems = List.of(item1, item2);
-
-        wishlist = new Wishlist.Builder()
-                .copy(wishlist)
-                .setWishlistItems(wishlistItems)
-                .build();
-
-        wishlistRepository.save(wishlist); // Save again to persist WishlistItems
-    }
-
-    @AfterEach
-    void tearDown() {
-       /* wishlistRepository.deleteAll();
-        userRepository.deleteAll(); // Clean up User repository
-        productRepository.deleteAll(); // Clean up Product repository
-        subCategoryRepository.deleteAll(); // Clean up SubCategory repository
-        categoryRepository.deleteAll(); // Clean up Category repository*/
+        // Print the initial wishlist for debugging
+        System.out.println("Setup - Saved Wishlist: " + wishlist);
     }
 
     @Test
     @Order(1)
     void testCreateWishlist() {
-        // Create a new Wishlist using the builder
+        // Create a new Wishlist
         Wishlist newWishlist = new Wishlist.Builder()
-                .setId(1L)
+                .setId(null)
                 .setUser(user)
-                .setWishlistItems(wishlistItems) // Use existing WishlistItems
+                .setProduct(item1)  // Use item1 here
                 .setCreatedAt(LocalDateTime.now())
                 .build();
         Wishlist createdWishlist = wishlistService.create(newWishlist);
 
         // Assert that the created Wishlist is not null
-        assertNotNull(createdWishlist);
+        assertNotNull(createdWishlist, "Created Wishlist should not be null");
+
+        // Print created wishlist details
         System.out.println("Created Wishlist: " + createdWishlist);
+
         assertEquals(newWishlist.getUser().getId(), createdWishlist.getUser().getId());
-        assertEquals(newWishlist.getWishlistItems().size(), createdWishlist.getWishlistItems().size());
+        assertEquals(newWishlist.getProduct().getId(), createdWishlist.getProduct().getId());
     }
 
     @Test
@@ -143,8 +86,11 @@ class WishlistServiceTest {
     void testReadWishlist() {
         Wishlist readWishlist = wishlistService.read(wishlist.getId());
 
+        assertNotNull(readWishlist, "Read Wishlist should not be null");
+
+        // Print the read wishlist details
         System.out.println("Read Wishlist: " + readWishlist);
-        assertNotNull(readWishlist);
+
         assertEquals(wishlist.getUser().getId(), readWishlist.getUser().getId());
     }
 
@@ -153,40 +99,40 @@ class WishlistServiceTest {
     void testUpdateWishlist() {
         wishlist = new Wishlist.Builder()
                 .copy(wishlist)
-                .setDeletedAt(LocalDateTime.now())
-                .build()
-        ; // Update wishlist to set deletedAt
+                .build(); // Update wishlist with deletedAt timestamp
         Wishlist updatedWishlist = wishlistService.update(wishlist);
 
-        // Print the updated wishlist to the terminal
-        System.out.println("Updated: " + updatedWishlist);
-        System.out.println("--------------------------------------------------------------------");
+        // Print the updated wishlist details
+        System.out.println("Updated Wishlist: " + updatedWishlist);
 
-        assertNotNull(updatedWishlist);
+        // Assert that the wishlist is updated
+        assertNotNull(updatedWishlist, "Updated Wishlist should not be null");
         assertEquals(wishlist.getUser().getId(), updatedWishlist.getUser().getId());
     }
 
     @Test
     @Order(4)
     void testDeleteWishlist() {
-        // Delete the Wishlist using the service
         wishlistService.delete(wishlist.getId());
         Optional<Wishlist> deletedWishlist = wishlistRepository.findById(wishlist.getId());
-        assertTrue(deletedWishlist.isEmpty());
+
+        // Print a message indicating the deletion result
+        System.out.println("Deleted Wishlist: " + (deletedWishlist.isEmpty() ? "Success" : "Failed"));
+
+        // Assert that the wishlist was deleted
+        assertTrue(deletedWishlist.isEmpty(), "Wishlist should be deleted");
     }
 
     @Test
     @Order(5)
     void testFindAllWishlists() {
-        // Find all Wishlists using the service
         List<Wishlist> allWishlists = wishlistService.findAll();
 
-        // Print all wishlists to the terminal
-        System.out.println("All Wish Lists: " + allWishlists);
-        System.out.println("--------------------------------------------------------------------");
+        // Print all wishlists
+        System.out.println("All Wishlists: " + allWishlists);
 
         // Assert that the list of Wishlists is not null
-        assertNotNull(allWishlists);
-        assertFalse(allWishlists.isEmpty());
+        assertNotNull(allWishlists, "List of wishlists should not be null");
+        assertFalse(allWishlists.isEmpty(), "Wishlist list should not be empty");
     }
 }

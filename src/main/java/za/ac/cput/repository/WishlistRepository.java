@@ -18,4 +18,6 @@ import java.util.List;
 public interface WishlistRepository extends JpaRepository<Wishlist, Long> {
     // Additional query methods if needed
     List<Wishlist> findByUserId(Long userId);
+
+
 }

@@ -44,6 +44,12 @@ public class Product implements Serializable {
     @JsonIgnore
     private List<Review> review = new ArrayList<>();
 
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("productWishlistReference")
+    @JsonIgnore
+    private List<Wishlist> wishlists = new ArrayList<>();
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 

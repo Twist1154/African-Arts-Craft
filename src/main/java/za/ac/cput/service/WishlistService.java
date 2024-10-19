@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import za.ac.cput.domain.Wishlist;
-import za.ac.cput.domain.WishlistItem;
 import za.ac.cput.repository.WishlistRepository;
 
 import java.util.List;
@@ -26,12 +25,10 @@ import java.util.stream.Collectors;
 public class WishlistService implements iWishlist {
 
     private final WishlistRepository wishlistRepository;
-    private final WishlistItemService wishListItemService;
 
     @Autowired
-    public WishlistService(WishlistRepository wishlistRepository, WishlistItemService wishListItemService) {
+    public WishlistService(WishlistRepository wishlistRepository ) {
         this.wishlistRepository = wishlistRepository;
-        this.wishListItemService = wishListItemService;
     }
 
     /**
@@ -56,14 +53,8 @@ public class WishlistService implements iWishlist {
     @Override
     @Transactional(readOnly = true)
     public Wishlist read(Long id) {
-        Wishlist wishlist = wishlistRepository.findById(id)
+        return wishlistRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Wishlist not found"));
-
-
-        for (WishlistItem item : wishlist.getWishlistItems()) {
-            item.getProduct();
-        }
-        return wishlist;
     }
 
     /**
@@ -78,11 +69,10 @@ public class WishlistService implements iWishlist {
         // Check if the wishlist exists in the repository
         Wishlist existingWishlist = wishlistRepository.findById(wishlist.getId()).orElse(null);
         if (existingWishlist != null) {
-            // Use the Builder pattern to create an updated version of the wishlist
             Wishlist updatedWishlist = new Wishlist.Builder()
                     .copy(existingWishlist)
                     .setUser(wishlist.getUser())
-                    .setWishlistItems(wishlist.getWishlistItems())
+                    .setProduct(wishlist.getProduct())
                     .build();
             return wishlistRepository.save(updatedWishlist);
         } else {
@@ -98,7 +88,6 @@ public class WishlistService implements iWishlist {
      */
     public boolean delete(Long id) {
 
-        wishListItemService.deleteByWishlistId(id);
         wishlistRepository.deleteById(id);
 
         // Check if the entity still exists after deletion
@@ -122,9 +111,6 @@ public class WishlistService implements iWishlist {
     @Override
     @Transactional(readOnly = true)
     public List<Wishlist> findAll() {
-        // this method will now ignore rows where deleted at is not null
-        return wishlistRepository.findAll().stream()
-                .filter(wishlist -> wishlist.getDeletedAt() == null)
-                .collect(Collectors.toList());
+        return wishlistRepository.findAll();
     }
 }
