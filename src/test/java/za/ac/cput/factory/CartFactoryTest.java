@@ -3,8 +3,6 @@ package za.ac.cput.factory;
 import org.junit.jupiter.api.Test;
 import za.ac.cput.domain.Cart;
 import za.ac.cput.domain.User;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -20,9 +18,8 @@ class CartFactoryTest {
         Cart cart = CartFactory.createCart(
                 1L,
                 user,
-                100.0,
-                LocalDateTime.now(),
-                null);
+                100.0
+        );
 
         // Verify that the Cart object is not null
         assertNotNull(cart);
@@ -38,9 +35,8 @@ class CartFactoryTest {
                 () -> CartFactory.createCart(
                         1L,
                         null,
-                        100.0,
-                        LocalDateTime.now(),
-                        null));
+                        100.0
+                ));
 
         // Print a message to the terminal indicating that an exception was thrown
         System.out.println("Expected IllegalArgumentException thrown when creating Cart with null User");
@@ -55,9 +51,8 @@ class CartFactoryTest {
         assertThrows(IllegalArgumentException.class, () -> CartFactory.createCart(
                 1L,
                 user,
-                null,
-                LocalDateTime.now(),
-                null));
+                null
+        ));
 
         // Print a message to the terminal indicating that an exception was thrown
         System.out.println("Expected IllegalArgumentException thrown when creating Cart with null total");

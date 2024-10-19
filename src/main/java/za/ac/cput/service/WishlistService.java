@@ -27,7 +27,7 @@ public class WishlistService implements iWishlist {
     private final WishlistRepository wishlistRepository;
 
     @Autowired
-    public WishlistService(WishlistRepository wishlistRepository ) {
+    public WishlistService(WishlistRepository wishlistRepository) {
         this.wishlistRepository = wishlistRepository;
     }
 

@@ -1,5 +1,6 @@
 package za.ac.cput.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -40,7 +41,7 @@ public class Product implements Serializable {
     private InventoryItem inventoryItem;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference("productReviewReference")
+    @JsonBackReference("productReviewReference")
     @JsonIgnore
     private List<Review> review = new ArrayList<>();
 

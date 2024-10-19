@@ -2,8 +2,11 @@ package za.ac.cput.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,7 +28,6 @@ public class Address {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference("userAddressReference")
-    @JsonIgnoreProperties("address")
     private User user;
 
     private String title;
@@ -35,14 +37,15 @@ public class Address {
     private String country;
     private String postalCode;
     private String phoneNumber;
+    @CreationTimestamp
     private LocalDateTime createdAt;
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 
 
     public Address() {
     }
 
-    // Builder pattern constructor
     private Address(Builder builder) {
         this.id = builder.id;
         this.user = builder.user;
@@ -53,8 +56,6 @@ public class Address {
         this.country = builder.country;
         this.postalCode = builder.postalCode;
         this.phoneNumber = builder.phoneNumber;
-        this.createdAt = builder.createdAt;
-        this.updatedAt = builder.updatedAt;
     }
 
     @PrePersist
@@ -118,8 +119,6 @@ public class Address {
         private String country;
         private String postalCode;
         private String phoneNumber;
-        private LocalDateTime createdAt;
-        private LocalDateTime updatedAt;
 
         public Builder setId(Long id) {
             this.id = id;
@@ -166,16 +165,6 @@ public class Address {
             return this;
         }
 
-        public Builder setCreatedAt(LocalDateTime createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder setUpdatedAt(LocalDateTime updatedAt) {
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
         public Builder copy(Address address) {
             this.id = address.getId();
             this.user = address.getUser();
@@ -186,8 +175,6 @@ public class Address {
             this.country = address.getCountry();
             this.postalCode = address.getPostalCode();
             this.phoneNumber = address.getPhoneNumber();
-            this.createdAt = address.getCreatedAt();
-            this.updatedAt = address.getUpdatedAt();
             return this;
         }
 

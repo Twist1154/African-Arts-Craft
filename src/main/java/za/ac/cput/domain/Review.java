@@ -1,9 +1,6 @@
 package za.ac.cput.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonIncludeProperties;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -31,14 +28,14 @@ public class Review implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    @JsonBackReference("productReviewReference")
+    @JsonManagedReference("productReviewReference")
+    @JsonIncludeProperties("id")
     private Product product;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference("userReviewReference")
-    @JsonIgnoreProperties({"review", "address", "createdAt", "updatedAt", "password", "roles", "email"})
-    @JsonIncludeProperties({"id", "firstName", "lastName","avatar"})
+    @JsonManagedReference("userReviewReference")
+    @JsonIncludeProperties({"id", "firstName", "lastName", "avatar"})
     private User user;
 
     private int rating;

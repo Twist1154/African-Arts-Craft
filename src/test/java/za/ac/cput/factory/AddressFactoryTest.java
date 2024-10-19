@@ -24,9 +24,8 @@ class AddressFactoryTest {
                 "USA",
                 "New York",
                 "10001",
-                "123-456-7890",
-                LocalDateTime.now(),
-                null);
+                "123-456-7890"
+        );
 
         // Verify that the Address object is not null
         assertNotNull(address);
@@ -44,8 +43,7 @@ class AddressFactoryTest {
                 "USA",
                 "New York",
                 "10001",
-                "123-456-7890",
-                LocalDateTime.now(),
-                null));
+                "123-456-7890"
+        ));
     }
 }

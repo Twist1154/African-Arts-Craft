@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="8" />
+    <option name="CUSTOM_SCOPE_NAME" value="Open Files" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99c74e81-69bc-4e9f-ab3f-42fe36d55fc8" name="Changes" comment="">
+    <list default="true" id="2dfc9b97-bcf6-48f1-9f27-38897c268d23" name="Changes" comment="Add getter methods and fix domain classes&#10;&#10;- Added getter methods to `Payments`, `Addresses`, and `Products` classes.&#10;- Ensured proper JPA annotations for the `Addresses` and `Products` classes.&#10;- Updated `AddressController` to include additional endpoints for querying addresses.">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2024-07-27T175531.201.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024_08_07_22_17_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024_08_07_22_17__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/helper_and_factory_complete/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/swagger-settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/African_artsDB/african_arts_store_addresses.sql" beforeDir="false" afterPath="$PROJECT_DIR$/African_artsDB/african_arts_store_addresses.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/African_artsDB/african_arts_store_cart.sql" beforeDir="false" afterPath="$PROJECT_DIR$/African_artsDB/african_arts_store_cart.sql" afterDir="false" />
@@ -30,25 +24,35 @@
       <change beforePath="$PROJECT_DIR$/African_artsDB/african_arts_store_users.sql" beforeDir="false" afterPath="$PROJECT_DIR$/African_artsDB/african_arts_store_users.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/African_artsDB/african_arts_store_wishlist.sql" beforeDir="false" afterPath="$PROJECT_DIR$/African_artsDB/african_arts_store_wishlist.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/African_artsDB/african_arts_store_wishlist_items.sql" beforeDir="false" afterPath="$PROJECT_DIR$/African_artsDB/african_arts_store_wishlist_items.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/config/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/AddressController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/AddressController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/ReviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/ReviewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/UsersController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/controller/WishlistItemController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/CartItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/CartItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Orders.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Orders.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Review.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Wishlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/Wishlist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/domain/WishlistItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/AddressFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/AddressFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/CartFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/CartFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/OrderFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/OrderFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/WishlistFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/WishlistFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/factory/WishlistItemFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/WishlistItemRepository.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/WishlistRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/repository/WishlistRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/AddressService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/CartService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/CartService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/IWishlistItems.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/OrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/WishlistItemService.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/WishlistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/za/ac/cput/service/WishlistService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/factory/AddressFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/factory/AddressFactoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/factory/CartFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/factory/CartFactoryTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/factory/WishlistFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/za/ac/cput/factory/WishlistFactoryTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/factory/WishlistItemFactoryTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/za/ac/cput/service/WishlistItemServiceTest.java" beforeDir="false" />
@@ -59,94 +63,841 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Vue Composition API Component" />
+        <option value="Interface" />
+        <option value="JUnit5 Test Class" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/Rethabile" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Rethabile Ntsekhe" />
+      </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Twist1154&quot;
+  }
+}</component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="master\.1" />
+      </list>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Twist1154/African-Arts-Craft.git&quot;,
+    &quot;accountId&quot;: &quot;2fe106e0-c6f1-493f-af56-58438595ca34&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7
+  &quot;customColor&quot;: &quot;f10a0aff&quot;,
+  &quot;associatedIndex&quot;: 0
 }</component>
-  <component name="ProjectId" id="2nOEVOTXMtdIHBIXX4Ft4TXRAMv" />
+  <component name="ProjectId" id="2jeLJQBTXCGUgEHQFHHpAJIqMs9" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.Application.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/dorit/IdeaProjects/African Art Craft1&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "HTTP Request.African_Art_Craft-endpoints | #1.executor": "Run",
+    "HTTP Request.African_Art_Craft-endpoints_1 | #1.executor": "Run",
+    "HTTP Request.generated-requests | #10.executor": "Run",
+    "HTTP Request.generated-requests | #11.executor": "Run",
+    "HTTP Request.generated-requests | #12.executor": "Run",
+    "HTTP Request.generated-requests | #13.executor": "Run",
+    "HTTP Request.generated-requests | #14.executor": "Run",
+    "HTTP Request.generated-requests | #15.executor": "Run",
+    "HTTP Request.generated-requests | #16.executor": "Run",
+    "HTTP Request.generated-requests | #17.executor": "Run",
+    "HTTP Request.generated-requests | #18.executor": "Run",
+    "HTTP Request.generated-requests | #19.executor": "Run",
+    "HTTP Request.generated-requests | #20.executor": "Run",
+    "HTTP Request.generated-requests | #21.executor": "Run",
+    "HTTP Request.generated-requests | #22.executor": "Run",
+    "HTTP Request.generated-requests | #23.executor": "Run",
+    "HTTP Request.generated-requests | #24.executor": "Run",
+    "HTTP Request.generated-requests | #25.executor": "Run",
+    "HTTP Request.generated-requests | #26.executor": "Run",
+    "HTTP Request.generated-requests | #27.executor": "Run",
+    "HTTP Request.generated-requests | #28.executor": "Run",
+    "HTTP Request.generated-requests | #3.executor": "Run",
+    "HTTP Request.generated-requests | #4.executor": "Run",
+    "HTTP Request.generated-requests | #5.executor": "Run",
+    "HTTP Request.generated-requests | #6.executor": "Run",
+    "HTTP Request.generated-requests | #7.executor": "Run",
+    "HTTP Request.generated-requests | #8.executor": "Run",
+    "HTTP Request.generated-requests | #9.executor": "Run",
+    "JPA.DatabaseSchemaImportDialog": "08eea60c-0627-44b9-a91a-f88478b5843c",
+    "JUnit.AddressServiceTest.create.executor": "Run",
+    "JUnit.AddressServiceTest.executor": "Run",
+    "JUnit.AddressServiceTest.findAll.executor": "Run",
+    "JUnit.CategoriesServiceTest.create.executor": "Run",
+    "JUnit.CategoriesServiceTest.executor": "Run",
+    "JUnit.OrderItemsServiceTest.executor": "Run",
+    "JUnit.OrderItemsServiceTest.testCreate.executor": "Run",
+    "JUnit.OrderServiceTest.executor": "Run",
+    "JUnit.PaymentFactoryTest.executor": "Run",
+    "JUnit.PaymentFactoryTest.testBuildPayment.executor": "Run",
+    "JUnit.PaymentServiceTest.executor": "Run",
+    "JUnit.ProductControllerTest.executor": "Run",
+    "JUnit.ProductControllerTest.getProductsUpdatedBefore.executor": "Run",
+    "JUnit.ProductServiceTest.create.executor": "Run",
+    "JUnit.ProductServiceTest.executor": "Run",
+    "JUnit.ReviewServiceTest.create.executor": "Run",
+    "JUnit.ReviewServiceTest.executor": "Run",
+    "JUnit.UserControllerTest.executor": "Run",
+    "JUnit.UserControllerTest.testCreateUser.executor": "Run",
+    "JUnit.UserServiceTest.executor": "Run",
+    "JUnit.UserServiceTest.testUpdate.executor": "Run",
+    "JUnit.UserfactoryTest.buildUser_Success.executor": "Run",
+    "JUnit.UserfactoryTest.executor": "Run",
+    "JUnit.UsersControllerTest.executor": "Run",
+    "JUnit.UsersControllerTest.testGetAllUsers.executor": "Debug",
+    "JUnit.WishlistFactoryTest and 1 more.executor": "Run",
+    "JUnit.WishlistFactoryTest.executor": "Run",
+    "JUnit.WishlistFactoryTest.testCreateWishlist.executor": "Run",
+    "JUnit.WishlistItemServiceTest and 1 more.executor": "Run",
+    "JUnit.WishlistItemServiceTest.executor": "Run",
+    "JUnit.WishlistServiceTest.executor": "Run",
+    "JUnit.WishlistServiceTest.testCreateWishlist.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.Application.executor": "Run",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "database.data.extractors.current.export.id": "SQL Inserts",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/retha/Documents/JetBrains Academy/springJwt",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2023.3.3\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "exasol",
+      "azure"
+    ],
+    "vue.recent.templates": [
+      "Vue Composition API Component"
+    ]
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Capaciti\IdeaProjects\African-Arts-Craft\src\main\java\za\ac\cput\config" />
+      <recent name="C:\Users\Capaciti\IdeaProjects\African-Arts-Craft\src\main\java\za\ac\cput\controller" />
+      <recent name="C:\Users\Capaciti\IdeaProjects\African-Arts-Craft\src\main\java\za\ac\cput\domain" />
+      <recent name="C:\Users\retha\Documents\JetBrains Academy\African Art Craft\src\main\java\za\ac\cput\service" />
+      <recent name="C:\Users\retha\Documents\JetBrains Academy\African Art Craft\src\main\java\za\ac\cput\repository" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\retha\Documents\JetBrains Academy\African Art Craft\src\test\resources" />
+      <recent name="C:\Users\retha\Documents\JetBrains Academy\African Art Craft\src\main\resources\static" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="za.ac.cput.factory" />
+      <recent name="za.ac.cput.service" />
+      <recent name="za.ac.cput.controller" />
+    </key>
+    <key name="ImportMappingsDialog.RecentPackages">
+      <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="za.ac.cput.factory" />
+      <recent name="za.ac.cput.repository" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.Application">
+    <configuration name="generated-requests | #26" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="26" requestIdentifier="#26" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #27" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="27" requestIdentifier="#27" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #28" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="28" requestIdentifier="#28" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="PaymentServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="African-Arts-Craft" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="za.ac.cput.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="za.ac.cput.service" />
+      <option name="MAIN_CLASS_NAME" value="za.ac.cput.service.PaymentServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
-      <module name="African Art Craft1" />
+      <module name="African Art Craft" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="African Art Craft1" />
+      <module name="African Art Craft" />
       <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="African-Arts-Craft" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="za.ac.cput.Application" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="za.ac.cput.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="HTTP Request.generated-requests | #27" />
+      <item itemvalue="HTTP Request.generated-requests | #28" />
+      <item itemvalue="HTTP Request.generated-requests | #26" />
+      <item itemvalue="JUnit.PaymentServiceTest" />
+      <item itemvalue="Spring Boot.Application" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.Application" />
+        <item itemvalue="HTTP Request.generated-requests | #28" />
+        <item itemvalue="HTTP Request.generated-requests | #27" />
+        <item itemvalue="JUnit.PaymentServiceTest" />
+        <item itemvalue="HTTP Request.generated-requests | #26" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-22-openjdk-22-3183f394aec4-bad0321e" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.22855.74" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.22855.74" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="99c74e81-69bc-4e9f-ab3f-42fe36d55fc8" name="Changes" comment="" />
-      <created>1728835746392</created>
+      <changelist id="2dfc9b97-bcf6-48f1-9f27-38897c268d23" name="Changes" comment="" />
+      <created>1721742614727</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1728835746392</updated>
-      <workItem from="1728835747928" duration="2236000" />
-      <workItem from="1728853709320" duration="611000" />
-      <workItem from="1728934932024" duration="1140000" />
-      <workItem from="1728987243792" duration="2451000" />
-      <workItem from="1728995130534" duration="2360000" />
-      <workItem from="1729001222307" duration="8489000" />
-      <workItem from="1729082059130" duration="9401000" />
-      <workItem from="1729080715680" duration="1882000" />
-      <workItem from="1729160210877" duration="1481000" />
-      <workItem from="1729162100671" duration="746000" />
-      <workItem from="1729197011913" duration="1105000" />
-      <workItem from="1729226697591" duration="602000" />
-      <workItem from="1729249044158" duration="2547000" />
+      <updated>1721742614727</updated>
+      <workItem from="1721742618882" duration="8515000" />
+      <workItem from="1721757997688" duration="473000" />
+      <workItem from="1721832616636" duration="20368000" />
+      <workItem from="1721908721609" duration="17338000" />
+      <workItem from="1721991810690" duration="19120000" />
+      <workItem from="1722021501334" duration="4527000" />
+      <workItem from="1722084459134" duration="27426000" />
+      <workItem from="1722236876814" duration="7992000" />
+      <workItem from="1722258640852" duration="2186000" />
+      <workItem from="1722273964784" duration="16071000" />
+      <workItem from="1722358566435" duration="8264000" />
+      <workItem from="1722415182759" duration="1859000" />
+      <workItem from="1722431833505" duration="13118000" />
+      <workItem from="1722851475000" duration="21583000" />
+      <workItem from="1722934156461" duration="604000" />
+      <workItem from="1722951873563" duration="1295000" />
+      <workItem from="1723042717566" duration="4300000" />
+      <workItem from="1723286070545" duration="274000" />
+      <workItem from="1723458298904" duration="7455000" />
+      <workItem from="1723541705652" duration="16597000" />
+      <workItem from="1723583161406" duration="36110000" />
+      <workItem from="1724337992915" duration="300000" />
+      <workItem from="1724345418579" duration="3668000" />
+      <workItem from="1724393560144" duration="11672000" />
+      <workItem from="1724586345774" duration="7933000" />
+      <workItem from="1724776939950" duration="878000" />
+      <workItem from="1724834241544" duration="2585000" />
+      <workItem from="1724854096612" duration="6967000" />
+      <workItem from="1724876892541" duration="1696000" />
+      <workItem from="1724945980767" duration="2732000" />
+      <workItem from="1725021994769" duration="3224000" />
+      <workItem from="1725131919102" duration="218000" />
+      <workItem from="1725438798857" duration="1855000" />
+      <workItem from="1725444053309" duration="5806000" />
+      <workItem from="1725529470471" duration="1509000" />
+      <workItem from="1725551422608" duration="1719000" />
+      <workItem from="1726850168657" duration="815000" />
+      <workItem from="1727030963426" duration="766000" />
+      <workItem from="1727368843943" duration="1778000" />
+      <workItem from="1727378522378" duration="14816000" />
+      <workItem from="1727424849294" duration="676000" />
+      <workItem from="1727956582495" duration="6640000" />
+      <workItem from="1728630858898" duration="15430000" />
+      <workItem from="1728716913955" duration="7281000" />
+      <workItem from="1728744193648" duration="136000" />
+      <workItem from="1728746076279" duration="12878000" />
+      <workItem from="1728834705819" duration="5369000" />
+      <workItem from="1728900073904" duration="8284000" />
+      <workItem from="1728924857697" duration="1178000" />
+      <workItem from="1728934347919" duration="2295000" />
+      <workItem from="1729014444404" duration="13089000" />
     </task>
+    <task id="LOCAL-00004" summary="Structure">
+      <option name="closed" value="true" />
+      <created>1721743415875</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1721743415875</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Structure">
+      <option name="closed" value="true" />
+      <created>1721747467372</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1721747467372</updated>
+      <workItem from="1728546008045" duration="7295000" />
+    </task>
+    <task id="LOCAL-00006" summary="Structure">
+      <option name="closed" value="true" />
+      <created>1721748795933</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1721748795933</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Structure">
+      <option name="closed" value="true" />
+      <created>1721750247447</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1721750247447</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Structure">
+      <option name="closed" value="true" />
+      <created>1721750329670</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1721750329670</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Structure">
+      <option name="closed" value="true" />
+      <created>1721758324490</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1721758324490</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Structure">
+      <option name="closed" value="true" />
+      <created>1721758406516</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1721758406516</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Domain classes Complete">
+      <option name="closed" value="true" />
+      <created>1721836909486</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1721836909486</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Domain classes Complete">
+      <option name="closed" value="true" />
+      <created>1721837131327</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1721837131327</updated>
+    </task>
+    <task id="LOCAL-00013" summary="application.properties and main App completed">
+      <option name="closed" value="true" />
+      <created>1721837794505</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1721837794505</updated>
+    </task>
+    <task id="LOCAL-00014" summary="helper and factory complete">
+      <option name="closed" value="true" />
+      <created>1721838164356</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1721838164356</updated>
+    </task>
+    <task id="LOCAL-00015" summary="helper and factory complete">
+      <option name="closed" value="true" />
+      <created>1721838252274</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1721838252274</updated>
+    </task>
+    <task id="LOCAL-00016" summary="test">
+      <option name="closed" value="true" />
+      <created>1721840774329</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1721840774329</updated>
+    </task>
+    <task id="LOCAL-00017" summary="IRepository and IService Completed &#10;to be used for local testing">
+      <option name="closed" value="true" />
+      <created>1721841548258</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1721841548258</updated>
+    </task>
+    <task id="LOCAL-00018" summary="User Repo done">
+      <option name="closed" value="true" />
+      <created>1721841854858</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1721841854858</updated>
+    </task>
+    <task id="LOCAL-00019" summary="implements Serializable">
+      <option name="closed" value="true" />
+      <created>1721844098981</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1721844098981</updated>
+    </task>
+    <task id="LOCAL-00020" summary="everthing works upto service layer">
+      <option name="closed" value="true" />
+      <created>1721849703719</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1721849703719</updated>
+    </task>
+    <task id="LOCAL-00021" summary="All Domains completed">
+      <option name="closed" value="true" />
+      <created>1721996895103</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1721996895103</updated>
+    </task>
+    <task id="LOCAL-00022" summary="All Domains completed">
+      <option name="closed" value="true" />
+      <created>1721997212091</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1721997212091</updated>
+    </task>
+    <task id="LOCAL-00023" summary="All Factories classes completed">
+      <option name="closed" value="true" />
+      <created>1722002315226</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1722002315226</updated>
+    </task>
+    <task id="LOCAL-00024" summary="All Factories classes completed">
+      <option name="closed" value="true" />
+      <created>1722014454716</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1722014454747</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Products.java&#10;ProductFactory&#10;ProductRepository&#10;ProductService&#10;ProductController&#10;Compeleted">
+      <option name="closed" value="true" />
+      <created>1722093816110</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1722093816110</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Products.java&#10;ProductFactory&#10;ProductRepository&#10;ProductService&#10;ProductController&#10;Compeleted">
+      <option name="closed" value="true" />
+      <created>1722101877430</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1722101877430</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Products.java&#10;ProductFactory&#10;ProductRepository&#10;ProductService&#10;ProductController&#10;Compeleted">
+      <option name="closed" value="true" />
+      <created>1722105598485</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1722105598485</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Products.java&#10;ProductFactory&#10;ProductRepository&#10;ProductService&#10;ProductController&#10;Compeleted">
+      <option name="closed" value="true" />
+      <created>1722105615260</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1722105615260</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Products.java&#10;ProductFactory&#10;ProductRepository&#10;ProductService&#10;ProductController&#10;Compeleted">
+      <option name="closed" value="true" />
+      <created>1722105770808</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1722105770808</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Products.java&#10;ProductFactory&#10;ProductRepository&#10;ProductService&#10;ProductController&#10;Compeleted">
+      <option name="closed" value="true" />
+      <created>1722339877659</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1722339877659</updated>
+    </task>
+    <task id="LOCAL-00031" summary="needs to be fixed">
+      <option name="closed" value="true" />
+      <created>1722339959894</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1722339959894</updated>
+    </task>
+    <task id="LOCAL-00032" summary="needs to be fixed">
+      <option name="closed" value="true" />
+      <created>1722341218094</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1722341218094</updated>
+    </task>
+    <task id="LOCAL-00033" summary="needs to be fixed">
+      <option name="closed" value="true" />
+      <created>1722857765779</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1722857765779</updated>
+    </task>
+    <task id="LOCAL-00034" summary="update">
+      <option name="closed" value="true" />
+      <created>1722857908959</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1722857908959</updated>
+    </task>
+    <task id="LOCAL-00035" summary="update">
+      <option name="closed" value="true" />
+      <created>1722870911665</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1722870911665</updated>
+    </task>
+    <task id="LOCAL-00036" summary="update">
+      <option name="closed" value="true" />
+      <created>1722953013691</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1722953013691</updated>
+    </task>
+    <task id="LOCAL-00037" summary="aws S3  bucket intergrated and fully functional">
+      <option name="closed" value="true" />
+      <created>1723663570233</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1723663570233</updated>
+    </task>
+    <task id="LOCAL-00038" summary="aws S3  bucket intergrated and fully functional">
+      <option name="closed" value="true" />
+      <created>1723663942105</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1723663942105</updated>
+    </task>
+    <task id="LOCAL-00039" summary="aws S3  bucket intergrated and fully functional">
+      <option name="closed" value="true" />
+      <created>1723664010098</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1723664010098</updated>
+    </task>
+    <task id="LOCAL-00040" summary="aws S3  bucket intergrated and fully functional">
+      <option name="closed" value="true" />
+      <created>1723664177367</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1723664177367</updated>
+    </task>
+    <task id="LOCAL-00041" summary="aws S3  bucket intergrated and fully functional">
+      <option name="closed" value="true" />
+      <created>1723664432232</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1723664432232</updated>
+    </task>
+    <task id="LOCAL-00042" summary="aws S3  bucket intergrated and fully functional">
+      <option name="closed" value="true" />
+      <created>1723665220439</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1723665220439</updated>
+    </task>
+    <task id="LOCAL-00043" summary="aws S3  bucket intergrated and fully functional&#10;&#10;Signed-off-by: Twist1154n &lt;rethabile1154n@gmail.com&gt;">
+      <option name="closed" value="true" />
+      <created>1723665332588</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1723665332588</updated>
+    </task>
+    <task id="LOCAL-00044" summary="aws S3  bucket intergrated and fully functional&#10;&#10;Signed-off-by: Twist1154n &lt;rethabile1154n@gmail.com&gt;">
+      <option name="closed" value="true" />
+      <created>1723665374764</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1723665374764</updated>
+    </task>
+    <task id="LOCAL-00045" summary="aws S3  bucket intergrated and fully functional&#10;&#10;Signed-off-by: Twist1154n &lt;rethabile1154n@gmail.com&gt;">
+      <option name="closed" value="true" />
+      <created>1723665437765</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1723665437765</updated>
+    </task>
+    <task id="LOCAL-00046" summary="aws S3  bucket intergrated and fully functional&#10;&#10;Signed-off-by: Twist1154n &lt;rethabile1154n@gmail.com&gt;">
+      <option name="closed" value="true" />
+      <created>1723665611703</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1723665611703</updated>
+    </task>
+    <task id="LOCAL-00047" summary="update project DStructure">
+      <option name="closed" value="true" />
+      <created>1723666953721</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1723666953721</updated>
+    </task>
+    <task id="LOCAL-00048" summary="update project DStructure">
+      <option name="closed" value="true" />
+      <created>1723667611303</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1723667611303</updated>
+    </task>
+    <task id="LOCAL-00049" summary="update">
+      <option name="closed" value="true" />
+      <created>1724348512425</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1724348512425</updated>
+    </task>
+    <task id="LOCAL-00050" summary="update">
+      <option name="closed" value="true" />
+      <created>1724422323869</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1724422323870</updated>
+    </task>
+    <task id="LOCAL-00051" summary="update">
+      <option name="closed" value="true" />
+      <created>1727963719615</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1727963719616</updated>
+    </task>
+    <task id="LOCAL-00052" summary="MabudAah">
+      <option name="closed" value="true" />
+      <created>1727963748256</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1727963748256</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="first&#10;&#10;Signed-off-by: Twist1154n &lt;rethabile1154n@gmail.com&gt;" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
+    <MESSAGE value="Structure&#10;&#10;Signed-off-by: Twist1154n &lt;rethabile1154n@gmail.com&gt;" />
+    <MESSAGE value="Structure" />
+    <MESSAGE value="Domain classes Complete" />
+    <MESSAGE value="application.properties and main App completed" />
+    <MESSAGE value="helper and factory complete" />
+    <MESSAGE value="test" />
+    <MESSAGE value="IRepository and IService Completed &#10;to be used for local testing" />
+    <MESSAGE value="User Repo done" />
+    <MESSAGE value="implements Serializable" />
+    <MESSAGE value="everthing works upto service layer" />
+    <MESSAGE value="All Domains completed" />
+    <MESSAGE value="All Factories classes completed" />
+    <MESSAGE value="Products.java&#10;ProductFactory&#10;ProductRepository&#10;ProductService&#10;ProductController&#10;Compeleted" />
+    <MESSAGE value="needs" />
+    <MESSAGE value="needs to be fixed" />
+    <MESSAGE value="aws S3  bucket intergrated and fully functional" />
+    <MESSAGE value="removed .properties file" />
+    <MESSAGE value="aws S3  bucket intergrated and fully functional&#10;&#10;Signed-off-by: Twist1154n &lt;rethabile1154n@gmail.com&gt;" />
+    <MESSAGE value="update project DStructure" />
+    <MESSAGE value="update" />
+    <MESSAGE value="rethabile review work perfectly" />
+    <MESSAGE value="new functionalities  for user" />
+    <MESSAGE value="Add getter methods and fix domain classes&#10;&#10;- Added getter methods to `Payments`, `Addresses`, and `Products` classes.&#10;- Ensured proper JPA annotations for the `Addresses` and `Products` classes.&#10;- Updated `AddressController` to include additional endpoints for querying addresses." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add getter methods and fix domain classes&#10;&#10;- Added getter methods to `Payments`, `Addresses`, and `Products` classes.&#10;- Ensured proper JPA annotations for the `Addresses` and `Products` classes.&#10;- Updated `AddressController` to include additional endpoints for querying addresses." />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="WfRunsListSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;branch&quot;: &quot;master&quot;,
+      &quot;currentBranchFilter&quot;: true
+    }
+  ],
+  &quot;lastFilter&quot;: {
+    &quot;branch&quot;: &quot;master&quot;,
+    &quot;currentBranchFilter&quot;: true
+  }
+}</component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" log-stack="true" type="java-exception">
+          <properties class="org.springframework.beans.factory.BeanCreationException" package="org.springframework.beans.factory" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/za/ac/cput/controller/CartItemsController.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/za/ac/cput/domain/SubCategory.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/za/ac/cput/controller/PaymentController.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint log-message="true" log-stack="true" type="java-exception" />
+      </default-breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.springframework.beans.factory.BeanCreationException" memberName="depth" />
+      </pinned-members>
+    </pin-to-top-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/African_Art_Craft$Application.ic" NAME="Application Coverage Results" MODIFIED="1722860592773" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>za.ac.cput.*</FILTER>
+    </SUITE>
   </component>
 </project>

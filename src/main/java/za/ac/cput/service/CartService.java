@@ -74,9 +74,7 @@ public class CartService implements ICart {
         Cart updatedCart = CartFactory.createCart(
                 existingCartItem.getId(),
                 cartDetails.getUser(),
-                cartDetails.getTotal(),
-                cartDetails.getCreatedAt(),
-                cartDetails.getUpdatedAt()
+                cartDetails.getTotal()
         );
         return cartRepository.save(updatedCart);
     }

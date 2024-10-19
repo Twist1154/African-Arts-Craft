@@ -19,7 +19,8 @@ import java.util.Optional;
  * @date 28-Aug-24
  */
 @RestController
-@RequestMapping("/api/address")
+@RequestMapping("/address")
+@CrossOrigin(origins = "*")
 public class AddressController {
 
     private final AddressService addressService;

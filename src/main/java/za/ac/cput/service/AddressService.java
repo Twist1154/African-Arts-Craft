@@ -60,8 +60,6 @@ public class AddressService implements IAddress {
                     .setCity(address.getCity())
                     .setPostalCode(address.getPostalCode())
                     .setPhoneNumber(address.getPhoneNumber())
-                    .setCreatedAt(address.getCreatedAt())
-                    .setUpdatedAt(address.getUpdatedAt())
                     .build();
             return addressRepository.save(updatedAddress);
         } else {

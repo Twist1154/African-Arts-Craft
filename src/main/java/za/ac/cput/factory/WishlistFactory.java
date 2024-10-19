@@ -33,7 +33,7 @@ public class WishlistFactory {
         if (user == null) {
             throw new IllegalArgumentException("User cannot be null in WishlistFactory");
         }
-        if (products == null ) {
+        if (products == null) {
             throw new IllegalArgumentException("Wishlist must have at least one item");
         }
 
