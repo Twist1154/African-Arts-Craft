@@ -20,6 +20,10 @@ public class Helper {
         return s == null || s.isNaN();
     }
 
+    public static boolean isOrderNullorEmpty(Double s) {
+        return s == null || Double.isNaN(s);
+    }
+
     public static boolean isNullOrEmpty(Integer i) {
         return i == null;
     }
